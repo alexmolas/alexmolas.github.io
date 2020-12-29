@@ -1,0 +1,19 @@
+<div id="Experience" style = "margin: 0px; padding: 0px; color:rgb(255, 250, 255);" >_</div>
+
+<h2 {% if site.style == 'dark' %}class="text-white"{% endif %}>Work Experience 💼</h2>
+<br>
+<div class="d-sm-flex flex-wrap gutter-condensed mb-4 text-list">
+  <ul>
+    {% for work in site.works %}
+    <p style = "margin: 0 0 0 0"; class="text-normal">
+        <p style = "margin-left: 25px" ><b>{{ work.name }}</b>{{ work.position }}</p>
+        <i><p style = "margin-left: 25px" class="text-normal">{{ work.position2 }}</p></i>
+        <p style = "margin-left: 25px" class="text-normal">{{ work.period }}</p>
+    </p> 
+    <br>
+    {% endfor %}
+  </ul>
+  
+<!-- </div>
+<div id="Projects" style = "margin: 0px; padding: 0px; color:rgb(255, 250, 255);" >_</div>
+<hr> -->

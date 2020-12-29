@@ -1,0 +1,55 @@
+<div id="Contact" style = "color:rgb(255, 250, 255);" >_</div>
+<br>
+<h2 {% if site.style == 'dark' %}class="text-white"{% endif %}>Contact 📝</h2>
+<br>
+<p class="f4 mb-4 text-grey">Fill out this form and I'll get back to you within 1-2 days.</p>
+
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>contact form</title>
+</head>
+
+<body>
+
+<link href="{{ "/assets/contact-form.css" | relative_url }}" rel="stylesheet">
+
+<div class="fcf-body" >
+
+    <div id="fcf-form">
+
+    <form id="fcf-form-id" class="fcf-form-class" method="post" action="https://formspree.io/f/mqkggwpv">
+        
+        <div class="fcf-form-group">
+            <label for="Name" class="fcf-label">Your name</label>
+            <div class="fcf-input-group">
+                <input type="text" id="Name" name="Name" class="fcf-form-control" required>
+            </div>
+        </div>
+
+        <div class="fcf-form-group">
+            <label for="Email" class="fcf-label">Your email address</label>
+            <div class="fcf-input-group">
+                <input type="email" id="Email" name="Email" class="fcf-form-control" required>
+            </div>
+        </div>
+
+        <div class="fcf-form-group">
+            <label for="Message" class="fcf-label">Your message</label>
+            <div class="fcf-input-group">
+                <textarea id="Message" name="Message" class="fcf-form-control" rows="6" maxlength="3000" required></textarea>
+            </div>
+        </div>
+
+        <div class="fcf-form-group">
+            <button type="submit" id="fcf-button" class="fcf-btn fcf-btn-primary fcf-btn-lg fcf-btn-block">Send Message</button>
+        </div>
+
+    </form>
+    </div>
+
+</div>
+
+</body>
+</html>

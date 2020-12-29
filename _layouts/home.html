@@ -18,6 +18,19 @@
       </div>
     {% endif %}
 
+    {% if site.education %}
+    <div class="my-6">
+      {% include education.html %}
+    </div>
+    {% endif %}
+
+    {% if site.about %}
+    <div class="my-6">
+      {% include about.html %}
+    </div>
+    {% endif %}
+
+
     {% unless posts_total == 0 %}
       <div class="my-6">
         {% include thoughts.html %}
@@ -44,12 +57,34 @@
           {% include interests.html %}
         {% endif %}
 
+        {% if site.education %}
+        <div class="my-6">
+          {% include education.html %}
+        </div>
+        {% endif %}
+
+        {% if site.works %}
+        <div class="my-6">
+          {% include works.html %}
+        </div>
+        {% endif %}
+  
+
         {% unless posts_total == 0 %}
           {% include thoughts.html %}
         {% endunless %}
+
+        {% if site.contact %}
+        <div class="my-6">
+          {% include contact.html %}
+        </div>
+        {% endif %}
+
       </div>
     </div>
   </div>
 {% endif %}
+
+
 
 {% include footer.html %}
