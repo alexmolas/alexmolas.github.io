@@ -18,11 +18,6 @@
       </div>
     {% endif %}
 
-    {% if site.education %}
-    <div class="my-6">
-      {% include education.html %}
-    </div>
-    {% endif %}
 
     {% if site.about %}
     <div class="my-6">
@@ -51,28 +46,22 @@
           </div>
         {% endunless %}
 
-        {% include projects.html %}
-
-        {% if site.topics %}
+        <!-- {% if site.topics %}
           {% include interests.html %}
-        {% endif %}
+        {% endif %} -->
 
-        {% if site.education %}
+        <!-- {% if site.education %}
         <div class="my-6">
           {% include education.html %}
         </div>
-        {% endif %}
+        {% endif %} -->
 
-        {% if site.works %}
-        <div class="my-6">
-          {% include works.html %}
-        </div>
-        {% endif %}
-  
 
         {% unless posts_total == 0 %}
           {% include thoughts.html %}
         {% endunless %}
+
+        {% include projects.html %}
 
         {% if site.contact %}
         <div class="my-6">

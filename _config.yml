@@ -24,7 +24,7 @@ projects:
   limit: 9
   exclude:
     archived: false
-    forks: true
+    forks: false
     projects:
     # - repo-name
 
@@ -55,40 +55,12 @@ topics:
     web_url: https://en.wikipedia.org/wiki/Data_science
     image_url: https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Directed.svg/1920px-Directed.svg.png
 
-education:
-  - name: University of Virginia, School of Data Science • Charlottesville, Virginia
-    position: M.S. Candidate in Data Science
-    period: July 2020 - May 2021
-
-  - name: Beijing Language and Culture University (北京语言大学) • Beijing, PRC
-    position: Certificate in Intensive Mandarin
-    period: September 2018 - December 2018
-
-  - name: University of Michigan, College of Literature, Science, and the Arts • Ann Arbor, Michigan
-    position: B.S. in Economics with High Honors •  Minor in Mathematics
-    position2: Undergraduate Thesis - Playing by the Rules; How had the TRIPS Agreement Affected IP Adherence?
-    period: September 2016 - May 2020
-  
-  - name: Delton Kellogg High School • Delton, Michigan
-    position: High School Diploma
-    period: September 2012 - May 2016
-
-
 about:
   - name: D
     position: C
     period: O
 
-
-works:
-  - name: Data Visualization Specialist
-    position: • Ann Arbor, Michigan
-    position2: Clark Data Labs
-    period: October 2019 - April 2020
-
 contact:
   - name: D
     position: C
     period: O
-
-

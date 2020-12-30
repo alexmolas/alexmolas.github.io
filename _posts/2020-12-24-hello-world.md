@@ -1,75 +1,12 @@
 ---
-title: "Welcome to Jekyll!"
+title: "Welcome to my blog!"
 published: true
 ---
 
-**Hello world**, this is my first Jekyll blog post.
+**Hello world**, this is my first blog post. It is writen using the markdown language. This blog will be focused on anything that interests me, mainly: physics, maths, machine learning, computer science, and science in general. Also, if I find some topic interesting I may write a post about that, for example: linguistics, philosophy, religion, etc.
+
+**Disclaimer**:
+
+English is not my first language, so some posts can have grammar errors. I would be very happy if you point out those mistakes so I could learn from them and correct the errors.
 
 I hope you like it!
-
-# Highlighter
-## Ruby
-```ruby
-def show
-  puts "Outputting a very lo-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-ong lo-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-ong line"
-  @widget = Widget(params[:id])
-  respond_to do |format|
-    format.html # show.html.erb
-    format.json { render json: @widget }
-  end
-end
-```
-
-## Php
-```php
-<?php
-  print("Hello {$world}");
-?>
-```
-
-## Java
-```java
-public class java {
-    public static void main(String[] args) {
-        System.out.println("Hello World");
-    }
-}
-```
-
-## HTML
-```html
-<html>
-  <head><title>Title!</title></head>
-  <body>
-    <p id="foo">Hello, World!</p>
-    <script type="text/javascript">var a = 1;</script>
-    <style type="text/css">#foo { font-weight: bold; }</style>
-  </body>
-</html>
-```
-
-## Console
-```console
-# prints "hello, world" to the screen
-~# echo Hello, World
-Hello, World
-
-# don't run this
-~# rm -rf --no-preserve-root /
-```
-
-## Css
-```css
-body {
-    font-size: 12pt;
-    background: #fff url(temp.png) top left no-repeat;
-}
-```
-
-## Yaml
-```yaml
----
-one: Mark McGwire
-two: Sammy Sosa
-three: Ken Griffey
-```
