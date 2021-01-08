@@ -22,11 +22,7 @@
   gtag('config', 'G-JW9F0B7Y26');
 </script>
 
-{% if site.style == 'dark' %}
-  {% assign icon_color = "#ffffff" %}
-{% else %}
-  {% assign icon_color = "#24292e" %}
-{% endif %}
+{% assign icon_color = "#24292e" %}
 
 {% assign content = page.content %}
 
@@ -45,10 +41,9 @@
 <!doctype html>
 <html class="min-height-full">
   <head>
-    {% if site.tags == "" %}
-     {% include collecttags.html %}
+    {% if site.tags != "" %}
+      {% include collecttags.html %}
     {% endif %}
-
 
     <meta charset="utf-8">
     <title>{{ page_title }}</title>

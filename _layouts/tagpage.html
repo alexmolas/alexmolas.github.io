@@ -1,17 +1,22 @@
----
-layout: default
----
+{% include header.html %}
 
-<div class="post">
-<h1 class="tag-title">Tag: {{ page.tag }}</h1>
-<ul>
-{% for post in site.tags[page.tag] %}
-  	<a href="{{ post.url }}">{{ post.title }}</a> ({{ post.date | date_to_string }})<br>
-  	{{ post.description }}
-  	<!-- Tags: {{ post.tags | join: ", " }} -->
-  </li>
-{% endfor %}
-</ul>
-</div>
+<div class="d-md-flex min-height-full {% unless site.style == 'dark' %}border-md-bottom{% endunless %}">
+	<div class="flex-self-stretch {% if site.style == 'dark' %}bg-gray-dark{% else %}border-md-right border-gray-light bg-white{% endif %} col-md-5 col-lg-4 col-xl-3 px-4 px-md-6 px-lg-7 py-6">
+	  {% include masthead.html metadata=true %}
+	</div>
+	<div class="col-md-7 col-lg-8 col-xl-9 px-4 py-6 px-lg-7 border-top border-md-top-0 bg-gray-light" {% if site.style == 'dark' %}style="background-color: #2f363d !important"{% endif %}>
+		<h1 class="tag-title">Tag: {{ page.tag }}</h1>
+		<ul>
+		{% for post in site.tags[page.tag] %}
+			  <a href="{{ post.url }}"> <b>Hello World{{ post.title }} </b></a> ({{ post.date | date_to_string }})<br>
+			  <i>{{ post.description }}</i>
+			  <!-- Tags: {{ post.tags | join: ", " }} -->
+		  </li>
+		{% endfor %}
+	</ul>
+	</div>	
+		
+  </div>
+
 
 <hr>
