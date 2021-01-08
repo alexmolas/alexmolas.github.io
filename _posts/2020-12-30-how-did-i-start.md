@@ -1,5 +1,5 @@
 ---
-title: How did I build this blog?
+title: How I built this site
 published: true
 ---
 

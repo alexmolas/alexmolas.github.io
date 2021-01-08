@@ -1,12 +1,16 @@
+
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({
     tex2jax: {
-      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
-      inlineMath: [['$','$']]
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    },
+    TeX: { 
+      equationNumbers: { autoNumber: "all" } 
     }
   });
 </script>
-<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script> 
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-JW9F0B7Y26"></script>
@@ -41,6 +45,11 @@
 <!doctype html>
 <html class="min-height-full">
   <head>
+    {% if site.tags == "" %}
+     {% include collecttags.html %}
+    {% endif %}
+
+
     <meta charset="utf-8">
     <title>{{ page_title }}</title>
     <meta name="description" content="{{ meta_description }}" />
