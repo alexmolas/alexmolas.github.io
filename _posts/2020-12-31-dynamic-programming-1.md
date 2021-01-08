@@ -1,8 +1,8 @@
 ---
 layout: post
 title: "Dynamic Programming 1: Multyplying Matrices"
-description: A blog giving you some insights about what is happening in the field of augmented reality research, by looking at the highlights of ISMAR (IEEE International Symposium on Mixed and Augmented Reality) 2016, at Merida, Mexico.
-tags: food
+description: Learning how to multiply matrices in the best possible order, ie solving the Matrix Chaing Multiplication problem.
+tags: dynamic-programming python
 ---
 
 
