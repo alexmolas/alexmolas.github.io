@@ -8,7 +8,7 @@
 		<h1 class="tag-title">Tag: {{ page.tag }}</h1>
 		<ul>
 		{% for post in site.tags[page.tag] %}
-			  <a href="{{ post.url }}"> <b>Hello World{{ post.title }} </b></a> ({{ post.date | date_to_string }})<br>
+			  <a href="{{ post.url }}"> <b>{{ post.title }} </b></a> ({{ post.date | date_to_string }})<br>
 			  <i>{{ post.description }}</i>
 			  <!-- Tags: {{ post.tags | join: ", " }} -->
 		  </li>
