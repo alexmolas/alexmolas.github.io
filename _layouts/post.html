@@ -55,7 +55,10 @@
             {% endfor %}
           ]</span>
           
-          <p class="{% if site.style == 'dark' %}text-white{% else %}text-gray{% endif %} mb-5">Published {{ page.date | date: "%b %d, %Y"}}</p>
+          <p class="{% if site.style == 'dark' %}text-white{% else %}text-gray{% endif %} mb-5">
+            Published {{ page.date | date: "%b %d, %Y"}} • {% include reading_time.html -%}
+          </p>
+          
           {{ post_body }}
           {% include comments.html %}
         </div>
