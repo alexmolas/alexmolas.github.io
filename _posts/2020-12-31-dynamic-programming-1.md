@@ -131,30 +131,31 @@ Even knowing that the brute force algorithm is not a feasible solution it's inte
 The main idea behind this method is implemented here:
 
 ```python
-def get_min_cost(dims: Tuple[int]) -> int:
-    def _get_min_cost(dims_: Tuple[int], i: int, j: int):
-        """
-        :param dims_: an array with the matrices dimensions
-        :param i: initial index
-        :param j: final index
-        i and j define the subsequence of dims_ from which do we want to know the best ordering
-        :return:
-        """
-        # base case, when we only have one matrix
+def naive_mcm(dims: Tuple[int]) -> Tuple[int, Sequence]:
+    n_matrices = len(dims) - 1
+    s = [[0 for _ in range(n_matrices)] for _ in range(n_matrices)]
+
+    def _mcm(d, i, j):
         if j <= i + 1:
             return 0
 
         min_cost = float('inf')
 
+        best_partition = None
+
         for k in range(i + 1, j):
-            cost = _get_min_cost(dims_, i, k) + _get_min_cost(dims_, k, j) + dims_[i] * dims_[k] * dims_[j]
+            cost = _mcm(d, i, k) + _mcm(d, k, j) + d[i] * d[k] * d[j]
             if cost < min_cost:
                 min_cost = cost
+                best_partition = k
+        s[i][j - 1] = best_partition
         return min_cost
-    return _get_min_cost(dims, 0, len(dims) - 1)
+    return _mcm(dims, 0, n_matrices), s
 ```
 
 The main point of this code is the line `cost = _get_min_cost(dims_, i, k) + _get_min_cost(dims_, k, j) + dims_[i] * dims_[k] * dims_[j]`, where we split the problem in two: first get the minimum cost of the left partition, then we add the minimum cost of the right partition and finally add the cost of multypling the left and right partitions.
+
+On the other hand, we are using the matrix `s` to store which is the best possible partition for each possible subsequence. For a given chain of multiplications $A_1A_2...A_n$ the element $i, j$ of `s` store the best partition of the subsequence $A_i...A_j$. Using this matrix `s` we are able to print the best parenthesization, using the [`print_parenthesis` method](https://github.com/AlexMolas/dynamic-programming/blob/762beeafd683b8a0a62cfb5e0f543184096ab532/matrix-multiplication/mat_mult/utils.py#L27).
 
 ### Memoization
 
@@ -170,12 +171,11 @@ def memoize(f):
     return helper
 ```
 
-But what the heck is this? This is a python [decorator](https://realpython.com/primer-on-python-decorators/). And what does it do? This decorator is an optimization technique used primarily to speed up computer programs by storing the results of expensive function calls and returning the cached result when the same inputs occur again. So just doing this change
+But what the heck is this? This is a python [decorator](https://realpython.com/primer-on-python-decorators/). And what does it do? This decorator is an optimization technique used primarily to speed up computer programs by storing the results of expensive function calls and returning the cached result when the same inputs occur again. So by applying this decorator to the `_mcm` function,
 
 ```python
-def get_min_cost(dims: Tuple[int]) -> int:
-    @memoize
-    def _get_min_cost(dims_: Tuple[int], i: int, j: int):
+@memoize
+def _mcm(d, i, j):
 ```
 
 the computations can be sped up to a thousand times. In the following section we will compare the naive and the memoized algorithms.
@@ -191,4 +191,3 @@ In Fig. 3 we show in log-scale the time that the naive algorithm has took to sol
 <br/>
 
 We can see that for small problems, the naive algorithm is faster than the memoized one, this could be because it takes some time to create the dictionary that stores previously solved problems. However, when the problem size increases it turns out that the memoized algorithm is **much** faster than the naive one. In fact, for problem sizes $\sim 18$ it's up to $10^5$ times faster!
-
