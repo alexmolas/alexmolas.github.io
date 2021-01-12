@@ -6,7 +6,7 @@ tags: dynamic-programming python
 ---
 
 
-For the last few months I've been interested in the concepts behind dynamic programming, however I didn't had time to read and learn about this topic. Now that I have started this new blog I will take the opportunity to learn about it and explain here the progress that I will be making. To share with you the code that I will be using I have created a new [GH repo](https://github.com/AlexMolas/dynamic-programming).
+For the last few months I've been interested in the concepts behind dynamic programming, however, I haven't had time to read and learn about this topic. Now that I have started this new blog I will take the opportunity to learn about it and explain here the progress that I will be making. To share with you the code that I will be using I have created a new [GH repo](https://github.com/AlexMolas/dynamic-programming).
 
 ---
 **Table of contents:**
@@ -26,8 +26,8 @@ For the last few months I've been interested in the concepts behind dynamic prog
 
 # Matrix Multiplication
 
-In this post we will talk about how to use dynamic programming to solve the problem known as `Matrix Chain Ordering Problem (MCOP)`,
-but to be able to explain what is this problem, we need first to cover some basic concepts, starting by how to multiply matrices.
+In this post, we will talk about how to use dynamic programming to solve the problem known as `Matrix Chain Ordering Problem (MCOP)`,
+but to be able to explain what is this problem, we need first to cover some basic concepts, starting with how to multiply matrices.
 
 ## First steps
 
@@ -71,7 +71,7 @@ In other words, you can parenthesize the expression as you want and the result w
 ## The order matters
 
 Now that we have covered the matrix multiplication basics let's point out something you may have not noticed: 
-*the order in which you multipliy multiple matrices matters.*
+*the order in which you multiply multiple matrices matters.*
 
 How is that possible? Didn't we show above that the matrix multiplication is associate? How can it be that the order in which you perform the multiplications affects the result?
 
@@ -96,20 +96,20 @@ On the other hand, $\textbf{D} = \textbf{A}(\textbf{B}\textbf{C})$, and followin
 </div>
 <br/>
 
-So, clearly the first option is much more efficient. With this example we are ready to formalize our problem statement.
+So, the first option is much more efficient. After having seen this example we are ready to formalize our problem statement.
 
 # Matrix Chain Multiplication
 ## Problem statement
 
-As we have shown in the last section, the multiplication order impacts the number of operations that we'll need to perform, therefore, it makes sense to have a method to obtain the order that minimizes the number of operations. The order in which operations are carried out is determined by how the expression is parenthesized. Therefore, one way to express our problem as:
+As we have shown in the last section, the multiplication order impacts the number of operations that we'll need to perform, therefore, it makes sense to have a method to obtain the order that minimizes the number of operations. The order in which operations are carried out is determined by how the expression is parenthesized. Hance, one way to express our problem as:
 
 > How to determine the optimal parenthesization of a product of $n$ matrices.
 
 ## Number of parenthesizations
 
-It would be interesting to have an idea of how difficult this problem is, in other words, if it is possible to solve it by brute force. To answer this question we need to know how the number possible solutions depend on $n$ for a chain of products like $A_1A_2...A_n$. 
+It would be interesting to have an idea of how difficult this problem is, in other words, if it is possible to solve it by brute force. To answer this question we need to know how the number of possible solutions depends on $n$ for a chain of products like $A_1A_2...A_n$. 
 
-The number of possible parenthesizations for $n\geq 2$ is given by $P(n) = \sum_k P(k) P(n-k)$. The sum runs over all the possible partitions in two of the chain, and the first term of the product is the number of parenthesizations of the left partition of the chain and the second term is the number of parenthesizations of the right partition. When $n=1$ there's only parenthesization. Therefore,
+The number of possible parenthesizations for $n\geq 2$ is given by $P(n) = \sum_k P(k) P(n-k)$. The sum runs over all the possible partitions in two of the chain, and the first term of the product is the number of parenthesizations of the left partition of the chain and the second term is the number of parenthesizations of the right partition. When $n=1$ there's only one possible parenthesization. Therefore,
 
 $$
 P(n) = \begin{cases}
@@ -122,11 +122,11 @@ And it turns out that this kind of recurrences are related with [Catalan numbers
 
 ## Solutions
 
-In this section we will show two different solutions to this problem: a brute force one and another one smarter.
+In this section, we will show two different solutions to this problem: a brute force one and another one smarter.
 
 ### Brute Force
 
-Even knowing that the brute force algorithm is not a feasible solution it's interesting to implement it to be able to compare future optimizations against it. The brute force implementation is just computing all the possible partitions and they associated number of operations, and then select the partition with less operations. The implementation can be found [here](https://github.com/AlexMolas/dynamic-programming/blob/main/matrix-multiplication/mat_mult/mcm.py).
+Even knowing that the brute force algorithm is not a feasible solution it's interesting to implement it to be able to compare future optimizations against it. The brute force implementation is just computing all the possible partitions and the associated number of operations, and then select the partition with fewer operations. The implementation can be found [here](https://github.com/AlexMolas/dynamic-programming/blob/main/matrix-multiplication/mat_mult/mcm.py).
 
 The main idea behind this method is implemented here:
 
@@ -153,13 +153,13 @@ def naive_mcm(dims: Tuple[int]) -> Tuple[int, Sequence]:
     return _mcm(dims, 0, n_matrices), s
 ```
 
-The main point of this code is the line `cost = _get_min_cost(dims_, i, k) + _get_min_cost(dims_, k, j) + dims_[i] * dims_[k] * dims_[j]`, where we split the problem in two: first get the minimum cost of the left partition, then we add the minimum cost of the right partition and finally add the cost of multypling the left and right partitions.
+The main point of this code is the line `cost = _get_min_cost(dims_, i, k) + _get_min_cost(dims_, k, j) + dims_[i] * dims_[k] * dims_[j]`, where we split the problem in two: first get the minimum cost of the left partition, then we add the minimum cost of the right partition and finally add the cost of multiplying the left and right partitions.
 
-On the other hand, we are using the matrix `s` to store which is the best possible partition for each possible subsequence. For a given chain of multiplications $A_1A_2...A_n$ the element $i, j$ of `s` store the best partition of the subsequence $A_i...A_j$. Using this matrix `s` we are able to print the best parenthesization, using the [`print_parenthesis` method](https://github.com/AlexMolas/dynamic-programming/blob/762beeafd683b8a0a62cfb5e0f543184096ab532/matrix-multiplication/mat_mult/utils.py#L27).
+On the other hand, we are using the matrix `s` to store which is the best possible partition for each possible subsequence. For a given chain of multiplications $A_1A_2...A_n$ the element $i, j$ of `s` store the best partition of the subsequence $A_i...A_j$. Using this matrix `s` we can print the best parenthesization, using the [`print_parenthesis` method](https://github.com/AlexMolas/dynamic-programming/blob/762beeafd683b8a0a62cfb5e0f543184096ab532/matrix-multiplication/mat_mult/utils.py#L27).
 
 ### Memoization
 
-In this first naive implementation there are a lot of computations that are repeated, which slows down a lot the performance of the algorithm, and the idea behind dynamic programming is to avoid repeating all this computations. In python this can be achieved with this little piece of code:
+In this first naive implementation, there are a lot of computations that are repeated, which slows down a lot the performance of the algorithm, and the idea behind dynamic programming is to avoid repeating all these computations. In python this can be achieved with this little piece of code:
 
 ```python
 def memoize(f):
@@ -182,7 +182,7 @@ the computations can be sped up to a thousand times. In the following section we
 
 ### Brute Force vs Memoized Algorithms
 
-In Fig. 3 we show in log-scale the time that the naive algorithm has took to solve a problem versus the time that took to the memoized algorithm to solve the same problems. To generate each point we have solved several problems of the same size and computed the mean (dot) and the standard deviation (shaded area).
+In Fig. 3 we show in log-scale the time that the naive algorithm has taken to solve a problem versus the time that took to the memoized algorithm to solve the same problems. To generate each point we have solved several problems of the same size and computed the mean (dot) and the standard deviation (shaded area).
 
 <div style="text-align:center">
     <img src="/docs/dynamic-programming-1/NaiveVSMemoized.png" width=400 class="center">
