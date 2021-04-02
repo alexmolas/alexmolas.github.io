@@ -73,7 +73,7 @@ In other words, you can parenthesize the expression as you want and the result w
 Now that we have covered the matrix multiplication basics let's point out something you may have not noticed: 
 *the order in which you multiply multiple matrices matters.*
 
-How is that possible? Didn't we show above that the matrix multiplication is associate? How can it be that the order in which you perform the multiplications affects the result?
+How is that possible? Didn't we show above that the matrix multiplication is associative? How can it be that the order in which you perform the multiplications affects the result?
 
 Well, first of all let me tell you that the matrix multiplications is still associative, and that the order only affects
 to the number of operations you will need to do. Let me show you this using a simple example. Let $\textbf{A} \in \mathbb{R}^{10 \times 30}$, $\textbf{B} \in \mathbb{R}^{30 \times 5}$, $\textbf{C} \in \mathbb{R}^{5 \times 60}$ and $\textbf{D} = \textbf{A}\textbf{B}\textbf{C}$. To compute $\textbf{D}$ we have two options: $\textbf{D} = (\textbf{A}\textbf{B})\textbf{C}$ (first multiply A and B, and multiply the result with C) or $\textbf{D} = \textbf{A}(\textbf{B}\textbf{C})$ (first multiply B and C, and multiply the result with A). While these two options lead to the same result the number of operations to perform is different in each case.
