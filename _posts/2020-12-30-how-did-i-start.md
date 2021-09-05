@@ -13,6 +13,7 @@ In this post, I will explain how I built this site and how I wrote this post - s
 - [How to write a post:](#how-to-write-a-post)
   - [How to add images:](#how-to-add-images)
   - [How to add equations:](#how-to-add-equations)
+  - [How to embed HTML:](#how-to-embed-html)
 
 ---
 
@@ -80,7 +81,7 @@ And the result will look like this:
 
 ## How to add equations:
 
-Finally I will show how to add equations to the posts. I'm sure that this won't be interesting to many, however it's important to me to be able to add equations in an easy way. And of course, the most [beautiful](https://www.reddit.com/r/LaTeX/comments/7msm7q/why_is_latex_so_beautiful/) way to write equations is using $\LaTeX$.
+In this section, I will show how to add equations to the posts. I'm sure that this won't be interesting to many, however it's important to me to be able to add equations in an easy way. And of course, the most [beautiful](https://www.reddit.com/r/LaTeX/comments/7msm7q/why_is_latex_so_beautiful/) way to write equations is using $\LaTeX$.
 
 It could seem dificult to do that, or at least it seemed to me, however, you only need to add this little snippet in you header:
 
@@ -99,4 +100,21 @@ It could seem dificult to do that, or at least it seemed to me, however, you onl
 And just like that you can start writing this nice equations in your posts:
 
 $h_\theta(x) = \Large\frac{1}{1 + \mathcal{e}^{\left(-\theta^T x\right)}}$
+
+
+## How to embed HTML:
+
+Imagine that you have generated a beautiful map using [keplergl](https://kepler.gl/), and now you want to show it in your site. One possible option is to copy-paste the corresponding HTML directly in the markdown file, but this option doesn't seem very clean, so we can discard it.
+The other option, is to save the generated HTML is an `.html` file and embed it into the markdown file. How to do so? Just doing:
+
+```html
+<embed type="text/html" src="FILENAME" width="500" height="500">
+```
+
+And the result is something like
+
+<div style='text-align:center'>
+<embed type="text/html" src="/docs/how-did-i-start/test.html" width="500" height="500">
+</div>
+<br/>
 
