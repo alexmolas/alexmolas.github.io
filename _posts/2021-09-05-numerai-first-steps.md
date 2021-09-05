@@ -48,8 +48,8 @@ some NMR on your predictions, and you will win or lose money depending on how go
 ## Create a coinbase account
 
 You need a coinbase account for two reasons:
-- To start staking NMR on your models you first need some NMR. To get your first NMR your need to buy them, and you can do so on the coinbase platform. After buying some NMR you only need to send them to your numer.ai wallet.
-- You can use coinbase if at some point you want to convert your NMR earnings to real money, you only need to send your
+1. To start staking NMR on your models you first need some NMR. To get your first NMR your need to buy them, and you can do so on the coinbase platform. After buying some NMR you only need to send them to your numer.ai wallet.
+2. You can use coinbase if at some point you want to convert your NMR earnings to real money, you only need to send your
 NMR in numer.ai to coinbase and from there convert them to whatever currency you want.
 
 To create the coinbase account you need to provide some evidence about who you are, for example, a photo of your driver's
