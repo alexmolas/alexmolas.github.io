@@ -2,7 +2,7 @@
 layout: post
 title: "Numer.ai: my first steps"
 description: My first steps in the hardest data science contest.
-tags: data crypto machine-learning
+tags: data crypto machine-learning numerai
 ---
 
 ---
