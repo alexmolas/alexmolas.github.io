@@ -4,7 +4,8 @@ style: light # dark or light
 plugins:
   - jekyll-octicons
   - jekyll-github-metadata
-  - jemoji
+
+paginate: 6
 
 permalink: /:year/:month/:day/:title/
 
