@@ -4,6 +4,8 @@ style: light # dark or light
 plugins:
   - jekyll-octicons
   - jekyll-github-metadata
+  - jekyll-feed
+
 
 paginate: 6
 
