@@ -1,11 +1,13 @@
 layout: sidebar # stacked or sidebar
 style: light # dark or light
 
+url: "https://alexmolas.github.io" # the base hostname & protocol for your site
+
 plugins:
+  - jekyll-sitemap
   - jekyll-octicons
   - jekyll-github-metadata
   - jekyll-feed
-
 
 paginate: 6
 
