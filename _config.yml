@@ -8,6 +8,8 @@ plugins:
   - jekyll-octicons
   - jekyll-github-metadata
   - jekyll-feed
+  - jekyll-seo-tag
+
 
 paginate: 6
 
