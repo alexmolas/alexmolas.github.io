@@ -4,7 +4,6 @@ gem "jekyll-github-metadata"
 gem "jekyll-octicons"
 gem "jemoji"
 gem 'jekyll-feed'
-gem 'jekyll-sitemap'
 gem 'jekyll-seo-tag'
 
 
