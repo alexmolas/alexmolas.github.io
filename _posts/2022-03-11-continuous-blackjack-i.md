@@ -64,7 +64,7 @@ $$
 $$
 
 
-The constant $K$ can be obtained using that $F(a; a, b) = b - a$, so $K=(b-a)e^a$.
+The constant $K$ can be obtained using $F(a; a, b) = b - a$, so $K=(b-a)e^a$.
 
 $$
 F(t; a, b) = (b-a)e^{a-t}
@@ -78,6 +78,8 @@ $$
 
 # Strategies
 
+In this section, we will analyze how to use the results derived in the last section to find the optimal strategy in different scenarios.
+
 ## 1 vs 1 
 
 Let's start with the simplest case: you're playing against only one other person. The first player gets a point iif the second player busts. If the first players' score is $s$, then the second player has a probability $1 − F(0; s, 1)$ to bust, this means that our probability to win if we stay at $s$ is $1 − F(0; s, 1)$. Of course, if we could choose our $s$ we would choose $s=1$, but since this is a random process we can't choose $s$. The only thing we can choose is at which $\alpha$ we stop drawing numbers. This $\alpha$ is defined by the following point: where the probability of winning given that we stick at $\alpha$ is the same as the probability that we win given that we draw one more number. This condition is written as
@@ -86,6 +88,7 @@ $$
 1 - F(0; \alpha, 1) = \int_{\alpha}^1 P(x - \alpha) \left( 1 - F(0; x, 1) \right) dx
 $$
 
+Notice that left side is increasing, while right side is decreasing.
 
 # Specific case: uniform distribution
 
@@ -93,7 +96,7 @@ For this section let's assume that $P = U[0, 1]$ and that all the players start 
 
 ## Simulation results
 
-Before moving to theoretical results let's try to find the optimal threshold via simulations. For each possible threshold, we'll simulate 50000 games and check how many times the first player has won the game. The results are plotted in Fig. 1:
+Before moving to theoretical results, let's try to find the optimal threshold via simulations. To do so, we will try each possible threshold and simulate 50000 games. Then we will check the probability of first player winning as a function of the choosen threshold. The results are plotted in Fig. 1:
 
 
 <div style="text-align:center">
