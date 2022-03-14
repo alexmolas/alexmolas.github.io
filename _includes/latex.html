@@ -1,14 +1,22 @@
-<script>
-    MathJax = {
-      tex: {
-        inlineMath: [['$', '$'], ['\\(', '\\)']]
-      },
-      svg: {
-        fontCache: 'global'
-      }
-    };
-</script>
+<script type="text/x-mathjax-config">
+var font = "Latin-Modern";
+MathJax.Hub.Config({
+	tex2jax: {
+		inlineMath: [['$','$']],
+		displayMath: [['\\[','\\]']],
+		processEscapes: true,
+	},
+	"SVG":{
+		font:font
+	},
+	"HTML-CSS": {
+		webFont: font,
+		imageFont: font,
+		preferredFont: font,
+		availableFonts: [],
+		scale: 85,
+		mtextFontInherit: true
+	}
+}); </script>
 
-<script type="text/javascript" id="MathJax-script" async
-  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
-</script>
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
