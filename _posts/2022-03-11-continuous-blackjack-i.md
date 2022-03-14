@@ -105,7 +105,7 @@ Before moving to theoretical results, let's try to find the optimal threshold vi
 </div>
 <br/>
 
-As you can see, the maximum winning probability is achieved around $t=0.6$, more specifically $t = 0.591$. Now that we know the range where the optimal value let's repeat the above simulations but only with thresholds between $0.5$ and $0.7$. We can see in Fig. 2 that the optimal threshold is in the range $(0.56, 0.58)$. Let's see now if the analytical results are compatible with the simulations.
+As you can see, the maximum winning probability is achieved around $t^\* =0.6$, more specifically is $t^\*=(0.565 \pm 0.035)$ [^1]. Knowing the range where the optimal value lies, let's repeat the above simulations but only with thresholds between $0.5$ and $0.65$. Using this smaller range we get the optimal threshold $t^* = (0.568 \pm 0.021)$. Finally, the expected winning probability at the optimal threshold is $p_{win}(t^*) = (0.4278 \pm 0.0011)$. Let's see now if the analytical results are compatible with the simulations.
 
 
 <div style="text-align:center">
@@ -137,3 +137,7 @@ This is a non-linear equation without a closed form, but it can be solved approx
 In this first post, we have derived the generic equation for the probability of falling in a range $(a, b)$ given that we're currently in $t$. We have also derived the condition that the optimal thresholds have to fulfill. Finally, we have studied the particular case of the uniform distribution - both numerically and analytically - and studied its properties. 
 
 In the following posts we will study how all these results change when the distribution $P$ changes. We will also study the case where we play against $N$ players instead of only one.
+
+---
+
+[^1]: To compute the optimal threshold and its deviation we have run a Monte-Carlo simluation. This is, we have generated 1000 samples of the threshold-vs-probability curve using the expected winning probability and its 99% confidence interval. Then, we have computed the optimal threshold for each of these samples, and from this set of optimal thresholds we have computed the average and standard deviation.
