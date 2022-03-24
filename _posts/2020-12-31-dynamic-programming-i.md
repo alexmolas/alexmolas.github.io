@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "Dynamic Programming 1: Multyplying Matrices"
+title: "Dynamic Programming (i): Multyplying Matrices"
 description: Learning how to multiply matrices in the best possible order, ie solving the Matrix Chaing Multiplication problem.
-tags: dynamic-programming python
+tags: dynamic-programming python math optimization
 ---
 
 
