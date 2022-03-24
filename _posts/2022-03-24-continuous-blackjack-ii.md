@@ -66,7 +66,7 @@ $$
 Hence, the optimal value is given by
 
 $$
-(1-F(0;\alpha,1))^n = \int_\alpha^1 (1-F(0;\alpha,1))^n ds
+(1-F(0;\alpha,1))^n = \int_\alpha^1 (1-F(0;s,1))^n ds
 $$
 
 which is the same equation we derived in our last post.
