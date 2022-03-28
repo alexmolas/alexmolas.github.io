@@ -83,17 +83,17 @@ In this section, we will analyze how to use the results derived in the last sect
 
 ## 1 vs 1 
 
-Let's start with the simplest case: you're playing against only one other person. The first player gets a point iif the second player busts. If the first players' score is $s$, then the second player has a probability $1 − F(0; s, 1)$ to bust, this means that our probability to win if we stay at $s$ is $1 − F(0; s, 1)$. Of course, if we could choose our $s$ we would choose $s=1$, but since this is a random process we can't choose $s$. The only thing we can choose is at which $\alpha$ we stop drawing numbers. This $\alpha$ is defined by the following point: where the probability of winning given that we stick at $\alpha$ is the same as the probability that we win given that we draw one more number. This condition is written as
-
-$$
-1 - F(0; \alpha, 1) = \int_{\alpha}^1 P(x - \alpha) \left( 1 - F(0; x, 1) \right) dx
-$$
-
-Notice that left side is increasing, while right side is decreasing.
+Let's start with the simplest case: you're playing against only one other person. The first player gets a point iif the second player busts. If the first players' score is $s$, then the second player has a probability $1 − F(0; s, 1)$ to bust, this means that our probability to win if we stay at $s$ is $1 − F(0; s, 1)$. Of course, if we could choose our $s$ we would choose $s=1$, but since this is a random process we can't choose $s$. The only thing we can choose is at which $\alpha$ we stop drawing numbers. This $\alpha$ is defined by the following point: where the probability of winning given that we stick at $\alpha$ is the same as the probability that we win given that we draw one more number. 
 
 # Specific case: uniform distribution
 
-For this section let's assume that $P = U[0, 1]$ and that all the players start at $x=0$.
+For this section let's assume that $P = U[0, 1]$ and that all the players start at $x=0$. In this case, the condition described by the above reasoning is written as
+                                                                                                                                                          
+$$
+1 - F(0; \alpha, 1) = \int_{\alpha}^1 \left( 1 - F(0; x, 1) \right) dx
+$$
+                                                                                                                                                          
+Notice that left side is increasing, while right side is decreasing.
 
 ## Simulation results
 
