@@ -3,7 +3,7 @@ layout: post
 title: "Training tensorflow model with big tabular datasets."
 description: How to train a tensorflow/keras model when your training dataset doesn't fit in memory?
 tags: tensorflow parquet machine-learning
-header-img: "/docs/continuous-blackjack/udist-t-vs-p.svg"
+header-img: "/docs/tensorflow-and-huge-data/dataset-in-memory.svg"
 ---
 
 ---
@@ -11,6 +11,8 @@ header-img: "/docs/continuous-blackjack/udist-t-vs-p.svg"
 - [Problem Statement](#problem-statement)
 - [Using *tf.data.Dataset*](#using-tfdatadataset)
 - [Training the model](#training-the-model)
+    - [Better perfomance](#better-perfomance)
+- [Conclusions](#results--conclusions)
 
 ---
 
@@ -20,22 +22,23 @@ During the last months, I’ve been working on building a model using `keras`. U
 
 While this is a typical problem when you're working with images, and it has standard [solutions](https://www.tensorflow.org/api_docs/python/tf/keras/preprocessing/image/ImageDataGenerator), I couldn't find a similar solution for tabular datasets. In this post, we'll see how I solved this problem using TensorFlow datasets.
 
-To give some context my model and features had the following specific details:
-1. *Named inputs*: the model receive a dictionary of inputs like `dict[name, feature]`.
+To give some context my model and features had the following details:
+
+1. *Named inputs*: the model receives a dictionary of inputs like `dict[name, feature]`.
 2. *Nested features*: some of the features are nested, in particular some of the features are arrays.
 
-Without loss of generality let's assume that the dataset looks like
+Without loss of generality, let's assume that the dataset looks like
 
 $$
-\begin{array}{c|c|c}
-        \text{id}  & \text{feature 1} & \text{feature 2} \\ \hline
-        1  & 42 & [1, 0, 5, 32] \\
-        ...  & ... & ... \\ 
-        N  & 10 & [1, 3, 1, 2] \\
+\begin{array}{c|c|c|c}
+        \text{id}  & \text{feature 1} & \text{feature 2} & \text{target} \\ \hline
+        1  & 42 & [1, 0, 5, 32] & 1.1 \\
+        ...  & ... & ... & ... \\ 
+        N  & 10 & [1, 3, 1, 2] & 2.3 \\
 \end{array}
 $$
 
-Where $N$ is big enough such that the full dataset doesn't fit in memory.
+where $N$ is big enough such that the full dataset doesn't fit in memory.
 
 # Using *tf.data.Dataset*
 
@@ -54,9 +57,25 @@ where `get_file_partitions` is a method that returns all the partitions of the d
 <script src="https://gist.github.com/AlexMolas/7330531ef1acd5bb4d69a4b0dd3d5a5f.js?file=split_dataframe.py"></script>
 
 
-To instantiate a TensorFlow dataset using a generator we need to specify its output signature, which is how we tell our dataset the types it's going to output. In our case, the output signature and the instantiated dataset are:
+The idea behind `generator.py` is to iterate over the partitions of the dataset, having only one partition in memory at any moment. From the partition in memory we extract and yield batches of data, and once all the dataset has been batched we jump to the next partition. In the following image there's depicted a full epoch of data being iterated.
+
+<div style="text-align:center">
+    <img src="/docs/tensorflow-and-huge-data/dataset-in-memory.svg" width=500px class="center">
+    <img src="/docs/tensorflow-and-huge-data/dataset-in-memory-2.svg" width=500px class="center">
+    <img src="/docs/tensorflow-and-huge-data/dataset-in-memory-N.svg" width=500px class="center">
+    <figcaption>Fig. 1 - How to iterate generate batches of data from a dataset that doesn't fit in memory.</figcaption>
+</div>
+<br/>
+
+
+To instantiate a TensorFlow dataset using a generator we need to specify its output signature, which is how we tell our dataset the data types of our batches. In our case, the output signature and the instantiated dataset are:
 
 <script src="https://gist.github.com/AlexMolas/7330531ef1acd5bb4d69a4b0dd3d5a5f.js?file=output_signature.py"></script>
+
+Notice, that in we could pass our generator directly to the training process, however this wouldn't be thread-safe. In fact, if you try to do `model.fit(generator())` you would get the following warning:
+
+> WARNING:tensorflow:multiprocessing can interact badly with TensorFlow, causing nondeterministic deadlocks. For high performance data pipelines `tf.data` is recommended.
+
 
 # Training the model
 
@@ -67,3 +86,11 @@ The next step is to train our model. However, as you may have noticed, in the wa
 So the total number of steps per epoch is $\lceil \textrm{n_rows} / \textrm{batch size} \rceil$. Also, one nice thing about TensorFlow datasets is that we can use multiprocessing while training the model, and the only thing we need to enable multiprocessing is to specify the number of workers we want to use and set the multiprocessing argument to `True`. So finally, we can train our model like
 
 <script src="https://gist.github.com/AlexMolas/7330531ef1acd5bb4d69a4b0dd3d5a5f.js?file=train.py"></script>
+
+## Better perfomance
+
+One thing I haven't mentioned yet is that by using TensorFlow datasets and multiprocessing you get better speed perfomance, as it's explained [here](https://www.tensorflow.org/guide/data_performance). In my particular case I got a reduction of ~5 in training time.
+
+# Results & Conclusions
+
+In this post we have seen how to train models with tabular dataset that doesn't fit in memory using the tensorflow dataset API. Also, tensorflow datasets allowed us to use multiprocessing in a thread-safe manner, and this has accelerated the training process by ~5.
