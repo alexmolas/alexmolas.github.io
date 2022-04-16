@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Training tensorflow model with big tabular datasets."
+title: "Training tensorflow models with big tabular datasets."
 description: How to train a tensorflow/keras model when your training dataset doesn't fit in memory?
 tags: tensorflow parquet machine-learning
 header-img: "/docs/tensorflow-and-huge-data/dataset-in-memory.svg"
