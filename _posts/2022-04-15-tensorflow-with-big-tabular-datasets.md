@@ -18,7 +18,7 @@ header-img: "/docs/tensorflow-and-huge-data/dataset-in-memory.svg"
 
 
 # Problem Statement
-During the last months, I’ve been working on building a model using `keras`. Up to last week, I was using only a few features and I had no problems training the model in my machine, but last week the number of features grew up to a few dozens, so the dataset size multiplied by ~10. With this change a new problem arose: the dataset wasn’t fitting in memory (it wasn’t even fitting in an EC2 machine with 32GB of RAM).
+During the last months, I’ve been working on building a model using `Keras`. Up to last week, I was using only a few features and I had no problems training the model in my machine, but last week the number of features grew up to a few dozens, so the dataset size multiplied by ~10. With this change a new problem arose: the dataset wasn’t fitting in memory (it wasn’t even fitting in an EC2 machine with 32GB of RAM).
 
 While this is a typical problem when you're working with images, and it has standard [solutions](https://www.tensorflow.org/api_docs/python/tf/keras/preprocessing/image/ImageDataGenerator), I couldn't find a similar solution for tabular datasets. In this post, we'll see how I solved this problem using TensorFlow datasets.
 
@@ -63,7 +63,7 @@ The idea behind `generator.py` is to iterate over the partitions of the dataset,
     <img src="/docs/tensorflow-and-huge-data/dataset-in-memory.svg" width=500px class="center">
     <img src="/docs/tensorflow-and-huge-data/dataset-in-memory-2.svg" width=500px class="center">
     <img src="/docs/tensorflow-and-huge-data/dataset-in-memory-N.svg" width=500px class="center">
-    <figcaption>Fig. 1 - How to iterate generate batches of data from a dataset that doesn't fit in memory.</figcaption>
+    <figcaption>Fig. 1 - How to generate batches of data from a dataset that doesn't fit in memory.</figcaption>
 </div>
 <br/>
 
@@ -87,10 +87,10 @@ So the total number of steps per epoch is $\lceil \textrm{n_rows} / \textrm{batc
 
 <script src="https://gist.github.com/AlexMolas/7330531ef1acd5bb4d69a4b0dd3d5a5f.js?file=train.py"></script>
 
-## Better perfomance
+## Better performance
 
-One thing I haven't mentioned yet is that by using TensorFlow datasets and multiprocessing you get better speed perfomance, as it's explained [here](https://www.tensorflow.org/guide/data_performance). In my particular case I got a reduction of ~5 in training time.
+One thing I haven't mentioned yet is that by using TensorFlow datasets and multiprocessing you get better speed performance, as it's explained [here](https://www.tensorflow.org/guide/data_performance). In my particular case I got a reduction of ~5 in training time.
 
 # Results & Conclusions
 
-In this post we have seen how to train models with tabular dataset that doesn't fit in memory using the tensorflow dataset API. Also, tensorflow datasets allowed us to use multiprocessing in a thread-safe manner, and this has accelerated the training process by ~5.
+In this post, we have seen how to train models with tabular datasets that don’t fit in memory using the TensorFlow dataset API. Also, TensorFlow datasets allowed us to use multiprocessing in a thread-safe manner, and this has accelerated the training process by ~5.

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Coding sucks: strip vs lstrip"
+title: "Coding sucks."
 description: How to lose one hour of your time!
 tags: python rant
 ---
