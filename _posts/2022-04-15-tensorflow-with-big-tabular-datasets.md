@@ -11,7 +11,7 @@ header-img: "/docs/tensorflow-and-huge-data/dataset-in-memory.svg"
 - [Problem Statement](#problem-statement)
 - [Using *tf.data.Dataset*](#using-tfdatadataset)
 - [Training the model](#training-the-model)
-    - [Better perfomance](#better-perfomance)
+    - [Better performance](#better-performance)
 - [Conclusions](#results--conclusions)
 
 ---
