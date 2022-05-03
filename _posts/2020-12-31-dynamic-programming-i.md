@@ -8,21 +8,6 @@ tags: dynamic-programming python math optimization
 
 For the last few months I've been interested in the concepts behind dynamic programming, however, I haven't had time to read and learn about this topic. Now that I have started this new blog I will take the opportunity to learn about it and explain here the progress that I will be making. To share with you the code that I will be using I have created a new [GH repo](https://github.com/AlexMolas/dynamic-programming).
 
----
-**Table of contents:**
-- [Matrix Multiplication](#matrix-multiplication)
-  - [First steps](#first-steps)
-  - [The order matters](#the-order-matters)
-- [Matrix Chain Multiplication](#matrix-chain-multiplication)
-  - [Problem statement](#problem-statement)
-  - [Number of parenthesizations](#number-of-parenthesizations)
-  - [Solutions](#solutions)
-    - [Brute Force](#brute-force)
-    - [Memoization](#memoization)
-    - [Brute Force vs Memoized Algorithms](#brute-force-vs-memoized-algorithms)
-
----
-
 
 # Matrix Multiplication
 

@@ -1,0 +1,58 @@
+I"V<hr />
+
+<p><strong>Table of contents:</strong></p>
+<ul>
+  <li><a href="#disclaimer">Disclaimer</a></li>
+  <li><a href="#introduction">Introdiction</a></li>
+  <li><a href="#first-steps">First steps</a>
+    <ul>
+      <li><a href="#create-a-numerai-account">Create a numer.ai account</a></li>
+      <li><a href="#create-a-coinbase-account">Create a coinbase account</a></li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<h1 id="disclaimer">Disclaimer</h1>
+
+<p>In this series of posts, I’m going to explain my adventures in the numer.ai platform. I plan to write these posts as I
+discover how to use the platform and how everything works, so do not expect everything to be super clear and perfect.</p>
+
+<h1 id="introduction">Introduction</h1>
+
+<p>First of all, I want to introduce a little bit what is numer.ai. According to Wikipedia numer.ai is 
+<em>“an AI-run, crowd-sourced hedge fund based in San Francisco”</em>, where <em>“trades are determined by an AI, 
+which is fueled by a network of thousands of anonymous data scientists.”</em> 
+So basically, the idea is that they run a hedge fund where the investments are determined by the predictions that anonymous data scientists give to them. Also, the company hosts a weekly tournament where the models are ranked depending on several metrics.
+You may ask now why do data scientists give for free their work to this hedge fund? There are two answers: 
+(1) because it’s always funny to participate in this kind of tournament, and (2) because if your predictions are good
+enough then numer.ai is going to pay you with its cryptocurrency (NMR). Sounds interesting, isn’t it?</p>
+
+<h1 id="first-steps">First steps</h1>
+
+<p>Here I’m going to explain the first steps that I followed to start participating in this contest.</p>
+
+<h2 id="create-a-numerai-account">Create a numer.ai account</h2>
+
+<p>Of course, the first step is to create your account, the process is easy-peasy. They recommend you -and so do I- 
+to activate MFA, but be careful of not losing your authentication device, because if you do so numer.ai would not be able to help you recover your access. With your account, you receive for free a crypto wallet that will be used to receive your compensations.</p>
+
+<h2 id="how-do-you-earn-nmr">How do you earn NMR?</h2>
+
+<p>When you submit your prediction you can stake some NMR on them. What does this mean? This means that you’re able to bet
+some NMR on your predictions, and you will win or lose money depending on how good the predictions were.</p>
+
+<h2 id="create-a-coinbase-account">Create a coinbase account</h2>
+
+<p>You need a coinbase account for two reasons:</p>
+<ol>
+  <li>To start staking NMR on your models you first need some NMR. To get your first NMR your need to buy them, and you can do so on the coinbase platform. After buying some NMR you only need to send them to your numer.ai wallet.</li>
+  <li>You can use coinbase if at some point you want to convert your NMR earnings to real money, you only need to send your
+NMR in numer.ai to coinbase and from there convert them to whatever currency you want.</li>
+</ol>
+
+<p>To create the coinbase account you need to provide some evidence about who you are, for example, a photo of your driver’s
+license and a bank statement. This process is going to take a while, so I’m going to finish this post here. In the next
+post I’ll explain the contest rules and how do you earn NMR.</p>
+:ET

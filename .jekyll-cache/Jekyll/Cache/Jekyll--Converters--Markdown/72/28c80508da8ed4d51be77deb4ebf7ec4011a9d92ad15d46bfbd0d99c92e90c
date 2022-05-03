@@ -1,0 +1,215 @@
+I"_I<p>For the last few months I’ve been interested in the concepts behind dynamic programming, however, I haven’t had time to read and learn about this topic. Now that I have started this new blog I will take the opportunity to learn about it and explain here the progress that I will be making. To share with you the code that I will be using I have created a new <a href="https://github.com/AlexMolas/dynamic-programming">GH repo</a>.</p>
+
+<hr />
+
+<p><strong>Table of contents:</strong></p>
+<ul>
+  <li><a href="#matrix-multiplication">Matrix Multiplication</a>
+    <ul>
+      <li><a href="#first-steps">First steps</a></li>
+      <li><a href="#the-order-matters">The order matters</a></li>
+    </ul>
+  </li>
+  <li><a href="#matrix-chain-multiplication">Matrix Chain Multiplication</a>
+    <ul>
+      <li><a href="#problem-statement">Problem statement</a></li>
+      <li><a href="#number-of-parenthesizations">Number of parenthesizations</a></li>
+      <li><a href="#solutions">Solutions</a>
+        <ul>
+          <li><a href="#brute-force">Brute Force</a></li>
+          <li><a href="#memoization">Memoization</a></li>
+          <li><a href="#brute-force-vs-memoized-algorithms">Brute Force vs Memoized Algorithms</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<h1 id="matrix-multiplication">Matrix Multiplication</h1>
+
+<p>In this post, we will talk about how to use dynamic programming to solve the problem known as <code class="language-plaintext highlighter-rouge">Matrix Chain Ordering Problem (MCOP)</code>,
+but to be able to explain what is this problem, we need first to cover some basic concepts, starting with how to multiply matrices.</p>
+
+<h2 id="first-steps">First steps</h2>
+
+<p>Let’s start with some notation: a matrix will be represented as a bold capital letter, ie: $\textbf{A}$; and a vector as a bold lowercase letter, ie: $\textbf{a}$. We will also use index notation, so the $i$, $j$ entry ($i$-column, $j$-row)
+of matrix $\textbf{A}$ is indicated by $\textbf{A}_{ij}$ or simplifying $A_{ij}$.</p>
+
+<p>With this fixed notation, given a $m \times n$ matrix $\textbf{A}$ and a $n \times p$ matrix $\textbf{B}$</p>
+
+<p>[{\displaystyle \mathbf {A} ={\begin{pmatrix}a_{11}&amp;a_{12}&amp;\cdots &amp;a_{1n}\a_{21}&amp;a_{22}&amp;\cdots &amp;a_{2n}\\vdots &amp;\vdots &amp;\ddots &amp;\vdots \a_{m1}&amp;a_{m2}&amp;\cdots &amp;a_{mn}\\end{pmatrix}},\quad \mathbf {B} ={\begin{pmatrix}b_{11}&amp;b_{12}&amp;\cdots &amp;b_{1p}\b_{21}&amp;b_{22}&amp;\cdots &amp;b_{2p}\\vdots &amp;\vdots &amp;\ddots &amp;\vdots \b_{n1}&amp;b_{n2}&amp;\cdots &amp;b_{np}\\end{pmatrix}}}]</p>
+
+<p>The product of $\textbf{A}$ and $\textbf{B}$ will be a $m \times p$ matrix $\textbf{C}$ - this is very important for what we are studying, so keep it in mind.</p>
+
+<p>And the $i, j$ entry of $\textbf{C}$ will be</p>
+
+<p>[C_{ij} = \sum_{k=1}^n A_{ik} B_{kj}]</p>
+
+<p>So, matrix $\textbf{C}$ will look like</p>
+
+<p>[{\displaystyle \mathbf {C} =
+{\begin{pmatrix}
+a_{11}b_{11}+\cdots +a_{1n}b_{n1}&amp;a_{11}b_{12}+\cdots +a_{1n}b_{n2}&amp;\cdots &amp;a_{11}b_{1p}+\cdots +a_{1n}b_{np}<br />
+a_{21}b_{11}+\cdots +a_{2n}b_{n1}&amp;a_{21}b_{12}+\cdots +a_{2n}b_{n2}&amp;\cdots &amp;a_{21}b_{1p}+\cdots +a_{2n}b_{np}<br />
+\vdots &amp;\vdots &amp;\ddots &amp;\vdots <br />
+a_{m1}b_{11}+\cdots +a_{mn}b_{n1}&amp;a_{m1}b_{12}+\cdots +a_{mn}b_{n2}&amp;\cdots &amp;a_{m1}b_{1p}+\cdots +a_{mn}b_{np}<br />
+\end{pmatrix}}} \label{eq:matrixmult}]</p>
+
+<p>From these definitions one can show that the matrix multiplication operation is associative, this means that</p>
+
+<p>[\textbf{A}\textbf{B}\textbf{C} = \textbf{A}(\textbf{B}\textbf{C}) = (\textbf{A}\textbf{B})\textbf{C}]</p>
+
+<p>In other words, you can parenthesize the expression as you want and the result will always be the same.</p>
+
+<h2 id="the-order-matters">The order matters</h2>
+
+<p>Now that we have covered the matrix multiplication basics let’s point out something you may have not noticed: 
+<em>the order in which you multiply multiple matrices matters.</em></p>
+
+<p>How is that possible? Didn’t we show above that the matrix multiplication is associative? How can it be that the order in which you perform the multiplications affects the result?</p>
+
+<p>Well, first of all let me tell you that the matrix multiplications is still associative, and that the order only affects
+to the number of operations you will need to do. Let me show you this using a simple example. Let $\textbf{A} \in \mathbb{R}^{10 \times 30}$, $\textbf{B} \in \mathbb{R}^{30 \times 5}$, $\textbf{C} \in \mathbb{R}^{5 \times 60}$ and $\textbf{D} = \textbf{A}\textbf{B}\textbf{C}$. To compute $\textbf{D}$ we have two options: $\textbf{D} = (\textbf{A}\textbf{B})\textbf{C}$ (first multiply A and B, and multiply the result with C) or $\textbf{D} = \textbf{A}(\textbf{B}\textbf{C})$ (first multiply B and C, and multiply the result with A). While these two options lead to the same result the number of operations to perform is different in each case.</p>
+
+<p>Before starting working out the above example, let’s notice that the number of arithmetic operations needed to compute a product of matrices $\textbf{A}\textbf{B}$ is $\mathcal{O}(nmp)$, where $\textbf{A}$ is an $n\times m$ matrix and $\textbf{B}$ is an $m\times p$ matrix.</p>
+
+<p>On one hand we have the option to compute $\textbf{D}$ as $\textbf{D} = (\textbf{A}\textbf{B})\textbf{C}$. In this case, we first compute $\textbf{A}\textbf{B}$, and according to $\ref{eq:matrixmult}$ we would need to perform $10 \times 30 \times 5$ multiplications. After that, we would have a $10 \times 5$ matrix and we will multipliy it with $\textbf{C}$, which will imply $10 \times 5 \times 60$ operations. In total this is <strong>4500</strong> operations. In the following image we have a little diagram that can help to understand what are we doing.</p>
+
+<div style="text-align:center">
+    <img src="/docs/dynamic-programming-1/AB_C.png" width="400" class="center" />
+    <figcaption>Fig. 1</figcaption>
+</div>
+<p><br /></p>
+
+<p>On the other hand, $\textbf{D} = \textbf{A}(\textbf{B}\textbf{C})$, and following the same reasoning as above (there’s below a similar diagram) we find that the number of operations in this case is <strong>27000</strong>.</p>
+
+<div style="text-align:center">
+    <img src="/docs/dynamic-programming-1/A_BC.png" width="400" class="center" />
+    <figcaption>Fig. 2</figcaption>
+</div>
+<p><br /></p>
+
+<p>So, the first option is much more efficient. After having seen this example we are ready to formalize our problem statement.</p>
+
+<h1 id="matrix-chain-multiplication">Matrix Chain Multiplication</h1>
+<h2 id="problem-statement">Problem statement</h2>
+
+<p>As we have shown in the last section, the multiplication order impacts the number of operations that we’ll need to perform, therefore, it makes sense to have a method to obtain the order that minimizes the number of operations. The order in which operations are carried out is determined by how the expression is parenthesized. Hance, one way to express our problem as:</p>
+
+<blockquote>
+  <p>How to determine the optimal parenthesization of a product of $n$ matrices.</p>
+</blockquote>
+
+<h2 id="number-of-parenthesizations">Number of parenthesizations</h2>
+
+<p>It would be interesting to have an idea of how difficult this problem is, in other words, if it is possible to solve it by brute force. To answer this question we need to know how the number of possible solutions depends on $n$ for a chain of products like $A_1A_2…A_n$.</p>
+
+<p>The number of possible parenthesizations for $n\geq 2$ is given by $P(n) = \sum_k P(k) P(n-k)$. The sum runs over all the possible partitions in two of the chain, and the first term of the product is the number of parenthesizations of the left partition of the chain and the second term is the number of parenthesizations of the right partition. When $n=1$ there’s only one possible parenthesization. Therefore,</p>
+
+<p>[P(n) = \begin{cases}
+    \sum_{k=1}^{n-1} P(k)P(n-1) &amp; n\leq 2<br />
+    1 &amp; n=1
+\end{cases}]</p>
+
+<p>And it turns out that this kind of recurrences are related with <a href="https://en.wikipedia.org/wiki/Catalan_number#Applications_in_combinatorics">Catalan numbers</a>, which implies that $P(n) \sim \frac{4^n}{n^{3/2}}$. Therefore, trying all the possible solutions is a bad idea.</p>
+
+<h2 id="solutions">Solutions</h2>
+
+<p>In this section, we will show two different solutions to this problem: a brute force one and another one smarter.</p>
+
+<h3 id="brute-force">Brute Force</h3>
+
+<p>Even knowing that the brute force algorithm is not a feasible solution it’s interesting to implement it to be able to compare future optimizations against it. The brute force implementation is just computing all the possible partitions and the associated number of operations, and then select the partition with fewer operations. The implementation can be found <a href="https://github.com/AlexMolas/dynamic-programming/blob/main/matrix-multiplication/mat_mult/mcm.py">here</a>.</p>
+
+<p>The main idea behind this method is implemented here:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+</pre></td> --><td class="rouge-code"><pre><span class="k">def</span> <span class="nf">naive_mcm</span><span class="p">(</span><span class="n">dims</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">]:</span>
+    <span class="n">n_matrices</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">dims</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_matrices</span><span class="p">)]</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_matrices</span><span class="p">)]</span>
+
+    <span class="k">def</span> <span class="nf">_mcm</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">j</span> <span class="o">&lt;=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="mi">0</span>
+
+        <span class="n">min_cost</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="s">'inf'</span><span class="p">)</span>
+
+        <span class="n">best_partition</span> <span class="o">=</span> <span class="bp">None</span>
+
+        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">j</span><span class="p">):</span>
+            <span class="n">cost</span> <span class="o">=</span> <span class="n">_mcm</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span> <span class="o">+</span> <span class="n">_mcm</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span> <span class="o">+</span> <span class="n">d</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">d</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">*</span> <span class="n">d</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">cost</span> <span class="o">&lt;</span> <span class="n">min_cost</span><span class="p">:</span>
+                <span class="n">min_cost</span> <span class="o">=</span> <span class="n">cost</span>
+                <span class="n">best_partition</span> <span class="o">=</span> <span class="n">k</span>
+        <span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">best_partition</span>
+        <span class="k">return</span> <span class="n">min_cost</span>
+    <span class="k">return</span> <span class="n">_mcm</span><span class="p">(</span><span class="n">dims</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">n_matrices</span><span class="p">),</span> <span class="n">s</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>The main point of this code is the line <code class="language-plaintext highlighter-rouge">cost = _get_min_cost(dims_, i, k) + _get_min_cost(dims_, k, j) + dims_[i] * dims_[k] * dims_[j]</code>, where we split the problem in two: first get the minimum cost of the left partition, then we add the minimum cost of the right partition and finally add the cost of multiplying the left and right partitions.</p>
+
+<p>On the other hand, we are using the matrix <code class="language-plaintext highlighter-rouge">s</code> to store which is the best possible partition for each possible subsequence. For a given chain of multiplications $A_1A_2…A_n$ the element $i, j$ of <code class="language-plaintext highlighter-rouge">s</code> store the best partition of the subsequence $A_i…A_j$. Using this matrix <code class="language-plaintext highlighter-rouge">s</code> we can print the best parenthesization, using the <a href="https://github.com/AlexMolas/dynamic-programming/blob/762beeafd683b8a0a62cfb5e0f543184096ab532/matrix-multiplication/mat_mult/utils.py#L27"><code class="language-plaintext highlighter-rouge">print_parenthesis</code> method</a>.</p>
+
+<h3 id="memoization">Memoization</h3>
+
+<p>In this first naive implementation, there are a lot of computations that are repeated, which slows down a lot the performance of the algorithm, and the idea behind dynamic programming is to avoid repeating all these computations. In python this can be achieved with this little piece of code:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre></td> --><td class="rouge-code"><pre><span class="k">def</span> <span class="nf">memoize</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
+    <span class="n">memo</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">def</span> <span class="nf">helper</span><span class="p">(</span><span class="n">dims</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">):</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">memo</span><span class="p">:</span>
+            <span class="n">memo</span><span class="p">[(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)]</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">dims</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">memo</span><span class="p">[(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)]</span>
+    <span class="k">return</span> <span class="n">helper</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>But what the heck is this? This is a python <a href="https://realpython.com/primer-on-python-decorators/">decorator</a>. And what does it do? This decorator is an optimization technique used primarily to speed up computer programs by storing the results of expensive function calls and returning the cached result when the same inputs occur again. So by applying this decorator to the <code class="language-plaintext highlighter-rouge">_mcm</code> function,</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td> --><td class="rouge-code"><pre><span class="o">@</span><span class="n">memoize</span>
+<span class="k">def</span> <span class="nf">_mcm</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">):</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>the computations can be sped up to a thousand times. In the following section we will compare the naive and the memoized algorithms.</p>
+
+<h3 id="brute-force-vs-memoized-algorithms">Brute Force vs Memoized Algorithms</h3>
+
+<p>In Fig. 3 we show in log-scale the time that the naive algorithm has taken to solve a problem versus the time that took to the memoized algorithm to solve the same problems. To generate each point we have solved several problems of the same size and computed the mean (dot) and the standard deviation (shaded area).</p>
+
+<div style="text-align:center">
+    <img src="/docs/dynamic-programming-1/NaiveVSMemoized.png" width="400" class="center" />
+    <figcaption>Fig. 3</figcaption>
+</div>
+<p><br /></p>
+
+<p>We can see that for small problems, the naive algorithm is faster than the memoized one, this could be because it takes some time to create the dictionary that stores previously solved problems. However, when the problem size increases it turns out that the memoized algorithm is <strong>much</strong> faster than the naive one. In fact, for problem sizes $\sim 18$ it’s up to $10^5$ times faster!</p>
+:ET

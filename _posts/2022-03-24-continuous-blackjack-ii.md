@@ -5,12 +5,6 @@ description: Deriving same equations with different methods
 tags: probability math optimization
 ---
 
----
-
-**Table of contents:**
-- [Maximizing winning probability](#maximizing-winning-probability)
-- [Maximizing expected payoff](#maximizing-expected-payoff)
----
 
 In the last [post]({% post_url 2022-03-11-continuous-blackjack-i %}), we derived some basic equations of the continuous blackjack game. In this post, we will show other ways - maybe more intuitive - to derive the same results.
 

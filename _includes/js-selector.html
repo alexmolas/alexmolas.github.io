@@ -4,7 +4,7 @@
 
 <!-- layout specified -->
 
-{% include latex.html %}
+<!--{% include latex.html %}-->
 
 {% if page.layout == 'post' %}
   {% if site.google_analytics.pv.proxy_endpoint or site.google_analytics.pv.cache_path %}
@@ -64,27 +64,25 @@
 {% capture script %}/assets/js/dist/{{ type }}.min.js{% endcapture %}
 <script defer src="{{ script | relative_url }}"></script>
 
-{% if page.math %}
-  <!-- MathJax -->
-  <script>
-  /* see: <https://docs.mathjax.org/en/latest/options/input/tex.html#tex-options> */
-  MathJax = {
-    tex: {
-      inlineMath: [              /* start/end delimiter pairs for in-line math */
-        ['$','$'],
-        ['\\(','\\)']
-      ],
-      displayMath: [             /* start/end delimiter pairs for display math */
-        ['$$', '$$'],
-        ['\\[', '\\]']
-      ]
-    }
-  };
-  </script>
-  <script src="{{ site.data.assets[origin].polyfill.js }}"></script>
-  <script id="MathJax-script" async src="{{ site.data.assets[origin].mathjax.js }}">
-  </script>
-{% endif %}
+<!-- MathJax -->
+<script>
+/* see: <https://docs.mathjax.org/en/latest/options/input/tex.html#tex-options> */
+MathJax = {
+tex: {
+  inlineMath: [              /* start/end delimiter pairs for in-line math */
+    ['$','$'],
+    ['\\(','\\)']
+  ],
+  displayMath: [             /* start/end delimiter pairs for display math */
+    ['$$', '$$'],
+    ['\\[', '\\]']
+  ]
+}
+};
+</script>
+<script src="{{ site.data.assets[origin].polyfill.js }}"></script>
+<script id="MathJax-script" async src="{{ site.data.assets[origin].mathjax.js }}">
+</script>
 
 <!-- commons -->
 

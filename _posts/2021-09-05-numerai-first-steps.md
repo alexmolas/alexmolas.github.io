@@ -5,16 +5,6 @@ description: My first steps in the hardest data science contest.
 tags: data crypto machine-learning numerai
 ---
 
----
-
-**Table of contents:**
-- [Disclaimer](#disclaimer)
-- [Introdiction](#introduction)
-- [First steps](#first-steps)
-    - [Create a numer.ai account](#create-a-numerai-account)
-    - [Create a coinbase account](#create-a-coinbase-account)
-
----
 
 # Disclaimer
 

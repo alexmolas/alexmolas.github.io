@@ -5,13 +5,6 @@ description:
 tags: data-science software-engineering
 ---
 
----
-
-- [Why best practices matter](#why-best-practices-matter)
-    - [For speed](#for-speed)
-    - [For science](#for-science)
-
----
 
 I still remember when I started working as an intern data scientist and I had to open my first pull request. I was very happy with my work, so I just committed all my changes together, opened a pull request, assigned it to my supervisor, and started waiting for the compliments to arrive - *spoiler: the compliments never arrived*.
 

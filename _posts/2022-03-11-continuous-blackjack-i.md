@@ -6,19 +6,6 @@ tags: probability math optimization
 header-img: "/docs/continuous-blackjack/udist-t-vs-p.svg"
 ---
 
----
-
-**Table of contents:**
-- [Introduction](#introduction)
-- [Problem Statement](#problem-statement)
-- [Preliminaries](#preliminaries)
-    - [Uniform distribution](#uniform-distribution)
-- [Strategies](#strategies)
-    - [1 vs 1](#1-vs-1)
-- [Specific cases: unfiorm distribution](#specific-case-uniform-distribution)
-    - [Simulation results](#simulation-results)
-    - [Analytical results](#analytical-results)
----
 
 # Introduction
 This is the first of several posts where we will analyze the problem of playing continuous blackjack. In particular, we want to extend the work of [Henry Charlesworth](http://myblog.henrycharlesworth.com/continuous-blackjack) and [Mu Zhao](https://arxiv.org/pdf/2011.10315.pdf) to other distributions. In this first post, we will reproduce the existing results and propose a way to extend them to other distributions. Then, we will analyze the case of the uniform distribution and show some interesting plots.
