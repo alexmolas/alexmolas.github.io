@@ -20,3 +20,41 @@ MathJax.Hub.Config({
 }); </script>
 
 <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+<!--&lt;!&ndash; #1: Load MathJax&ndash;&gt;-->
+<!--<script type="text/javascript"-->
+<!--        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">-->
+<!--</script>-->
+
+<!--&lt;!&ndash; The following scripts only work AFTER the script that loads MathJax &ndash;&gt;-->
+
+<!--&lt;!&ndash; #2: Enable equation numbers via \begin{equation}. &ndash;&gt;-->
+<!--<script type="text/x-mathjax-config">-->
+<!--MathJax.Hub.Config({-->
+<!--  TeX: { equationNumbers: { autoNumber: "AMS" } }-->
+<!--});-->
+<!--</script>-->
+
+<!--&lt;!&ndash; #3: Enable proper inline equation via $, and also process escape characters (e.g. \$). &ndash;&gt;-->
+<!--<script type="text/x-mathjax-config">-->
+<!--MathJax.Hub.Config({-->
+<!--  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']], processEscapes:true}-->
+<!--});-->
+<!--</script>-->
+
+<!--&lt;!&ndash; #4: Create a MathJax macro that reset's the equation auto-numbers. -->
+<!--Thanks to https://github.com/mathjax/MathJax/issues/1294 &ndash;&gt;-->
+<!--<script type="text/x-mathjax-config">-->
+<!--MathJax.InputJax.TeX.Definitions.Add({-->
+<!--        macros: {-->
+<!--          setCounter: "setCounter"-->
+<!--        }-->
+<!--      }, null, true);-->
+<!--      MathJax.InputJax.TeX.Parse.Augment({-->
+<!--        setCounter: function(name) {-->
+<!--          var num =  parseInt(this.GetArgument(name));-->
+<!--          MathJax.Extension["TeX/AMSmath"].number = num;-->
+<!--        }-->
+<!--      });-->
+<!-- </script>-->

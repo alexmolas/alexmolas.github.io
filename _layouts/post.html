@@ -1,72 +1,152 @@
+---
+layout: page
+refactor: true
+pannel_includes:
+  - toc
+tail_includes:
+  - related-posts
+  - post-nav
+  - comments
+---
 
-{% include header.html %}
+{% include lang.html %}
 
-{% capture post_body %}
-  {% if site.social_media %}
-    {% assign shareable_social_media = '' | split: ',' %}
+<h1 data-toc-skip>{{ page.title }}</h1>
 
-    {% for account in site.social_media %}
-      {% assign service_shortname = account[0] %}
-      {% assign service = site.data.social_media[service_shortname] %}
+<div class="post-meta text-muted">
+    <!-- published date -->
+    <span>
+      {{ site.data.locales[lang].post.posted }}
+      {% include datetime.html date=page.date tooltip=true %}
+    </span>
 
-      {% if service.share_url_prefix %}
-        {% assign shareable_social_media = shareable_social_media | push: service %}
-      {% endif %}
-    {% endfor %}
-
-    {% assign total_shareable_services = shareable_social_media | size %}
-
-    {% if total_shareable_services > 0 %}
-      <div class="col-sm-4 col-lg-3 d-flex flex-wrap flex-items-center d-sm-block float-sm-right border rounded-2 bg-white p-3 mb-5 ml-md-5">
-        <h3 class="text-gray-dark mr-3 mr-sm-0">Share</h3>
-        <ul class="d-flex d-sm-block list-style-none">
-          {% for service in shareable_social_media %}
-            <li class="mt-sm-3">
-              <a href="{{ service.share_url_prefix }}{{ page.url | prepend: site.url | prepend: site.baseurl | url_encode }}" title="Share on {{ service.name }}" class="d-flex flex-items-center">
-                <div style="width:32px">{{ service.icon_svg }}</div><span class="d-none d-sm-inline-block text-gray-light">{{ service.name }}</span>
-              </a>
-            </li>
-          {% endfor %}
-        </ul>
-      </div>
+    <!-- lastmod date -->
+    {% if page.last_modified_at %}
+    <span>
+      {{ site.data.locales[lang].post.updated }}
+      {% include datetime.html date=page.last_modified_at tooltip=true %}
+    </span>
     {% endif %}
-  {% endif %}
-  <div class="article">
-    {{ content }}
-  </div>
-{% endcapture %}
 
+  {% if page.image.path %}
+    {% capture bg %}
+      {% unless page.image.no_bg %}{{ 'bg' }}{% endunless %}
+    {% endcapture %}
 
-<div class="d-md-flex min-height-full {% unless site.style == 'dark' %}border-md-bottom{% endunless %}">
-  <div class="flex-self-stretch {% if site.style == 'dark' %}bg-gray-dark{% else %}border-md-right border-gray-light bg-white{% endif %} col-md-5 col-lg-4 col-xl-3 px-4 px-md-6 px-lg-7 py-6">
-    {% include masthead.html metadata=true %}
-  </div>
+    <div class="mt-3 mb-3">
+      <img src="{{ page.image.path }}" class="preview-img {{ bg | strip }}"
+        alt="{{ page.image.alt | default: "Preview Image" }}"
 
-  <div class="col-md-7 col-lg-8 col-xl-9 px-4 py-6 px-lg-7 border-top border-md-top-0 bg-gray-light" {% if site.style == 'dark' %}style="background-color: #2f363d !important"{% endif %}>
-    <div class="mx-auto" style="max-width: 900px;">
-      <div class="f4 {% if site.style == 'dark' %}text-white{% endif %} mb-6">
-        <div class="f4 {% if site.style == 'dark' %}text-white{% endif %}">
-          <p class="f5"><a href="{{ site.url }}{{ site.baseurl | append:'/' }}" class="d-flex flex-items-center {% if site.style == 'dark' %}text-white{% endif %}">{% octicon chevron-left height:16 class:"mr-2 v-align-middle" fill:{{ icon_color }} aria-label:Home %}Home</a></p>
-          <h1 class="f00-light lh-condensed">{{ page.title }}</h1>
-          <span>[
-            {% for tag in page.tags %}
-              {% capture tag_name %}{{ tag }}{% endcapture %}
-              <a href="/tag/{{ tag_name }}"><code class="highligher-rouge"><nobr>{{ tag_name }}</nobr></code>&nbsp;</a>
-            {% endfor %}
-          ]</span>
-          
-          <p class="{% if site.style == 'dark' %}text-white{% else %}text-gray{% endif %} mb-5">
-            Published {{ page.date | date: "%b %d, %Y"}} • {% include reading_time.html -%}
-          </p>
-          
-          {{ post_body }}
-          {% include comments.html %}
-        </div>
-      </div>
+      {% if page.image.width %}
+        width="{{ page.image.width }}"
+      {% elsif page.image.w %}
+        width="{{ page.image.w }}"
+      {% endif %}
+
+      {% if page.image.height %}
+        height="{{ page.image.height }}"
+      {% elsif page.image.h %}
+        height="{{ page.image.h }}"
+      {% endif %}>
+
+      {% if page.image.alt %}
+        <figcaption class="pt-2 pb-2">{{ page.image.alt }}</figcaption>
+      {% endif %}
+
     </div>
-  </div>
+  {% endif %}
+
+  <div class="d-flex justify-content-between">
+    <!-- author -->
+    <span>
+      {% capture author_name %}{{ site.data.authors[page.author].name | default: site.social.name }}{% endcapture %}
+      {% assign author_link = nil %}
+
+      {% if page.author %}
+        {% assign author_link = site.data.authors[page.author].url %}
+      {% elsif author_name == site.social.name %}
+        {% assign author_link = site.social.links[0] %}
+      {% endif %}
+
+      {{ site.data.locales[lang].post.written_by }}
+
+      <em>
+        {% if author_link %}
+          <a href="{{ author_link }}">{{ author_name }}</a>
+        {% else %}
+        {{ author_name }}
+        {% endif %}
+      </em>
+    </span>
+
+    <div>
+      <!-- page views -->
+      {% if site.google_analytics.pv.proxy_endpoint or site.google_analytics.pv.cache_path %}
+      <span>
+        <em id="pv" class="pageviews">
+          <i class="fas fa-spinner fa-spin fa-fw"></i>
+        </em>
+        {{ site.data.locales[lang].post.pageview_measure }}
+      </span>
+      {% endif %}
+
+      <!-- read time -->
+      {% include read-time.html content=content prompt=true %}
+    </div>
+
+  </div> <!-- .d-flex -->
+
+</div> <!-- .post-meta -->
+
+<div class="post-content">
+  {{ content }}
 </div>
 
+<div class="post-tail-wrapper text-muted">
 
+  <!-- categories -->
+  {% if page.categories.size > 0 %}
+  <div class="post-meta mb-3">
+    <i class="far fa-folder-open fa-fw mr-1"></i>
+    {% for category in page.categories %}
+      <a href='{{ site.baseurl }}/categories/{{ category | slugify | url_encode }}/'>{{ category }}</a>
+      {%- unless forloop.last -%}, {%- endunless -%}
+    {% endfor %}
+  </div>
+  {% endif %}
 
-{% include footer.html %}
+  <!-- tags -->
+  {% if page.tags.size > 0 %}
+  <div class="post-tags">
+    <i class="fa fa-tags fa-fw mr-1"></i>
+      {% for tag in page.tags %}
+      <a href="{{ site.baseurl }}/tags/{{ tag | slugify | url_encode }}/"
+          class="post-tag no-text-decoration" >
+        {{- tag -}}
+      </a>
+      {% endfor %}
+  </div>
+  {% endif %}
+
+  <div class="post-tail-bottom
+    d-flex justify-content-between align-items-center mt-3 pt-5 pb-2">
+    <div class="license-wrapper">
+
+      {% if site.data.locales[lang].copyright.license.template %}
+
+        {% capture _replacement %}
+        <a href="{{ site.data.locales[lang].copyright.license.link }}">
+          {{ site.data.locales[lang].copyright.license.name }}
+        </a>
+        {% endcapture %}
+
+        {{ site.data.locales[lang].copyright.license.template | replace: ':LICENSE_NAME', _replacement }}
+
+      {% endif %}
+    </div>
+
+    {% include post-sharing.html %}
+
+  </div><!-- .post-tail-bottom -->
+
+</div><!-- div.post-tail-wrapper -->

@@ -33,7 +33,7 @@ $$
 \begin{array}{c|c|c|c}
         \text{id}  & \text{feature 1} & \text{feature 2} & \text{target} \\ \hline
         1  & 42 & [1, 0, 5, 32] & 1.1 \\
-        ...  & ... & ... & ... \\ 
+        ...  & ... & ... & ... \\
         N  & 10 & [1, 3, 1, 2] & 2.3 \\
 \end{array}
 $$
@@ -66,7 +66,6 @@ The idea behind `generator.py` is to iterate over the partitions of the dataset,
     <figcaption>Fig. 1 - How to generate batches of data from a dataset that doesn't fit in memory.</figcaption>
 </div>
 <br/>
-
 
 To instantiate a TensorFlow dataset using a generator we need to specify its output signature, which is how we tell our dataset the data types of our batches. In our case, the output signature and the instantiated dataset are:
 

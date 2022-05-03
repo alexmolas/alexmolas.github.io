@@ -1,7 +1,0 @@
-https://alexmolas.github.io/2022/03/11/continuous-blackjack-i/
-https://alexmolas.github.io/2022/03/11/continuous-blackjack-i/
-https://alexmolas.github.io/2022/02/07/about-data-science-and-software-engineering-i/
-https://alexmolas.github.io/2021/09/05/numerai-first-steps/
-https://alexmolas.github.io/2020/12/31/dynamic-programming-1/
-https://alexmolas.github.io/2020/12/30/how-did-i-start/
-https://alexmolas.github.io/2020/12/24/hello-world/
