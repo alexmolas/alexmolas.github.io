@@ -250,4 +250,4 @@ Gemfile.lock
 /.vscode/
 
 .DS_store
-/.jekyll-cache/
+.jekyll-cache
