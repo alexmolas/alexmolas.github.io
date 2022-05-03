@@ -13,7 +13,6 @@ tags: data optimization python
 - [Solutions](#solutions)
   - [Brute force](#brute-force-solution)
   - [Binary](#binary-solution)
-    - [Limitations](#limitations)
 - [Results](#results)
  
 ---
