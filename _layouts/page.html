@@ -38,11 +38,6 @@ layout: default
   <!-- pannel -->
   <div id="panel-wrapper" class="col-xl-3 pl-2 text-muted">
 
-    <div class="access">
-      {% include update-list.html %}
-      {% include trending-tags.html %}
-    </div>
-
     {% for _include in layout.pannel_includes %}
       {% assign _include_path = _include | append: '.html' %}
       {% include {{ _include_path }} %}
