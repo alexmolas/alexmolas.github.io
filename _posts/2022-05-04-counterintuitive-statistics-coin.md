@@ -55,7 +55,7 @@ def max_profitable_cost(w):
 ```
 
 
-![superproxy-query](/docs/coin-paradox/wealth-vs-mpc.svg){: width="300" height="300" .left}
+![wealth-vs-mpc](/docs/coin-paradox/wealth-vs-mpc.svg){: width="300" height="300" .left}
 
 
 For a millionaire the maximum profitable cost to pay is `max_profitable_cost(10**6) = 20.92`, and for Jeff Bezos (175 billion USD) `max_profitable_cost(Jeff Bezos) ~ 38.5`.
