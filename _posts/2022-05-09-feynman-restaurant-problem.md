@@ -159,4 +159,4 @@ In this post, we have explored Feynman's Restaurant Problem. First, we have deri
 
 ---
 
-[^1]: Please, don't use this results to plan your next vacations.
+[^1]: Please, don't use these results to plan your next vacations.
