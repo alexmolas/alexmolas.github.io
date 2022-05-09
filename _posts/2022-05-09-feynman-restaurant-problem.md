@@ -48,7 +48,7 @@ $$
 
 where $b_{M, N}$ is the ranking of the best restaurant you have tried during the first $M$ days.
 
-The only free parameter in our equation is $D$, so you want to find the value of $D$ where the expected profit is maximized. This is
+The only free parameter in our equation is $M$, so you want to find the value of $M$ where the expected profit is maximized. This is
  
 $$
 M^* = 
