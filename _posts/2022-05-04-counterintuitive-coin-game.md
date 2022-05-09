@@ -2,7 +2,8 @@
 layout: post
 title: "Counterintuitive statistics (i): a fair coin game."
 description: A counterintuitive experiment with fair coins.
-tags: stats
+tags: stats probability math
+image: /docs/coin-paradox/wealth-vs-mpc.svg
 ---
 
 I love paradoxes and counterintuitive gedankenexperiments (thought experiments). In this post I will present a paradox consisting of a game with coins and bets.
