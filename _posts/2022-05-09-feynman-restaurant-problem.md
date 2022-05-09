@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "The Feynman's Restaurant Problem."
+title: "Feynman's Restaurant Problem."
 description: Introduction and solution of the Feynman's Restaurant Problem.
 tags: stats optimization probability math
 image: /docs/restaurant-problem/exploration-vs-profit.svg
