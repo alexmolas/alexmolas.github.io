@@ -25,8 +25,8 @@ title: Alex Molas                          # the main title
 
 tagline: Husband, father, physicist, and data scientist. In that order. # it will display as the sub-title
 
-description: >-                        # used by seo meta and the atom feed
-  The place where I talk about anything, from machine learning to cooking.
+description: The place where I talk about anything, from machine learning to cooking. # used by seo meta and the atom feed
+
 
 # fill in the protocol & hostname for your site, e.g., 'https://username.github.io'
 url: 'https://www.amolas.dev'
