@@ -11,6 +11,11 @@ tail_includes:
 
 {% include lang.html %}
 
+{% if page.image %}
+  <meta content="{{ page.image }}" property="og:image">
+{% endif %}
+
+
 <h1 data-toc-skip>{{ page.title }}</h1>
 
 <div class="post-meta text-muted">
