@@ -5,17 +5,11 @@ description: How to use boolean algebra to speed up filters.
 tags: data optimization python
 ---
 
----
+One of the most covered topics about pandas optimization is how to apply functions over columns. One option is to use `apply`, but is not a good idea ([maybe](https://python.plainenglish.io/pandas-how-you-can-speed-up-50x-using-vectorized-operations-d6e829317f30/) [this](https://stackoverflow.com/questions/27575854/vectorizing-a-function-in-pandas) [is](https://medium.com/analytics-vidhya/understanding-vectorization-in-numpy-and-pandas-188b6ebc5398) [one](https://towardsdatascience.com/efficient-pandas-apply-vs-vectorized-operations-91ca17669e84) [of](https://medium.com/productive-data-science/why-you-should-forget-for-loop-for-data-science-code-and-embrace-vectorization-696632622d5f) [the](https://morioh.com/p/7ba40acefa19) [topics](https://medium.com/analytics-vidhya/understanding-vectorization-in-numpy-and-pandas-188b6ebc5398) [with](https://datascience.blog.wzb.eu/2018/02/02/vectorization-and-parallelization-in-python-with-numpy-and-pandas/) [more](https://www.architecture-performance.fr/ap_blog/applying-a-row-wise-function-to-a-pandas-dataframe/) [posts ever](https://ogeek.cn/qa/?qa=383643/)). It's known that the optiomal solution is to use vectorization, however there are some functions that can't be vectorized easily. What to do in these cases?
 
-**Table of contents:**
-- [Introduction](#introduction)
-- [Problem Statement](#problem-statement)
-- [Solutions](#solutions)
-  - [Brute force](#brute-force-solution)
-  - [Binary](#binary-solution)
-- [Results](#results)
- 
----
+In this post, I'll present a trick to vectorize operations that involve using sets and lists. In particular, I will show how using boolean algebra enables vectorization and it can speed up our computations.
+
+
 
 # Introduction
 
@@ -31,7 +25,7 @@ $$
 \end{array}
 $$
 
-One of the interesting things we can ask is how many couples share at least one OS - in our case couples 1 and 2. But, how would you do that? While there are some straightforward brute force approaches, they're not efficient when $N \sim 10^6$. So, how to do this kind of operations efficiently? Fortunately, we can approach this problem using binary code and speed up the queries by factors of ten!
+One of the interesting things we can ask is how many couples share at least one OS - in our case couples 1 and 2. But, how would you do that? While there are some straightforward brute force approaches, they're not efficient when $N$ gets big. So, how to do this kind of operations efficiently? Fortunately, we can approach this problem using binary code and speed up the queries by factors of ten!
 
 
 # Problem Statement
