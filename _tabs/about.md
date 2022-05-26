@@ -13,8 +13,9 @@ I'm not a great writer (I started this blog to solve that problem), so any comme
 ---
 
 This blog is inspired by
-
-- [https://www.yulingyao.com/blog/](https://www.yulingyao.com/blog/)
-- [https://www.ethanrosenthal.com/](https://www.ethanrosenthal.com/)
-- [https://koaning.io/](https://koaning.io/)
-- [https://erikbern.com/](https://erikbern.com/)
+- [http://gregorygundersen.com/](http://gregorygundersen.com/){:target="_blank"}
+- [https://eugeneyan.com/](https://eugeneyan.com/){:target="_blank"}
+- [https://www.yulingyao.com/blog/](https://www.yulingyao.com/blog/){:target="_blank"}
+- [https://www.ethanrosenthal.com/](https://www.ethanrosenthal.com/){:target="_blank"}
+- [https://koaning.io/](https://koaning.io/){:target="_blank"}
+- [https://erikbern.com/](https://erikbern.com/){:target="_blank"}
