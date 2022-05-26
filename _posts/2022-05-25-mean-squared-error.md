@@ -123,8 +123,9 @@ where $y_i^p$ is the output of the our regression model for input $x_i$. Notice 
  which is the same as minimizing Eq. (\ref{loss-function})!
  
 But why? Our intuition behind the loss function was that it penalizes big over small errors, but what does this have to do with conditional probabilities and normal distributions?
-The point is that extreme values are very unlikely in a normal distribution, so they will contribute negatively to the likelihood. For example, for $p(x) = \mathcal{N}(x; 0, 1)$, $\log p(1) \approx -1.42$, while $\log p(10) \approx -50.92$. Therefore, when maximizing the likelihood we'll prefer values of $\theta$ that avoid extreme values of $y^t - y^p$.
+The point is that extreme values are very unlikely in a normal distribution, so they will contribute negatively to the likelihood. For example, for $p(x) = \mathcal{N}(x; 0, 1)$, $\log p(1) \approx -1.42$, while $\log p(10) \approx -50.92$. Therefore, when maximizing the likelihood we'll prefer values of $\theta$ that avoid extreme values of $y^t - y^p$.  So the answer to the question *Why should we minimize MSE?* is *Because we're assuming the noise is distributed normally.*
+
 
 # Conclusions
 
-We just saw the minimizing the squared error is not an arbitrary choice but it has a theoretical foundation. This same procedure can be used to derive multiple results, for example: the unbiased estimator of the variance, Viterbi Algorithm, logistic regression, machine learning classification, and a lot more.
+We just saw the minimizing the squared error is not an arbitrary choice but it has a theoretical foundation. We also saw that it cames from assuming that the noise is distributed normally. The same procedure we studied in this post can be used to derive multiple results, for example: the unbiased estimator of the variance, Viterbi Algorithm, logistic regression, machine learning classification, and a lot more.
