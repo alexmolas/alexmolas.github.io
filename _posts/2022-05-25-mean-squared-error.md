@@ -47,11 +47,11 @@ Since logarithm is a monotonic increasing function, this trick doesn't change th
 
 ## Example
 
-Let's work out an example to see how one can use this technique in a real problem. Imagine you have two blobs of data that follow a gaussian distribution - or at least that is what you suspect -  and you want to find the most probable center of these blobs.
+Let's work out an example to see how one can use this technique in a real problem. Imagine you have two blobs of data that follow a gaussian distribution - or at least that is what you suspect - and you want to find the most probable center of these blobs.
 
 ![blobs](/docs/mle/blobs.jpeg){: width="300" height="300"}
 
-Our hypothesys is that this distributions follow a Gaussian distribution with unit covariance, ie: $\pmb{\Sigma} = [[1, 0], [0, 1]]$. Therefore, we want to maximize
+Our hypothesis is that these distributions follow a Gaussian distribution with unit covariance, ie: $\pmb{\Sigma} = [[1, 0], [0, 1]]$. Therefore, we want to maximize
 
 \begin{equation}
 \pmb{\theta}^* = \text{argmax} _ {\pmb{\theta}} \; \sum_i \left(\log \mathcal{N}(\pmb{x_i}; \pmb{\theta_1}, \pmb{\Sigma}) + \log \mathcal{N}(\pmb{x_i}; \pmb{\theta_2}, \pmb{\Sigma}) \right)
@@ -103,7 +103,7 @@ Now, the process that generates the real data can be written as $y = f(x) + \eps
 Therefore, a good choice for the conditional probability for our case is
 
 \begin{equation}
-P(y \| x) = \mathcal{N}(y; \hat{f}(x; \theta), \sigma^2) = \frac{1}{\sqrt{2\pi \sigma^2}}\exp\left(-\frac{1}{2} \left(\frac{y - f(x; \theta)}{\sigma}\right)^2 \right)
+P(y \| x) = \mathcal{N}(y; \hat{f}(x; \theta), \sigma^2) = \frac{1}{\sqrt{2\pi \sigma^2}}\exp\left(-\frac{1}{2} \left(\frac{y - \hat{f}(x; \theta)}{\sigma}\right)^2 \right)
 \end{equation}
 
 where $\hat{f}(x)$ is our model and is indexed by $\theta$. This means that our model $f$ will predict the mean of the Gaussian.
@@ -114,7 +114,7 @@ Plugging now the conditional probability in Eq. (\ref{mle-for-predict}) we get
 \sum_i \log P(y_i \| x_i; \theta) = -n \log \sigma - \frac{n}{2} \log(2\pi) - \frac{1}{2}\sum_i \left( \frac{y_i^p - y_i^t}{\sigma} \right)^2
 \end{equation}
 
-where $y_i^p$ is the output of the our regression model for input $x_i$. Notice that both $n$ and $\sigma$ are constant values, so we can drop them from the equation. Therefore the function that we want to solve is
+where $y_i^p$ is the output of our regression model for input $x_i$. Notice that both $n$ and $\sigma$ are constant values, so we can drop them from the equation. Therefore the function that we want to solve is
  
  \begin{equation}
  \text{argmax}_{\theta} \left\[ - \sum_i (y_i^p - y_i^t)^2 \right\] \implies \text{argmin} _ {\theta} \sum_i (y_i^p - y_i^t)^2
@@ -123,9 +123,9 @@ where $y_i^p$ is the output of the our regression model for input $x_i$. Notice 
  which is the same as minimizing Eq. (\ref{loss-function})!
  
 But why? Our intuition behind the loss function was that it penalizes big over small errors, but what does this have to do with conditional probabilities and normal distributions?
-The point is that extreme values are very unlikely in a normal distribution, so they will contribute negatively to the likelihood. For example, for $p(x) = \mathcal{N}(x; 0, 1)$, $\log p(1) \approx -1.42$, while $\log p(10) \approx -50.92$. Therefore, when maximizing the likelihood we'll prefer values of $\theta$ that avoid extreme values of $y^t - y^p$.  So the answer to the question *Why should we minimize MSE?* is *Because we're assuming the noise is distributed normally.*
+The point is that extreme values are very unlikely in a normal distribution, so they will contribute negatively to the likelihood. For example, for $p(x) = \mathcal{N}(x; 0, 1)$, $\log p(1) \approx -1.42$, while $\log p(10) \approx -50.92$. Therefore, when maximizing the likelihood we'll prefer values of $\theta$ that avoid extreme values of $(y^t - y^p)^2$.  So the answer to the question *Why should we minimize MSE?* is *Because we're assuming the noise is normally distributed.*
 
 
 # Conclusions
 
-We just saw the minimizing the squared error is not an arbitrary choice but it has a theoretical foundation. We also saw that it cames from assuming that the noise is distributed normally. The same procedure we studied in this post can be used to derive multiple results, for example: the unbiased estimator of the variance, Viterbi Algorithm, logistic regression, machine learning classification, and a lot more.
+We just saw that minimizing the squared error is not an arbitrary choice but it has a theoretical foundation. We also saw that it comes from assuming that the noise is distributed normally. The same procedure we studied in this post can be used to derive multiple results, for example: the unbiased estimator of the variance, Viterbi Algorithm, logistic regression, machine learning classification, and a lot more.
