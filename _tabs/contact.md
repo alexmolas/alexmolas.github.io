@@ -1,6 +1,6 @@
 ---
 layout: contact
 title: Contact
-icon: fas fa-tag
+icon: fas fa-phone
 order: 5
 ---
