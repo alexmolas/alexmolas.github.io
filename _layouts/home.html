@@ -2,95 +2,50 @@
 layout: page
 # The Home page layout
 ---
-
 {% include lang.html %}
 
-{% assign pinned = site.posts | where: "pin", "true" %}
-{% assign default = site.posts | where_exp: "item", "item.pin != true and item.hidden != true" %}
+<div id="hi"><h1>
+  👋 Hi, I'm Alex Molas 👋
+<span></span></h1></div>
 
-{% assign posts = "" | split: "" %}
+<p style="line-height: 1.7; margin-bottom: 15px; font-size: 16px">
 
-<!-- Get pinned posts -->
+  I grew up in a fantastic family, being the oldest of 9 siblings. I studied in the best school ever and
+  there I met the friends who continue accompanying me on this journey of life. 
+  When I was 14 I met the love of my life, but it wasn't until we weren't 18 that I got the courage to ask her out.
+  Now we're married and we have two amazing children.
 
-{% assign offset = paginator.page | minus: 1 | times: paginator.per_page %}
-{% assign pinned_num = pinned.size | minus: offset %}
+  </br>
+  </br>
 
-{% if pinned_num > 0 %}
-  {% for i in (offset..pinned.size) limit: pinned_num %}
-    {% assign posts = posts | push: pinned[i] %}
-  {% endfor %}
-{% else %}
-  {% assign pinned_num = 0 %}
-{% endif %}
+  I studied physics, and I fell in love with it. At the university, I met other friends that are also accompanying me on this trip. 
+  Then I studied an MSc in physics of complex systems, and I fell in love with it. I also published a paper in <a href="https://www.nature.com/articles/s41467-019-11841-2">Nature</a>.
+  After this experience with academia, I realized that it wasn't for me, so I moved to the data world. And I fell in love with it. 
+  Since then I have spent the last 5 years learning (80%), building (1%), and breaking (19%) things related to data. 
 
-<!-- Get default posts -->
+  </br>
+  </br>
+  
+  Now, I design, build, and operate machine learning systems that operate in real-time. 
+  Currently, I'm a Data Scientist at Stuart, where I predict how much is going to take for your package to arrive. 
+  Outside of work, I also...  
 
-{% assign default_beg = offset | minus: pinned.size %}
 
-{% if default_beg < 0 %}
-  {% assign default_beg = 0 %}
-{% endif %}
+  <ul class="home-bullets">
+  <li>
+    Play with my son and wait for the next one - expected release date December 31, 2022.
+  </li>
+  <li>
+    <a href="/blog/">Write</a> about ML, data, math and some other random things.
+  </li>
+  <li>
+    <a href="/100-list/">Try</a> to do 100 amazing things before dying.
+  </li>
+  <li>
+    <a href="https://github.com/AlexMolas/" target="_blank">Build</a> cool things with code.
+  </li>
+</ul>
 
-{% assign default_num = paginator.posts | size | minus: pinned_num  %}
-{% assign default_end = default_beg | plus: default_num | minus: 1 %}
+<hr>
 
-{% if default_num > 0 %}
-  {% for i in (default_beg..default_end) %}
-    {% assign posts = posts | push: default[i] %}
-  {% endfor %}
-{% endif %}
-
-<div id="post-list">
-
-{% for post in posts %}
-
-  <div class="post-preview">
-    <h1>
-      <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
-    </h1>
-
-<!--    <div class="post-content">-->
-<!--      <p>-->
-<!--        {% include no-linenos.html content=post.content %}-->
-<!--        {{ content | markdownify | strip_html | truncate: 200 | escape }}-->
-<!--      </p>-->
-<!--    </div>-->
-
-    <div class="post-meta text-muted d-flex">
-      <div class="mr-auto">
-
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        {% include datetime.html date=post.date %}
-
-        <!-- categories -->
-        {% if post.tags.size > 0 %}
-          <i class="far fa-folder-open fa-fw"></i>
-          <span>
-          {% for tag in post.tags %}
-            <a href="/tags{{ tag | relative_url }}">{{ tag }}</a>
-            {%- unless forloop.last -%},{%- endunless -%}
-          {% endfor %}
-          </span>
-        {% endif %}
-
-      </div>
-
-      {% if post.pin %}
-      <div class="pin">
-        <i class="fas fa-thumbtack fa-fw"></i>
-        <span>{{ site.data.locales[lang].post.pin_prompt }}</span>
-      </div>
-      {% endif %}
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-{% endfor %}
-
-</div> <!-- #post-list -->
-
-{% if paginator.total_pages > 0 %}
-  {% include post-paginator.html %}
-{% endif %}
+I'm always looking for teh new project, so if you want to share with me your ideas feel free to <a href="/contact/">contact</a> me!

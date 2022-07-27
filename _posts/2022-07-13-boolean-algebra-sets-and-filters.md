@@ -2,7 +2,7 @@
 layout: post
 title: "Vectorizing impossible operations: boolean algebra, sets, and filters"
 description: How to use boolean algebra to vectorize complex operations and get x2000 speed-up.
-tags: data optimization python
+tags: data optimization python math
 ---
 
 One of the most covered topics about pandas optimization is how to apply functions over columns. One option is to use `apply` but is not a good idea ([maybe](https://python.plainenglish.io/pandas-how-you-can-speed-up-50x-using-vectorized-operations-d6e829317f30/) [this](https://stackoverflow.com/questions/27575854/vectorizing-a-function-in-pandas) [is](https://medium.com/analytics-vidhya/understanding-vectorization-in-numpy-and-pandas-188b6ebc5398) [one](https://towardsdatascience.com/efficient-pandas-apply-vs-vectorized-operations-91ca17669e84) [of](https://medium.com/productive-data-science/why-you-should-forget-for-loop-for-data-science-code-and-embrace-vectorization-696632622d5f) [the](https://morioh.com/p/7ba40acefa19) [topics](https://medium.com/analytics-vidhya/understanding-vectorization-in-numpy-and-pandas-188b6ebc5398) [with](https://datascience.blog.wzb.eu/2018/02/02/vectorization-and-parallelization-in-python-with-numpy-and-pandas/) [more](https://www.architecture-performance.fr/ap_blog/applying-a-row-wise-function-to-a-pandas-dataframe/) [posts ever](https://ogeek.cn/qa/?qa=383643/)). It's known that the optimal solution is to use vectorization, however, some functions that can't be vectorized easily. What to do in these cases?

@@ -39,6 +39,7 @@
     </li>
     <!-- the real tabs -->
     {% for tab in site.tabs %}
+    {% if tab.show != 'false' %}
     <li class="nav-item{% if tab.url == page.url %}{{ " active" }}{% endif %}">
       <a href="{{ tab.url | relative_url }}" class="nav-link">
         <i class="fa-fw {{ tab.icon }} ml-xl-3 mr-xl-3 unloaded"></i>
@@ -47,6 +48,7 @@
         <span>{{ site.data.locales[lang].tabs.[tab_name] | default: tab.title | upcase }}</span>
       </a>
     </li> <!-- .nav-item -->
+    {% endif %}
     {% endfor %}
 
   </ul> <!-- ul.nav.flex-column -->
