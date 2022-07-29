@@ -64,3 +64,4 @@ Inspired by [Chip Huyen](https://huyenchip.com/list-100/) I have created my own 
 54. ✗ Watch RCDE win a match in the stadium
 55. ✗ Go to the airport and take the first flight
 56. ✓ Camino de Santiago
+57. ✓ Publish a paper [(x2)](https://scholar.google.com/citations?user=2FccG04AAAAJ)
