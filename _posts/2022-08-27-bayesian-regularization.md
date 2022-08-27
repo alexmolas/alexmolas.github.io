@@ -81,7 +81,7 @@ $$
 \theta_{MAP} = \text{argmin}_\theta (y - f(x, \theta))^2 + \alpha |\theta| 
 $$
 
-which is the same minimization problem as the one in the [previous section]((#regularization-as-constraints)). However, now we can interpret the regularization term as an effect of the prior distribution. In fact, this was known from a long time ago, and it was published in a paper by Tibshirani in 1996.
+which is the same minimization problem as the one in the [previous section](#regularization-as-constraints). However, now we can interpret the regularization term as an effect of the prior distribution. In fact, this was known from a long time ago, and it was published in a paper by Tibshirani in 1996.
 
 ![disclaimer](/docs/bayes-lasso/lasso-tibshirani-1996.png){: width="500" height="250"}
 _Figure 2: Tibshirani already explained the same I explained here, but better and with less words. Image from [Tibshirani 1996](http://homepages.math.uic.edu/~lreyzin/papers/lasso.pdf)._
