@@ -23,7 +23,7 @@ $$
 \text{argmin}_\theta \; L(\mathbf{y}, f(\mathbf{X}, \theta))
 $$
 
-where $L$ is the loss function, $\mathbf{y}$ is the vector of true values, $\mathbf{X}$ is the matrix of features, and $f(;\theta)$ is a model defined by parameters $\theta$. 
+where $$L$$ is the loss function, $$\mathbf{y}$$ is the vector of true values, $$\mathbf{X}$$ is the matrix of features, and $$f(;\theta)$$ is a model defined by parameters $$\theta$$. 
 
 
 This equation means that we want to find the parameters $$\theta$$ such that the model can predict the best possible observed data. We then expect these parameters $$ \theta $$ to generalize to unobserved data. However, sometimes our model overfits the training data, and to solve this problem we can add some constraints to the parameters $$ \theta $$. This kind of method is known as regularization, and helps to avoid overfitting.
@@ -34,7 +34,7 @@ $$
 \text{argmin}_\theta \; L(\mathbf{y}, f(\mathbf{X}, \theta)) \; \text{subject to} \; \sum_i |\theta_i| \leq \lambda
 $$
 
-By adding the constraint $ \sum_i  \| \theta_i \|  \leq \lambda $ we're forcing the coefficients to be smaller than $$ \lambda $$. And using the [Lagrangian form](https://en.wikipedia.org/wiki/Lagrange_multiplier) we get
+By adding the constraint $$ \sum_i  \vert \theta_i \vert  \leq \lambda $$ we're forcing the coefficients to be smaller than $$ \lambda $$. And using the [Lagrangian form](https://en.wikipedia.org/wiki/Lagrange_multiplier) we get
 
 $$
 \text{argmin}_\theta \; L(\mathbf{y}, f(\mathbf{X}, \theta)) + \beta \sum_i |\theta_i| 
@@ -50,7 +50,7 @@ Before moving on let me introduce a common technique in Bayesian analysis, the s
 
 ## MAP
 
-MAP estimation is a technique to obtain a point estimate from the posterior distribution of the parameters $$\theta$$. This is, given a prior distribution $$p(\theta)$$ and a likelihood $ p(x \| \theta) $, we can compute the MAP estimate of the parameters $$\theta$$ as
+MAP estimation is a technique to obtain a point estimate from the posterior distribution of the parameters $$\theta$$. This is, given a prior distribution $$p(\theta)$$ and a likelihood $$ p(x \vert \theta) $$, we can compute the MAP estimate of the parameters $$\theta$$ as
 
 
 $$
@@ -59,7 +59,7 @@ $$
 
 The idea is that we first assign a priori distribution to our parameters $$\theta$$ and a likelihood to our data conditioned to the parameters. Then MAP chooses the point of the maximal posterior probability. You can think about MAP as MLE + priors.
 
-Applying $\log$ to the above formula we get
+Applying $$\log$$ to the above formula we get
 
 $$
 \theta_{MAP} = \text{argmax}_\theta  \log p(x | \theta) + \log p(\theta) 
@@ -70,10 +70,10 @@ $$
 In the last section, we showed how to use MAP to get point estimates of the model parameters. In this section, we'll show that with a specific choice of priors and likelihoods we can get the same results as in [this approach](#regularization-as-constraints). If we choose
 
 - **Likelihood**: 
-  - $ p(y \| x, \theta) \propto \exp(-(y - f(x, \theta))^2) $ - as we did in the last [post]({% post_url 2022-05-25-mean-squared-error %}).
+  - $$ p(y \vert x, \theta) \propto \exp(-(y - f(x, \theta))^2) $$ - as we did in the last [post]({% post_url 2022-05-25-mean-squared-error %}).
   
 - **Prior**: 
-  - $ p(\theta) = \alpha/2 \exp(-\alpha \| \theta \|)$ - aka [Laplace Prior](https://en.wikipedia.org/wiki/Laplace_distribution) .
+  - $$ p(\theta) = \alpha/2 \exp(-\alpha \vert \theta \vert)$$ - aka [Laplace Prior](https://en.wikipedia.org/wiki/Laplace_distribution) .
 
 we get the following expression for the MAP estimate
 
