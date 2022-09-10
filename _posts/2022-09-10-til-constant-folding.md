@@ -131,7 +131,7 @@ where we can see that the operation is not pre-computed, and it'll be executed b
 
 Another interesting point is that the constants are not always folded. For example
 
-```
+```python
 import dis
 dis.dis("2**64")
 dis.dis("2**65")
@@ -148,4 +148,4 @@ returns
               6 RETURN_VALUE
 ```
 
-As we can see, in the first case the constant is folded, but in the second one it's not. One may ask now which are the rules that python uses to decide which constants are folded and which not, and the answer is surprising: there are not rules, it's an implementation detail! This means that constant folding implementation can change between python versions and you shouldn't rely on it. 
+As we can see, in the first case the constant is folded, but in the second one it's not. One may ask now which are the rules that python uses to decide which constants are folded and which not, and the answer is surprising: there are not rules, it's an implementation detail! This means that constant folding implementation can change between python versions and you shouldn't rely on it. See this [answer](https://stackoverflow.com/a/55945088/6333517) for more details about the implementation details of constant folding.
