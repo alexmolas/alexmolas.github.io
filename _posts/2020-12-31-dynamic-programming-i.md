@@ -35,16 +35,14 @@ $$
 
 So, matrix $$\textbf{C}$$ will look like
 
-$$
-{\displaystyle \mathbf {C} =
-{\begin{pmatrix}
-a_{11}b_{11}+\cdots +a_{1n}b_{n1}&a_{11}b_{12}+\cdots +a_{1n}b_{n2}&\cdots &a_{11}b_{1p}+\cdots +a_{1n}b_{np}\\
-a_{21}b_{11}+\cdots +a_{2n}b_{n1}&a_{21}b_{12}+\cdots +a_{2n}b_{n2}&\cdots &a_{21}b_{1p}+\cdots +a_{2n}b_{np}\\
-\vdots &\vdots &\ddots &\vdots \\
-a_{m1}b_{11}+\cdots +a_{mn}b_{n1}&a_{m1}b_{12}+\cdots +a_{mn}b_{n2}&\cdots &a_{m1}b_{1p}+\cdots +a_{mn}b_{np}\\
-\end{pmatrix}}} 
-\label{eq:matrixmult}
-$$
+
+\begin{equation}
+\mathbf {C} =
+\begin{pmatrix} a_{11}b_{11}+\cdots +a_{1n}b_{n1}&a_{11}b_{12}+\cdots +a_{1n}b_{n2}&\cdots &a_{11}b_{1p}+\cdots +a_{1n}b_{np}\\\ a_{21}b_{11}+\cdots +a_{2n}b_{n1}&a_{21}b_{12}+\cdots +a_{2n}b_{n2}&\cdots &a_{21}b_{1p}+\cdots +a_{2n}b_{np}\\\ \vdots &\vdots &\ddots &\vdots \\\ a_{m1}b_{11}+\cdots +a_{mn}b_{n1}&a_{m1}b_{12}+\cdots +a_{mn}b_{n2}&\cdots &a_{m1}b_{1p}+\cdots +a_{mn}b_{np}\\\ \end{pmatrix}
+\end{equation}
+
+
+\begin{pmatrix}a & b\\\ c & d\end{pmatrix}
 
 From these definitions one can show that the matrix multiplication operation is associative, this means that
 
@@ -66,7 +64,7 @@ to the number of operations you will need to do. Let me show you this using a si
 
 Before starting working out the above example, let's notice that the number of arithmetic operations needed to compute a product of matrices $$\textbf{A}\textbf{B}$$ is $$\mathcal{O}(nmp)$$, where $$\textbf{A}$$ is an $$n\times m$$ matrix and $$\textbf{B}$$ is an $$m\times p$$ matrix.
 
-On one hand we have the option to compute $$\textbf{D}$$ as $$\textbf{D} = (\textbf{A}\textbf{B})\textbf{C}$$. In this case, we first compute $$\textbf{A}\textbf{B}$$, and according to $$\ref{eq:matrixmult}$$ we would need to perform $$10 \times 30 \times 5$$ multiplications. After that, we would have a $$10 \times 5$$ matrix and we will multipliy it with $$\textbf{C}$$, which will imply $$10 \times 5 \times 60$$ operations. In total this is **4500** operations. In the following image we have a little diagram that can help to understand what are we doing.
+On one hand we have the option to compute $$\textbf{D}$$ as $$\textbf{D} = (\textbf{A}\textbf{B})\textbf{C}$$. In this case, we first compute $$\textbf{A}\textbf{B}$$, abd we would need to perform $$10 \times 30 \times 5$$ multiplications. After that, we would have a $$10 \times 5$$ matrix and we will multipliy it with $$\textbf{C}$$, which will imply $$10 \times 5 \times 60$$ operations. In total this is **4500** operations. In the following image we have a little diagram that can help to understand what are we doing.
 
 <div style="text-align:center">
     <img src="/docs/dynamic-programming-1/AB_C.png" width=400 class="center">
