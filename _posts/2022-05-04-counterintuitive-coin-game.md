@@ -2,7 +2,7 @@
 layout: post
 title: "Counterintuitive statistics (i): a fair coin game."
 description: A counterintuitive experiment with fair coins.
-tags: stats probability math
+tags: stats probability math game
 image: /docs/coin-paradox/wealth-vs-mpc.svg
 ---
 

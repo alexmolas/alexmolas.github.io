@@ -2,7 +2,7 @@
 layout: post
 title: "Continuous Blackjack (ii): deriving basic equations from two other perspectives."
 description: Deriving same equations with different methods
-tags: probability math optimization
+tags: probability math optimization game
 ---
 
 

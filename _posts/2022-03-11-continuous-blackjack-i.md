@@ -2,7 +2,7 @@
 layout: post
 title: "Continuous Blackjack (i): introduction and first results."
 description: What is and how to play continuous blackjack?
-tags: probability math optimization
+tags: probability math optimization game
 header-img: "/docs/continuous-blackjack/udist-t-vs-p.svg"
 ---
 
