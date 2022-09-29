@@ -18,7 +18,7 @@ To simplify the problem, let's start with the simple scenario where you are comp
 To start, assume that the other two players use the equilibrium probabilities $$P$$, and that you choose the integer $$i$$. Let's call $$Q_*$$ the probability of winning when following strategy $$*$$. The probability that you win in this circumstance comes from two components: (1) both players choose the same number $$j$$ and it's smaller than $$i$$, and (2) both players choose a number that's bigger than $$i$$. This is
 
 $$
-Q_i = \sum_{n=1}^{j-1} P_n^2 + \left(1 - \sum_{n=1}^j P_n\right)^2
+Q_i = \sum_{n=1}^{i-1} P_n^2 + \left(1 - \sum_{n=1}^i P_n\right)^2
 $$
 
 Since we're looking for the Nash equilibrium we've $$Q_i \geq Q_P$$, this is, the best winning strategy you have is to follow the strategy $$P$$. However, in the other hand, the probability of winning if you follow strategy $$P$$ is
