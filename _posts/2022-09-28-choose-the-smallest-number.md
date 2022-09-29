@@ -5,7 +5,7 @@ description: A game where you have to choose the smallest number that nobody has
 tags: game probability math nash-equilibrium
 ---
 
-If you know me you know I love games where you can apply maths to obtain the best strategy. I've written several posts about this games ([coin game paradox]({% post_url 2022-05-04-counterintuitive-coin-game %}), [Feynman restaurant problem]({% post_url 2022-05-09-feynman-restaurant-problem %}), and [continuous blackjack]({% post_url 2022-03-11-continuous-blackjack-i %})). In today's post I'll present another game of the same kind: select the smallest unique integer [^1].
+If you know me you know I love games where you can apply maths to obtain the best strategy. I've written several posts about this kind of games ([coin game paradox]({% post_url 2022-05-04-counterintuitive-coin-game %}), [Feynman restaurant problem]({% post_url 2022-05-09-feynman-restaurant-problem %}), and [continuous blackjack]({% post_url 2022-03-11-continuous-blackjack-i %})). In today's post, I'll present another game of the same kind: select the smallest unique integer [^1].
 
 ## Problem Statement
 
@@ -13,7 +13,7 @@ Imagine a game where each contestant has to pick a positive integer, and the win
 
 ## Solution
 
-To simplify the problem, let's start with the simple scenario where you are competing against two other persons. We're not looking for a deterministic solution, like "you have to always choose 2", but rather a probabilistic solution. This is, we want to assign to each integer a probability of being chosen. Let's call $$p_i$$ the probability of chosing the integer $$i$$, and $$P = \{ p_1, p_2, ... \}$$ the set of probabilities. Our strategy is determined by $$P$$. From the definition of the game it makes sense to find the [Nash equilibrium](https://en.wikipedia.org/wiki/Nash_equilibrium).
+To simplify the problem, let's start with the simple scenario where you are competing against two other persons. We're not looking for a deterministic solution, like "you have to always choose 2", but rather a probabilistic solution. This is, we want to assign to each integer a probability of being chosen. Let's call $$p_i$$ the probability of choosing the integer $$i$$, and $$P = \{ p_1, p_2, ... \}$$ the set of probabilities. Our strategy is determined by $$P$$. From the definition of the game, it makes sense to find the [Nash equilibrium](https://en.wikipedia.org/wiki/Nash_equilibrium).
 
 To start, assume that the other two players use the equilibrium probabilities $$P$$, and that you choose the integer $$i$$. Let's call $$Q_*$$ the probability of winning when following strategy $$*$$. The probability that you win in this circumstance comes from two components: (1) both players choose the same number $$j$$ and it's smaller than $$i$$, and (2) both players choose a number that's bigger than $$i$$. This is
 
@@ -21,7 +21,7 @@ $$
 Q_i = \sum_{n=1}^{i-1} P_n^2 + \left(1 - \sum_{n=1}^i P_n\right)^2
 $$
 
-Since we're looking for the Nash equilibrium we've $$Q_i \leq Q_P$$, this is, the best winning strategy you have is to follow the strategy $$P$$. However, in the other hand, the probability of winning if you follow strategy $$P$$ is
+Since we're looking for the Nash equilibrium we've $$Q_i \leq Q_P$$, this is, the best winning strategy you have is to follow the strategy $$P$$. However, on the other hand, the probability of winning if you follow strategy $$P$$ is
 
 $$
 Q_P = \sum_{i=1}^\infty p_i Q_i
@@ -36,7 +36,7 @@ Q_i \leq Q_P \\
 \end{cases}
 $$
 
-which implies that all $$Q_i$$ should be equal. Putting all together, we get that the equlibrium strategy $$P$$ is given by the set of equations
+which implies that all $$Q_i$$ should be equal. Putting all together, we get that the equilibrium strategy $$P$$ is given by the set of equations
 
 $$ 
 \begin{cases}
@@ -47,7 +47,7 @@ $$
 
 where $$Q_i = \sum_{n=1}^{j-1} P_n^2 + \left(1 - \sum_{n=1}^j P_n\right)^2$$.
 
-AFAIK, it doesn't exist a closed form for the probabilities $$P$$, but in the next section I'll show how to get the probabilities using Python.
+AFAIK, it doesn't exist a closed form for the probabilities $$P$$, but in the next section, I'll show how to get the probabilities using Python.
 
 ### Numerical solution
 
@@ -102,11 +102,11 @@ Using above snippet one gets the following probabilities
 | 0.456 | 0.248 | 0.135 | 0.073 | 0.040 | 0.022 | 0.012 | 0.006 | 0.004 | 0.002 |
 ```
 
-So, the best strategy is to select randomly a number using above probabilities. With such strategy, the expected payoff is given by `q(solution, 1)`, and it's $$\approx 0.296$$. This means, that if we follow this strategy we'll win a little bit less than one third of the times.
+So, the best strategy is to select randomly a number using the above probabilities. With such a strategy, the expected payoff is given by `q(solution, 1)`, and it's $$\approx 0.296$$. This means, that if we follow this strategy we'll win a little bit less than one-third of the time.
 
 ## Next steps
 
-In this post, we have presented the smallest unique integer game and how to derive the optimal solution. In particular, we've used the Nash equilibrium to compute with which probability we shold choose each integer. However, we've solved a simplified version of the problem, since we've been assuming that we're playing against only two other persons. In the following posts we'll see how to generalize the arguments made here when playing against $$N$$ other persons.
+In this post, we have presented the smallest unique integer game and how to derive the optimal solution. In particular, we've used the Nash equilibrium to compute with which probability we should choose each integer. However, we've solved a simplified version of the problem, since we've been assuming that we're playing against only two other persons. In the following posts, we'll see how to generalize the arguments made here when playing against $$N$$ other persons.
 
 
 ---
