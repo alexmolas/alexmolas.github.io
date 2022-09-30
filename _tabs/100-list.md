@@ -53,15 +53,15 @@ Inspired by [Chip Huyen](https://huyenchip.com/list-100/) I have created my own 
 43. ✗ Watch a UEFA Champions League match
 44. ✗ Meet the Pope
 45. ✗ Meet a prince
-46. ✓ Learn to cook paella
-47. ✓ Quit smoking
+46. ✓ Learn to cook paella (thanks [@jmolas](https://twitter.com/jmolas))
+47. ✓ Quit smoking (hope this one keeps ticked for the rest of my life)
 48. ✗ Live in a house with garden and swimming pool 
 49. ✗ Visit CERN
 50. ✗ Travel USA with a camper
 51. ✓ Tatoo
 52. ✓ Write my own blog
 53. ✗ Win the lottery
-54. ✗ Watch RCDE win a match in the stadium
+54. ✗ Watch RCDE win a match in the stadium (almost as difficult as the previous point)
 55. ✗ Go to the airport and take the first flight
 56. ✓ Camino de Santiago
 57. ✓ Publish a paper [(x2)](https://scholar.google.com/citations?user=2FccG04AAAAJ)
