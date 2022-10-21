@@ -43,8 +43,6 @@ This is, given a program of length $$n$$ run the program for `busy_beaver_number
 
 However, we can compute $$\Sigma(n)$$ for some $$n$$. Currently (2022) the known busy beaver numbers are
 
-As of 2016 we only know values for $$n<5$$.
-
 - $$\Sigma(1) = 1$$
 - $$\Sigma(2) = 6$$
 - $$\Sigma(3) = 21$$
