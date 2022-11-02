@@ -72,6 +72,10 @@ $$
 
 So we have a number for which we can compute some of its digits but we can't know with arbitrary precision. That's amazing!
 
-Let me emphasize some things about the above result by comparing $\Omega$ and $\pi$. For both cases we can give upper and lower bounds, ie: $\pi \in (3.14, 3.15)$ and $\Omega \in (0.51, 0.52)$. In the case of $\pi$, we don't know all of its digits, however, we can compute it with arbitrary precision. For example, using the [Chudnovsky formula](https://en.wikipedia.org/wiki/Chudnovsky_algorithm) $$\left(\frac{1}{\pi} =\frac{\sqrt {10005}}{4270934400} \sum_{k=0}^{\infty }\frac{(6k)!(13591409+545140134k)}{(3k)!\,k!^{3}(-640320)^{3k}}\right)$$Currently, the number of known digits of $\pi$ is [100 trillion](https://cloud.google.com/blog/products/compute/calculating-100-trillion-digits-of-pi-on-google-cloud). On the other hand, we can't compute $\Omega$ with an arbitrary level of precision. We know it exists, and we know more or less its value, but we will never have an algorithm that can calculate it as precisely as we want.
+Let me emphasize some things about the above result by comparing $\Omega$ and $\pi$. For both cases we can give upper and lower bounds, ie: $\pi \in (3.14, 3.15)$ and $\Omega \in (0.51, 0.52)$. In the case of $\pi$, we don't know all of its digits, however, we can compute it with arbitrary precision. For example, using the [Chudnovsky formula](https://en.wikipedia.org/wiki/Chudnovsky_algorithm) 
+
+$$\frac{1}{\pi} =\frac{\sqrt {10005}}{4270934400} \sum_{k=0}^{\infty }\frac{(6k)!(13591409+545140134k)}{(3k)!\,k!^{3}(-640320)^{3k}}$$
+
+Currently, the number of known digits of $\pi$ is [100 trillion](https://cloud.google.com/blog/products/compute/calculating-100-trillion-digits-of-pi-on-google-cloud). On the other hand, we can't compute $\Omega$ with an arbitrary level of precision. We know it exists, and we know more or less its value, but we will never have an algorithm that can calculate it as precisely as we want.
 
 Maybe this is a known fact by most mathematicians, but for me (a simple physicist) this has been a revelation that has changed my perception about maths (and physics as well). Hope you have enjoyed this post as much as I have enjoyed this discovery.
