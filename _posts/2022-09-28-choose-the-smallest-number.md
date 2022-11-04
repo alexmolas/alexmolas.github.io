@@ -92,7 +92,7 @@ def equations(p):
 solution = fsolve(equations, x0=np.ones(N_TRUNCATED)/N_TRUNCATED)
 ```
 
-Notice that in the analytical solution we're performing infinite sums. Here we're truncating the sums up to the first `N_TRUNCATED` terms. To solve the system of equations we use `scipy`, and we set an initial guess of $P_0 = \left\{ \frac{1}{\textrm{N\_TRUNCATED}},, ..., \frac{1}{\textrm{N\_TRUNCATED}} \right\}$.
+Notice that in the analytical solution we're performing infinite sums. Here we're truncating the sums up to the first `N_TRUNCATED` terms. To solve the system of equations we use `scipy`, and we set an initial guess of $P_0 = \left[ \frac{1}{\textrm{N\_TRUNCATED}}, ..., \frac{1}{\textrm{N\_TRUNCATED}} \right]$.
 
 Using above snippet one gets the following probabilities
 
