@@ -17,9 +17,9 @@ The general idea behind the project was to analyze how people commute to their w
 
 First of all, let me introduce some notation. We call $T_{ij}$ to the daily flow of commuters from cell $i$, home, to $j$, work, where we divided the city into cells of $1 \times 1 \; km^2$. This matrix contains only information about the fluxes between the origin and the destination, this is why it's usually called the origin-destination (OD) matrix.
 
-Using this matrix one can define a vector centered in $i$, $$ \vec{T}_{ij} = T_{ij} \hat{u}_{ij}$$ where $$\hat{u}_{ij}$$ is the unit vector from $i$ to $j$. Now, we can take all the vectors with origin at $i$ and sum them and obtain a vector $$\vec{T}_i = \sum_j T_{ij} \hat{u}_{ij}$$ in every cell $i$.
+Using this matrix one can define a vector centered in $i$, $\vec{T}_{ij} = T_{ij} \hat{u}_{ij}$ where $\hat{u}_{ij}$ is the unit vector from $i$ to $j$. Now, we can take all the vectors with origin at $i$ and sum them and obtain a vector $\vec{T}_i = \sum_j T_{ij} \hat{u}_{ij}$ in every cell $i$.
 
-Vectors $$ \vec{T_i} $$ define a field in the space. Notice that if the mobility is balanced in opposite directions the vector can vanish. These points where the vector vanishes are known as [Lagrange points](https://en.wikipedia.org/wiki/Lagrange_point). In the image below we show how the vector field $\vec{T}_i$ is built and also the resulting fields for London and Paris.
+Vectors $ \vec{T_i} $ define a field in the space. Notice that if the mobility is balanced in opposite directions the vector can vanish. These points where the vector vanishes are known as [Lagrange points](https://en.wikipedia.org/wiki/Lagrange_point). In the image below we show how the vector field $\vec{T}_i$ is built and also the resulting fields for London and Paris.
 
 Following the classical field theories, we can now define
 
@@ -59,7 +59,7 @@ $$
 T^g_{ij} \propto \frac{m_i m_j}{f(d_{ij})}
 $$
 
-According to [[1]](#1), the best travel cost is the exponential one, ie: $$ f(d_{ij}) = \exp (d_{ij} /d_0) $$. Therefore, we have
+According to [[1]](#1), the best travel cost is the exponential one, ie: $ f(d_{ij}) = \exp (d_{ij} /d_0) $. Therefore, we have
 
 $$
 \vec{T}^g(i) = \kappa m_i \sum_j m_j \exp \left\{ - \frac{d_{ij}}{d_0} \right\} \hat{u}_{ij}
@@ -79,7 +79,7 @@ $$
 \Phi^g = 2 \pi \kappa m_i R e^{-R/d_0}
 $$
 
-On the other hand, a version of Maxwell-Faraday law $$ \nabla \times \vec{E} = \partial_t \vec{B} $$ can be also derived for the gravity model
+On the other hand, a version of Maxwell-Faraday law $ \nabla \times \vec{E} = \partial_t \vec{B} $ can be also derived for the gravity model
 
 $$
 \nabla \times \vec{W}^g = \vec{0}
@@ -130,7 +130,7 @@ The numerical estimations of the flux as a function of the radius using both int
 
 ## Is the field irrotational?
 
-Similarly to the last section, we computed the curl of the empirical field. Then we computed the modulus of the curl $$ \| \nabla \vec{W} \| $$ and plotted it. To evaluate whether the modulus is small or not we defined a null model by randomly changing the angles of the vectors of the empirical field. With this and other techniques it was shown that the empirical vector field $$ \vec{W} $$ is irrotational.
+Similarly to the last section, we computed the curl of the empirical field. Then we computed the modulus of the curl $ \| \nabla \vec{W} \| $ and plotted it. To evaluate whether the modulus is small or not we defined a null model by randomly changing the angles of the vectors of the empirical field. With this and other techniques it was shown that the empirical vector field $ \vec{W} $ is irrotational.
 
 ![figure-4](/docs/field-theory-recurrent-mobility/figure-4.png){: width="800" height="250"}
 
@@ -141,7 +141,7 @@ In this section, we will compare the results of both models.
 
 The model parameters (for the gravity $k$ and $d_0$ ) have been adjusted to best reproduce the curve of the flux as a function of distance from the city centre in terms of $R^2$ .
 
-We considered a set of circles centred at the centre of London with a radius $R$ from 0 to 40 km. The flux of $$ \vec{W} $$ across the circles with different $R$ is computed for both models and compared with the empirical value. The results are plotted in the next figure.
+We considered a set of circles centred at the centre of London with a radius $R$ from 0 to 40 km. The flux of $ \vec{W} $ across the circles with different $R$ is computed for both models and compared with the empirical value. The results are plotted in the next figure.
 
 ![figure-5](/docs/field-theory-recurrent-mobility/figure-5.png){: width="800" height="250"}
 
