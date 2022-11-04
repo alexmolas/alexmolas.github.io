@@ -15,7 +15,7 @@ Imagine a game where each contestant has to pick a positive integer, and the win
 
 To simplify the problem, let's start with the simple scenario where you are competing against two other persons. We're not looking for a deterministic solution, like "you have to always choose 2", but rather a probabilistic solution. This is, we want to assign to each integer a probability of being chosen. Let's call $p_i$ the probability of choosing the integer $i$, and $P = \{ p_1, p_2, ... \}$ the set of probabilities. Our strategy is determined by $P$. From the definition of the game, it makes sense to find the [Nash equilibrium](https://en.wikipedia.org/wiki/Nash_equilibrium).
 
-To start, assume that the other two players use the equilibrium probabilities $P$, and that you choose the integer $i$. Let's call $Q_*$ the probability of winning when following strategy $*$. The probability that you win in this circumstance comes from two components: (1) both players choose the same number $j$ and it's smaller than $i$, and (2) both players choose a number that's bigger than $i$. This is
+To start, assume that the other two players use the equilibrium probabilities $P$, and that you choose the integer $i$. Let's call $Q_\*$ the probability of winning when following strategy $*$. The probability that you win in this circumstance comes from two components: (1) both players choose the same number $j$ and it's smaller than $i$, and (2) both players choose a number that's bigger than $i$. This is
 
 $$
 Q_i = \sum_{n=1}^{i-1} P_n^2 + \left(1 - \sum_{n=1}^i P_n\right)^2
