@@ -11,13 +11,13 @@ I started playing chess some years ago, and to be honest I’m not very good at 
 
 I googled a little bit and I didn’t find anything, so I just thought that maybe my idea didn’t make any sense.
 
-And the question remained unsolved in some forgotten corner of my mind until today, while randomly [^1] watching the endgame of this [game](https://lichess.org/broadcast/2022-world-team-championship/semifinals-match-1/F2iqFNf4) I got inspired. After some tweaking, I reached the following position
+And the question remained unsolved in some forgotten corner of my mind until today, while randomly [^1] watching the endgame of this [game](https://lichess.org/broadcast/2022-world-team-championship/semifinals-match-1/F2iqFNf4/Xvj7BJNI) I got inspired. After some tweaking, I reached the following position
 
 <iframe width=600 height=371 src="https://lichess.org/study/embed/DtqtrUTu/z3PEJ4Ii" frameborder=0></iframe>
 
 Which is a mate in two ([lichess evaluation](https://lichess.org/analysis/2k5/8/8/8/4ppp1/5p1p/P2p1Kp1/8_w_-_-_0_1?color=white)). The cool thing about this mate with only pawns is that is optimal, in the sense that it can't be achieved in less than two movements.
 
-I've found some positions that needed less pawns to finish the game but were using the king to assist the mate. This is the smallest example I've found that only uses pawns to deliver the mate.
+I've found some positions that needed fewer pawns to finish the game but were using the king to assist the mate. This is the smallest example I've found that only uses pawns to deliver the mate.
 
 However, some questions remain unsolved
 
