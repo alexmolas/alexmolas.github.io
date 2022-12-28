@@ -147,9 +147,15 @@ for n in range(1, 50, 1):
 
 And we can finally plot the MSE for both train and test datasets.
 
-![figure-2](/docs/random-forest-overfit/mse-vs-estimators.svg){: width="400" height="250"}
+![figure-1](/docs/random-forest-overfit/mse-vs-estimators.svg){: width="400" height="250"}
 
-As you can see, there's a gap between the train and test MSE which means that there's some overfitting. However, as we add more trees the gap between the train and test MSE doesn't increase, which means that adding more trees doesn't make the model more prone to overfitting.
+As you can see, there's a gap between the train and test MSE which means that there's some overfitting. However, as we add more trees the gap between the train and test MSE doesn't increase, which means that adding more trees doesn't make the model more prone to overfitting. In fact, as we add more trees to the model the gap between the curves reduces. In fact, in the next plot we see how `Gap = Test MSE - Train MSE` reduces as `n_estimators` increases
+
+![figure-2](/docs/random-forest-overfit/gap-vs-estimators.svg){: width="400" height="250"}
+
+However, the gap between the train and test curves - aka overfitting - can be changed by tunning other hyperparameters, such as `max_depth`.
+
+![figure-2](/docs/random-forest-overfit/gap-vs-max-depth.svg){: width="400" height="250"}
 
 # Conclusions
 
