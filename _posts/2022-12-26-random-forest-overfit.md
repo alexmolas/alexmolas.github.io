@@ -162,6 +162,7 @@ Notice also that the gap between the train and test curves — aka overfitting �
 - Yes, random forests can overfit since a single tree can overfit.
 - The bias of random forests is the same as the bias of a single tree, however, the variance decreases as we add more trees to the model, and this is where the power of random forests comes from.
 - Overfitting in a random forest model can be tuned using other hyperparameters such as `max_depth` , but increasing `n_estimators` doesn’t increase the gap between train and test performance.
+
 ---
 
 [^1]: In this blog post we'll consider only the case of regression. The results are easily extended to classification.
