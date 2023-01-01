@@ -6,7 +6,7 @@ order: 2
 
 Inspired by [Chip Huyen](https://huyenchip.com/list-100/) I have created my own list of things to do before die
 
-![21%](https://progress-bar.dev/21/?scale=500&title=100%20List&width=120&color=babaca)
+![24%](https://progress-bar.dev/24/?scale=500&title=100%20List&width=120&color=babaca)
 
 1. ✗ Learn Portuguese
 2. ✗ Live in another country
@@ -17,7 +17,7 @@ Inspired by [Chip Huyen](https://huyenchip.com/list-100/) I have created my own 
 7. ✗ Cook all the recipes from "La comida de la familia" from Ferran Adrian 
 8. ✗ Give a talk in a major conference - ICML, NIPS, PyCon, or smiliar.
 9. ✗ Read 1000 books [(~4% done)](https://www.goodreads.com/user/show/64719677-lex-molas)
-10. ✗ Teach a graduate-level course
+10. ✓ Teach a graduate-level course
 11. ✗ Start a company
 12. ✓ Fall in love
 13. ✗ Build my own home
@@ -65,3 +65,4 @@ Inspired by [Chip Huyen](https://huyenchip.com/list-100/) I have created my own 
 55. ✗ Go to the airport and take the first flight
 56. ✓ Camino de Santiago
 57. ✓ Publish a paper [(x2)](https://scholar.google.com/citations?user=2FccG04AAAAJ)
+58. ✗ Spend some days in a cabin next to a lake
