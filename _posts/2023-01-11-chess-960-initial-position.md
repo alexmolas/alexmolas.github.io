@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "There are no better starting positions in Chess 960."
+title: "There are no better starting positions in Chess960."
 description: "In this post I analyze all the available Chess960 games played in Lichess. With this information I show that there are no starting positions that favor any of the players more than other positions."
 tags: chess data-analysis
 ---
