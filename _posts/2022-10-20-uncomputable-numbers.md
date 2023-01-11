@@ -2,7 +2,7 @@
 layout: post
 title: "Computability Theory (ii): uncomputable numbers."
 description:
-tags: maths computability-theory
+tags: math computability-theory
 ---
 
 During my current incursion in computability theory I learnt about uncomputable numbers, this is, numbers that can't be computed with arbitrary precision. This means that even given all the computational power in the universe you could not compute these numbers. Even if God himself came from Heaven, he could not compute these numbers. Uncomputable numbers are numbers that can't be computed because of maths limitations. Just the idea that maths has some inherent limits amazed me. In my [last post]({% post_url 2022-10-19-halting-problem %}), I talked about the halting problem, which is a limitation of maths, but the halting problem is a little bit abstract in my opinion. In this post, instead, I'll show that there are numbers for which we can know an approximate value but can't be known with arbitrary precision.

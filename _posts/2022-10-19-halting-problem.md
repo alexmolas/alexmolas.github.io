@@ -2,7 +2,7 @@
 layout: post
 title: "Computability Theory (i): the Halting Problem."
 description:
-tags: maths computability-theory
+tags: math computability-theory
 ---
 
 During these last few days I’ve been reading a little bit about computability theory, and I feel like a kid with a new toy, so I’m going to write some posts about this topic. I don’t pretend to explain anything new, and probably what I’m going to write has been written before, but I’ll write these posts for two reasons: (1) as future notes for myself, and (2) to help me clarify and organize the ideas.
