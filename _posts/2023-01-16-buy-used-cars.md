@@ -1,9 +1,13 @@
 ---
 layout: post
-title: "How to buy used cars to minimize your costs."
+title: "How to save buying used cars."
 description: "In this post, I show how can we leverage the extra information we get from knowing that a car has survived a certain amount of time. I formalize the idea mathematically and then build a framework to optimize the total costs."
 tags: maths data-analysis optimization
 ---
+
+# tldr
+
+When considering buying a used car, you're not just acquiring a mode of transportation, but also valuable insight into the car's longevity. By knowing the car has stood the test of time for a certain number of years, you can make an informed decision on its durability. Additionally, it's a well-known fact that the price of a car decreases as it ages. By combining these two pieces of information, you can craft a strategy to minimize your overall spending on cars throughout your lifetime. In this post, we'll reveal the sweet spot for purchasing used cars - around $13$ years old.
 
 
 # Introduction
