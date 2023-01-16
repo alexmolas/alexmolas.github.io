@@ -29,6 +29,7 @@ To avoid an explosion of complexity I do some assumptions, that while still main
   - The price of a new car is \$ $20000$.
   - The lowest price an old car can have is \$ $1000$.
 - You will need a car from the time you turn 20 until you are 80.
+- Once you buy a car you will use it until it breaks. 
 
 
 ## Maths
@@ -89,6 +90,7 @@ $$
 \text{total cost}(t) = \frac{N}{U(t)} c(t)
 $$
 
+
 where $\frac{N}{U(t)}$ is the total number of cars I'll have to buy, and $c(t)$ is the cost associated with the purchase of each car. Now, since I want to spend as little as possible on cars, I'm interested in solving the equation
 
 $$
@@ -114,7 +116,7 @@ Also, notice that the value of $c_\infty$ acts as a regularizer, otherwise the o
 
 In this post I've shown how can we leverage the extra information we get from knowing that a car has survived a certain amount of time. In other words, when buying a used car you're also buying information about the durability of the car.
 
-Of course, the results in this post come from a simplified model, and the parameters I've chosen maybe are not the most real ones. However, I think it represents reality accurately enough and the overall idea still holds. So my recommendation is to stop buying new cars and start buy used cars!
+Of course, the results in this post come from a simplified model, and the parameters I've chosen maybe are not the most real ones. However, I think it represents reality accurately enough and the overall idea still holds. So my recommendation is to stop buying new cars and start buying used cars!
 
 
 ---
