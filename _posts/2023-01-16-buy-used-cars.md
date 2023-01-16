@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "How to save buying used cars."
+title: "The Sweet Spot for Buying Used Cars."
 description: "In this post, I show how can we leverage the extra information we get from knowing that a car has survived a certain amount of time. I formalize the idea mathematically and then build a framework to optimize the total costs."
 tags: maths data-analysis optimization
 ---
