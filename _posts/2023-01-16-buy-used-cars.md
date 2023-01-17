@@ -7,7 +7,9 @@ tags: maths data-analysis optimization
 
 # tldr
 
-When considering buying a used car, you're not just acquiring a mode of transportation, but also valuable insight into the car's longevity. By knowing the car has stood the test of time for a certain number of years, you can make an informed decision on its durability. Additionally, it's a well-known fact that the price of a car decreases as it ages. By combining these two pieces of information, you can craft a strategy to minimize your overall spending on cars throughout your lifetime. In this post, we'll reveal the sweet spot for purchasing used cars - around $13$ years old.
+When considering buying a used car, you're not just acquiring a mode of transportation, but also valuable insight into the car's longevity. By knowing the car has stood the test of time for a certain number of years, you can make an informed decision on its durability. Additionally, it's a well-known fact that the price of a car decreases as it ages. By combining these two pieces of information, you can craft a strategy to minimize your overall spending on cars throughout your lifetime. In this post, we'll reveal the sweet spot for purchasing used cars - around $14$ years old.
+
+The notebook I used to generate the results in this post can be found [here](https://github.com/alexmolas/alexmolas.github.io/blob/master/notebooks/used-cars/used-cars-simulation.ipynb).
 
 
 # Introduction
@@ -105,10 +107,10 @@ In other words, I'm interested in finding the age of the cars I have to buy to m
 The optimal value for this set of parameters is
 
 $$
-t^* = 13.64
+t^* = 13.81
 $$
 
-So the best option is to buy cars that are $13.76$ years old. Notice also that buying new cars, $T=0$, is always the worse option.
+So the best option is to buy cars that are $13.81$ years old. Notice also that buying new cars, $T=0$, is always the worse option.
 
 Also, notice that the value of $c_\infty$ acts as a regularizer, otherwise the optimal solution would be to buy cars with high $T$ (aka old cars) such that $c(T) \approx 0$ . Then $U(T) \approx 0$ , so the cars would be useful for a small amount of time, but since buying old cars doesn't have an associated cost there's no problem. So basically we could spend all our live changing cars every day without any associated cost, and of course, this is not how the world works.
 
