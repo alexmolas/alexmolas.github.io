@@ -1,16 +1,27 @@
 ---
 layout: post
-title: "There are no better starting positions in Chess960."
+title: "Discovering the best Chess960 variation."
 description: "In this post I analyze all the available Chess960 games played in Lichess. With this information I show that there are no starting positions that favor any of the players more than other positions."
 tags: chess data-analysis
 ---
 
+> This post got some attention in [Reddit](https://www.reddit.com/r/chess/comments/109fj63/there_are_no_better_initial_positions_in_chess_960/), and while not everyone like it [^0], I got some useful feedback about how to present and phrase the results. I've changed some words of the original post to improve the overall quality, but the idea stills the same. If you want to read the original post feel free to check it in the git history of my blog [repo](https://github.com/alexmolas/alexmolas.github.io).
+{: .prompt-info}
+
+# tldr
+
+In this post, I analyze all the available Chess960 games played in Lichess. With this information I show
+
+1. that there is not enough statistical significance, using bayesian AB testing, to choose a variation over another. So white player could choose any variation without hindering their probabilities of winning;
+3. the past winning rate of a variation doesn't predict the future winning rate of the same variation;
+4. stockfish evaluations don't predict actual winning rates for each variation;
+5. knowing the variation being played doesn't help to predict the winner, the only useful feature is the difference in ELO ratings between players.
 
 # Introduction
 
 The World Fischer Random Chess Championship recently took place in Reykjavik, with [GMHikaru](https://twitter.com/GMHikaru) emerging victorious. Fischer Random Chess, also known as Chess960, is a unique variation of the classic game that randomizes the starting position of the pieces. The intention behind this change is to level the playing field by eliminating the advantage of memorized openings and forcing players to rely on their skill and creativity.
 
-As I followed the event, one question came to mind: are there certain initial Chess960 variations that give one player an unfair advantage? As it stands, the standard chess initial position gives white a slight edge, with white usually winning around 55% of game points ([ref](https://en.wikipedia.org/wiki/First-move_advantage_in_chess)]) and Stockfish giving white a score of +0.3 ([ref](https://lichess.org/analysis)]). However, this edge is relatively small, which is likely one of the reasons why this position has remained the standard.
+As I followed the event, one question came to mind: is there any certain initial Chess960 variations that is preferable to the white player over other variations? This is, if white player could chose which variation to play, which one would he need to choose to maximize winning probabilities? [^1] As it stands, the standard chess initial position gives white a slight edge, with white usually winning around 55% of game points ([ref](https://en.wikipedia.org/wiki/First-move_advantage_in_chess)]) and Stockfish giving white a score of +0.3 ([ref](https://lichess.org/analysis)]). However, this edge is relatively small, which is likely one of the reasons why this position has remained the standard.
 
 There is some work already done about this topic. Ryan Wiley wrote this [blog post](https://lichess.org/@/rdubwiley/blog/using-lichesss-public-data-to-find-the-best-chess-960-position/GCpB9WLH) where he analyzes some data from lichess and reach the conclusion that some variations are better than others. In the post, he says that some positions have a higher winning probability for white pieces, but he doesn't show how significant is this claim. This made me think that maybe his findings need to be revisited. He also trains a ML model on the data in order to determine the winer of a game using as inputs the variation and the ELOs of the players. The resulting model has an accuracy of $\sim65\%$ .
 
@@ -20,24 +31,16 @@ Finally, there's also some research about this topic focused in computer analysi
 
 Since none of the previous work has addressed the problem of assigning statistical confidence to the winning chances to each variation of Chess960 I decided to give it a try. 
 
-# tl;dr
-
-In this post I analyze all the available Chess960 games played in Lichess. With this information I show that 
-
-1. using bayesian AB testing I show that there are no starting positions that favor any of the players more than other positions
-2. also, the past winning rate of a variation doesn't predict the future winning rate of the same variation
-3. and stockfish evaluations don't predict actual winning rates for each variation
-4. finally, knowing the variation being played doesn't help to predict the winner
 
 # Data
 
-Lichess -the greatest chess plaftorm out there- mantains a [database](https://database.lichess.org/) with all the games that have been played in their platform. To do the analysis I downloaded ALL the available Chess960 data (up until 31-12-2022). For all the games played I extracted the variation, the players ELO and the final result. The data is available on [Kaggle](https://www.kaggle.com/datasets/alexmolas/chess-960-lichess). The scripts and notebooks to donwload and process the data are available on this [repo](https://github.com/AlexMolas/chess-960).
+Lichess -the greatest chess platform out there- maintains a [database](https://database.lichess.org/) with all the games that have been played in their platform. To do the analysis I downloaded ALL the available Chess960 data (up until 31-12-2022). For all the games played I extracted the variation, the players ELO and the final result. The data is available on [Kaggle](https://www.kaggle.com/datasets/alexmolas/chess-960-lichess). The scripts and notebooks to donwload and process the data are available on this [repo](https://github.com/AlexMolas/chess-960).
 
 # Mathematical framework
 
 ## Bayesian A/B testing
 
-According to the prior work mentioned above some variations are better than others. But how can we be sure that these differences are statistically significant? To answer this question we can use the famous A/B testing strategy. This is, we start with the hypothesis that variation $B$ has bigger winning chances than variation $A$. The null hypothesis is then that $A$ and $B$ have the same winning rate. To discard the null hypothesis we need to show that the observed data is so extreme under the assumption of the null hypothesis that it doesn't make sense to still believe in it. To do that we'll use bayesian A/B testing [^1]. 
+According to the prior work mentioned above some variations are better than others. But how can we be sure that these differences are statistically significant? To answer this question we can use the famous A/B testing strategy. This is, we start with the hypothesis that variation $B$ has bigger winning chances than variation $A$. The null hypothesis is then that $A$ and $B$ have the same winning rate. To discard the null hypothesis we need to show that the observed data is so extreme under the assumption of the null hypothesis that it doesn't make sense to still believe in it. To do that we'll use bayesian A/B testing [^2]. 
 
 In the bayesian framework, we assign to each variation a probability distribution for the winning rate. This is, instead of saying that variation $A$ has a winning rate of `X%` we say that the winning rate for $A$ has some probability distribution. The natural choice when modelling this kind of problem is to choose the beta distribution ([ref](https://www.countbayesie.com/blog/2015/4/25/bayesian-ab-testing)).
 
@@ -84,18 +87,18 @@ def prob_b_beats_a(n_wins_a: int,
   alpha_b = n_wins_b + 1
   beta_b = n_losses_b + 1
 
-	probability = 0.0
-	for i in range(alpha_b):
-		total += np.exp(
-			logbeta(alpha_a + i, beta_b + beta_a)
-			- np.log(beta_b + i)
-			- logbeta(1 + i, beta_b)
-			- logbeta(alpha_a, beta_a)
-		)
-return probability
+  probability = 0.0
+  for i in range(alpha_b):
+    total += np.exp(
+      logbeta(alpha_a + i, beta_b + beta_a)
+      - np.log(beta_b + i)
+      - logbeta(1 + i, beta_b)
+      - logbeta(alpha_a, beta_a)
+    )
+  return probability
 ```
 
-With this method, we can compute how probable is for a variation to be better than another, and with that, we can define a threshold $\alpha$ such that we say that variation $B$ is significantly better than variation $A$ if $\text{Pr}(p_B > p_A) > 1 - \alpha$.
+With this method, we can compute how probable is for a variation to be better than another, and with that, we can define a threshold $\alpha$ such that we say that variation $B$ is significantly better than variation $A$ if $\text{Pr}(p_A > p_B) > 1 - \alpha$.
 
 Below you can see the plot of some beta distributions. In the first plot, the parameters are $\alpha_A = 100$, $\beta_A=80$, $\alpha_B=110$ and $\beta_B=70$. 
 
@@ -236,13 +239,15 @@ From these tables, we can see that the CatBoost and the baseline model have almo
 
 In this post, I've shown that 
 
-- using the standard threshold to determine significant results is not valid when having more than one comparison, and it needs to be adjusted.
-- there are no statistically significant differences in the winning rates, ie: we can't say that a variation is preferable for white than another.
-- past rates don't imply future rates.
-- stockfish evaluations don't predict winning rates.
+- using the standard threshold to determine significant results is not valid when having more than one comparison, and it needs to be adjusted;
+- there are no statistically significant differences in the winning rates, ie: we can't say that a variation is preferable for white than another;
+- past rates don't imply future rates;
+- stockfish evaluations don't predict winning rates;
 - knowing which variation is being played doesn't help to predict the result of a match.
 
 However, I'm aware that the data I've used is not representative of the problem I wanted to study in the first place. This is because the data accessible at Lichess is skewed towards non-professional players, and even though I've used data from players with a decent ELO (from 1800 to 2100) they are pretty far from the players participating in the Chess960 World Cup (>2600). The problem is that the number of players with an ELO >2600 is very low (209 according to [chess.com](https://www.chess.com/players?page=10)), and not all of them play regularly Chess960 in Lichess, so the number of games with such characteristics is almost zero. 
 
 ---
-[^1]: In my opinion it's easier to reason about A/B testing when using the bayesian framework. Having access to the full disitrubtion of the winning probabilities makes answering complex questions much more easier than using the frequentist approach.
+[^0]: I'm always open to criticism, but I find it funny that I've received dozens of negative comments with several hundred likes each, yet my analytics provider shows that only 30 people visited the link during that time period :)
+[^1]: Assume that the standard variation is not considered when playing Chess960. 
+[^2]: In my opinion it's easier to reason about A/B testing when using the bayesian framework. Having access to the full disitrubtion of the winning probabilities makes answering complex questions much more easier than using the frequentist approach.
