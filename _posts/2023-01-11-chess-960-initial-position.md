@@ -10,9 +10,9 @@ tags: chess data-analysis
 
 # tldr
 
-In this post, I analyze all the available Chess960 games played in Lichess. With this information I show
+In this post, I analyze all the available Chess960 games played in Lichess. With this information
 
-1. that there is not enough statistical significance, using bayesian AB testing, to choose a variation over another. So white player could choose any variation without hindering their probabilities of winning;
+1. I show, using bayesian AB testing, that there is not enough statistical significance to choose a variation over another. So white player could choose any variation without hindering their probabilities of winning;
 3. the past winning rate of a variation doesn't predict the future winning rate of the same variation;
 4. stockfish evaluations don't predict actual winning rates for each variation;
 5. knowing the variation being played doesn't help to predict the winner, the only useful feature is the difference in ELO ratings between players.
