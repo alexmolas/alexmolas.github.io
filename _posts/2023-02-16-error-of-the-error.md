@@ -7,7 +7,7 @@ tags: maths stats
 
 # tldr
 
-In this post, I go down the rabbit hole of computing the uncertainty of the uncertainty. This is because measuring the uncertainty of a measure is a statistical process it makes sense to ask about its uncertainty. Therefore, I've computed the uncertainty of the uncertainty, which allowed me to write something like
+In this post, I go down the rabbit hole of computing the uncertainty of the uncertainty. Since measuring the uncertainty of a measure is a statistical process it makes sense to ask about its uncertainty. Here I show how to compute the uncertainty of the uncertainty, which allows to write soemthing like
 
 $$
 \mu = \hat\mu \pm u_\hat\mu \pm u_{u_{\hat\mu}} \pm ...
