@@ -40,7 +40,7 @@ $$
 \mu = \hat\mu \pm \frac{\hat \sigma}{\sqrt{M}}
 $$
 
-Usually, my experiment report ended here. This was the standard procedure during those days, and to be honest I didn't challenge it too much. I just repeated these steps, got a good grade and moved to learn some <s>useless</s> cool theoretical topics. But, as I said before, I've matured a little bit (but not too much, otherwise I wouldn't be here writing this post), and the other day I started wondering which is the error of the estimated error. Let me explain myself. It makes sense to ask ourselves about the associated uncertainty of $\hat\mu$, as we did above. Then, it also makes sense to ask about the error of $\hat\sigma$. And since $\hat\sigma / sqrt{M}$ is the error of $\hat\mu$, we would be asking about the error of the error. Here I'm going to develop some maths to answer these questions.
+Usually, my experiment report ended here. This was the standard procedure during those days, and to be honest I didn't challenge it too much. I just repeated these steps, got a good grade and moved to learn some <s>useless</s> cool theoretical topics. But, as I said before, I've matured a little bit (but not too much, otherwise I wouldn't be here writing this post), and the other day I started wondering which is the error of the estimated error. Let me explain myself. It makes sense to ask ourselves about the associated uncertainty of $\hat\mu$, as we did above. Then, it also makes sense to ask about the error of $\hat\sigma$. And since $\hat\sigma / \sqrt{M}$ is the error of $\hat\mu$, we would be asking about the error of the error. Here I'm going to develop some maths to answer these questions.
 
 # Error of the error?
 
