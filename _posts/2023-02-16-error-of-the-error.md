@@ -1,8 +1,8 @@
 ---
 layout: post
 title: "The error of the error."
-description: "."
-tags: maths stats 
+description: "The uncertainty of a measure is a statistical process. The standard approach to measure a quantity is to repeat the measure a number of times, compute the mean and its standard error. It is based on the assumption that measuring is an imperfect process, and therefore when measuring some quantity, an error is introduced. This post goes down the rabbit hole of computing the uncertainty of the uncertainty. Then I derive the results of the error of the error and applies the same logic when the distribution is not normal."
+tags: math stats 
 ---
 
 # tldr
