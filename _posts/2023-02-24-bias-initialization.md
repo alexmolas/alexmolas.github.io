@@ -2,7 +2,7 @@
 layout: post
 title: "How to initialize your bias."
 description: "Learn how initializing the correct bias in your neural network can speed up training process through analytical derivation and experiments."
-tags: math stats deep-learning machine-learninbg
+tags: math stats deep-learning machine-learning
 ---
 
 # tldr
