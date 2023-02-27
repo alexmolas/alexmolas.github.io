@@ -11,7 +11,8 @@ Initializing correctly the bias of the last layer of your network can speed up t
 
 In particular, the best biases are
 
-- Classification problem with $M$ classes with frequencies $F_i$, such that $\sum_j^M F_j = 1$, using softmax activation and categorical cross entropy loss: 
+- Classification problem with $M$ classes with frequencies $F_i$, such that $\sum_j^M F_j = 1$, using softmax activation and categorical cross entropy loss
+
 
 $$
 b = \begin{pmatrix}
@@ -21,6 +22,7 @@ b = \begin{pmatrix}
 \log F_M
 \end{pmatrix}
 $$
+
 - Regression problem using $L^2$ penalization and linear activation
 
 $$
