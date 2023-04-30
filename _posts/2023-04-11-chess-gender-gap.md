@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Is gender gap in chess significant?"
+title: "Gender Gap in Chess: Statistical Artifact or Societal Phenomenon?"
 description: "Does it exist a gender gap in chess? Why is it that the best players are men? Is there any fundamental difference between how men and women play this game?"
 tags: math stats chess data-analysis
 ---
@@ -11,14 +11,14 @@ The other day I was watching the World Chess Cup (WCC) and I started wondering w
 
 All of this made me start thinking about these differences, and how can they be explained. I'm not a big fan of theories that rely on "intrinsic" differences between men and women to explain this kind of situation. I believe that these differences usually have their roots in sociology and not in biology. 
 
-After some googling, I found a lot of explanations about this gap (sociological, biological, theological, etc.), but one of them seemed really interesting. It basically said that there's no real gap between genders in chess, it's just a statistical artefact. The idea is that the gap between top players can be completely explained just by the imbalance between women and men playing chess. There are two sources supporting this theory ([Bilalic et al.](https://cognition.aau.at/download/Publikationen/Bilalic/Bilalic_etal_2009.pdf) and [Chessbase](https://en.chessbase.com/post/what-gender-gap-in-chess)), but both of them only study data of one country (Germany and India respectively), so I wondered if their findings apply to other countries or if it was just an isolated case. The Chessbase post follows basically the same ideas as in the paper by Bilalic et al.
+After some googling, I found a lot of explanations about this gap (sociological, biological, theological, etc.), but one of them seemed really interesting. It basically said that there's no real gap between genders in chess, it's just a statistical artifact. The idea is that the gap between top players can be completely explained just by the imbalance between women and men playing chess. There are two sources supporting this theory ([Bilalic et al.](https://cognition.aau.at/download/Publikationen/Bilalic/Bilalic_etal_2009.pdf) and [Chessbase](https://en.chessbase.com/post/what-gender-gap-in-chess)), but both of them only study data of one country (Germany and India respectively), so I wondered if their findings apply to other countries or if it was just an isolated case. The Chessbase post follows basically the same ideas as in the paper by Bilalic et al.
 
 In this blog post, I'll review the paper by Bilalic et al. and apply their methods to more countries. I'll also propose other approaches that I believe are better suited for this kind of data. All the code and results can be reproduced using this [notebook](https://github.com/alexmolas/alexmolas.github.io/blob/master/notebooks/chess-gender-gap/gender-gap.ipynb).
 
 # TLDR
 If you don't feel like reading all the post, here you have a short summary of what I've found.
 
-- Gender gap in chess can be explained almost always as a statistical artefact. In more than $90\%$ of the countries, the difference between the top male and the top female players can be explained by chance.
+- Gender gap in chess can be explained almost always as a statistical artifact. In more than $90\%$ of the countries, the difference between the top male and the top female players can be explained by chance.
 - One of the papers supporting these ideas made some math approximations that were wrong. I suggest using another approach that gives more accurate results.
 - Everything is normal around the middle, but not in the tails. And if you want to compare extreme events you need to be accurate in the tails.
 
@@ -125,7 +125,7 @@ The case of India it's particularly interesting since the expected difference is
 ![ind-rank-vs-difference](/docs/chess-gender-gap/rank-vs-difference-IND.png){: width="600" height="600"}
 _Expected difference and actual difference for each rank $k$ in India_
 
-In the case of Israel, all the differences can be clearly explained just by population imbalance. This is the country where it's more clear that the difference it's just a statistical artefact.
+In the case of Israel, all the differences can be clearly explained just by population imbalance. This is the country where it's more clear that the difference it's just a fabrication.
 
 ![isr-rank-vs-difference](/docs/chess-gender-gap/rank-vs-difference-ISR.png){: width="600" height="600"}
 _Expected difference and actual difference for each rank $k$ in Israel_
@@ -139,4 +139,4 @@ If you're interested in other countries you can use the code [here](https://gith
 
 # Conclusions
 
-In conclusion, the gender gap in chess can be explained almost entirely as a statistical artefact due to the difference in the number of players between genders. By analyzing the data from more than 100 countries, we found that in more than 90% of them, the difference between the top male and female players can be explained by chance. This is contrary to popular beliefs, which attribute the gap to intrinsic differences between men and women. Our analysis is based on a rigorous mathematical approach, which involves using bootstrapping for computing the expected highest ranking for male and female players. We also highlighted a few issues with previous studies that attempted to address this topic, and we proposed an alternative approach that provides more accurate results.
+In conclusion, the gender gap in chess can be explained almost entirely as a statistical artifact due to the difference in the number of players between genders. By analyzing the data from more than 100 countries, we found that in more than 90% of them, the difference between the top male and female players can be explained by chance. This is contrary to popular beliefs, which attribute the gap to intrinsic differences between men and women. Our analysis is based on a rigorous mathematical approach, which involves using bootstrapping for computing the expected highest ranking for male and female players. We also highlighted a few issues with previous studies that attempted to address this topic, and we proposed an alternative approach that provides more accurate results.
