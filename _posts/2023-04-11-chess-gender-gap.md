@@ -11,8 +11,8 @@ tags: math stats chess data-analysis
 Using data from FIDE and using the approach defined in this paper I:
 
 - show that gender gap in chess can be explained almost always as a statistical artifact. In more than $90\%$ of the countries, the difference between the top male and the top female players can be explained by chance.
-- show that in the paper there are some math approximations that are wrong. I suggest using another approach that gives more accurate results.
-- show that everything is normal around the middle, but not in the tails. And if you want to compare extreme events you need to be accurate in the tails.
+- show that in the paper there are some math approximations that can be improved. I suggest using another approach that gives more accurate results.
+- show that making normal approximations when you want to compare extreme events is not a good idea. A lot of things are normal around the middle, but not in the tails.
 
 # Introduction
 
