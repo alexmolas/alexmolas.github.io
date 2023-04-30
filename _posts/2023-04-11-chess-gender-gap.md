@@ -10,7 +10,7 @@ tags: math stats chess data-analysis
 
 Using data from FIDE and using the methods defined in this [paper](https://cognition.aau.at/download/Publikationen/Bilalic/Bilalic_etal_2009.pdf) I:
 
-- extend the analysis of the paper to all the available countries. 
+- extend the analysis of the paper to all the available countries. You can find all the code and results [here](https://github.com/alexmolas/alexmolas.github.io/blob/master/notebooks/chess-gender-gap). 
 - show that gender gap in chess can be explained almost always as a statistical artifact. In more than $90\%$ of the countries, the difference between the top male and the top female players can be explained by chance.
 - show that in the paper there are some math approximations that can be improved. I suggest using another approach that gives more accurate results.
 - show that making normal approximations when you want to compare extreme events is not a good idea. A lot of things are normal around the middle, but not in the tails.
