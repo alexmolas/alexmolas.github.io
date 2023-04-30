@@ -5,6 +5,17 @@ description: "Does it exist a gender gap in chess? Why is it that the best playe
 tags: math stats chess data-analysis
 ---
 
+
+# TL;DR
+
+Using data from FIDE and using the approach defined in this paper I:
+
+- show that gender gap in chess can be explained almost always as a statistical artifact. In more than $90\%$ of the countries, the difference between the top male and the top female players can be explained by chance.
+- show that in the paper there are some math approximations that are wrong. I suggest using another approach that gives more accurate results.
+- show that everything is normal around the middle, but not in the tails. And if you want to compare extreme events you need to be accurate in the tails.
+
+# Introduction
+
 The usual readers of the blog know that I love analysing games from a statistical/math point of view ([this](https://www.alexmolas.com/blog/counterintuitive-coin-game/) and [this](https://www.alexmolas.com/blog/continuous-blackjack-i/)). I like also playing chess ([this](https://www.alexmolas.com/blog/chess-960-initial-position/) and [this](https://www.alexmolas.com/blog/mate-with-only-pawns/)), so today's post is going to be focused on analysing some chess data. 
 
 The other day I was watching the World Chess Cup (WCC) and I started wondering why no woman has ever played in a WCC. The highest rating ever achieved by a woman is 2735 by Judit Polgár. Achieving such an ELO is at the hand of very few, however, the highest ELO ever achieved by a man is 2853, around 100 points more, and this difference is not negligible. In other words, Judit Polgár at her peak would be ranked 17th in today's global ranking. And currently, the highest-rated woman, Hou Yifan, is ranked 55th. 
@@ -14,13 +25,6 @@ All of this made me start thinking about these differences, and how can they be 
 After some googling, I found a lot of explanations about this gap (sociological, biological, theological, etc.), but one of them seemed really interesting. It basically said that there's no real gap between genders in chess, it's just a statistical artifact. The idea is that the gap between top players can be completely explained just by the imbalance between women and men playing chess. There are two sources supporting this theory ([Bilalic et al.](https://cognition.aau.at/download/Publikationen/Bilalic/Bilalic_etal_2009.pdf) and [Chessbase](https://en.chessbase.com/post/what-gender-gap-in-chess)), but both of them only study data of one country (Germany and India respectively), so I wondered if their findings apply to other countries or if it was just an isolated case. The Chessbase post follows basically the same ideas as in the paper by Bilalic et al.
 
 In this blog post, I'll review the paper by Bilalic et al. and apply their methods to more countries. I'll also propose other approaches that I believe are better suited for this kind of data. All the code and results can be reproduced using this [notebook](https://github.com/alexmolas/alexmolas.github.io/blob/master/notebooks/chess-gender-gap/gender-gap.ipynb).
-
-# TLDR
-If you don't feel like reading all the post, here you have a short summary of what I've found.
-
-- Gender gap in chess can be explained almost always as a statistical artifact. In more than $90\%$ of the countries, the difference between the top male and the top female players can be explained by chance.
-- One of the papers supporting these ideas made some math approximations that were wrong. I suggest using another approach that gives more accurate results.
-- Everything is normal around the middle, but not in the tails. And if you want to compare extreme events you need to be accurate in the tails.
 
 # Methods
 
