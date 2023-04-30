@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Gender Gap in Chess: Statistical Artifact or Societal Phenomenon?"
+title: "Gender Gap in Chess: Is it Just a Statistical Artefact?"
 description: "Does it exist a gender gap in chess? Why is it that the best players are men? Is there any fundamental difference between how men and women play this game?"
 tags: math stats chess data-analysis
 ---
