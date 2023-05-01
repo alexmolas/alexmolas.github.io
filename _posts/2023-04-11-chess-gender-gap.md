@@ -5,11 +5,9 @@ description: "Does it exist a gender gap in chess? Why is it that the best playe
 tags: math stats chess data-analysis
 ---
 
-Imagine a race in which 10,000 people participate. Before the start, each participant is randomly assigned a color, with no consideration given to their physical characteristics, gender, or any other factor. There are 9,000 red runners and 1,000 blue runners. If you had to bet on who would win, which color would you choose? Most people would instinctively choose red, not because they know anything about the individual runners, but simply because there are more of them.
+Imagine a race in which 10,000 men and women participate. Before starting the race a random colour is assigned to each participant regardless of shape, gender, race, or whatever. There are 9,000 red runners and 1,000 blue runners. If we had to bet, any of us would bet on a red runner, not because we know they are better runners, but because we know they are more likely to win. A similar situation occurs with the gender gap in chess. In this blog, I will show that the domination of men in chess is nothing more than a matter of participation.
 
-A similar situation occurs in the world of chess. Despite the game being a battle of wits and strategy, the gender gap in chess is not due to any inherent difference in ability between men and women. Rather, it is a matter of participation. 
-
-In this blog post, I will dive deep into the data and crunch the numbers to reveal the real reason behind the gender gap in chess: participation rates. By analysing the data, I will demonstrate that the dominance of men in the game can be explained by the simple fact that more men have historically participated in chess than women. While there may be other factors at play, such as cultural and societal biases, the numbers don't lie. My hope is that by shedding light on this issue, we can start a meaningful conversation about how to promote greater gender diversity and inclusivity in the world of chess.
+While other factors may be at play, such as cultural and societal biases, the numbers don't lie. My hope is that by shedding light and data on this issue, we can start a conversation about how to promote greater gender diversity and inclusivity in the world of chess.
 
 # TL;DR
 
