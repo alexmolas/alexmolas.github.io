@@ -5,9 +5,9 @@ description: "Does it exist a gender gap in chess? Why is it that the best playe
 tags: math stats chess data-analysis
 ---
 
-Imagine a race in which 10,000 men and women participate. Before starting the race a random colour is assigned to each participant regardless of shape, gender, race, or whatever. There are 9,000 red runners and 1,000 blue runners. If we had to bet, any of us would bet on a red runner, not because we know they are better runners, but because we know they are more likely to win. A similar situation occurs with the gender gap in chess. In this blog, I will show that the domination of men in chess is nothing more than a matter of participation.
+Imagine a race in which 10,000 men and women participate. Before starting the race a random colour is assigned to each participant  regardless of shape, gender, race, or whatever. There are 9,000 red runners and 1,000 blue runners. If we had to bet, any of us would bet on a red runner, not because we know they are better runners, but because  we know they are more likely to win. A similar situation occurs with the gender gap in chess. In this blog, I will show that the domination of men in chess is nothing more than a matter of participation.
 
-While other factors may be at play, such as cultural and societal biases, the numbers don't lie. My hope is that by shedding light and data on this issue, we can start a conversation about how to promote greater gender diversity and inclusivity in the world of chess.
+While other factors like cultural and societal biases may be at play, the numbers don’t lie. My hope is that by shedding light and data on this issue, we can start a conversation about how to promote greater gender diversity and inclusivity in the world of chess.
 
 # TL;DR
 
