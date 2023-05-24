@@ -27,6 +27,8 @@ I know that the process I described above can be a little bit cumbersome ([who t
 3. Shuffle the ballots and select one of them. Here you can decide if you want to see which party you have selected. 
 4. Vote for the selected party.
 
-With this methodology, you accomplish at least two significant outcomes. First, the election results align faithfully with people's beliefs, ensuring a more accurate representation. Second, it relieves the burden of having to select just one party for voters who opt not to view their selected ballot, allowing them to remain unaware of their choice.
+With this methodology, you accomplish at least two significant outcomes. First, the election results align faithfully with people's beliefs, ensuring a more accurate representation. Second, it relieves the burden of having to select just one party for voters who opt not to view their selected ballot, allowing them to remain unaware of their choice. 
+
+Of course, this method has some problems. The most obvious is that assigning a certain probability to a party does not guarantee that they will prioritise the specific points you agree with. For example, if you agree with a party's economic agenda but not their social views, you might assign a 50% probability to that party, but you don't have any guarantee that this party will prioritise economic aspects over social ones. However, I still believe that this is a better approach than just putting all your vote in one party.
 
 PS. I haven't designed this method on my own. To be honest I know at least two persons that more or less use this method of voting. One of them chooses at random between a far-right and a far-left party, which is an extreme version of this process.
