@@ -36,7 +36,7 @@ The first question I try to answer is "When was DCA better than LS over the last
 
 ![DCA-vs-LS](/docs/dca-is-suboptimal/dca-vs-ls.svg){: width="500" height="500"}
 
-It's clear that LS overperforms DCA in the majority of days, but by how much? I computed the gains that one obtains by using LS and DCA and plotted them in the next image. For 82% of the starting days, the LS approach was better than the DCA. In particular, on average, LS made 23% more than DCA.
+It's clear that LS overperforms DCA in the majority of days, but by how much? I computed the percentual difference between LS and DCA and plotted it in the next image. For 82% of the starting days, the LS approach was better than the DCA. In particular, on average, LS made 23% more than DCA.
 
 ![DCA-vs-LS-2](/docs/dca-is-suboptimal/dca-vs-ls-2.svg){: width="500" height="500"}
 
