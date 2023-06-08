@@ -7,12 +7,12 @@ tags: stats finance
 
 # Introduction
 
-I never received financial education from my family, the only thing they taught me was the age-old adage of spending less than what one earns, but it never went further than that. After moving out of my parents' home and starting a new life with my beloved wife we started learning about personal finances and how to maximise our hard-earned money. This involved reading books, watching videos, and speaking with experts, but perhaps most significantly, speaking with friends facing similar circumstances, eager to uncover their strategies. In one of these conversations, I was explaining to one friend that every month we are investing some money in S&P 500 and that so far it was going well. He then told me something like “Yes that’s a good idea since you’re reducing the volatility and avoiding the probability of putting all your money at a high point”. He then suggested that were he blessed with a $10,000 fortune, he would gradually deploy it, in modest increments, over time. At the time it seemed like a sensible idea, an approach worth being considered. However, over time, I began to suspect that maybe it wasn’t as right as I thought at first. In this post, I’ll analyse S&P 500 data from the last 40 years and show that dollar cost averaging is usually suboptimal and that investing all the money at once is better.
+I never received financial education from my family, the only thing they taught me was the age-old adage of spending less than what one earns, but it never went further than that. After moving out of my parents' home and starting a new life with my beloved wife we started learning about personal finances and how to maximise our hard-earned money. This involved reading books, watching videos, and speaking with experts, but perhaps most significantly, speaking with friends facing similar circumstances, eager to uncover their strategies. In one of these conversations, I was explaining to one friend that every month we were investing some money in S&P 500 and that so far it was going well. He then told me something like “Yes that’s a good idea since you’re reducing the volatility and avoiding the probability of putting all your money at a high point”. He then suggested that were he blessed with a $10,000 fortune, he would gradually deploy it, in modest increments, over time. At the time it seemed like a sensible idea, an approach worth being considered. However, over time, I began to suspect that maybe it wasn’t as right as I thought at first. In this post, I’ll analyse S&P 500 data from the last 40 years and show that dollar cost averaging is usually suboptimal and that investing all the money at once is better.
 
 # tldr
 
 - Over the last 40 years dollar cost averaging performed worst than a lump sum strategy 82% of the time.
-- Lump sum typically outperforms dollar cost averaging by 23%.
+- Even dollar cost averaging have succeeds in reducing volatility lump sum typically outperforms dollar cost averaging by 23%.
 - Even tuning the parameters of the dollar cost averaging strategy (frequency and duration) the performance of lump sum is still better.
 
 # Definitions
@@ -34,11 +34,15 @@ To do this analysis I've used daily data for the SP500 index. In particular, I'v
 
 The first question I try to answer is "When was DCA better than LS over the last 40 years?". To do so, I've computed the performance of an investment over 5 years of (1) a monthly DCA and (2) an LS. I've computed these values for all the starting days from `1980` until `2018`. This is, for each day I assume that I have a fixed amount of money and compute the benefits of DCA and LS over 5 years. The results can be seen in the plot below
 
-![table](/docs/dca-is-suboptimal/dca-vs-ls.svg){: width="500" height="500"}
+![DCA-vs-LS](/docs/dca-is-suboptimal/dca-vs-ls.svg){: width="500" height="500"}
 
 It's clear that LS overperforms DCA in the majority of days, but by how much? I computed the gains that one obtains by using LS and DCA and plotted them in the next image. For 82% of the starting days, the LS approach was better than the DCA. In particular, on average, LS made 23% more than DCA.
 
-![table](/docs/dca-is-suboptimal/dca-vs-ls-2.svg){: width="500" height="500"}
+![DCA-vs-LS-2](/docs/dca-is-suboptimal/dca-vs-ls-2.svg){: width="500" height="500"}
+
+However, it's fair to point out that DCA succeeds in reducing the variance (risk) of the investments. In the next plot we see the distributions of returns of both DCA and LS. But, this reduction of the risk comes at a price, and the expected returns are diminished a lot (remember that in 82% of cases LS got better results than DCA.)
+
+![distributions](/docs/dca-is-suboptimal/distributions.svg){: width="500" height="500"}
 
 ## Fine-tuning DCA: is it worth it?
 
@@ -55,7 +59,7 @@ Now let's delve into the influence of investment frequency on the performance of
 
 To analyse the effect of this parameter, I have simulated DCA over a period of 5 years with different investment frequencies and compared them to the LS strategy. In the plot below you can see the percentage improvement of LS over DCA for different frequencies
 
-![table](/docs/dca-is-suboptimal/period-vs-difference.svg){: width="500" height="500"}
+![period-vs-difference](/docs/dca-is-suboptimal/period-vs-difference.svg){: width="500" height="500"}
 
 The difference increases monotonically with the number of investments, which indicates that the fewer investment splits one makes the better, ie: if it's possible invest everything as soon as possible.
 
@@ -65,7 +69,7 @@ Finally, let's explore the impact of the investment horizon on the efficacy of D
 
 In the next image, I plot the difference between a monthly DCA and LS for different investment lengths. Notice that the difference increases linearly with the investment duration.
 
-![table](/docs/dca-is-suboptimal/length-vs-difference.svg){: width="500" height="500"}
+![length-vs-difference](/docs/dca-is-suboptimal/length-vs-difference.svg){: width="500" height="500"}
 
 This means that the performance of DCA in comparison to LS gets worse as more time passes, indicating again that LS is the best strategy to follow.
 
