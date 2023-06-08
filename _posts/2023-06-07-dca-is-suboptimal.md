@@ -1,7 +1,7 @@
 ---
 layout: post
-title: "Dollar Cost Averaging Is Not Worth It"
-description: ""
+title: "Debunking the Myth of Dollar Cost Averaging"
+description: "Investing your money wisely is crucial for financial success. In this post, I delve into the popular strategy of dollar cost averaging (DCA) and compare it to the lump sum (LS) approach. By analyzing S&P 500 data from the past 40 years, I show that DCA is generally suboptimal, with LS outperforming it in 82% of cases, resulting in a 23% higher return on average. I also explore fine-tuning DCA by examining the impact of investment frequency and duration. Ultimately, the data suggests that investing all your money at once is a more favorable strategy. So, don't wait – start investing as soon as possible."
 tags: stats finance
 ---
 
@@ -12,7 +12,7 @@ I never received financial education from my family, the only thing they taught 
 # tldr
 
 - Over the last 40 years dollar cost averaging performed worst than a lump sum strategy 82% of the time.
-- Even dollar cost averaging have succeeds in reducing volatility lump sum typically outperforms dollar cost averaging by 23%.
+- While dollar cost averaging succeeds in reducing volatility, the lump sum strategy typically outperforms it by 23%.
 - Even tuning the parameters of the dollar cost averaging strategy (frequency and duration) the performance of lump sum is still better.
 
 # Definitions
