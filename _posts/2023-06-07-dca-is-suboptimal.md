@@ -9,6 +9,8 @@ tags: stats finance
 
 I never received financial education from my family, the only thing they taught me was the age-old adage of spending less than what one earns, but it never went further than that. After moving out of my parents' home and starting a new life with my beloved wife we started learning about personal finances and how to maximise our hard-earned money. This involved reading books, watching videos, and speaking with experts, but perhaps most significantly, speaking with friends facing similar circumstances, eager to uncover their strategies. In one of these conversations, I was explaining to one friend that every month we were investing some money in S&P 500 and that so far it was going well. He then told me something like “Yes that’s a good idea since you’re reducing the volatility and avoiding the probability of putting all your money at a high point”. He then suggested that were he blessed with a $10,000 fortune, he would gradually deploy it, in modest increments, over time. At the time it seemed like a sensible idea, an approach worth being considered. However, over time, I began to suspect that maybe it wasn’t as right as I thought at first. In this post, I’ll analyse S&P 500 data from the last 40 years and show that dollar cost averaging is usually suboptimal and that investing all the money at once is better.
 
+As usual, all the data and code are available in my [GH repo](https://github.com/alexmolas/alexmolas.github.io/tree/master/notebooks/sp500).
+
 # tldr
 
 - Over the last 40 years dollar cost averaging performed worst than a lump sum strategy 82% of the time.
