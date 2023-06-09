@@ -100,7 +100,7 @@ Nikkei is an index that measures the performance of 225 large, publicly owned co
 
 ![length-vs-difference](/docs/dca-is-suboptimal/dca-vs-ls-2-nikkei.svg){: width="500" height="500"}
 
-Here LS was better than DCA on 69% of the cases, and it yield 16% more returns. The results point to LS as the winning strategy, however the difference is not as sharp as before.
+Here LS was better than DCA on 69% of the cases, and it yield 16% more returns.
 
 ## Dax
 
@@ -108,4 +108,4 @@ Dax is a stock market index consisting of the 40 major German blue chip companie
 
 ![length-vs-difference](/docs/dca-is-suboptimal/dca-vs-ls-2-dax.svg){: width="500" height="500"}
 
-Here LS was better than DCA on 77% of the cases, and it yield 21% more returns. The results point to LS as the winning strategy, however the difference is not as sharp as before.
+Here LS was better than DCA on 77% of the cases, and it yield 21% more returns.
