@@ -89,7 +89,7 @@ As pointed out by Marcel in [Linkedin](https://www.linkedin.com/feed/update/urn:
 
 Ibex 35 is a market capitalization weighted index comprising the 35 most liquid Spanish stocks. The results are plotted in the next figure
 
-![length-vs-difference](/docs/dca-is-suboptimal/dca-vs-ls-2-ibex-35.svg){: width="500" height="500"}
+![length-vs-difference](/docs/dca-is-suboptimal/dca-vs-ls-2-ibex.svg){: width="500" height="500"}
 
 Here LS was better than DCA on 53% of the cases, and it yield 12% more returns. The results point to LS as the winning strategy, however the difference is not as sharp as before.
 
