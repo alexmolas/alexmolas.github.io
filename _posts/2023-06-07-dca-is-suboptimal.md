@@ -80,3 +80,32 @@ This means that the performance of DCA in comparison to LS gets worse as more ti
 In this post, I've shown that DCA is rarely a good investment strategy. This is because when one decides to follow DCA is implicitly expecting that the market to fall in the recent future. However, our experience - at least as far S&P 500 is concerned  - tells us that this is not what happens. 
 
 The main conclusion of this post is then **invest all you have as soon as you can**, which is very similar to the well-known adage the best day to start investing was yesterday.
+
+# Appendix
+
+As pointed out by Marcel in [Linkedin](https://www.linkedin.com/feed/update/urn:li:activity:7072948689777958912?commentUrn=urn%3Ali%3Acomment%3A%28activity%3A7072948689777958912%2C7072961217580933120%29) these results are derived for the S&P 500 index which has been mostly up since its beginning, and it's legit to ask if these results apply to other indices such as Ibex35 or Nikkei. Here I add the plots for these two indices and their numbers
+
+## Ibex 35
+
+Ibex 35 is a market capitalization weighted index comprising the 35 most liquid Spanish stocks. The results are plotted in the next figure
+
+![length-vs-difference](/docs/dca-is-suboptimal/dca-vs-ls-2-ibex-35.svg){: width="500" height="500"}
+
+Here LS was better than DCA on 53% of the cases, and it yield 12% more returns. The results point to LS as the winning strategy, however the difference is not as sharp as before.
+
+
+## Nikkei
+
+Nikkei is an index that measures the performance of 225 large, publicly owned companies in Japan. The results are plotted in the next figure
+
+![length-vs-difference](/docs/dca-is-suboptimal/dca-vs-ls-2-nikkei.svg){: width="500" height="500"}
+
+Here LS was better than DCA on 69% of the cases, and it yield 16% more returns. The results point to LS as the winning strategy, however the difference is not as sharp as before.
+
+## Dax
+
+Dax is a stock market index consisting of the 40 major German blue chip companies. The results are plotted in the next figure
+
+![length-vs-difference](/docs/dca-is-suboptimal/dca-vs-ls-2-dax.svg){: width="500" height="500"}
+
+Here LS was better than DCA on 77% of the cases, and it yield 21% more returns. The results point to LS as the winning strategy, however the difference is not as sharp as before.
