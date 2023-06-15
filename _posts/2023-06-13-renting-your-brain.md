@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Renting Your Brain"
+title: "How much for your brain?"
 description: ""
 tags: opinion
 ---
