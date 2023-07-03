@@ -15,11 +15,11 @@ $$
 B(k; n, p) = \binom{n}{k} p^k(1-p)^{n-k}
 $$
 
-To succeed, I estimate that an overall success probability of 80% is enough. So, I had to solve $B\left(10000; n, \frac{1}{10000}\right) = 0.8$, which resulted in $n=100840592$. That means I would need to see approximately $10^6$ license plates during my life to have a decent chance of winning this game. In other words, I'd have to spot around 5000 license plates every single day for the next 50 years. Now, even though I love playing games and winning, that seems like a truly uphill task.
+To succeed, I estimate that an overall success probability of 80% is enough. So, I had to solve $1 - \int_{0}^{10000} B\left(x; n, \frac{1}{10000}\right) dx = 0.8$, which resulted in $n=100840592$. That means I would need to see approximately $10^8$ license plates during my life to have a decent chance of winning this game. In other words, I'd have to spot around 5000 license plates every single day for the next 50 years. Now, even though I love playing games and winning, that seems like a truly uphill task.
 
 So, I decided to take it easy and change the game a bit. Instead of aiming to spot all the license plates from `0000` to `9999`, I opted to look for plates between `*000` and `*999`, where `*` can be any number. This relaxation allowed me to progress up to `*052` as of today.
 
-Since starting in October, I've had 52 successful spottings. By using some math magic, I estimated that I've probably seen around $52/(1/1000) = 52000$ cars, which amounts to roughly 190 cars every day. With these numbers in mind, my probability of success in the next 50 years is quite high, approximately 1, thanks to $B(1000; 190 \times 365 \times 50, 0.001) \approx 1$. It also means I have a solid 90% chance of winning within the next 15 years, and that's good enough for me.
+Since starting in October, I've had 55 successful spottings. By using some math magic, I estimated that I've probably seen around $55/(1/1000) = 55000$ cars, which amounts to roughly 200 cars every day. With these numbers in mind, my probability of success in the next 15 years is quite high, approximately $1$, thanks to $1 - \int_0^{1000} B(x; 200 \times 365 \times 50, 0.001) \approx 1$ which is good enough for me.
 
 So, there you have it! Using some basic statistics saved me from wasting years of my life pursuing an impossible game to win.
 
