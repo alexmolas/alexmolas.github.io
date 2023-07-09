@@ -1,14 +1,9 @@
 from typing import List
 import feedparser
-import configparser
-from urllib.parse import urlparse
 import datetime
 from dateutil.parser import parse
 
-
-def get_base_url(feed_url: str) -> str:
-    parsed_url = urlparse(feed_url)
-    return f"{parsed_url.scheme}://{parsed_url.netloc}"
+from tqdm import tqdm
 
 
 def read_websites(filename: str) -> List[str]:
@@ -21,10 +16,14 @@ def write_html_with_updates(entries: List[feedparser.FeedParserDict]) -> None:
     three_months_ago = today - datetime.timedelta(days=3*30)
 
     links = []
-    for entry in entries:
+    for entry in tqdm(entries):
         url = entry.links[0]['href']
         title = entry.title
-        published_date = parse(entry.published, ignoretz=True)
+        try:
+            published_date = parse(entry.published, ignoretz=True, fuzzy=True)
+        except Exception:
+            print("Skipping: ", url)
+            continue
         if published_date >= three_months_ago:
             links.append((url, title, published_date))
 
@@ -77,16 +76,13 @@ def write_html_with_updates(entries: List[feedparser.FeedParserDict]) -> None:
 
 
 def main():
-    # Load configuration from config.ini
-    config = configparser.ConfigParser()
-    config.read("config.ini")
 
     # Read websites from websites.txt
     websites = read_websites("scripts/websites.txt")
 
     # Check for updates
     entries = []
-    for website in websites:
+    for website in tqdm(websites):
         feed = feedparser.parse(website)
         entries += feed.entries
     write_html_with_updates(entries)
