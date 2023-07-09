@@ -69,7 +69,7 @@ def write_html_with_updates(entries: List[feedparser.FeedParserDict]) -> None:
     </html>
     """
 
-    with open("updated_links.html", "w") as file:
+    with open("what_to_read.html", "w") as file:
         file.write(html)
 
     print("HTML file with updated links generated.")
