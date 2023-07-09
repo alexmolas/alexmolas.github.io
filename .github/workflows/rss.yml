@@ -28,6 +28,6 @@ jobs:
           git config --local user.email "alexmolasmartin@gmail.com"
           git config --local user.name "GitHub Action"
           git checkout -b gh-pages
-          git add updated_links.html
-          git commit -m "Update updated_links.html"
+          git add what_to_read.html
+          git commit -m "Update what_to_read.html"
           git push
