@@ -20,7 +20,8 @@ def write_html_with_updates(entries: List[feedparser.FeedParserDict]) -> None:
         url = entry.links[0]['href']
         title = entry.title
         try:
-            published_date = parse(entry.published, ignoretz=True, fuzzy=True)
+            d = entry.get("published") or entry.get("updated")
+            published_date = parse(d, ignoretz=True, fuzzy=True)
         except Exception:
             print("Skipping: ", url)
             continue
