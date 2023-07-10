@@ -7,6 +7,11 @@ on:
       - .gitignore
       - README.md
       - LICENSE
+  workflow_run:
+    workflows:
+      - "RSS Notifier"
+    types:
+      - completed
 
 jobs:
   continuous-delivery:
