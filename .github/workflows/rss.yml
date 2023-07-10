@@ -27,6 +27,5 @@ jobs:
         run: |
           git config --local user.email "alexmolasmartin@gmail.com"
           git config --local user.name "GitHub Action"
-          git add what_to_read.html
-          git commit -m "Update what_to_read.html"
+          git diff --quiet && git diff --staged --quiet || git commit -am 'Update RSS HTML'
           git push
