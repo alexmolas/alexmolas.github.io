@@ -22,3 +22,12 @@ jobs:
 
       - name: Execute RSS Notifier
         run: python scripts/build_rss.py
+
+      - name: Commit and push changes
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config --local user.email "alexmolasmartin@gmail.com"
+          git config --local user.name "GitHub Action"
+          git add what_to_read.html
+          git push
