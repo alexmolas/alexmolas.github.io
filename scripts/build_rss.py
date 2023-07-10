@@ -57,6 +57,18 @@ def write_html_with_updates(entries: List[feedparser.FeedParserDict]) -> None:
     </head>
     <body>
     <h1>New Posts</h1>
+    <hr>
+    </br>
+    When I'm not with my family or writing I'm probably browsing one of this blogs. 
+    If you're time is limited I recommend you to skip my blog and read one of these
+    ones instead. 
+    </br>
+    </br>
+    This is a list of all the posts published by my favourite <a href="https://github.com/alexmolas/alexmolas.github.io/blob/master/scripts/websites.txt">blogs</a> during the last
+    90 days.
+    </br></br>
+    <hr>
+    </br>
     <ul>
     """
 
