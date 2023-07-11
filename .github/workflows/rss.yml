@@ -29,5 +29,5 @@ jobs:
         run: |
           git config --local user.email "alexmolasmartin@gmail.com"
           git config --local user.name "GitHub Action"
-          git add what_to_read.html
+          git add _layouts/what-to-read.html
           git push
