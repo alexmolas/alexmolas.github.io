@@ -45,6 +45,9 @@ def write_html_with_updates(entries: List[feedparser.FeedParserDict]) -> None:
     sorted_links = sorted(links, key=lambda x: x[2], reverse=True)
 
     html = """
+    ---
+    layout: page
+    ---
     <html>
     <head>
     <title>RSS Feed Updates</title>
