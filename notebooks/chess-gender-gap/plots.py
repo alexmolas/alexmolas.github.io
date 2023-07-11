@@ -78,7 +78,7 @@ def plot_bilalic_vs_blom(ks: Sequence[int], comparison: dict):
 
 
 def plot_actual_vs_expected_top_countries(
-    data: dict, country: str, plot_normal_approx: bool = False, sigmas: int = 1
+    data: dict, plot_normal_approx: bool = False, sigmas: int = 1, country: Optional[str] = None
 ):
     real_diffs = data["real_diffs"]
     bootstrap_expected_difference = data["bootstrap_expected_difference"]
@@ -123,10 +123,13 @@ def plot_actual_vs_expected_top_countries(
             color="black",
             label="Expected Differences (normal assumption)",
         )
-
+    if country:
+        title = f"Differences between Actual and Expected ELO Ratings of the Best {n} Female and Male Chess Players in {country}"
+    else:
+        title = f"Differences between Actual and Expected ELO Ratings of the Best {n} Female and Male Chess Players"
     plt.xlabel("Player Rank")
     plt.ylabel("ELO Rating Difference")
     plt.title(
-        f"Differences between Actual and Expected ELO Ratings of the Best {n} Female and Male Chess Players in {country}"
+        title
     )
     plt.legend(loc="best")
