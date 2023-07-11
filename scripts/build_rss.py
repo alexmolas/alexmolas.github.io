@@ -1,9 +1,23 @@
 from typing import List
+from urllib.parse import urlparse
 import feedparser
 import datetime
 from dateutil.parser import parse
 
 from tqdm import tqdm
+
+
+def get_base_url(feed_url: str) -> str:
+    parsed_url = urlparse(feed_url)
+    return f"{parsed_url.scheme}://{parsed_url.netloc}"
+
+
+def strip_protocol(url: str) -> str:
+    if url.startswith("https://"):
+        return url.lstrip("https://")
+    elif url.startswith("http://"):
+        return url.lstrip("http://")
+    return url
 
 
 def read_websites(filename: str) -> List[str]:
@@ -60,9 +74,8 @@ def write_html_with_updates(entries: List[feedparser.FeedParserDict]) -> None:
     <h1>New Posts</h1>
     <hr>
     </br>
-    When I'm not with my family or writing I'm probably browsing one of this blogs. 
-    If you're time is limited I recommend you to skip my blog and read one of these
-    ones instead. 
+    When I'm not with my family or writing I'm probably browsing one of this blogs.
+    If your time is limited I recommend you to skip my blog and read one of these ones instead.
     </br>
     </br>
     This is a list of all the posts published by my favourite <a href="https://github.com/alexmolas/alexmolas.github.io/blob/master/scripts/websites.txt">blogs</a> during the last
@@ -74,7 +87,9 @@ def write_html_with_updates(entries: List[feedparser.FeedParserDict]) -> None:
     """
 
     for link, title, date in sorted_links:
-        html += f"<li>{date.date()} - <a href='{link}'>{title}</a></li>\n"
+        base_url = get_base_url(link)
+        web_name = strip_protocol(base_url)
+        html += f"<li>{date.date()} - {web_name} - <a href='{link}'>{title}</a></li>\n"
 
     html += """
     </ul>
