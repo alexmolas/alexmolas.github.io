@@ -32,7 +32,7 @@ description: The place where I talk about anything, from machine learning to coo
 url: 'https://www.alexmolas.com'
 
 github:
-  username: AlexMolas             # change to your github username
+  username: alexmolas             # change to your github username
 
 twitter:
   username: MolasAlex            # change to your twitter username
@@ -45,7 +45,7 @@ social:
   links:
     # The first element serves as the copyright owner's link
     - https://twitter.com/MolasAlex      # change to your twitter homepage
-    - https://github.com/AlexMolas       # change to your github homepage
+    - https://github.com/alexmolas       # change to your github homepage
     # Uncomment below to add more social links
     # - https://www.facebook.com/username
     # - https://www.linkedin.com/in/username
@@ -186,6 +186,7 @@ exclude:
   - gulpfile.js
   - node_modules
   - package*.json
+  - env
 
 jekyll-archives:
   enabled: [categories, tags]

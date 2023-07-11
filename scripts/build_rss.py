@@ -27,7 +27,7 @@ def read_websites(filename: str) -> List[str]:
 
 def write_html_with_updates(entries: List[feedparser.FeedParserDict]) -> None:
     today = datetime.datetime.today()
-    three_months_ago = today - datetime.timedelta(days=3*30)
+    three_months_ago = today - datetime.timedelta(days=30)
 
     links = []
     for entry in tqdm(entries):
@@ -44,24 +44,19 @@ def write_html_with_updates(entries: List[feedparser.FeedParserDict]) -> None:
 
     sorted_links = sorted(links, key=lambda x: x[2], reverse=True)
 
-    html = """
-    ---
-    layout: page
-    ---
+    html = """---
+layout: page
+# All the Tags of posts.
+---
     <html>
     <head>
     <title>RSS Feed Updates</title>
     <style>
-    body {
-        font-family: monospace;
-    }
-    h1 {
-        text-align: center;
-    }
-    ul {
-        list-style-type: none;
-        padding: 0;
-    }
+    .special-list ul {
+            list-style-type: none;
+            padding: 0;
+            font-family: monospace;
+        }
     li {
         margin-bottom: 10px;
     }
@@ -82,10 +77,11 @@ def write_html_with_updates(entries: List[feedparser.FeedParserDict]) -> None:
     </br>
     </br>
     This is a list of all the posts published by my favourite <a href="https://github.com/alexmolas/alexmolas.github.io/blob/master/scripts/websites.txt">blogs</a> during the last
-    90 days.
+    30 days.
     </br></br>
     <hr>
     </br>
+    <div class="special-list">
     <ul>
     """
 
@@ -96,6 +92,7 @@ def write_html_with_updates(entries: List[feedparser.FeedParserDict]) -> None:
 
     html += """
     </ul>
+    </div>
     </body>
     </html>
     """
