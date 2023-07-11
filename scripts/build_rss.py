@@ -92,7 +92,7 @@ def write_html_with_updates(entries: List[feedparser.FeedParserDict]) -> None:
     for link, title, date in sorted_links:
         base_url = get_base_url(link)
         web_name = strip_protocol(base_url)
-        html += f"<li>{date.date()} - {web_name} - <a href='{link}'>{title}</a></li>\n"
+        html += f"<li>{date.date()} - <a href='{link}'>{title}</a></li>\n"
 
     html += """
     </ul>
@@ -100,7 +100,7 @@ def write_html_with_updates(entries: List[feedparser.FeedParserDict]) -> None:
     </html>
     """
 
-    with open("_layouts/what_to_read.html", "w") as file:
+    with open("_layouts/what-to-read.html", "w") as file:
         file.write(html)
 
     print("HTML file with updated links generated.")
