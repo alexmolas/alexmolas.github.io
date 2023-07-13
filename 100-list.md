@@ -1,6 +1,7 @@
 ---
 title: 100 List
 layout: post
+description: List of 100 things that I want to do before dying.
 ---
 
 # 100 List
