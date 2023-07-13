@@ -11,3 +11,4 @@ title: My Tech Blog
 [Blog](/blog)
 [Blogroll](/blogroll)
 [100 List](/100-list)
+[RSS](/feed.xml)
