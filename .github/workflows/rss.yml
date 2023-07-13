@@ -21,7 +21,7 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Execute RSS Notifier
-        run: python scripts/build_rss.py
+        run: python _tools/build_rss.py
 
       - name: Commit and push changes
         env:
@@ -29,5 +29,5 @@ jobs:
         run: |
           git config --local user.email "alexmolasmartin@gmail.com"
           git config --local user.name "GitHub Action"
-          git add _layouts/what-to-read.html
+          git add _layouts/blogroll.html
           git push

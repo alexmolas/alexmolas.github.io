@@ -11,8 +11,10 @@ During an interview process, I was asked why lasso regularization introduces spa
 
 Fast forward to last month, when I started reading the “Deep Learning” book, by Goodfellow et al. The book covers the Maximum A Posteriori (MAP) method, which helped me to understand lasso regularization from another perspective.
 
-![figure-1](/docs/bayes-lasso/drake-meme.jpg){: width="500" height="250"}
-_Figure 1: I was tired of using this image to explain why lasso induces sparsity. In this post I introduce another way to explain it. Image from [ESLII](https://hastie.su.domains/Papers/ESLII.pdf)._
+<figure>
+    <img src="/docs/bayes-lasso/drake-meme.jpg" alt="figure-1" width="500" class="center" />
+  <figcaption class="center">Figure 1: I was tired of using this image to explain why lasso induces sparsity. In this post I introduce another way to explain it. Image from [ESLII](https://hastie.su.domains/Papers/ESLII.pdf).</figcaption>
+</figure>
 
 
 # Regularization as Constraints
@@ -83,12 +85,16 @@ $$
 
 which is the same minimization problem as the one in the [previous section](#regularization-as-constraints). However, now we can interpret the regularization term as an effect of the prior distribution. In fact, this was known from a long time ago, and it was published in a paper by Tibshirani in 1996.
 
-![disclaimer](/docs/bayes-lasso/lasso-tibshirani-1996.png){: width="500" height="250"}
-_Figure 2: Tibshirani already explained the same I explained here, but better and with less words. Image from [Tibshirani 1996](http://homepages.math.uic.edu/~lreyzin/papers/lasso.pdf)._
+<figure>
+    <img src="/docs/bayes-lasso/lasso-tibshirani-1996.png" alt="disclaimer" width="500" class="center" />
+  <figcaption class="center">Figure 2: Tibshirani already explained the same I explained here, but better and with less words. Image from [Tibshirani 1996](http://homepages.math.uic.edu/~lreyzin/papers/lasso.pdf).</figcaption>
+</figure>
 
 Notice that if instead of using the Laplace prior we use the a gaussian prior we would have L2 regularization instead of L1. The Laplace and the Gauss priors look like
 
-![disclaimer](/docs/bayes-lasso/laplace-vs-gauss.svg){: width="250" height="200"}
-_Figure 3: Laplace vs Gauss priors._
+<figure>
+    <img src="/docs/bayes-lasso/laplace-vs-gauss.svg" alt="disclaimer" width="250" class="center" />
+  <figcaption class="center">Figure 3: Laplace vs Gauss priors.</figcaption>
+</figure>
 
 From the image above we can see that the Laplace prior has more probability density around zero than the Gauss prior. This gives us intuition about why L1 regularization induces sparse solutions. Of course, this is not proof in the mathematical sense, but it can help to develop an intuition about this concept, and from my experience, it's better to have a strong intuition rather than knowing by memory all the mathematical proofs in the world.

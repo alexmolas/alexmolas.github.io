@@ -76,20 +76,26 @@ where $\alpha = 0.375$ and $\Phi^{-1}(x)$ is the inverse cumulative distribution
 
 It's clear that the two formulas are very different, so the natural question is to wonder if they agree and which one gives better results. To do so I've done a simple experiment: given a normal distribution $\mathcal{N}(\mu, \sigma)$ take $n$ draws from $\mathcal{N}$ and compute the average value of the top $k$ rating. Then compute the Blom and the Bilalic values and plot them with the simulated value. I've used $n=10000$, $\mu=1800$ and $\sigma=300$ since these are the typical values we are dealing with. The results are in the following plot
 
-![german-distribution](/docs/chess-gender-gap/bilalic-vs-blom.png){: width="300" height="300"}
-_Simulated $k$ top value after $n$ draws from a normal distribution and the corresponding Blom and Bilalic values._
+<figure>
+    <img src="/docs/chess-gender-gap/bilalic-vs-blom.png" alt="german-distribution" width="300" class="center" />
+  <figcaption class="center">Simulated $k$ top value after $n$ draws from a normal distribution and the corresponding Blom and Bilalic values.</figcaption>
+</figure>
 
 It's clear that the Blom formula gives better results for larger values of $k$. Therefore, I have decided to use $E_{\text{Blom}}$ to compute the expected values instead of $E_{\text{Bilalic}}$.
 
 On the other hand, we have the assumption of normality. If you check the original paper it doesn't seem like a bad decision. In the figure below we see the ELO distribution for German players, and it seems that the normal fit is good enough.
 
-![indian-distribution](/docs/chess-gender-gap/german-distribution.png){: width="300" height="300"}
-_The distribution of the German chess rating with the best-fit normal curve superimposed. $n = 120399$, $\mu = 1461$, $\sigma=342$, $16 : 1$ men to women ratio. Figure from Bilalic et al._
+<figure>
+    <img src="/docs/chess-gender-gap/german-distribution.png" alt="indian-distribution" width="300" class="center" />
+  <figcaption class="center">The distribution of the German chess rating with the best-fit normal curve superimposed. $n = 120399$, $\mu = 1461$, $\sigma=342$, $16 : 1$ men to women ratio. Figure from Bilalic et al.</figcaption>
+</figure>
 
 However, for our use case is not a good idea to use a normal distribution. There's a saying that reads _[many things are normal around the middle but not in the tails](https://twitter.com/ProbFact/status/1640809801671233544)_, and in our use case we're particularly interested in what happens in the tails because we want to compare the ratings of the best male and female players. Therefore, assuming that the data is normally distributed is not a good idea. On the other hand, if we look at the rating distribution of other countries it's obvious that it doesn't follow a Gaussian. In the next plot, we can see the distribution for India
 
-![german-distribution](/docs/chess-gender-gap/india-distribution.png){: width="300" height="300"}
-_The distribution of the Indian chess rating_
+<figure>
+    <img src="/docs/chess-gender-gap/india-distribution.png" alt="german-distribution" width="300" class="center" />
+  <figcaption class="center">The distribution of the Indian chess rating</figcaption>
+</figure>
 
 Following these two arguments, I've decided to drop the normal assumption. Instead, I'll use bootstrapping when needed, ie: to compute the expected $k$ rating after drawing $n$ values I'll draw $n$ values with repetition from the actual data and compute the average rating of the $k$ rating. This can be done with the following method
 
@@ -130,18 +136,24 @@ The x-axis of the plots is the rank of the players, the white square is the diff
 
 The case of India it's particularly interesting since the expected difference is much higher than the actual difference, which means that Indian women are playing much better than expected, which I believe it's completely amazing.
 
-![ind-rank-vs-difference](/docs/chess-gender-gap/rank-vs-difference-IND.png){: width="600" height="600"}
-_Expected difference and actual difference for each rank $k$ in India_
+<figure>
+    <img src="/docs/chess-gender-gap/rank-vs-difference-IND.png" alt="ind-rank-vs-difference" width="600" class="center" />
+  <figcaption class="center">Expected difference and actual difference for each rank $k$ in India</figcaption>
+</figure>
 
 In the case of Israel, all the differences can be clearly explained just by population imbalance. This is the country where it's more clear that the difference it's just a fabrication.
 
-![isr-rank-vs-difference](/docs/chess-gender-gap/rank-vs-difference-ISR.png){: width="600" height="600"}
-_Expected difference and actual difference for each rank $k$ in Israel_
+<figure>
+    <img src="/docs/chess-gender-gap/rank-vs-difference-ISR.png" alt="isr-rank-vs-difference" width="600" class="center" />
+  <figcaption class="center">Expected difference and actual difference for each rank $k$ in Israel</figcaption>
+</figure>
 
 Then we have cases like Spain, where the difference can't be explained only by participation rates. In this kind of case, one would need to study with more depth the sociological situation of these countries to understand why women are not developing their chess skills as expected.
 
-![esp-rank-vs-difference](/docs/chess-gender-gap/rank-vs-difference-ESP.png){: width="600" height="600"}
-_Expected difference and actual difference for each rank $k$ in Spain_
+<figure>
+    <img src="/docs/chess-gender-gap/rank-vs-difference-ESP.png" alt="esp-rank-vs-difference" width="600" class="center" />
+  <figcaption class="center">Expected difference and actual difference for each rank $k$ in Spain</figcaption>
+</figure>
 
 If you're interested in other countries you can use the code [here](https://github.com/alexmolas/alexmolas.github.io/blob/master/notebooks/chess-gender-gap) to generate the corresponding plots. 
 

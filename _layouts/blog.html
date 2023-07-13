@@ -17,7 +17,17 @@ layout: default
 
     <!-- Home Content -->
     <article>
-      {{ content }}
+      <a href="/" class="back-link">Back to Home</a>
+      <hr>
+      <h1>Latest Posts</h1>
+      <ul class="latest-posts">
+        {% for post in site.posts %}
+        <li>
+            <small>{{ post.date | date: "%Y - %m - %d" }} - </small>
+            <a href="{{ post.url }}">{{ post.title }}</a>
+        </li>
+        {% endfor %}
+      </ul>
     </article>
   
     <!-- Footer -->

@@ -10,8 +10,10 @@ You're on holidays, and you're going to spend the following days on a new city. 
 
 The content of this post is heavily inspired by [this solution](https://www.feynmanlectures.caltech.edu/info/solutions/restaurant_problem_sol_1.html). I have tried to explain some details which were obscure to me, and I also added some plots and code to give more intuition about the problem. [Here](https://www.feynmanlectures.caltech.edu/info/other/Feynmans_Restaurant_Problem_Revealed.html) you can read more about the history of the problem.
 
-![feynman-solution](/docs/restaurant-problem/feynman-solution.png){: width="400" height="400"}
-_Screenshot of the [solution](https://www.feynmanlectures.caltech.edu/info/other/Feynmans_Restaurant_Problem_Original_Notes.pdf) by Feynman_
+<figure>
+    <img src="/docs/restaurant-problem/feynman-solution.png" alt="feynman-solution" width="400" class="center" />
+  <figcaption class="center">Screenshot of the [solution](https://www.feynmanlectures.caltech.edu/info/other/Feynmans_Restaurant_Problem_Original_Notes.pdf) by Feynman</figcaption>
+</figure>
 
 
 # Mathematical formulation

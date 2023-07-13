@@ -1,0 +1,11 @@
+http://bair.berkeley.edu/blog/feed.xml
+http://benanne.github.io/feed.xml
+http://benjaminbolte.com/feed.xml
+http://bjlkeng.github.io/rss.xml
+http://colah.github.io/rss.xml
+http://danluu.com/atom.xml
+http://datacolada.org/feed/
+http://distill.pub/rss.xml
+http://dustintran.com/blog/rss/
+http://erikbern.com/?feed=rss2
+http://fastml.com/atom.xml
