@@ -1,6 +1,6 @@
 ---
 layout: home
-title: My Tech Blog
+title: Alex Molas
 ---
 
 # Alex Molas  
