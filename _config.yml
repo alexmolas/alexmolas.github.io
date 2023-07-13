@@ -39,6 +39,10 @@ feed:
 kramdown:
   hard_wrap: true
 
+# Google analyitics id
+google_analytics:
+  id: G-JW9F0B7Y26 # fill in your Google Analytics ID
+
 
 # Exclude from processing.
 # The following items will not be processed, by default.
