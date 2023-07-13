@@ -69,7 +69,6 @@ https://nlathia.github.io/feed.xml
 https://notstatschat.rbind.io/index.xml
 https://paulw.tokyo/index.xml
 https://practicalrecs.com/feeds/all.atom.xml
-https://rss.app/feeds/Xj9aYGBYz5fTcegk.xml
 https://scottaaronson.blog/?feed=rss2"
 https://sethmlarson.dev/feed
 https://shivamrana.me/feed.xml
