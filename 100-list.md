@@ -4,8 +4,6 @@ layout: post
 description: List of 100 things that I want to do before dying.
 ---
 
-# 100 List
-
 Inspired by [Chip Huyen](https://huyenchip.com/list-100/) I have created my own list of things to do before die
 
 ![24%](https://progress-bar.dev/24/?scale=500&title=100%20List&width=120&color=babaca)
