@@ -20,14 +20,24 @@ layout: default
       <a href="/" class="back-link">Back to Home</a>
       <hr>
       <h1>Latest Posts</h1>
-      <ul class="latest-posts">
-        {% for post in site.posts %}
+      {% assign currentYear = "" %}
+      {% for post in site.posts %}
+        {% capture postYear %}{{ post.date | date: "%Y" }}{% endcapture %}
+        {% if postYear != currentYear %}
+          {% if currentYear != "" %}
+            </ul>
+          {% endif %}
+          <h3>{{ postYear }}</h3>
+          <ul class="latest-posts">
+          {% assign currentYear = postYear %}
+        {% endif %}
         <li>
-            <small>{{ post.date | date: "%Y - %m - %d" }} - </small>
-            <a href="{{ post.url }}">{{ post.title }}</a>
+          <span class="post-date">{{ post.date | date: "%b %d" }}</span> - <a href="{{ post.url }}">{{ post.title }}</a>
         </li>
-        {% endfor %}
-      </ul>
+      {% endfor %}
+      {% if currentYear != "" %}
+        </ul>
+      {% endif %}
     </article>
   
     <!-- Footer -->
