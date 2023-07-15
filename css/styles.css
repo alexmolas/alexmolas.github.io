@@ -61,3 +61,20 @@ h1 {
   width: 200px;
   text-align: center;
 }
+
+
+/* Style for the blockquotes, ie: when using > */
+blockquote {
+  border-left: 2px solid #cccccc; /* Add a left border */
+  padding: 0 15px; /* Add some padding for space */
+  margin: 10px 0; /* Add margin for separation */
+  color: #555; /* Set the text color */
+}
+
+/* Style for the post dates */
+.post-date {
+  font-family: 'Inconsolata', monospace;
+  font-size: 14px;
+  color: #000000;
+  margin-bottom: 10px;
+}
