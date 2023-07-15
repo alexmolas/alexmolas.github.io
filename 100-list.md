@@ -68,3 +68,4 @@ Inspired by [Chip Huyen](https://huyenchip.com/list-100/) I have created my own 
 56. ✓ Camino de Santiago
 57. ✓ Publish a paper [(x2)](https://scholar.google.com/citations?user=2FccG04AAAAJ)
 58. ✗ Spend some days in a cabin next to a lake
+59. ✗ Someone shares one of my posts in HN/Reddit/lobste.rs/etc.
