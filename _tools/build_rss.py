@@ -78,7 +78,11 @@ layout: page
 
     for link, title, date in sorted_links:
         title = remove_html_tags(title)
-        html += f"<li>{date.date()} - <a href='{link}'>{title}</a></li>\n"
+        html += f"""
+            <li>
+            <span class="post-date">{date.date()}</span> -
+            <a href='{link}'>{title}</a></li>\n
+        """
 
     html += """
     </ul>
