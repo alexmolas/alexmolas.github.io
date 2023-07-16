@@ -23,7 +23,7 @@ But all of these things are not a problem, because you shouldn't care even a lit
 - It's cool to maintain a blog, even it's only from the technical perspective. The feeling of complete ownership over something is really fulfilling, even if it's just some bytes on a remote server in this ethereal world.
 - You can say whatever the fuck you want. It's your blog, you don't need to follow any rules. I just cursed and you can't do nothing about it, because this is my blog and I do what I want. This will give you a sense of freedom that's really cool imho.
 
-PS. I was just about to publish this post, and then I started to think "why should I publish this text? Who is going to loose their time to read this crap?", but you know what? I just don't care what you think, here's my post and you can do nothing about it :)
+PS. I was just about to publish this post, and then I started to think "why should I publish this text? Who is going to waste their time to read this crap?", but you know what? I just don't care what you think, here's my post and you can do nothing about it :)
 
 ---
 
