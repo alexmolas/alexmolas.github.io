@@ -1,6 +1,6 @@
 body {
   font-family: 'verdana', monospace;
-  font-size: 2vh;
+  font-size: (15px + 0.4vw);
   line-height: 1.5;
   max-width: 800px;
   margin-left: auto;
@@ -33,21 +33,17 @@ article {
 }
 
 h1 {
-  font-size: 3vh;
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #333;
+}
+h2 {
+  font-size: 1.5rem;
   font-weight: bold;
   color: #333;
 }
 
-.post-date {
-  font-size: 14px;
-  color: #777;
-  margin-bottom: 10px;
-}
 
-.post-content {
-  font-size: 16px;
-  line-height: 1.5;
-}
 
 /* To center images */
 .center {
@@ -74,7 +70,6 @@ blockquote {
 /* Style for the post dates */
 .post-date {
   font-family: 'Inconsolata', monospace;
-  font-size: 14px;
   color: #000000;
   margin-bottom: 10px;
 }
