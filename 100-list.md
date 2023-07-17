@@ -6,14 +6,14 @@ description: List of 100 things that I want to do before dying.
 
 Inspired by [Chip Huyen](https://huyenchip.com/list-100/) I have created my own list of things to do before die
 
-![24%](https://progress-bar.dev/24/?scale=500&title=100%20List&width=120&color=babaca)
+![27%](https://progress-bar.dev/24/?scale=500&title=100%20List&width=120&color=babaca)
 
 1. ✗ Learn Portuguese
 2. ✗ Live in another country
 3. ✓ Plant a tree
 4. ✗ Write a fiction book
 5. ✗ Write a technical book
-6. ✗ Write a post with more than 10k visits
+6. ✓ Write a post with more than 10k visits (ironically the post was about why [nobody cares about my blog](https://www.alexmolas.com/2023/07/15/nobody-cares-about-your-blog.html))
 7. ✗ Cook all the recipes from "La comida de la familia" from Ferran Adrian 
 8. ✗ Give a talk in a major conference - ICML, NIPS, PyCon, or smiliar.
 9. ✗ Read 1000 books [(~4% done)](https://www.goodreads.com/user/show/64719677-lex-molas)
@@ -66,4 +66,4 @@ Inspired by [Chip Huyen](https://huyenchip.com/list-100/) I have created my own 
 56. ✓ Camino de Santiago
 57. ✓ Publish a paper [(x2)](https://scholar.google.com/citations?user=2FccG04AAAAJ)
 58. ✗ Spend some days in a cabin next to a lake
-59. ✗ Someone shares one of my posts in HN/Reddit/lobste.rs/etc.
+59. ✓ Someone shares one of my posts in HN/Reddit/lobste.rs/etc. ([thanks smokel](https://news.ycombinator.com/item?id=36745138))
