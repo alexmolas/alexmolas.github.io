@@ -9,7 +9,11 @@ description: Hello, world, I'm Alex, and this is my blog, where I talk about mat
 ---
 
 [About](/about)
+
 [Blog](/blog)
+
 [Blogroll](/blogroll)
+
 [100 List](/100-list)
+
 [RSS](/feed.xml)
