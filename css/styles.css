@@ -1,13 +1,10 @@
-body {
-  font-family: 'verdana', monospace;
-  font-size: (15px + 0.4vw);
-  line-height: 1.5;
-  max-width: 800px;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 0 1rem;
-  width: 100%;
-  box-sizing: border-box;
+ body {
+	font-family: verdana;
+	font-size: 18px;
+	margin: 7px;
+	padding: 0;
+  max-width: 700px;
+	margin: 100px auto;
 }
 
 a {
@@ -24,26 +21,6 @@ a:visited {
   background-color: transparent;
   text-decoration: none;
   }
-
-
-/* Post style */
-article {
-  margin-bottom: 20px;
-  padding: 1rem;
-}
-
-h1 {
-  font-size: 1.8rem;
-  font-weight: bold;
-  color: #333;
-}
-h2 {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: #333;
-}
-
-
 
 /* To center images */
 .center {
