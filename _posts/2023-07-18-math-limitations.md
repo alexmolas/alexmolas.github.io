@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "About math intrinsic limitations."
+title: "About math limitations."
 description:
 tags: maths computability-theory
 ---
