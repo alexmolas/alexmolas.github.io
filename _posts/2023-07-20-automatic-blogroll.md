@@ -13,6 +13,7 @@ Here's why I like my implementation
 1. It's free! everything runs on GitHub (Pages + Actions) so it's completely free for me.
 2. The blogroll gets updated every 6 hours. I could make it every 15 minutes, but I don't see the need of that.
 3. Everything is static. No need of databases, API, docker, kubernetes, and all the hell of modern websites. Everything is stored in HTML files that are updated every 6 hours.
+4. Instead of checking every morning Feedly to see if there are new posts on my favourite blogs, I just check my website. Become self-suficient or die.
 
 In case you're wondering, here's how I did it. The code can be found [here](https://github.com/alexmolas/alexmolas.github.io/blob/master/_tools/build_rss.py) and [here](https://github.com/alexmolas/alexmolas.github.io/blob/master/.github/workflows/rss.yml).
 
