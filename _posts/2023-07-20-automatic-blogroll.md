@@ -67,7 +67,7 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
       - name: Execute Blogroll Builder
-        run: python _tools/build_rss.py
+        run: python _tools/build_blogroll.py
       - name: Commit and push changes
         env:
           GITHUB_TOKEN: ...
@@ -79,7 +79,7 @@ jobs:
           git push
 ```
 
-and then GitHub will run `_tools/build_rss.py` and commit the updated `_layouts/blogroll.html` every 6 hours, and automagically the changes will be published in my blogroll.
+and then GitHub will run `_tools/build_blogroll.py` and commit the updated `_layouts/blogroll.html` every 6 hours, and automagically the changes will be published in my blogroll.
 
 ## Final thoughts
 
