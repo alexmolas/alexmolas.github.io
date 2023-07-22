@@ -38,7 +38,7 @@ Basically, this means that all the mathematical knowledge we have nowadays has b
 
 # Maths are limited by biology
 
-I've already made two hot takes, so why stop here? Let's go even further and make all the mathematical community hate me. So far we've seen that since maths need a physical substract to exist then they should follow physical laws. On the same lines, we can say that maths need a biological substract to be generated, so the ideas we can produce are limited by how humanity have evolved. One could argue that the current neural processes that our brain can perform are the ones that constrain the space of possible ideas.
+I've already made two hot takes, so why stop here? Let's go even further and make all the mathematical community hate me. So far we've seen that since maths need a physical substrate to exist then they should follow physical laws. On the same lines, we can say that maths need a biological substract to be generated, so the ideas we can produce are limited by how humanity have evolved. One could argue that the current neural processes that our brain can perform are the ones that constrain the space of possible ideas.
 
 Another limitation that biology poses to maths is that we only live for a limited number of years. So, at some point, the amount of time you would need to reach the boundaries of math knowledge is going to be larger that the human lifespan.
 
