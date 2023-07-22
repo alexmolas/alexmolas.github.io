@@ -52,6 +52,7 @@ google_analytics:
 #
 exclude:
     - env
+    - notebooks
 #   - .sass-cache/
 #   - .jekyll-cache/
 #   - gemfiles/
