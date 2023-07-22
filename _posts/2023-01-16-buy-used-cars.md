@@ -50,8 +50,9 @@ $$
 with parameters around $\lambda = 12$ and $k = 2$. The distribution looks like
 
 
-![figure-2](/docs/used-car/weibull.svg){: width="400" height="250"}
-
+<figure>
+  <img src="/docs/used-car/weibull.svg" alt="fig. 1" width="500" class="center" />
+</figure>
 
 The above distribution works for a car when we don't have further information, but how does this distribution change if we already know that a car has $T$ years? If we observe a car that's $T$ years old the new distribution is
 
@@ -69,7 +70,9 @@ $$
 
 The following plot show $\langle x \rangle_T$ as a function of $T$. The dashed line is the identity, and it shows how $\langle x \rangle_T$ approaches asymptotically to it.
 
-![figure-2](/docs/used-car/expected-lifetime.svg){: width="400" height="250"}
+<figure>
+  <img src="/docs/used-car/expected-lifetime.svg" alt="fig. 2" width="500" class="center" />
+</figure>
 
 With this information we can compute the expected remaining lifetime of the car, aka its utility, as
 
@@ -101,7 +104,12 @@ $$
 
 In other words, I'm interested in finding the age of the cars I have to buy to minimize the total cost of cars. In the following plot you can see $\text{total cost(t)}$ for the values of $\lambda=12$, $k=2$, $N=60$, $\alpha = \frac{\log_2(2)}{2}$ , $c_0 = 20000$, and $c_\infty=1000$. 
 
-![figure-2](/docs/used-car/age-vs-cost.svg){: width="400" height="250"}
+
+
+<figure>
+  <img src="/docs/used-car/age-vs-cost.svg" alt="fig. 3" width="500" class="center" />
+</figure>
+
 
 
 The optimal value for this set of parameters is
