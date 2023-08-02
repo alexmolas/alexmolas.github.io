@@ -24,8 +24,9 @@ description: >- # this means to ignore newlines until "baseurl:"
   Welcome to my personal blog! Here you'll find a glimpse into my life as a husband, father, and data scientist (in that order).
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://alexmolas.com" # the base hostname & protocol for your site, e.g. http://example.com
-twitter_username: MolasAlex
-github_username:  alexmolas
+twitter_link: https://www.twitter.com/molasalex
+github_link:  https://www.github.com/alexmolas
+linkedin_link: https://www.linkedin.com/in/alex-molas
 
 # Build settings
 plugins:
