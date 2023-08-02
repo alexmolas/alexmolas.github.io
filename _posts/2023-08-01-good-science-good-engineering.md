@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Good science requires good engineering."
+title: "Good Science, Good Engineering."
 description: "In this text, I study the idea that science needs engineering as much as engineering needs science. I defend the position that doing good science without following best engineering practices is impossible."
 tags: opinion
 ---
