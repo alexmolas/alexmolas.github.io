@@ -72,6 +72,7 @@ https://practicalrecs.com/feeds/all.atom.xml
 https://scottaaronson.blog/?feed=rss2"
 https://sethmlarson.dev/feed
 https://shivamrana.me/feed.xml
+https://taylor.town/feed.xml
 https://twolodzko.github.io/feed.xml
 https://tylerneylon.com/feed
 https://veekaybee.github.io/index.xml
