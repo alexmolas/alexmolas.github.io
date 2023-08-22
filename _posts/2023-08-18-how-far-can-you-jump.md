@@ -15,7 +15,7 @@ Before I present you with the answer to the question I'll summarize the learning
   <img src="/docs/swing/swing_drawing.png" alt="Swing Drawing" width="300" class="center" />
   <figcaption class="center">I love this image, and I wish more papers had this kind of picture on them. Image from [^2]</figcaption>
 </figure>
-
+Notice that [^4] and [^5] answer a very similar question: what is the optimal time $t$ to jump off, so as to reach farthest. However, these references do not deal with the pumping of a swing, they just assume that you start swinging at some angle $\lambda$ and jump at an angle $\phi$, without pumping the swing at any point. Solving this problem is interesting, but I think it's more exciting to solve it when the person swinging can control the system. This makes it feel more like a real game that you can play in a park or at the Olympic Games.
 
 # Pumping a swing
 
