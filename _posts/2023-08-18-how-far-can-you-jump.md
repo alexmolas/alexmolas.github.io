@@ -104,16 +104,16 @@ $$
 t_{\text{flight}} = \frac{v\sin\phi \pm\sqrt{v^2\sin^2\phi+2gl_1(1-\cos\phi)}}{g}
 $$
 
-and the distance
+now notice that only the positive root has physical meaning (we don't want negative times), so the distance is
 
 $$
 \begin{align}
 d = & l_1 \sin\phi + \frac{v^2 \sin\phi\cos\phi}{g} \\
-& \pm \sqrt{\frac{2l_1v^2\cos^2\phi(1-\cos\phi)}{g}+\left(\frac{v^2\sin\phi\cos\phi}{g}\right)^2}
+& + \sqrt{\frac{2l_1v^2\cos^2\phi(1-\cos\phi)}{g}+\left(\frac{v^2\sin\phi\cos\phi}{g}\right)^2}
 \end{align}
 $$
 
-Notice that the square root has two roots, both with physical meaning. I'll use the positive root when jumping forwards and the negative one when jumping backward.
+
 
 # Putting everything together
 
@@ -129,7 +129,7 @@ Now, putting everything together we have this set of equations
 
 $$
 \begin{cases}
-d(t) =l_1 \sin\phi(t) + \frac{v^2 \sin\phi(t)\cos\phi(t)}{g} \pm \sqrt{\frac{2l_1v^2\cos^2\phi(t)(1-\cos\phi(t))}{g}+\left(\frac{v(t)^2\sin\phi(t)\cos\phi(t)}{g}\right)^2} \\
+d(t) =l_1 \sin\phi(t) + \frac{v^2 \sin\phi(t)\cos\phi(t)}{g} + \sqrt{\frac{2l_1v^2\cos^2\phi(t)(1-\cos\phi(t))}{g}+\left(\frac{v(t)^2\sin\phi(t)\cos\phi(t)}{g}\right)^2} \\
 
 \phi(t) = \frac{F}{\omega_0^2 - \omega^2}\left(\cos \omega t - \cos \omega_0t\right) \\
 
