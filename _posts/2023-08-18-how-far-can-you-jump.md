@@ -5,6 +5,10 @@ description: "In this post I derive the physics of pumping a swing and the physi
 tags: math stats
 ---
 
+
+> Discussion on [HackerNews](https://news.ycombinator.com/item?id=37255330). 
+
+
 This summer I've spent an absurd amount of time reading and learning about the physics of swings. Yes, you read it right, I've been learning about the physical processes that happen when a kid is playing with a swing in the park. Blame it on my kids and the countless hours spent enjoying these moments with them. In particular, I read about the physics of pumping a swing and about the physics of jumping from a swing. Amidst my deep dive into swing physics, I came up with a new Olympic sport in which you start seated on a swing with length $L$, your feet comfortably touching the ground. As a countdown of $T$ seconds commences, you embark on the art of swing-pumping. Your challenge is to execute a skillful leap before the countdown reaches zero. With your jump, you travel a distance $d$ from your initial point, aiming to achieve the greatest possible $d$.
 
 The question is then, which is the best method to maximize $d$? 
@@ -82,7 +86,7 @@ This solution is good enough for our approach since I assume $T$ to be small eno
 
 # Jumping from a swing
 
-Now let's study how should a swinger jumps from a swing to maximize the traveled distance. The analysis presented here is based on the work of Jasm Cole [^4] and Hiroyuki Shima [^5]. Notice that the naive solution of jumping at $\phi=\pi/4$ is not optimal. For instance, imagine a swing that oscillates in the range $\pm \pi/4$, then it's clear that jumping at $\pi/4$ is suboptimal since the swinger will start its flight with a speed of zero. 
+Now let's study how should a swinger jump from a swing to maximize the traveled distance. The analysis presented here is based on the work of Jasm Cole [^4] and Hiroyuki Shima [^5]. Notice that the naive solution of jumping at $\phi=\pi/4$ is not optimal. For instance, imagine a swing that oscillates in the range $\pm \pi/4$, then it's clear that jumping at $\pi/4$ is suboptimal since the swinger will start its flight with a speed of zero. 
 
 <figure>
   <img src="/docs/swing/swing_jump.png" alt="Jumping from a swing" width="500" class="center" />
