@@ -7,13 +7,14 @@ tags: math stats
 
 
 > Discussion on [HackerNews](https://news.ycombinator.com/item?id=37255330). 
+> Some people pointed out some flaws in my modelling (eg: assuming zero distance from swing to floor) which I've tried to fix.  The original maximum distance estimation was around $1m$. 
 
 
 This summer I've spent an absurd amount of time reading and learning about the physics of swings. Yes, you read it right, I've been learning about the physical processes that happen when a kid is playing with a swing in the park. Blame it on my kids and the countless hours spent enjoying these moments with them. In particular, I read about the physics of pumping a swing and about the physics of jumping from a swing. Amidst my deep dive into swing physics, I came up with a new Olympic sport in which you start seated on a swing with length $L$, your feet comfortably touching the ground. As a countdown of $T$ seconds commences, you embark on the art of swing-pumping. Your challenge is to execute a skillful leap before the countdown reaches zero. With your jump, you travel a distance $d$ from your initial point, aiming to achieve the greatest possible $d$.
 
 The question is then, which is the best method to maximize $d$? 
 
-Before I present you with the answer to the question I'll summarize the learnings I got from reading about the physics of a swing. As usual, you can find all the code I used for this post in my repo.
+Before I present you with the answer to the question I'll summarize the learnings I got from reading about the physics of a swing. As usual, you can find all the code I used for this post in my [repo](https://github.com/alexmolas/alexmolas.github.io/tree/master/notebooks/swing).
 
 <figure>
   <img src="/docs/swing/swing_drawing.png" alt="Swing Drawing" width="300" class="center" />
@@ -86,26 +87,26 @@ This solution is good enough for our approach since I assume $T$ to be small eno
 
 # Jumping from a swing
 
-Now let's study how should a swinger jump from a swing to maximize the traveled distance. The analysis presented here is based on the work of Jasm Cole [^4] and Hiroyuki Shima [^5]. Notice that the naive solution of jumping at $\phi=\pi/4$ is not optimal. For instance, imagine a swing that oscillates in the range $\pm \pi/4$, then it's clear that jumping at $\pi/4$ is suboptimal since the swinger will start its flight with a speed of zero. 
+Now let's study how should a swinger jump from a swing to maximize the traveled distance. The analysis presented here is based on the work of Jason Cole [^4] and Hiroyuki Shima [^5]. Notice that the naive solution of jumping at $\phi=\pi/4$ is not optimal. For instance, imagine a swing that oscillates in the range $\pm \pi/4$, then it's clear that jumping at $\pi/4$ is suboptimal since the swinger will start its flight with a speed of zero. 
 
 <figure>
   <img src="/docs/swing/swing_jump.png" alt="Jumping from a swing" width="500" class="center" />
-  <figcaption class="center">Diagram showing the situation just after jumping from the swing. Notice that instead of $h$ I'm using $l_1$. Image from [^4].</figcaption>
+  <figcaption class="center">Diagram showing the situation just after jumping from the swing. Notice that instead of $h$ I'm using $l_1$, and I'm using $h$ as the distance from the swing to the ground, sorry for the confusing notation. Image from [^4]. </figcaption>
 </figure>
 
-Once you jump from the swing, the equations of motion for the horizontal and the vertical directions are
+Notice I'm adding a new variable $h$ that represents the distance from the swing to the ground. This variable is not present on Jason's blog but it's on Hiroyuki paper. Once you jump from the swing, the equations of motion for the horizontal and the vertical directions are
 
 $$
 \begin{cases}
 x(t) = l_1 \sin \phi + v t\cos\phi \\
-y(t) = l_1(1 - \cos \phi) + vt \sin \phi - \frac{1}{2}gt^2 
+y(t) = h + l_1(1 - \cos \phi) + vt \sin \phi - \frac{1}{2}gt^2 
 \end{cases}
 $$
 
 Now, we can compute the total flight time by solving $y(t_{\text{flight}})=0$ and then compute the flight distance as $d = x(t_{\text{flight}})$. The flight time is then
 
 $$
-t_{\text{flight}} = \frac{v\sin\phi \pm\sqrt{v^2\sin^2\phi+2gl_1(1-\cos\phi)}}{g}
+t_{\text{flight}} = \frac{v\sin\phi \pm\sqrt{v^2\sin^2\phi+2g(h+l_1(1-\cos\phi))}}{g}
 $$
 
 now notice that only the positive root has physical meaning (we don't want negative times), so the distance is
@@ -113,7 +114,7 @@ now notice that only the positive root has physical meaning (we don't want negat
 $$
 \begin{align}
 d = & l_1 \sin\phi + \frac{v^2 \sin\phi\cos\phi}{g} \\
-& + \sqrt{\frac{2l_1v^2\cos^2\phi(1-\cos\phi)}{g}+\left(\frac{v^2\sin\phi\cos\phi}{g}\right)^2}
+& + \sqrt{\frac{2v^2\cos^2\phi(h+l_1(1-\cos\phi))}{g}+\left(\frac{v^2\sin\phi\cos\phi}{g}\right)^2}
 \end{align}
 $$
 
@@ -133,7 +134,7 @@ Now, putting everything together we have this set of equations
 
 $$
 \begin{cases}
-d(t) =l_1 \sin\phi(t) + \frac{v^2 \sin\phi(t)\cos\phi(t)}{g} + \sqrt{\frac{2l_1v^2\cos^2\phi(t)(1-\cos\phi(t))}{g}+\left(\frac{v(t)^2\sin\phi(t)\cos\phi(t)}{g}\right)^2} \\
+d(t) =l_1 \sin\phi(t) + \frac{v^2 \sin\phi(t)\cos\phi(t)}{g} + \sqrt{\frac{2v^2\cos^2\phi(h+l_1(1-\cos\phi))}{g}+\left(\frac{v(t)^2\sin\phi(t)\cos\phi(t)}{g}\right)^2} \\
 
 \phi(t) = \frac{F}{\omega_0^2 - \omega^2}\left(\cos \omega t - \cos \omega_0t\right) \\
 
@@ -141,7 +142,7 @@ v(t) = \frac{l_1F}{\omega^2_0 - \omega^2}(\omega\cos\omega t - \omega_0\cos \ome
 \end{cases}
 $$
 
-To compute $d(t)$ we just need to compute $\phi(t)$ and $v(t)$ and substitute the values in the first equation. I'll use the same constants as in [^2]: $M=1$, $m_1=0.4M$, $m_2 = 0.2M$, $m_3 = 0.4M$, $l_1 = 2$, $l_2 = 0.4$, $l_3 = 0.4$, $\theta_0=0.7$, $g= 9.8$, $T=2 \pi \sqrt{l1 / g}$, and $\omega= 2\pi/T$
+To compute $d(t)$ we just need to compute $\phi(t)$ and $v(t)$ and substitute the values in the first equation. I'll use the following constants: $M=1$, $m_1=0.4M$, $m_2 = 0.2M$, $m_3 = 0.4M$, $l_1 = 2$, $l_2 = 0.4$, $l_3 = 0.4$, $h=l_3$, $\theta_0=1$, $g= 9.8$, $T=2 \pi \sqrt{l1 / g}$, and $\omega= 2\pi/T$
 
 With these parameters, we can now plot the traveled distance as a function of the jumping time.
 
@@ -172,7 +173,6 @@ Well, that's all for today. In this post, I've presented a new Olympic sport tha
 The analysis presented here is full of simplifications. Here I list some of the ones I'm aware of
 
 - The swinger model is oversimplified. For instance, authors in [^3] present a model which is more accurate than the one used here. However, I wanted to keep the analysis "simple".
-- The distance between the swinger and the floor at the lowest point is zero, which is of course false. In [^5] a new parameter $r$ is added to account for that distance.
 - The swinger is assumed to operate in the regime of small $\phi$, which allows us to use an analytical equation for $\phi(t)$. However, an experimented swinger could achieve big oscillation angles in a short amount of time, and then our simplification wouldn't be valid anymore.
 - As a good physicist I've neglected any kind of friction (swing-rod, swinger-air, etc.). 
 
