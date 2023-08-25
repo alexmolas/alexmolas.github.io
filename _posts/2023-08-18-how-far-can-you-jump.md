@@ -164,11 +164,11 @@ Finally, we can get also the maximum traveled distance as a function of $T$.
   <img src="/docs/swing/max_distance.svg" alt="Traveled distance as a function of jumping time" width="500" class="center" />
 </figure>
 
-For example, if $T=20s$, which seems like a reasonable value to make the sport interesting, one would expect to achieve $d=1m$. 
+For example, if $T=20s$, which seems like a reasonable value to make the sport interesting, one would expect to achieve $d\approx 2m$. 
 
 # Conclusion
 
-Well, that's all for today. In this post, I've presented a new Olympic sport that consists of pumping on a swing during a given amount of time and then jumping and trying to achieve the maximum distance. With the parameters used in my simulations, I would expect the world record to be around one meter. 
+Well, that's all for today. In this post, I've presented a new Olympic sport that consists of pumping on a swing during a given amount of time and then jumping and trying to achieve the maximum distance. With the parameters used in my simulations, I would expect the world record to be around two meters.  
 
 The analysis presented here is full of simplifications. Here I list some of the ones I'm aware of
 
@@ -176,7 +176,7 @@ The analysis presented here is full of simplifications. Here I list some of the 
 - The swinger is assumed to operate in the regime of small $\phi$, which allows us to use an analytical equation for $\phi(t)$. However, an experimented swinger could achieve big oscillation angles in a short amount of time, and then our simplification wouldn't be valid anymore.
 - As a good physicist I've neglected any kind of friction (swing-rod, swinger-air, etc.). 
 
-Even with all this simplification, I think the analysis stills bring some light to the problem of maximizing the flight distance. Now, the only step still missing is the experimental one: go to a park and try to beat the theoretical maximum distance. According to my numbers, you wouldn't be able to beat the 1-meter mark. 
+Even with all this simplification, I think the analysis stills bring some light to the problem of maximizing the flight distance. Now, the only step still missing is the experimental one: go to a park and try to beat the theoretical maximum distance. According to my numbers, you wouldn't be able to beat the 2-meter mark. 
 
 All of this reminds me of the anecdote of the mathematician and his wife moving a sofa. The mathematician spent a lot of time computing if it was possible to move the sofa from one room to the other, and finally proved it was impossible. Then he went to show it to his wife, which had already moved the sofa to the other room. So I'm pretty sure that it's going to be possible to beat my theoretical maximum distance. Unfortunately, I don't have a swing near me right now, so I'll have to wait until the next visit to the park.
 
