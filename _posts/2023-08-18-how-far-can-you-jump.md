@@ -182,6 +182,29 @@ All of this reminds me of the anecdote of the mathematician and his wife moving 
 
 ---
 
+# Appendix 1: optimal distribution of masses
+
+Some days after publishing this post I started wondering which was the combination of masses $m_1$, $m_2$, and $m_3$ that allowed for the best results, aka how should a Swing Jumping world champion look like. To do so I have fixed all the parameters except the masses, and I've forced $1 = m_1 + m_2 + m_3$ since the behavior of the system is independent of the total mass $M$. 
+
+In the next plot we see how the maximum distance depends on $m_2$ and $m_3$. The red star shows where the combination of masses that maximized the distance.
+
+<figure>
+  <img src="/docs/swing/distance_vs_masses.png" alt="$m1$ & $m2$ vs max distance" width="500" class="center" />
+</figure>
+
+
+The best combination of masses is $m_1=0$, $m_2 \approx 0.625$ and $m_3 \approx 0.375$. Of course this is not a solution that's feasible - maybe . Setting a minimum value for $m_1 > 0.1$ we get a different optimal distribution of masses, ie: $m_1\approx 0.2$, $m_2 \approx 0.5$, and $m_3 \approx 0.3$. So we see that the optimal solution is always to minimize $m_1$. 
+
+<figure>
+  <img src="/docs/swing/distance_vs_masses_clipped.png" alt="$m1$ & $m2$ vs max distance for a clipped value of $m1$" width="500" class="center" />
+</figure>
+
+With these new masses the maxiumum distance is around $3m$ which is considerably higher than our first result. 
+
+We could also analyze the best combination of lengths $l_\*$ and masses $m_\*$ that maximize the distance, however I don't think it's going to add a lot of value to the study so I'll leave the analysis as it is now.
+
+---
+
 [^1]: Pumping on a Swing, Peter L. Tea and Harold Falk, American Journal of Physics, 36, 1165 (1968)
 [^2]: The pumping of a swing from the seated position, William B. Case and Mark A. Swanson, American Journal of Physics, 58, 463 (1990)
 [^3]: Initial phase and frequency modulations of pumping a playground swing, Chiaki Hirata et al, (2023)
