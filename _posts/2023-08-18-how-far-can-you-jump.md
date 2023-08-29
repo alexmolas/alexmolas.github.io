@@ -6,7 +6,7 @@ tags: math stats
 ---
 
 
-> Discussion on [HackerNews](https://news.ycombinator.com/item?id=37255330). 
+> Discussion on [HackerNews](https://news.ycombinator.com/item?id=37313493).
 > Some people pointed out some flaws in my modelling (eg: assuming zero distance from swing to floor) which I've tried to fix.  The original maximum distance estimation was around $1m$. 
 
 
