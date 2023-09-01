@@ -66,3 +66,16 @@ blockquote {
     width: 100%;
   }
 }
+
+
+summary {
+  cursor:pointer;
+  background-color:#eee;
+  padding:.25rem 1rem;
+  margin:0 -1rem
+}
+details[open] {
+  border-bottom:1rem solid #eee;
+  margin:0 -1rem 1rem;
+  padding:0 1rem
+}
