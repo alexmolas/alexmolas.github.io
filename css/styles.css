@@ -79,3 +79,9 @@ details[open] {
   margin:0 -1rem 1rem;
   padding:0 1rem
 }
+
+
+::selection {
+  background-color: #1a1a1a;
+  color: white;
+}
