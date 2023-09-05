@@ -38,6 +38,7 @@ https://e-dorigatti.github.io/feed.xml
 https://emiruz.com/index.xml
 https://eugeneyan.com/rss/
 https://evjang.com/feed.xml
+https://fanpu.io/feed.xml
 https://finbarr.ca/sitemap.xml
 https://fooledbyrandomnessdotcom.wordpress.com/feed/
 https://francisbach.com/feed/
