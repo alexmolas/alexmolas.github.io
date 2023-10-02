@@ -78,6 +78,7 @@ https://taylor.town/feed.xml
 https://twolodzko.github.io/feed.xml
 https://tylerneylon.com/feed
 https://veekaybee.github.io/index.xml
+https://vgel.me/feed.xml
 https://vitalik.ca/feed.xml
 https://win-vector.com/feed/
 https://www.alexirpan.com/feed.xml
