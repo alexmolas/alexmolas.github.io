@@ -86,6 +86,7 @@ https://www.alexmolas.com/feed.xml
 https://www.allendowney.com/blog/feed/
 https://www.allthingsdistributed.com/atom.xml
 https://www.amolas.dev/feed.xml
+https://www.beren.io/feed.xml
 https://www.chrisstucchio.com/blog/atom.xml
 https://www.danielsieger.com/atom.xml
 https://www.deeplearning.ai/feed/
