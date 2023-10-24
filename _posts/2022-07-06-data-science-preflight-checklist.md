@@ -73,9 +73,11 @@ Once the model is deployed, you'll want to know how good your predictions are, s
 
 # Conclusions
 
-Thanks for sticking with me so far. I covered the basic checks I follow before starting a new project, but I'm sure this list is biased, so let me know your checks in the comments.
+Thanks for sticking with me so far. I covered the basic checks I follow before starting a new project, but I'm sure this list is biased, so let me know if you have a different set of checks or if you believe the list is incomplete.
 
-To finish, let me say that I don't think a Data Scientist should be able to do all the things in this list. I think of this list more as a team effort to 
+To finish, let me say that I don't think a Data Scientist should be able to do all the things in this list. I think of this list more as a team effort than as an individual effort. The point is to be prepared, because as the saying goes in latin *Amat victoria curam* - victory loves preparation.
+
+
 
 ---
 
