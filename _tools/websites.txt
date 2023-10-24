@@ -32,6 +32,7 @@ https://austinhenley.com/blog/feed.rss
 https://ben.bolte.cc/feed.xml
 https://bitesofcode.wordpress.com/feed/
 https://chris-said.io/atom.xml
+https://colinmorris.github.io/feed.xml
 https://david26694.github.io/david-masip-blog/feed.xml
 https://dblalock.github.io/feed.xml
 https://e-dorigatti.github.io/feed.xml
