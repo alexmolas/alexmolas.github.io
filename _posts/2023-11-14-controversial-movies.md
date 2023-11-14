@@ -81,7 +81,13 @@ Range  | Title                   | mean | std
 (4, 5) | Heart of a Dog          | 4.08 | 1.25  
 ```
 
-This means that the most controversial movie ever is The Room, what a surprise eh? Notice that even The Room is far from the maximum variance one could get, so this means we haven't seen yet the most controversial movie ever. Who knows what the future holds for us?
+This means that the most controversial movie ever is The Room, what a surprise eh? Notice that even The Room is far from the maximum variance one could get, so this means we haven't seen yet the most controversial movie ever. Who knows what the future holds for us? In the next figure I've plotted the variance of the most controversial movies and the theoretical upper bound. We still have a huge margin for controversial movies.
+
+<figure>
+  <img src="/docs/controversial-movies/max-real-vs-max-pred.png" alt="Distribution of The Room and Escape from Alcatraz" width="500" class="center" />
+  <figcaption class="center">Maximum variance possible for each rating versus the actual variance of the most controversial movie</figcaption>
+</figure>
+
 
 As a last gift, I leave you here the distribution of the two most and least controversial films in history
 <figure>
