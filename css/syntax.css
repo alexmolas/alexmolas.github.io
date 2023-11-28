@@ -9,6 +9,14 @@
   overflow-x: auto; /* Add this line */
 }
 
+p code {
+  background-color: #f7f7f7; /* Replace with your desired background color */
+  padding: 0.2em 0.4em;
+  border-radius: 4px;
+  font-family: 'Courier New', monospace; /* Optional: Specify a monospaced font */
+}
+
+
 .highlight table td { padding: 5px; }
 .highlight table pre { margin: 0; }
 .highlight, .highlight .w {
