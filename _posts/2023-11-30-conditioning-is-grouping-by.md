@@ -89,49 +89,9 @@ $$
 
 As a final exercise for this post, I'll show that the presented intuition can be used to reproduce the Bayes theorem. 
 
-To show it we can create a dataframe with two columns: `A` take random integer values between `0` and `10` and `B` takes values between `100` and `1000`. With the following code we create the dataframe and compute $\frac{P(B\|A) P(A)}{P(B)}$ and $P(A\|B)$.
+To show it we can create a dataframe with two columns: `salary` take random integer values between `40000` and `200000` and `height` takes values between `140` and `220`. With the code in [^2]  we can create the dataframe and compute $\frac{P(s\|h) P(h)}{P(s)}$ and $P(h\|s)$.
 
-
-```python
-N = 100000
-A = np.random.randint(0, 10, N)
-B = np.random.randint(100, 1000, N)
-df = pd.DataFrame({'A': A, 'B': B})
-
-# compute conditional and absolute probabilities
-p_ba = (df
-        .groupby('A')[['B']]
-        .value_counts(normalize=True)
-        .reset_index()
-        .rename(columns={"proportion": "P(B|A)"})
-        )
-p_ab = (df
-        .groupby('B')[['A']]
-        .value_counts(normalize=True)
-        .reset_index()
-        .rename(columns={"proportion": "P(A|B)"})
-        )
-p_a = (df[['A']]
-       .value_counts(normalize=True)
-       .to_frame()
-       .reset_index()
-       .rename(columns={"proportion": "P(A)"})
-       )
-p_b = (df[['B']]
-       .value_counts(normalize=True)
-       .to_frame().reset_index()
-       .rename(columns={"proportion": "P(B)"}))
-
-# compute P(B|A) * P(A) / P(B)
-num = p_ba.merge(p_a)
-num["P(B|A) P(A)"] = num["P(B|A)"] * num["P(A)"]
-tot = num.merge(p_b)
-tot["P(B|A) P(A) / P(B)"] = tot["P(B|A) P(A)"] / tot["P(B)"]
-full_probs = p_ab.merge(tot)
-```
-
-
-According to Bayes' theorem, we expect the column `P(B|A) P(A) / P(B)` to be equal to `P(A|B)`.  If you run the above code and sample 10 random rows you'll get something similar to
+According to Bayes' theorem, we expect the column `P(s|h) P(h) / P(s)` to be equal to `P(h|s)`.  If you run the code in [^2] and sample 10 random rows you'll get something similar to
 
 
 ```r
@@ -160,3 +120,46 @@ I'm sure any mathematician reading this will be horrified and could point out do
 ---
 
 [^1]:  When I finished my Physics master I thought I would never read a paper again, and it made me a little bit sad. But last year my incredible wife bought me a tablet with a stylus and since then I've been devouring papers. Being able to read a paper and take handwritten notes directly without having to print it has been a game changer for me.
+
+
+[^2]: I didn't want to pollute the text with this monstrosity, but there you have how to use `groupby` to compute posterior distributions.
+
+    ```python
+    N = 5_000_000
+    height = np.random.randint(140, 220, N)
+    salary = np.random.randint(40_000, 200_000, N)
+    df = pd.DataFrame({'height': height, 'salary': salary})
+    
+    # compute conditional and absolute probabilities
+    p_ba = (df
+            .groupby('height')[['salary']]
+            .value_counts(normalize=True)
+            .reset_index()
+            .rename(columns={"proportion": "P(salary|height)"}))
+    
+    p_ab = (df
+            .groupby('salary')[['height']]
+            .value_counts(normalize=True)
+            .reset_index()
+            .rename(columns={"proportion": "P(height|salary)"}))
+    
+    p_a = (df[['height']]
+            .value_counts(normalize=True)
+            .to_frame()
+            .reset_index()
+            .rename(columns={"proportion": "P(height)"}))
+    
+    p_b = (df[['salary']]
+            .value_counts(normalize=True)
+            .to_frame()
+            .reset_index()
+            .rename(columns={"proportion": "P(salary)"}))
+    
+    # compute P(B|A) * P(A) / P(B)
+    num = p_ba.merge(p_a)
+    
+    num["P(salary|height) P(height)"] = num["P(salary|height)"] * num["P(height)"]
+    tot = num.merge(p_b)
+    tot["P(salary|height) P(height) / P(salary)"] = tot["P(salary|height) P(height)"] / tot["P(salary)"]
+    full_probs = p_ab.merge(tot)
+    ```
