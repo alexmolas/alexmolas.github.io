@@ -11,7 +11,7 @@ Last year I read more papers than the rest of my life [^1]. While doing so I've 
 
 A usual object in machine learning literature (and stats literature in general) are conditional expressions, ie $y\|X$, which reads as the "$y$ being conditioned to $X$". For example, one can write the conditional expected value as $\mathbb{E}(y\|X=x) = \int y P(y\|x) dy$ where $P(y\|X)$ is the distribution of $y$ conditioned on $X$.
 
-For example, in one of the first derivations in "[Elements of Statistical Learning](https://hastie.su.domains/Papers/ESLII.pdf)" (p. 18) the authors show that to $y$ from features $X$ the function that minimizes the expected squared error is
+As a starting point for this post, I'll use one of the first derivations from "[Elements of Statistical Learning](https://hastie.su.domains/Papers/ESLII.pdf)" (p. 18), where the authors show that the best option to predict a value $y$ from features $X$ is to use the estimator
 
 $$
 f(x) = \mathbb{E}(y | X=x)
@@ -47,38 +47,108 @@ which returns us
 |       3 |       8 |
 ```
 
-And this is basically the same as $\mathbb{E}(y \| X=x)$ where $y = \text{value}$ and $X = \text{group}$. Here we have computed the conditional expected value, but you can also use `groupby` to compute the distribution using `quantile`
+And this is basically the same as $\mathbb{E}(y \| X=x)$ where $y = \text{value}$ and $X = \text{group}$. Here we have computed the conditional expected value, but you can also use `groupby` to compute the distribution using `value_counts(normalized=True)`
 
 ```python
-df.groupby("group").quantile([0.1, 0.5, 0.99])
+df.groupby("group").value_counts(normalize=True)
 ```
 
 and you'll get
 
+
 ```r
-|           |   value |
-|:----------|--------:|
-| (1, 0.1)  |    2.6  |
-| (1, 0.5)  |    5    |
-| (1, 0.99) |    5    |
-|:----------|--------:|
-| (2, 0.1)  |    1    |
-| (2, 0.5)  |    1    |
-| (2, 0.99) |    1    |
-|:----------|--------:|
-| (3, 0.1)  |    7.2  |
-| (3, 0.5)  |    8    |
-| (3, 0.99) |    8.98 |
+|        | proportion   |
+|:-------|-------------:|
+| (1, 5) | 0.666667     |
+| (1, 2) | 0.333333     |
+| (2, 1) | 1            |
+| (3, 7) | 0.333333     |
+| (3, 8) | 0.333333     |
+| (3, 9) | 0.333333     |
 ```
 
-which is a numerical approximation of $P(y\|X)$, ie: the distribution of $y$ for each group in $X$. For a large enough dataframe and enough quantiles, you can get a good approximation of the conditional distribution of each group.
+which is a of $P(y\|X)$, ie: the distribution of $y$ for each group in $X$. For example, for group `2` we see that the distribution has all the mass around `1`, and for group `3` the distribution is uniform between `7`, `8`, and `9`.
 # what about continuous variables?
 
 Those readers used to working with conditional probabilities will have noticed that there are some flaws in my reasoning. The main one is that with probabilities we can condition on continuous values, ie: $P(\text{salary} \| \text{height})$, while if we groupby by a continuous column we will get groups of only one element. However, we can overcome this limitation by imagining an infinite dataframe that contains the full distribution in the grouping column. This is, a dataframe with a column named `height` that contains all the possible heights and another column named `salary` that for each height contains the distribution of salaries. The cardinality of this dataframe is $\mathbb{R}^2$ and it's impossible to build it, but we can imagine it and apply the same intuition as in the previous section.
 
+# bayes theorem
+
+To talk about conditioned probabilities is to talk about Bayes' theorem. The theorem reads 
+
+$$
+P(A|B) = \frac{P(B|A) P(A)}{P(B)}
+$$
+
+As a final exercise for this post, I'll show that the presented intuition can be used to reproduce the Bayes theorem. 
+
+To show it we can create a dataframe with two columns: `A` take random integer values between `0` and `10` and `B` takes values between `100` and `1000`. With the following code we create the dataframe and compute $\frac{P(B\|A) P(A)}{P(B)}$ and $P(A\|B)$.
+
+
+```python
+N = 100000
+A = np.random.randint(0, 10, N)
+B = np.random.randint(100, 1000, N)
+df = pd.DataFrame({'A': A, 'B': B})
+
+# compute conditional and absolute probabilities
+p_ba = (df
+        .groupby('A')[['B']]
+        .value_counts(normalize=True)
+        .reset_index()
+        .rename(columns={"proportion": "P(B|A)"})
+        )
+p_ab = (df
+        .groupby('B')[['A']]
+        .value_counts(normalize=True)
+        .reset_index()
+        .rename(columns={"proportion": "P(A|B)"})
+        )
+p_a = (df[['A']]
+       .value_counts(normalize=True)
+       .to_frame()
+       .reset_index()
+       .rename(columns={"proportion": "P(A)"})
+       )
+p_b = (df[['B']]
+       .value_counts(normalize=True)
+       .to_frame().reset_index()
+       .rename(columns={"proportion": "P(B)"}))
+
+# compute P(B|A) * P(A) / P(B)
+num = p_ba.merge(p_a)
+num["P(B|A) P(A)"] = num["P(B|A)"] * num["P(A)"]
+tot = num.merge(p_b)
+tot["P(B|A) P(A) / P(B)"] = tot["P(B|A) P(A)"] / tot["P(B)"]
+```
+
+
+According to Bayes' theorem, we expect the column `P(B|A) P(A) / P(B)` to be equal to `P(A|B)`.  If you run the above code you'll get something similar to
+
+
+```
+| B   | A | P(A|B)    |
+|----:|--:|----------:|
+| 100 | 0 | 0.0392157 |
+| 101 | 0 |  0.105263 |
+| 102 | 0 |  0.139785 |
+| 103 | 0 | 0.0957447 |
+| 104 | 0 |  0.112903 |
+
+| B   | A | P(B|A) P(A) / P(B) |
+|----:|--:|-------------------:|
+| 100 | 0 |          0.0392157 |
+| 101 | 0 |           0.105263 |
+| 102 | 0 |           0.139785 |
+| 103 | 0 |          0.0957447 |
+| 104 | 0 |           0.112903 |
+```
+
+Nice, our pandas version of the Bayes theorem holds!
+
 # conclusions
 
-In this post, I presented my intuition about conditioning in statistics. I'm sure any mathematician reading this will be horrified and could point out dozens of errors in my reasoning. [Too bad I don't care](https://www.alexmolas.com/2023/07/15/nobody-cares-about-your-blog.html). But if you can improve my intuition feel free to write and enlighten me.
+In this post, I presented my intuition about conditioning in statistics. I also showed that Bayes' theorem holds within this intuition. I'm sure any mathematician reading this will be horrified and could point out dozens of errors in my reasoning. [Too bad I don't care](https://www.alexmolas.com/2023/07/15/nobody-cares-about-your-blog.html). But if you can improve my intuition feel free to write and enlighten me.
 
 ---
 
