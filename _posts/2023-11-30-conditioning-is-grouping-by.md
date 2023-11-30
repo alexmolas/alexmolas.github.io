@@ -7,9 +7,9 @@ tags:
 
 # what's $y\|X?$
 
-Last year I read more papers than the rest of my life [^1]. While doing so I've developed an intuition about conditional expressions which I think might be of interest to other people. tldr: the intuition is conditional expressions can be interpreted as `groupby` operations.
+Last year I managed to read more papers than in my entire life. [^1]. While doing so I developed an intuition about conditional expressions that I think could be of help to more people. tldr: conditional expressions can be interpreted as `groupby` operations.
 
-A usual object in machine learning literature (and stats literature in general) are conditional expressions, ie $y\|X$, which reads as the "$y$ being conditioned to $X$". For example, one can write the conditional expected value as $\mathbb{E}(y\|X=x) = \int y P(y\|x) dy$ where $P(y\|X)$ is the distribution of $y$ conditioned on $X$.
+A usual object in machine learning literature (and stats literature in general) are conditional expressions, ie $y\|X$, which reads as the "$y$ being conditioned to $X$". For example, one can compute the expected value of a random variable $y$ conditioned to another random variable $X$ being exactly $x$, which is written as $\mathbb{E}(y\|X=x)$. Then, to compute it you can use $\mathbb{E}(y\|X=x) = \int y P(y\|x) dy$ where $P(y\|X)$ is the distribution of $y$ conditioned on $X$, ie another conditional object.
 
 As a starting point for this post, I'll use one of the first derivations from "[Elements of Statistical Learning](https://hastie.su.domains/Papers/ESLII.pdf)" (p. 18), where the authors show that the best option to predict a value $y$ from features $X$ is to use the estimator
 
@@ -21,12 +21,19 @@ The first time I read that I felt very weird since I understood all the maths be
 
 # some intuition
 
-After thinking about it for some time (I'm a slow learner, so I usually need some days or weeks to fully understand a concept) I realized that the formula was only saying "the best prediction for a given $x$ is just to take all the other examples with the same $x$ and average their $y$". After learning how to read the equation I felt a little bit better since I got some intuition about it, but it wasn't the end. After some more weeks of ruminating about it (sometimes I'm very slow) I realized that the interpretation of $\mathbb{E}(y \| X=x)$ was familiar. Wasn't this interpretation following the same logic behind the infamous `.groupby` in pandas? If for a given dataframe `df` I wanted to compute the average value of a column `y` for each group in column  `X` I would do `df.groupby(X)[y].mean()`. Isn't it quite the same as $\mathbb{E}(y \| X=x)$?
+After thinking about it for some weeks (I'm a slow learner) I realized that the formula was only saying "the best prediction for a given set of features $x$ is just to take all the other examples with the same features $x$ and average their $y$". In real machine learning you don't usually have multiple examples with the same features, and this is why more complex machine learning algorithms are used. But this is a story for another day, today I want to talk about conditional distributions.
 
-# $\mathbb{E}(y \| X=x) \sim$   `df.groupby(X)[y].mean()`
+After learning how to read the equation I felt a little bit better since I got some intuition about it, but it wasn't the end. After some more weeks of ruminating about it (sometimes I'm very slow) I realized that the interpretation of $\mathbb{E}(y \| X=x)$ was familiar. Wasn't this interpretation following the same logic as `.groupby` in pandas? If for a given dataframe `df` I wanted to compute the average value of a column `y` for each group in column `X` I would do `df.groupby(X)[y].mean()`. Isn't it quite similar to $\mathbb{E}(y \| X=x)$?
 
+# formalizing intuition
 
-The idea behind conditional expressions is the same idea behind `groupby` operations, which are present in multiple languages and packages ([itertools](https://docs.python.org/3/library/itertools.html?highlight=groupby#itertools.groupby), [pandas](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.groupby.html), [scala](https://www.scala-lang.org/api/2.12.4/scala/collection/parallel/ParIterableLike$GroupBy.html), [rust](https://docs.rs/itertools/latest/itertools/structs/struct.GroupBy.html), [SQL](https://learn.microsoft.com/es-es/sql/t-sql/queries/select-group-by-transact-sql?view=sql-server-ver16), etc.). Here we'll use pandas' implementation of `groupby`. Let's build a dataframe that consists of groups and values, and then compute the conditional expected value for each group
+So here it goes the formalized version of my intuition
+
+> $\mathbb{E}(y \| X=x) \sim$   `df.groupby(X)[y].mean()`
+
+This is, the idea behind conditional expressions is the same idea behind `groupby` operations, which are present in multiple languages and packages ([itertools](https://docs.python.org/3/library/itertools.html?highlight=groupby#itertools.groupby), [pandas](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.groupby.html), [scala](https://www.scala-lang.org/api/2.12.4/scala/collection/parallel/ParIterableLike$GroupBy.html), [rust](https://docs.rs/itertools/latest/itertools/structs/struct.GroupBy.html), [SQL](https://learn.microsoft.com/es-es/sql/t-sql/queries/select-group-by-transact-sql?view=sql-server-ver16), etc.).
+
+I'll present now some examples to make my thoughts a little bit clearer. I'll use pandas' implementation of `groupby` since I think almost everyone is familiar with it. Let's build a dataframe that consists of groups and values, and then compute the conditional expected value for each group
 
 ```python
 import pandas as pd
@@ -120,37 +127,36 @@ num = p_ba.merge(p_a)
 num["P(B|A) P(A)"] = num["P(B|A)"] * num["P(A)"]
 tot = num.merge(p_b)
 tot["P(B|A) P(A) / P(B)"] = tot["P(B|A) P(A)"] / tot["P(B)"]
+full_probs = p_ab.merge(tot)
 ```
 
 
-According to Bayes' theorem, we expect the column `P(B|A) P(A) / P(B)` to be equal to `P(A|B)`.  If you run the above code you'll get something similar to
+According to Bayes' theorem, we expect the column `P(B|A) P(A) / P(B)` to be equal to `P(A|B)`.  If you run the above code and sample 10 random rows you'll get something similar to
 
 
-```
-| B   | A | P(A|B)    |
-|----:|--:|----------:|
-| 100 | 0 | 0.0392157 |
-| 101 | 0 |  0.105263 |
-| 102 | 0 |  0.139785 |
-| 103 | 0 | 0.0957447 |
-| 104 | 0 |  0.112903 |
-
-| B   | A | P(B|A) P(A) / P(B) |
-|----:|--:|-------------------:|
-| 100 | 0 |          0.0392157 |
-| 101 | 0 |           0.105263 |
-| 102 | 0 |           0.139785 |
-| 103 | 0 |          0.0957447 |
-| 104 | 0 |           0.112903 |
+```r
+| salary   | height | P(h|s)    | P(s|h) P(h) / P(s)  |
+|---------:|-------:|----------:|--------------------:|
+| 59693    | 145    | 0.0357143 | 0.0357143           |
+| 68419    | 168    | 0.0666667 | 0.0666667           |
+| 155131   | 184    | 0.030303  | 0.030303            |
+| 69165    | 187    | 0.0487805 | 0.0487805           |
+| 49761    | 186    | 0.0344828 | 0.0344828           |
+| 196511   | 153    | 0.0238095 | 0.0238095           |
+| 113707   | 184    | 0.027027  | 0.027027            |
+| 116071   | 203    | 0.025641  | 0.025641            |
+| 193425   | 149    | 0.0555556 | 0.0555556           |
+| 162955   | 199    | 0.03125   | 0.03125             |
 ```
 
-Nice, our pandas version of the Bayes theorem holds!
+Cool! The actual `P(height | salary)` given by the data coincides with the computed values using Bayes theorem. Of course I wasn't expecting the opposite - my plan wasn't to disprove Bayes theorem in a 1000 words post - but it's interesting that you can do all this computations using the intuition I explained here. 
 
 # conclusions
 
-In this post, I presented my intuition about conditioning in statistics. I also showed that Bayes' theorem holds within this intuition. I'm sure any mathematician reading this will be horrified and could point out dozens of errors in my reasoning. [Too bad I don't care](https://www.alexmolas.com/2023/07/15/nobody-cares-about-your-blog.html). But if you can improve my intuition feel free to write and enlighten me.
+In this post, I presented my intuition about conditioning in statistics. I also showed that Bayes' theorem holds within this intuition. So next time you find a weird $y \| X$ formula don't panic and remember that it just a fancy way of saying "I'm grouping the data".
+
+I'm sure any mathematician reading this will be horrified and could point out dozens of errors in my reasoning. [Too bad I don't care](https://www.alexmolas.com/2023/07/15/nobody-cares-about-your-blog.html). But if you can improve my intuition feel free to write and enlighten me.
 
 ---
-
 
 [^1]:  When I finished my Physics master I thought I would never read a paper again, and it made me a little bit sad. But last year my incredible wife bought me a tablet with a stylus and since then I've been devouring papers. Being able to read a paper and take handwritten notes directly without having to print it has been a game changer for me.
