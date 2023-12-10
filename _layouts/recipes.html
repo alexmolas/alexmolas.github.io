@@ -1,0 +1,34 @@
+---
+layout: default
+---
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{{ page.title }}</title>
+    <link rel="stylesheet" href="{{ '/css/styles.css' | relative_url }}">
+  </head>
+  
+  <body>
+    <!-- Header -->
+    <header>
+      <!-- Your header content here -->
+    </header>
+
+    <!-- Home Content -->
+    <a href="/" class="back-link">Back to Home</a>
+    <hr>
+    <h1>Recipes</h1>
+
+    {% for recipe in site.recipes %}
+      <li>
+        <a href="{{ recipe.url }}">{{ recipe.title }}</a>
+      </li>
+    {% endfor %}
+
+    <!-- Footer -->
+    <footer>
+      <!-- Your footer content here -->
+    </footer>
+  </body>
+</html>
