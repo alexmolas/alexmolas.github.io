@@ -10,7 +10,6 @@ http://erikbern.com/?feed=rss2
 http://fastml.com/atom.xml
 http://gregorygundersen.com/feed.xml
 http://healthyalgorithms.wordpress.com/feed/
-https://claytonwramsey.github.io/blog/rss.xml
 http://koaning.io/index.xml
 http://martinfowler.com/bliki/bliki.atom
 http://peterbloem.nl/blog/rss.xml
@@ -33,6 +32,7 @@ https://austinhenley.com/blog/feed.rss
 https://ben.bolte.cc/feed.xml
 https://bitesofcode.wordpress.com/feed/
 https://chris-said.io/atom.xml
+https://claytonwramsey.github.io/blog/rss.xml
 https://colinmorris.github.io/feed.xml
 https://david26694.github.io/david-masip-blog/feed.xml
 https://dblalock.github.io/feed.xml
