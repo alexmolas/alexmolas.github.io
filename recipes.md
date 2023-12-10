@@ -1,0 +1,4 @@
+---
+layout: recipes
+title: Recipes
+---
