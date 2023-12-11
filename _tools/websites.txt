@@ -71,6 +71,7 @@ https://nhigham.com/feed/
 https://nirantk.com/writing/index.xml
 https://nlathia.github.io/feed.xml
 https://notstatschat.rbind.io/index.xml
+https://orlp.net/blog/atom.xml
 https://paulw.tokyo/index.xml
 https://practicalrecs.com/feeds/all.atom.xml
 https://scottaaronson.blog/?feed=rss2"
