@@ -1,6 +1,6 @@
 ---
 layout: recipe
-title: "Catalan Soup (escudella i carn d'olla)"
+title: "Catalan soup (escudella i carn d'olla)"
 ---
 
 I learned this recipe from my mother. Escudella i carn d'olla is one of the typical Christmas dish in Catalunya. I enjoy preparing this meal since it's a "slow" recipe (it can take around 2 or 3 hours to prepare) and I feel like a wizard mixing magic ingredients in my cauldron. I also like that none of the ingredients in the recipe are wasted.

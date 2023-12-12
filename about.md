@@ -3,10 +3,7 @@ layout: about
 title: About
 ---
 
-
-<div id="hi"><h1>
-  Hi, I'm Alex 👋
-<span></span></h1></div>
+# About me
 
 I'm a husband, father, physicist, and data scientist. In that order.
 
