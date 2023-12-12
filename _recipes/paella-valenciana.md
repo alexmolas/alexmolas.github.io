@@ -9,26 +9,26 @@ There's another version of this dish which is known as "paella de marisco" (seaf
 
 # Material
 
-1. Paella pan.
-2. Paella burner.
-3. Paella tripod (optional).
-4. Butane cylinder.
+- Paella pan. The pan has a big impact on the final result. Ideally, the width of rice after cooking should be around 1cm. The thinner the better. This means that you need a wide pan if you want a good paella. Here you have a [post](https://valenciafood.es/dimensiones-de-la-paellera/) explaining the paella you need (it's in Spanish but it's easy to understand).
+- Paella burner.
+- Paella tripod (optional).
+- Butane cylinder.
 
-# Ingredients
+# Ingredients (4 pax)
 
-1. 400g of bomba rice. Important to use bomba rice since it can absorb two or three times its volume in water without bursting. This is going to make the paella more tasty without the danger of overcooking the rice.
-2. 1.2 liters of water.
-3. Olive oil.
-4. 3 tablespoons of fried tomato (if it's "sofrito de tomate" even better, you can do it at home and it's easy).
-5. 400g chicken thighs.
-6. Half a rabbit cut in pieces.
-6. Sweet paprika. Please, do not use spicy paprika!
-7. Salt.
-8. Pepper.
-9. Rosemary.
-10. Saffron (optional, it's expensive).
-11. Food coloring (optional, used to give the characteristic paella color).
-12. 250g mix of flat green beans, lima beans and white beans.
+- 400g of bomba rice. Important to use bomba rice since it can absorb two or three times its volume in water without bursting. This is going to make the paella more tasty without the danger of overcooking the rice. Please, do not use basmati rice.
+- 1.2 liters of water.
+- Olive oil.
+- 3 tablespoons of fried tomato (if it's "sofrito de tomate" even better, you can do it at home and it's easy).
+- 400g chicken thighs.
+- Half a rabbit cut in pieces.
+- Sweet paprika. Please, do not use spicy paprika!
+- Salt.
+- Pepper.
+- Rosemary.
+- Saffron (optional, it's expensive).
+- Food coloring (optional, used to give the characteristic paella color).
+- 250g mix of flat green beans, lima beans and white beans.
 
 # Directions
 
