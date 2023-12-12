@@ -62,7 +62,6 @@ layout: page
     <body>
     <hr>
     <h1>Blogroll</h1>
-    </br>
     When I'm not with my family or writing I'm probably browsing one of this blogs.
     If your time is limited I recommend you to skip my blog and read one of these ones instead.
     </br>
