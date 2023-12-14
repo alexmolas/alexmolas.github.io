@@ -37,6 +37,9 @@ a:visited {
   margin-right: auto;
   text-align: center;
   font-size: 12px;
+  margin: 0 auto;
+  max-width: 100%;
+  font-size: 10px;
 }
 
 
