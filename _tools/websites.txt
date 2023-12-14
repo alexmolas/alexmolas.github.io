@@ -6,7 +6,7 @@ http://danluu.com/atom.xml
 http://datacolada.org/feed/
 http://distill.pub/rss.xml
 http://dustintran.com/blog/rss/
-http://erikbern.com/?feed=rss2
+https://erikbern.com/index.xml
 http://fastml.com/atom.xml
 http://gregorygundersen.com/feed.xml
 http://healthyalgorithms.wordpress.com/feed/
