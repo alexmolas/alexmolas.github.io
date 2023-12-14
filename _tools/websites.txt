@@ -11,7 +11,6 @@ http://fastml.com/atom.xml
 http://gregorygundersen.com/feed.xml
 http://healthyalgorithms.wordpress.com/feed/
 http://koaning.io/index.xml
-http://martinfowler.com/bliki/bliki.atom
 http://peterbloem.nl/blog/rss.xml
 http://sebastianraschka.com/rss_feed.xml
 http://sebastianruder.com/rss/
@@ -77,7 +76,6 @@ https://practicalrecs.com/feeds/all.atom.xml
 https://scottaaronson.blog/?feed=rss2"
 https://sethmlarson.dev/feed
 https://shivamrana.me/feed.xml
-https://taylor.town/feed.xml
 https://twolodzko.github.io/feed.xml
 https://tylerneylon.com/feed
 https://veekaybee.github.io/index.xml
