@@ -1,12 +1,13 @@
  body {
-	font-family: verdana;
-	font-size: 18px;
+  font-family: -apple-system, BlinkMacSystemFont;
+  font-weight: 300;
+	font-size: 19px;
+  line-height: 33px;
 	margin: 7px;
 	padding: 0;
   max-width: 800px;
 	margin: 100px auto;
   padding: 0 1rem;
-  line-height: 1.5;
 }
 
 a {
@@ -49,16 +50,21 @@ blockquote {
 
 /* Style for the post dates */
 .post-date {
-  font-family: 'Inconsolata', monospace;
-  color: #000000;
-  margin-bottom: 10px;
+  font-family: 'Courier New', Courier, monospace;
+  color: #575757;
+  font-size: 18px;
 }
 
 
-@media screen and (max-width: 600px) {
+/* @media screen and (max-width: 600px) {
   body {
-    margin: 50px auto; /* Adjust margin for smaller screens */
-    font-size: 14px;
+    margin: 50px auto;
+    font-size: 16px;
+    line-height: 20px;
+  }
+  h1 {
+    line-height: 30px;
+    font-size: 25px;
   }
   
   .center {
@@ -70,7 +76,7 @@ blockquote {
   .caption {
     width: 100%;
   }
-}
+} */
 
 
 summary {
