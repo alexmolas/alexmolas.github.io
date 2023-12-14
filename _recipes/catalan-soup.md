@@ -42,6 +42,7 @@ I don't know even know how to translate these expressions from Catalan to Spanis
 1. Mix the minced pork, the eggs, the bread and the milk. Add also salt and pepper. Drain the excess of milk.
 2. The resulting mix should have a compact structure, if it's too soft you can add more breadcrumb.
 3. Make balls of the size of half a fist.
+
 ## Broth
 
 1. Fill the pot up to 3/4 of its capacity and bring the water to a boil.
@@ -51,12 +52,14 @@ I don't know even know how to translate these expressions from Catalan to Spanis
 5. Finally add the blood sausage and boil only for 3 minutes more.
 6. Filter the broth to use it for the soup. You can throw the bones. Reserve the vegetables to prepare "trinxat". 
 7. The pig's foot need some more boiling. Boil them with a stock cube for 30 minutes more.
+
 ## Trinxat
 
 1. Drain as much as possible the excess of water from the vegetables.
 2. Put some oil and chopped garlic in a pan.
 3. Add the vegetables, and with a wooden spatula chop the vegetables little by little.
 4. You can add some blood sausage (remove the skin before adding it).
+
 ## Soup
 
 1. Put 1 liter of broth for each 100 grams of pasta to boil.
