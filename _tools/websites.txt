@@ -89,6 +89,7 @@ https://www.allthingsdistributed.com/atom.xml
 https://www.amolas.dev/feed.xml
 https://www.beren.io/feed.xml
 https://www.chrisstucchio.com/blog/atom.xml
+https://www.datascienceweekly.org/sitemap.xml
 https://www.danielsieger.com/atom.xml
 https://www.deeplearning.ai/feed/
 https://www.depends-on-the-definition.com/index.xml
