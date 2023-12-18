@@ -33,6 +33,7 @@ https://bitesofcode.wordpress.com/feed/
 https://chris-said.io/atom.xml
 https://claytonwramsey.github.io/blog/rss.xml
 https://colinmorris.github.io/feed.xml
+https://datascienceweekly.substack.com/feed
 https://david26694.github.io/david-masip-blog/feed.xml
 https://dblalock.github.io/feed.xml
 https://e-dorigatti.github.io/feed.xml
@@ -89,7 +90,6 @@ https://www.allthingsdistributed.com/atom.xml
 https://www.amolas.dev/feed.xml
 https://www.beren.io/feed.xml
 https://www.chrisstucchio.com/blog/atom.xml
-https://www.datascienceweekly.org/sitemap.xml
 https://www.danielsieger.com/atom.xml
 https://www.deeplearning.ai/feed/
 https://www.depends-on-the-definition.com/index.xml
