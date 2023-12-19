@@ -6,12 +6,11 @@ http://danluu.com/atom.xml
 http://datacolada.org/feed/
 http://distill.pub/rss.xml
 http://dustintran.com/blog/rss/
-http://erikbern.com/?feed=rss2
+https://erikbern.com/index.xml
 http://fastml.com/atom.xml
 http://gregorygundersen.com/feed.xml
 http://healthyalgorithms.wordpress.com/feed/
 http://koaning.io/index.xml
-http://martinfowler.com/bliki/bliki.atom
 http://peterbloem.nl/blog/rss.xml
 http://sebastianraschka.com/rss_feed.xml
 http://sebastianruder.com/rss/
@@ -34,6 +33,7 @@ https://bitesofcode.wordpress.com/feed/
 https://chris-said.io/atom.xml
 https://claytonwramsey.github.io/blog/rss.xml
 https://colinmorris.github.io/feed.xml
+https://datascienceweekly.substack.com/feed
 https://david26694.github.io/david-masip-blog/feed.xml
 https://dblalock.github.io/feed.xml
 https://e-dorigatti.github.io/feed.xml
@@ -77,7 +77,6 @@ https://practicalrecs.com/feeds/all.atom.xml
 https://scottaaronson.blog/?feed=rss2"
 https://sethmlarson.dev/feed
 https://shivamrana.me/feed.xml
-https://taylor.town/feed.xml
 https://twolodzko.github.io/feed.xml
 https://tylerneylon.com/feed
 https://veekaybee.github.io/index.xml

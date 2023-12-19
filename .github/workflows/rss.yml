@@ -27,7 +27,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          # git config --local user.email "alexmolasmartin@gmail.com"
+          git config --local user.email "no-email@email.com"
           git config --local user.name "GitHub Action"
           git add _layouts/blogroll.html
           git diff --quiet && git diff --staged --quiet || git commit -m "update blogroll"
