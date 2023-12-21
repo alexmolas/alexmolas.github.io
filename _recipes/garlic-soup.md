@@ -13,14 +13,35 @@ I learned this recipe from Ferran Adria's book "La Comida de la Familia". It's a
 - 40 ml of olive oil.
 - 4 chicken eggs.
 
+<details>
+<summary>Garlic soup ingredients</summary>
+<figure>
+  <img src="/docs/recipes/garlicsoup/ingredients.jpg" alt="Garlic soup ingredients" width="300" class="center" />
+  <figcaption class="center">Garlic soup ingredients</figcaption>
+</figure>
+</details>
+
+
 # Directions
 
 ## Soup
 
-1. Heat the oil and fry the bread in a pot. The bread will absorb a lot of oil, if you see that it is dry, add more oil. Once the bread is golden brown, set it aside for later.
-2. Peel the garlic and smash it. Put the smashed garlic in the pot and fry them.
-3. Add the fried bread and the chicken broth to the same pot
-4. Boil it for 20 minutes. Then blend it with a hand blender.
+1 - Heat the oil and fry the bread in a pot. The bread will absorb a lot of oil, if you see that it is dry, add more oil. Once the bread is golden brown, set it aside for later.
+
+{% include recipe_image.html path="/docs/recipes/garlicsoup/friedbread.jpg" caption="Fried bread" width="300" %}
+
+2 - Peel the garlic and smash it. Put the smashed garlic in the pot and fry them.
+
+{% include recipe_image.html path="/docs/recipes/garlicsoup/smashedgarlic.jpg" caption="Smashed garlic" width="300" %}
+
+3 - Add the fried bread and the chicken broth to the same pot and boil it for 20 minutes.
+
+{% include recipe_image.html path="/docs/recipes/garlicsoup/boiling.jpg" caption="Boiling" width="300" %}
+
+4 - Finally blend it with a hand blender.
+
+{% include recipe_image.html path="/docs/recipes/garlicsoup/soup.jpg" caption="Final result" width="300" %}
+
 
 ## Poached eggs
 
