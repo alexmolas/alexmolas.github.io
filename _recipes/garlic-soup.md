@@ -28,19 +28,19 @@ I learned this recipe from Ferran Adria's book "La Comida de la Familia". It's a
 
 1 - Heat the oil and fry the bread in a pot. The bread will absorb a lot of oil, if you see that it is dry, add more oil. Once the bread is golden brown, set it aside for later.
 
-{% include recipe_image.html path="/docs/recipes/garlicsoup/friedbread.jpg" caption="Fried bread" width="300" %}
+{% include detail_image.html path="/docs/recipes/garlicsoup/friedbread.jpg" caption="Fried bread" width="300" %}
 
 2 - Peel the garlic and smash it. Put the smashed garlic in the pot and fry them.
 
-{% include recipe_image.html path="/docs/recipes/garlicsoup/smashedgarlic.jpg" caption="Smashed garlic" width="300" %}
+{% include detail_image.html path="/docs/recipes/garlicsoup/smashedgarlic.jpg" caption="Smashed garlic" width="300" %}
 
 3 - Add the fried bread and the chicken broth to the same pot and boil it for 20 minutes.
 
-{% include recipe_image.html path="/docs/recipes/garlicsoup/boiling.jpg" caption="Boiling" width="300" %}
+{% include detail_image.html path="/docs/recipes/garlicsoup/boiling.jpg" caption="Boiling" width="300" %}
 
 4 - Finally blend it with a hand blender.
 
-{% include recipe_image.html path="/docs/recipes/garlicsoup/soup.jpg" caption="Final result" width="300" %}
+{% include detail_image.html path="/docs/recipes/garlicsoup/soup.jpg" caption="Final result" width="300" %}
 
 
 ## Poached eggs
