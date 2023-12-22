@@ -24,6 +24,10 @@ a:visited {
   color: #fff;
 }
 
+sup {
+  line-height: 0;
+}
+
 /* a:visited {
   color: rgb(255, 0, 0);
   background-color: transparent;
