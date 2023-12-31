@@ -80,15 +80,14 @@ https://sethmlarson.dev/feed
 https://shivamrana.me/feed.xml
 https://twolodzko.github.io/feed.xml
 https://tylerneylon.com/feed
-https://veekaybee.github.io/index.xml
 https://vgel.me/feed.xml
+https://vickiboykis.com/index.xml
 https://vitalik.ca/feed.xml
 https://win-vector.com/feed/
 https://www.alexirpan.com/feed.xml
 https://www.alexmolas.com/feed.xml
 https://www.allendowney.com/blog/feed/
 https://www.allthingsdistributed.com/atom.xml
-https://www.amolas.dev/feed.xml
 https://www.beren.io/feed.xml
 https://www.chrisstucchio.com/blog/atom.xml
 https://www.danielsieger.com/atom.xml
