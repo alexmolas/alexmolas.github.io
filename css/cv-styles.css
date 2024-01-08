@@ -1,0 +1,38 @@
+ 
+ body {
+  font-family: -apple-system, BlinkMacSystemFont;
+  font-weight: 300;
+	font-size: 15px;
+  line-height: 25px;
+	margin: 7px;
+	/* padding: 0; */
+  max-width: 1000px;
+	margin: 0px auto;
+  /* padding: 0 1rem; */
+}
+
+a {
+  color: blue;
+  text-decoration: none;
+}
+
+::selection, a:focus, a:hover {
+  background-color:blue;
+  color: #fff;
+}
+
+/* To center images */
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  max-width: 100%;
+}
+
+h3 span {
+  font-size: 14px;
+  margin-left: 5px;
+  font-weight: 200;
+
+}
