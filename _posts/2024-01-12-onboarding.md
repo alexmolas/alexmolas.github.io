@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Guide to starting in a new job" 
+title: "Guide to onboarding in a new job" 
 description: Insights and tips for a smooth transition when starting a new job
 tags:
 ---
