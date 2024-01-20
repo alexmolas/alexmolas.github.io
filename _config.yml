@@ -34,7 +34,7 @@ plugins:
   - jekyll-feed
 
 feed:
-  posts_limit: 20
+  posts_limit: 500
 
 kramdown:
   hard_wrap: true
