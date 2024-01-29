@@ -32,3 +32,38 @@ Here are the possible options that explain this scenario
 I'm afraid I can't find an answer to this problem, and I still don't know if Voltaire ever said something like that. But I'm happy to have taken a small step forward in the solution. I'm using this post to track my progress so that when I ask myself the question again in 10 years I can read it and convince myself that none of this was a hallucination.
 
 P.S. If you happen to know the origin of the phrase, please contact me and free my mind from this decades-long torment.
+
+
+---
+
+EDIT 1 (2024-01-27)
+
+Thanks to [Grimblewald](https://news.ycombinator.com/item?id=39153627) I know the actual quote was 
+
+>I want my lawyer, my tailor, my servants, even my wife to believe in God, because it means that I shall be cheated and robbed and cuckolded less often. … If God did not exist, it would be necessary to invent him
+
+
+Maybe I should rename the post to "Grimblewald knows things that ChatGPT and Google don't".
+
+---
+
+EDIT 2 (2024-01-27)
+
+After this post got some traction in HN I got an email from Andrés where he explained me a similar things that happened to him. In particular, Andrés was working with FPGA from China (Icesugar 1.5 specifically), and apparently there's no documentation, just a list of specifications in Chinese. If you Google "*FPGA Icesugar 1.5 How can I reset the board from inside a circuit?*" you don't get too much information. But ChatGPT knows the correct answer. This is the conversation Andrés had with ChatGPT
+
+>#Andrés question
+>How can I reset the board from inside a circuit?
+>
+>#ChatGPT answer
+>To reset the IceSugar FPGA board from inside a circuit, you can use one of the general-purpose input/output (GPIO) pins on the board to control the reset circuitry. The IceSugar board has several GPIO pins that can be used for this purpose, including GPIO0 and GPIO1.
+>
+>Here are the steps to reset the IceSugar board from inside a circuit:
+>
+> 1. Connect a GPIO pin to the reset pin on the board. On the IceSugar board, the reset pin is labeled "RESET" and is located near the bottom of the board, next to the USB connector.
+>2. In your circuit, set the GPIO pin to a low logic level (0V) for a brief period of time (e.g., a few milliseconds) to initiate the reset. The exact duration of the reset pulse may vary depending on the specific reset circuitry used on the board.
+>3. Release the GPIO pin and wait for the board to restart.
+>It is important to note that the exact method for controlling the GPIO pins on the IceSugar board will depend on the specific programming environment and tools you are using. For example, if you are programming the FPGA using the IceStorm toolchain and Verilog or VHDL, you can use the "SB_IO" module to configure and control the GPIO pins. If you are using a different programming environment or language, you may need to consult the documentation or community resources for that toolchain to determine the appropriate method for controlling the GPIO pins.
+
+According to Andrés, the answer works and is valid. In his own words, "it is a valid result that I don't know where it comes from. If you press me for an answer, I would say that it was synthesized from the air".
+
+If you have more examples where ChatGPT "knew" something that Google completely didn't know feel free to reach me and I'll add it to this post.
