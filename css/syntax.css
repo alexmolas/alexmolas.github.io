@@ -1,13 +1,16 @@
 .highlight {
   color: #303030;
-  background-color: #f7f7f7; /* Light gray background color */
-  border-radius: 10px; /* Rounded corners */
-  padding-top: 5px; /* Top padding */
-  padding-bottom: 5px; /* Bottom padding */
-  padding-left: 15px; /* Left padding */
-  padding-right: 15px; /* Right padding */
-  overflow-x: auto; /* Add this line */
+  background-color: #f7f7f7;
+  border-radius: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 15px;
+  padding-right: 15px;
+  overflow-x: auto;
+  margin-left: 0px;
+  margin-right: 0px;
 }
+
 
 p code {
   background-color: #f7f7f7; /* Replace with your desired background color */
