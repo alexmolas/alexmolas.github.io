@@ -6,19 +6,21 @@ tags:
 toc: false
 ---
 
-Last September I joined Wallapop as a Search Data Scientist. Since then, I've working with Solr, an open source search engine based on Lucene. While I understand the basics of a search engine I wanted to implement one from scratch to better understand it. Also, one of my current goals is to make the small websites great again, and building a custom search engine free of pages optimized for Google's SEO is the first step. 
+Last September I joined Wallapop as a Search Data Scientist. Since then, I've working with Solr, an open source search engine based on Lucene. While I understand the basics of a search engine I wanted to implement one from scratch to better understand it. Also, one of my current goals is to make small websites great again, and building a custom search engine free of pages optimized for Google's SEO is the first step. 
 
-So this post is to explain how I've built a search engine from scratch using Python. As usual, all the code I've used can be found in my GitHub ([microsearch repo](https://github.com/alexmolas/microsearch)). This implementation doesn't pretend to be a production ready search engine, just a usable toy example showing how a search engine works under the hood.
+So this post is to explain how I've built a search engine from scratch using Python. As usual, all the code I've used can be found on my GitHub ([microsearch repo](https://github.com/alexmolas/microsearch)). This implementation doesn't pretend to be a production-ready search engine, just a usable toy example showing how a search engine works under the hood.
+
+PS. After writing this post and `microsearch` I realized that Bart de Goede did [something similar](https://github.com/bartdegoede/python-searchengine) a couple of years ago. My implementation is very similar to Bart's, but in my case, I think I did some things better, in particular (1) my crawler is async, which makes things much faster, and (2) I've implemented a user interface that allows to interact with the search engine.
 
 # microsearch
 
-Let me show now what I did to build this search engine. A search engine is composed by four parts: (1) a crawler, (2) an inverse index, (3) a ranker, and (4) an interface. In each of the following sections I'll explain each concept from a theoretical point of view, and how I've implemented it.
+Let me show now what I did to build this search engine. A search engine is composed of four parts: (1) a crawler, (2) an inverse index, (3) a ranker, and (4) an interface. In each of the following sections, I'll explain each concept from a theoretical point of view, and how I've implemented it.
 
 ## Crawler
 
-The first step is to build a search engine is to have data to search. Depending on your use case you can crawl existing data (as [Google](https://developers.google.com/search/docs/crawling-indexing/overview-google-crawlers) does) or you can use your own data (as Wallapop or any other ecommerce/marketplace does).
+The first step to building a search engine is to have data to search. Depending on your use case you can crawl existing data (as [Google](https://developers.google.com/search/docs/crawling-indexing/overview-google-crawlers) does) or you can use your own data (as Wallapop or any other e-commerce/marketplace does).
 
-Since one of my intentions was to build a "local Google" I decided to use data of the blogs I follow to build the search engine. In this case, crawling consists on downloading and clean all the posts of a certain list of blogs. To make it easier I've only crawled posts of blogs with RSS [^1]. And to make it faster, I've used the `asyncio` Python library. Using asynchronous code have sped up the crawling time from 20 minutes to 20 seconds.
+Since one of my intentions was to build a "local Google" I decided to use data from the blogs I follow to build the search engine. In this case, crawling consists of downloading and cleaning all the posts of a certain list of blogs. To make it easier I've only crawled posts of blogs with RSS [^1]. And to make it faster, I've used the `asyncio` Python library. Using asynchronous code has sped up the crawling time from 20 minutes to 20 seconds.
 
 In my case, I've used a list of 642 RSS feeds. Of these feeds around 100 are the ones I usually read (blogs about ML, data science, math, etc.), and I scrapped the other 500 from [surprisetalk blogs.hn project](https://github.com/surprisetalk/blogs.hn). 
 
@@ -102,9 +104,9 @@ if __name__ == "__main__":
 
 ## Inverse index
 
-An inverse index is a data structure that maps keywords to documents. This data structure makes trivial finding documents where a certain word appears. When a user searches for some query the inverted index is used to retrieve all the documents that match with the keywords in the query.
+An inverse index is a data structure that maps keywords to documents. This data structure makes it trivial to find documents where a certain word appears. When a user searches for some query the inverted index is used to retrieve all the documents that match with the keywords in the query.
 
-To implement the inverse index I've used a `defaultdict` with the signature `dict[str, dict[str, int]]`. This is, a mapping that given a word (a `str`) returns another mapping from URL (a `str`) to the number of times that word appears in the URL (a `int`). The default value of the mapping is a mapping from URL to `0`, so if we try to get the value of a keyword that doesn't exists in a URL we get a zero.
+To implement the inverse index I've used a `defaultdict` with the signature `dict[str, dict[str, int]]`. This is, a mapping that given a word (a `str`) returns another mapping from URL (a `str`) to the number of times that word appears in the URL (a `int`). The default value of the mapping is a mapping from URL to `0`, so if we try to get the value of a keyword that doesn't exist in a URL we get a zero.
 
 The logic of the inverse index is defined within a class called `SearchEngine`. We initialize it with two private dicts.
 
@@ -115,7 +117,7 @@ class SearchEngine:
         self._documents: dict[str, str] = {}
 ```
 
-Then we implement the `index` methods, which receives an URL and its content, it normalizes the content (ie: remove punctuation, everythin to lowercase, etc.) and then adds it to the index.
+Then we implement the `index` methods, which receives an URL and its content, normalizes the content (ie: remove punctuation, everything to lowercase, etc.), and then add it to the index.
 
 ```python
 def index(self, url: str, content: str) -> None:
@@ -125,7 +127,7 @@ def index(self, url: str, content: str) -> None:
         self._index[word][url] += 1
 ```
 
-To make the indexing process more usable we can implement a bulk index option, which receives a list of URL and documents and index them.
+To make the indexing process more usable we can implement a bulk index option, which receives a list of URLs and documents and index them.
 
 ```python
 def bulk_index(self, documents: list[tuple[str, str]]):
@@ -155,7 +157,7 @@ defaultdict(<class 'int'>, {'Foo': 1, 'Bar': 1})
 
 ## Ranker 
 
-Once you have a set of matching documents for a given query, you need a way to sort them. The most famous ranker is Google's [PageRank](https://en.wikipedia.org/wiki/PageRank), which ranks documents based on the links. However, other options to rank the documents exists, such as [BM25](https://en.wikipedia.org/wiki/Okapi_BM25), which ranks documents based on the content. In my case I decided to use the standard BM25. The score is computed as
+Once you have a set of matching documents for a given query, you need a way to sort them. The most famous ranker is Google's [PageRank](https://en.wikipedia.org/wiki/PageRank), which ranks documents based on the links. However, other options to rank the documents exist, such as [BM25](https://en.wikipedia.org/wiki/Okapi_BM25), which ranks documents based on the content. In my case, I decided to use the standard BM25. The score is computed as
 
 $$
 \text{score}(D, Q) = \sum_{i=1}^n \text{IDF}(q_i) \frac{f(q_i, D)\times(k_1 + 1)}{f(q_i, D) + k_1 \left(1 - b + b \frac{|D|}{\text{avgdl}}\right)}
@@ -167,7 +169,7 @@ $$
 \text{IDF}(q_i) = \ln \left(1 + \frac{N - n(q_i) + 0.5}{ n(q_i) + 0.5}\right)
 $$
 
-where $N$ is the number of documents and $n(q_i)$ is the number of documents containing $q_i$. There are other ways to compute the IDF, but apparently you can justify this option from theoretical grounds.
+where $N$ is the number of documents and $n(q_i)$ is the number of documents containing $q_i$. There are other ways to compute the IDF, but apparently, you can justify this option from theoretical grounds.
 
 With all this math we are ready to implement the missing part of our `SearchEngine` class. Firstly we add the constants $k_1$ and $b$ as parameters of our class
 
@@ -196,7 +198,7 @@ def avdl(self) -> float:
     return sum(len(d) for d in self._documents.values()) / len(self._documents)
 ```
 
-With this information we are ready to implement our BM25 scorer. The first thing we need to implement is the inverse document frequency method
+With this information, we are ready to implement our BM25 scorer. The first thing we need to implement is the inverse document frequency method
 
 ```python
 def idf(self, kw: str) -> float:
@@ -205,7 +207,7 @@ def idf(self, kw: str) -> float:
     return log((N - n_kw + 0.5) / (n_kw + 0.5) + 1)
 ```
 
-and with this method we can finally implement the BM scorer. This method receives a keyword and returns a mapping from all the URLs that contain that keyword to their score.
+and with this method, we can finally implement the BM scorer. This method receives a keyword and returns a mapping from all the URLs that contain that keyword to their score.
 
 ```python
 def bm25(self, kw: str) -> dict[str, float]:
@@ -219,7 +221,7 @@ def bm25(self, kw: str) -> dict[str, float]:
     return result
 ```
 
-Now, we can finally implement the `search` method, which will be the one we'll use to make queries to our search engine. This method receives a query, normalizes it, extracts its keywords (ie: split by space), compute the BM25 of each keyword, and returns a dictionary of URLs with their total score.
+Now, we can finally implement the `search` method, which will be the one we'll use to make queries to our search engine. This method receives a query, normalizes it, extracts its keywords (ie: split by space), computes the BM25 of each keyword, and returns a dictionary of URLs with their total score.
 
 ```python
 def search(self, query: str) -> dict[str, float]:
@@ -244,11 +246,11 @@ Following the same example as before, we can use it to search as
 ```
 
 
-Putting everything together we have a search engine class the implements the functionalities to index and search documents. 
+Putting everything together we have a search engine class that implements the functionalities to index and search documents. 
 
 <details>
 <summary>
-Complete code to have a search engine in 80 lines of python
+Complete code to have a search engine in 80 lines of Python
 </summary>
 {% highlight python %}
 from collections import defaultdict
@@ -334,7 +336,7 @@ class SearchEngine:
 </details>
 ## Interface
 
-Finally, once we have a search engine we want to expose it somehow. In my case I decided to build a small FastAPI app that exposes an endpoint with the search engine, and then it also renders a simple webpage that allows you to search. To make the output easier to read I decided to just select the top-N URLs.
+Finally, once we have a search engine we want to expose it somehow. In my case, I decided to build a small FastAPI app that exposes an endpoint with the search engine, and then it also renders a simple webpage that allows you to search. To make the output easier to read I decided to just select the top-N URLs.
 
 <details>
 <summary>
@@ -418,19 +420,20 @@ I'm aware this is not the nicest UI ever, and the UX can be improved a lot. Howe
 
 ## Missing features
 
-For the readers that usually work with search engines it's obvious that there are a lot of missing features in my implementation. This is a non-exhaustive list of what it's missing.
+For the readers who usually work with search engines, it's obvious that there are a lot of missing features in my implementation. This is a non-exhaustive list of what it's missing.
 
-- This implementation doesn't implements **query operators**, ie operators that allow you to tune how the query behaves. For example, if you google `how to build a search engine -solr` you'll get results that don't contain the word `solr` in them. 
+- This implementation doesn't have **query operators**, ie operators that allow you to tune how the query behaves. For example, if you google `how to build a search engine -solr` you'll get results that don't contain the word `solr` in them. 
 - The reverse index works by indexing single keywords, and there's no option to **index n-grams**. Google allows you to search for `"search engine"` (notice the double quotes) and it'll only show you results where the two words appear in this specific order.
 - Also, this implementation doesn't have **query or document expansion**, so if you search `engine` you won't get documents with the word `engines`.
+- The **crawling and indexing parts are independent** but we could implement it in such a way that the indexing happens during the crawling, ie: as soon as we have a document we index it. This could be done asynchronously as well.
 
 # Conclusions
 
 I've enjoyed a lot working on this project. It has helped me to understand better how Solr works under the hood, and while I still have a lot to learn I think I have a better intuition now. 
 
-As a side effect I've also learned how amazing is writing asynchronous code for IO bounded operations. My first implementation of the crawler took ages to finish, and with the async implementation it took a moment to finish.
+As a side effect, I've also learned how amazing is writing asynchronous code for IO-bounded operations. My first implementation of the crawler took ages to finish, and with the async implementation, it took a moment to finish.
 
-My next step on my journey to build a personal search engine is to implement semantic search capabilities to the search engine. I've been playing a bit with embedding models and ANN, so my next step is to add this functionality to microsearch. Keep tuned for more!
+My next step on my journey to build a personal search engine is to implement semantic search capabilities in the search engine. I've been playing a bit with embedding models and ANN, so my next step is to add this functionality to microsearch. Keep tuned for more!
 
 
 ---
