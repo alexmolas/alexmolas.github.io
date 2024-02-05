@@ -6,7 +6,7 @@ tags:
 toc: false
 ---
 
-Last September I joined Wallapop as a Search Data Scientist. Since then, I've working with Solr, an open source search engine based on Lucene. While I understand the basics of a search engine I wanted to implement one from scratch to better understand it. Also, one of my current goals is to make small websites great again, and building a custom search engine free of pages optimized for Google's SEO is the first step. 
+Last September I joined Wallapop as a Search Data Scientist. Since then, I've working with Solr, an open source search engine based on Lucene. While I understand the basics of a search engine I wanted to implement one from scratch to better understand it. Also, one of my current goals is to make small websites great again (read [The Small Website Discoverability Crisis](https://www.marginalia.nu/log/19-website-discoverability-crisis/)), and building a custom search engine free of pages optimized for Google's SEO is the first step. 
 
 So this post is to explain how I've built a search engine from scratch using Python. As usual, all the code I've used can be found on my GitHub ([microsearch repo](https://github.com/alexmolas/microsearch)). This implementation doesn't pretend to be a production-ready search engine, just a usable toy example showing how a search engine works under the hood.
 
