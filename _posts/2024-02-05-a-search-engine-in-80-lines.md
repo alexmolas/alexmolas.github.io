@@ -10,6 +10,8 @@ Last September I joined Wallapop as a Search Data Scientist. Since then, I've wo
 
 So this post is to explain how I've built a search engine from scratch using Python. As usual, all the code I've used can be found on my GitHub ([microsearch repo](https://github.com/alexmolas/microsearch)). This implementation doesn't pretend to be a production-ready search engine, just a usable toy example showing how a search engine works under the hood.
 
+Also, let me be sincere and admit I've lied a little bit in the post title. Indeed, the search engine I've implemented is around 80 lines of python, but I've also wrote some complementary code (to download data and expose an API) that's over 80 lines. However, I think the interesting part of this project is the search engine which has 80 lines.
+
 PS. After writing this post and `microsearch` I realized that Bart de Goede did [something similar](https://github.com/bartdegoede/python-searchengine) a couple of years ago. My implementation is very similar to Bart's, but in my case, I think I did some things better, in particular (1) my crawler is async, which makes things much faster, and (2) I've implemented a user interface that allows to interact with the search engine.
 
 # microsearch
