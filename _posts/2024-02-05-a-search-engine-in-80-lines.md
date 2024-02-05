@@ -1,22 +1,24 @@
 ---
 layout: post
 title: "A search engine in 80 lines of Python." 
-description:
+description: In this post I explain how I built a search engine from scratch using python. The resulting search engine is used to search in the posts of the blogs I follow.
 tags:
 toc: false
 ---
 
-Last September I joined Wallapop as a Search Data Scientist. Since then, I've working with Solr, an open source search engine based on Lucene. While I understand the basics of a search engine I wanted to implement one from scratch to better understand it. Also, one of my current goals is to make small websites great again (read [The Small Website Discoverability Crisis](https://www.marginalia.nu/log/19-website-discoverability-crisis/)), and building a custom search engine free of pages optimized for Google's SEO is the first step. 
+Last September I hopped on board with [Wallapop](https://www.wallapop.com/) as a Search Data Scientist and since then part of my work has been working with [Solr](https://solr.apache.org/), an open source search engine based on [Lucene](https://lucene.apache.org/). I've got the basics of how a search engine works, but I had this itch to understand it even better. So, I rolled up my sleeves and decided to build one from scratch.
 
-So this post is to explain how I've built a search engine from scratch using Python. As usual, all the code I've used can be found on my GitHub ([microsearch repo](https://github.com/alexmolas/microsearch)). This implementation doesn't pretend to be a production-ready search engine, just a usable toy example showing how a search engine works under the hood.
+Now, let's talk goals. Ever heard of the "[Small Website Discoverability Crisis](https://www.marginalia.nu/log/19-website-discoverability-crisis/)"? The problem it's basically that small websites, ones like this one, are impossible to be found using Google or any other search engine. My mission? Making those tiny websites great again. I believe in bringing back the glory of the little guys, away from the Google SEO frenzy.
 
-Also, let me be sincere and admit I've lied a little bit in the post title. Indeed, the search engine I've implemented is around 80 lines of python, but I've also wrote some complementary code (to download data and expose an API) that's over 80 lines. However, I think the interesting part of this project is the search engine which has 80 lines.
+In this post I will walk you through the journey of buliding a search engine from scratch using Python. As usual, all the code I've written can be found on my GitHub ([microsearch repo](https://github.com/alexmolas/microsearch)). This implementation doesn't pretend to be a production-ready search engine, just a usable toy example showing how a search engine works under the hood.
+
+Also, let me be sincere and admit I've exaggerated a little bit in the post title. Indeed, the search engine I've implemented is around 80 lines of Python, but I've also written some complementary code (data crawler, API, HTML templates, etc.) that's over makes the whole project a bit bigger. However, I think the interesting part of this project is the search engine which has less than 80 lines.
 
 PS. After writing this post and `microsearch` I realized that Bart de Goede did [something similar](https://github.com/bartdegoede/python-searchengine) a couple of years ago. My implementation is very similar to Bart's, but in my case, I think I did some things better, in particular (1) my crawler is async, which makes things much faster, and (2) I've implemented a user interface that allows to interact with the search engine.
 
 # microsearch
 
-Let me show now what I did to build this search engine. A search engine is composed of four parts: (1) a crawler, (2) an inverse index, (3) a ranker, and (4) an interface. In each of the following sections, I'll explain each concept from a theoretical point of view, and how I've implemented it.
+Now, let's delve into the components that make up `microsearch` and explore how I crafted each element: (1) the crawler, (2) the inverse index, (3) the ranker, and (4) the interface. In the following sections, I'll provide both theoretical descriptions and practical details on how each concept was implemented in my project.
 
 ## Crawler
 
@@ -159,13 +161,13 @@ defaultdict(<class 'int'>, {'Foo': 1, 'Bar': 1})
 
 ## Ranker 
 
-Once you have a set of matching documents for a given query, you need a way to sort them. The most famous ranker is Google's [PageRank](https://en.wikipedia.org/wiki/PageRank), which ranks documents based on the links. However, other options to rank the documents exist, such as [BM25](https://en.wikipedia.org/wiki/Okapi_BM25), which ranks documents based on the content. In my case, I decided to use the standard BM25. The score is computed as
+Once you have a set of matching documents for a given query, you need a way to sort them. The most famous ranker is Google's [PageRank](https://en.wikipedia.org/wiki/PageRank), which ranks documents based on the links. However, other options to rank the documents exist, such as [BM25](https://en.wikipedia.org/wiki/Okapi_BM25), which ranks documents based on the content. In my case, I decided to use the standard BM25. The score between a query $Q$ and a document $D$ is computed as
 
 $$
-\text{score}(D, Q) = \sum_{i=1}^n \text{IDF}(q_i) \frac{f(q_i, D)\times(k_1 + 1)}{f(q_i, D) + k_1 \left(1 - b + b \frac{|D|}{\text{avgdl}}\right)}
+\sum_{i=1}^n \text{IDF}(q_i) \frac{f(q_i, D)\times(k_1 + 1)}{f(q_i, D) + k_1 \left(1 - b + b \frac{|D|}{\text{avgdl}}\right)}
 $$
 
-where $Q$ is a query containing keywords $q_1$, $q_2$, ..., $q_n$, and $D$ is the document with length $\|D\|$. The average length of a document is defined as $\text{avgdl}$. $k_1$ and $b$ are free parameters. $f(q_i, D)$ is the number of times that keyword $q_i$ appears in the document $D$. And finally $\text{IDF}(q_i)$ is the inverse document frequency, computed as
+where the query $Q$ contains the keywords $q_1$, $q_2$, ..., $q_n$, the document $D$ has length $\|D\|$, the average length of a document is defined as $\text{avgdl}$, $k_1$ and $b$ are free parameters, $f(q_i, D)$ is the number of times that keyword $q_i$ appears in the document $D$, and finally $\text{IDF}(q_i)$ is the inverse document frequency, computed as
 
 $$
 \text{IDF}(q_i) = \ln \left(1 + \frac{N - n(q_i) + 0.5}{ n(q_i) + 0.5}\right)
@@ -223,7 +225,9 @@ def bm25(self, kw: str) -> dict[str, float]:
     return result
 ```
 
-Now, we can finally implement the `search` method, which will be the one we'll use to make queries to our search engine. This method receives a query, normalizes it, extracts its keywords (ie: split by space), computes the BM25 of each keyword, and returns a dictionary of URLs with their total score.
+This method receives a keyword, and for all the indexed documents it computes the BM25 score for that keyword. With this method we can finally implement the `search` method, which will be the one we'll use to make queries to our search engine. 
+
+The `search` method receives a query, normalizes it, extracts its keywords (ie: splits it by space), computes the BM25 scores for each keyword, and returns a dictionary of URLs with their total score.
 
 ```python
 def search(self, query: str) -> dict[str, float]:
@@ -248,7 +252,7 @@ Following the same example as before, we can use it to search as
 ```
 
 
-Putting everything together we have a search engine class that implements the functionalities to index and search documents. 
+Putting everything together, we have a search engine class that implements the functionalities to index and search documents in less than 80 lines of code.
 
 <details>
 <summary>
@@ -338,7 +342,7 @@ class SearchEngine:
 </details>
 ## Interface
 
-Finally, once we have a search engine we want to expose it somehow. In my case, I decided to build a small FastAPI app that exposes an endpoint with the search engine, and then it also renders a simple webpage that allows you to search. To make the output easier to read I decided to just select the top-N URLs.
+Finally, once we have a search engine, we want to expose it somehow. In my case, I decided to build a small FastAPI app that exposes an endpoint with the search engine, and then it also renders a simple webpage that allows you to search. To make the output easier to read I decided to just select the top-N URLs.
 
 <details>
 <summary>
@@ -418,7 +422,6 @@ then you can introduce your queries using the search box and search the indexed 
 
 
 I'm aware this is not the nicest UI ever, and the UX can be improved a lot. However, it works fast, the results aren't so bad, and most importantly, I've built it myself from scratch.
-
 
 ## Missing features
 
