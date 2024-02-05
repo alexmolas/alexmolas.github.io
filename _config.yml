@@ -46,7 +46,10 @@ toc:
   item_prefix: toc-
 
 feed:
+  excerpt_only: true
   posts_limit: 500
+  collections:
+    - recipes
 
 kramdown:
   hard_wrap: true
