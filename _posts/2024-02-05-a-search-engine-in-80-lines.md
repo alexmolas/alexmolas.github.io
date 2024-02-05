@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "A search engine in 80 Python lines." 
+title: "A search engine in 80 lines of Python." 
 description:
 tags:
 toc: false
