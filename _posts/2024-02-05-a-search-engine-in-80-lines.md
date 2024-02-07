@@ -18,7 +18,7 @@ PS. After writing this post and `microsearch` I realized that Bart de Goede did 
 
 # microsearch
 
-Now, let's delve into the components that make up `microsearch` and explore how I crafted each element: (1) the crawler, (2) the inverse index, (3) the ranker, and (4) the interface. In the following sections, I'll provide both theoretical descriptions and practical details on how each concept was implemented in my project.
+Now, let's delve into the components that make up `microsearch` and explore how I crafted each element: (1) the crawler, (2) the inverted index, (3) the ranker, and (4) the interface. In the following sections, I'll provide both theoretical descriptions and practical details on how each concept was implemented in my project.
 
 ## Crawler
 
@@ -106,13 +106,13 @@ if __name__ == "__main__":
 {% endhighlight %}
 </details>
 
-## Inverse index
+## Inverted index
 
-An inverse index is a data structure that maps keywords to documents. This data structure makes it trivial to find documents where a certain word appears. When a user searches for some query the inverted index is used to retrieve all the documents that match with the keywords in the query.
+An inverted index is a data structure that maps keywords to documents. This data structure makes it trivial to find documents where a certain word appears. When a user searches for some query the inverted index is used to retrieve all the documents that match with the keywords in the query.
 
-To implement the inverse index I've used a `defaultdict` with the signature `dict[str, dict[str, int]]`. This is, a mapping that given a word (a `str`) returns another mapping from URL (a `str`) to the number of times that word appears in the URL (a `int`). The default value of the mapping is a mapping from URL to `0`, so if we try to get the value of a keyword that doesn't exist in a URL we get a zero.
+To implement the inverted index I've used a `defaultdict` with the signature `dict[str, dict[str, int]]`. This is, a mapping that given a word (a `str`) returns another mapping from URL (a `str`) to the number of times that word appears in the URL (a `int`). The default value of the mapping is a mapping from URL to `0`, so if we try to get the value of a keyword that doesn't exist in a URL we get a zero.
 
-The logic of the inverse index is defined within a class called `SearchEngine`. We initialize it with two private dicts.
+The logic of the inverted index is defined within a class called `SearchEngine`. We initialize it with two private dicts.
 
 ```python
 class SearchEngine:
