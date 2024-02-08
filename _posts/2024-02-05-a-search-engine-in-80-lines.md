@@ -6,6 +6,12 @@ tags:
 toc: false
 ---
 
+---
+
+> Discussion on [HackerNews](https://news.ycombinator.com/item?id=39293050).
+
+---
+
 Last September I hopped on board with [Wallapop](https://www.wallapop.com/) as a Search Data Scientist and since then part of my work has been working with [Solr](https://solr.apache.org/), an open source search engine based on [Lucene](https://lucene.apache.org/). I've got the basics of how a search engine works, but I had this itch to understand it even better. So, I rolled up my sleeves and decided to build one from scratch.
 
 Now, let's talk goals. Ever heard of the "[Small Website Discoverability Crisis](https://www.marginalia.nu/log/19-website-discoverability-crisis/)"? The problem it's basically that small websites, ones like this one, are impossible to be found using Google or any other search engine. My mission? Making those tiny websites great again. I believe in bringing back the glory of the little guys, away from the Google SEO frenzy.
