@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>H-Index Calculator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <label for="userId">Enter User ID:</label>
+        <input type="text" id="userId" placeholder="e.g., alexmolas">
+        <button onclick="computeHIndex()">Compute H-Index</button>
+        <div id="progressBarContainer">
+            <progress id="progressBar" max="100"></progress>
+            <span id="progressText">0%</span>
+        </div>
+        <div id="resultContainer"></div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
