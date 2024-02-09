@@ -28,12 +28,6 @@ sup {
   line-height: 0;
 }
 
-/* a:visited {
-  color: rgb(255, 0, 0);
-  background-color: transparent;
-  text-decoration: none;
-  } */
-
 /* To center images */
 .center {
   display: block;
@@ -46,8 +40,6 @@ sup {
   font-size: 10px;
 }
 
-
-/* Style for the blockquotes, ie: when using > */
 blockquote {
   border-left: 2px solid #cccccc; /* Add a left border */
   padding: 0 15px; /* Add some padding for space */
@@ -55,35 +47,12 @@ blockquote {
   color: #555; /* Set the text color */
 }
 
-/* Style for the post dates */
 .post-date {
   font-family: 'Courier New', Courier, monospace;
   color: #575757;
   font-size: 18px;
 }
 
-
-/* @media screen and (max-width: 600px) {
-  body {
-    margin: 50px auto;
-    font-size: 16px;
-    line-height: 20px;
-  }
-  h1 {
-    line-height: 30px;
-    font-size: 25px;
-  }
-  
-  .center {
-    margin: 0 auto;
-    max-width: 100%;
-    font-size: 10px;
-  }
-  
-  .caption {
-    width: 100%;
-  }
-} */
 
 
 summary {
@@ -98,3 +67,34 @@ details[open] {
   padding:0 1rem
 }
 
+progress {
+  width: 100%;
+  background: #fff;
+  color: blue;
+  border: .2rem solid blue;
+  border-radius: 0;
+}
+
+/**
+ * Set the background color of the webkit progress bar.
+ */
+
+progress::-webkit-progress-bar {
+  background-color: #fff;
+}
+
+/**
+ * Set the color of the webkit progress bar.
+ */
+
+progress::-webkit-progress-value {
+  background-color: blue;
+}
+
+/**
+ * Set the color of the mozilla progress bar.
+ */
+
+progress::-moz-progress-bar {
+  background-color: blue;
+}
