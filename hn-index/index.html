@@ -3,11 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>H-Index Calculator</title>
+    <title>hn-index calculator</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
+        <h1>hn-index calculator</h1>
+        <p>Compute your h-index based on your submissions to HackerNews. To know more about the implementation read <a href="https://www.alexmolas.com/2024/02/09/hn-index.html">this post</a></p>
         <label for="userId">Enter User ID:</label>
         <input type="text" id="userId" placeholder="e.g., alexmolas">
         <button onclick="computeHIndex()">Compute H-Index</button>
@@ -19,4 +21,8 @@
     </div>
     <script src="app.js"></script>
 </body>
+<footer>
+    <p>The code here is not very fast (I don't know why yet). For a faster implementation I recommend using the one in <a href="https://github.com/alexmolas/alexmolas.github.io/blob/master/hn-index/script.py">python</a>.</p>
+  </footer>
+  
 </html>

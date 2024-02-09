@@ -39,7 +39,7 @@
    */
   
   a {
-    color: #111;
+    color: blue;
   }
   
   /**
@@ -80,6 +80,7 @@
   
   footer {
     text-align: center;
+    font-size: 12px;
   }
   
   /**
