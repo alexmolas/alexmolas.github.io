@@ -1,13 +1,18 @@
 // Function to make API requests
 async function fetchJSON(url) {
-    const response = await fetch(url);
-    return await response.json();
+    try {
+        const response = await fetch(url);
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        return await response.json();
+    } catch (error) {
+        console.error('Error fetching JSON:', error);
+    }
 }
 
-// Function to filter out irrelevant items
-function filterItems(submittedItems) {
-    return submittedItems.filter(item => !item.deleted && item.type === "story" && !item.dead);
-}
 
 // Function to calculate H-Index
 function calculateHIndex(scores) {
@@ -56,42 +61,45 @@ async function computeHIndex() {
         const totalItems = submittedItems.length;
 
         let fetchedCount = 0;
-        const fetchPromises = [];
-
-        // Create an array of fetch promises
-        for (const itemId of submittedItems) {
-            fetchPromises.push(fetchJSON(`https://hacker-news.firebaseio.com/v0/item/${itemId}.json`));
-        }
-
-        // Fetch and update progress bar asynchronously
         const scores = [];
 
-        for (let i = 0; i < fetchPromises.length; i++) {
-            const itemData = await fetchPromises[i];
-            fetchedCount++;
+        // Batch size and delay for throttling
+        const batchSize = 250;
+        const delayBetweenBatches = 10;
 
-            // Update progress bar for each fetched item
-            
-            updateProgressBar(fetchedCount, totalItems);
+        for (let i = 0; i < totalItems; i += batchSize) {
+            const batch = submittedItems.slice(i, i + batchSize);
+            const batchPromises = [];
 
-            if (!itemData.deleted && itemData.type === "story" && !itemData.dead) {
-                scores.push(itemData.score);
+            for (const itemId of batch) {
+                batchPromises.push(fetchJSON(`https://hacker-news.firebaseio.com/v0/item/${itemId}.json`));
             }
 
-            // Add a small delay to allow UI update
-            await new Promise(resolve => setTimeout(resolve, 0.1));
+            const batchResults = await Promise.all(batchPromises);
+
+            for (const itemData of batchResults) {
+                fetchedCount++;
+
+                // Update progress bar for each fetched item
+                updateProgressBar(fetchedCount, totalItems);
+
+                if (itemData && itemData.type === "story" && itemData.hasOwnProperty("score") && itemData.hasOwnProperty("type") && !itemData.hasOwnProperty("deleted") && !itemData.hasOwnProperty("dead")) {
+                    scores.push(itemData.score);
+                }
+            }
+
+            // Delay between batches
+            await new Promise(resolve => setTimeout(resolve, delayBetweenBatches));
         }
 
         // Calculate H-Index
         const hIndex = calculateHIndex(scores);
 
         // Display result
-        // murb
-        // resultContainer.innerHTML = `<p>H-Index for ${scores} ${hIndex}</p>`;
         resultContainer.innerHTML = `<p>H-Index for ${userId}: ${hIndex}</p>`;
 
     } catch (error) {
         console.error('Error:', error);
-        resultContainer.innerHTML = '<p>Error fetching user information. Please check the user ID.</p>';
+        resultContainer.innerHTML = error;
     }
 }
