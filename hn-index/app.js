@@ -64,8 +64,8 @@ async function computeHIndex() {
         const scores = [];
 
         // Batch size and delay for throttling
-        const batchSize = 250;
-        const delayBetweenBatches = 10;
+        const batchSize = 10;
+        const delayBetweenBatches = 1;
 
         for (let i = 0; i < totalItems; i += batchSize) {
             const batch = submittedItems.slice(i, i + batchSize);

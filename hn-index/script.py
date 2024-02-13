@@ -41,7 +41,7 @@ async def get_user_scores(username):
             tasks = [fetch_item_data(session, url, scores, pbar) for url in item_urls]
             await asyncio.gather(*tasks)
 
-    return user["karma"], scores 
+    return user["karma"], scores
 
 
 def h_index(scores):
@@ -55,7 +55,23 @@ def parse_args():
     return parser.parse_args()
 
 
-if __name__ == "__main__":
+def main():
+    """
+    You can run this script in two modes
+    (1) For a single user you can execute this scripts as
+            > python script.py --user USERNAME
+        and it'll print in the command line
+            USERNAME KARMA HN-INDEX
+
+    (2) You can also run the script for a list of users. To do so run
+            > python script.py --users-path USERS
+        where USERS is a file with a username per line.
+        The result of this script is a csv file with columns
+            username,number of submissions,h index,karma
+        Notice that firebase can kill your connection if you make too many requests.
+        If your users file is too big you might need to resume the process manually from time to time.
+        The csv is generated one line at a time, so you'll only need to resume the process with unprocessed users.
+    """
     args = parse_args()
     if username := args.user:
         karma, scores_result = asyncio.run(get_user_scores(username))
@@ -68,4 +84,10 @@ if __name__ == "__main__":
                 username = username.strip("\n")
                 karma, scores_result = asyncio.run(get_user_scores(username))
                 with open(output_path, "a+") as f:
-                    f.write(f"{username},{len(scores_result)},{h_index(scores_result)},{karma}\n")
+                    f.write(
+                        f"{username},{len(scores_result)},{h_index(scores_result)},{karma}\n"
+                    )
+
+
+if __name__ == "__main__":
+    main()
