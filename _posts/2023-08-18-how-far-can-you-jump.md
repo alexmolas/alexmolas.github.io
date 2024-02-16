@@ -3,6 +3,7 @@ layout: post
 title: "How far can you jump from a swing?"
 description: "In this post I derive the physics of pumping a swing and the physics of jumping from a swing. Then, using both pieces I compute the optimal strategy of jumping from a swing to maximize the traveled distance. I propose this game as a new Olympic sport."
 tags: math stats
+favourite: true
 ---
 
 

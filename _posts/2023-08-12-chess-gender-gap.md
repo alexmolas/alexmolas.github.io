@@ -3,6 +3,7 @@ layout: post
 title: "Analyzing Gender Gap in Chess"
 description: "Does it exist a gender gap in chess? Why is it that the best players are men? Is there any fundamental difference between how men and women play this game?"
 tags: math stats chess data-analysis
+favourite: true
 ---
 
 Imagine a race in which 10,000 men and women participate. Before starting the race a random color is assigned to each participant regardless of shape, gender, race, or whatever. There are 9,000 red runners and 1,000 blue runners. If you had to bet, you would probably bet on a red runner, not because you know they are better runners, but because you know they are more likely to win. A similar situation occurs with the gender gap in chess. In this post, I will show that the domination of men in chess can be largely explained by a matter of participation.

@@ -3,6 +3,7 @@ layout: post
 title: "Discovering the best Chess960 variation."
 description: "In this post I analyze all the available Chess960 games played in Lichess. With this information I show that there are no starting positions that favor any of the players more than other positions."
 tags: chess data-analysis
+favourite: true
 ---
 
 > This post got some attention in [Reddit](https://www.reddit.com/r/chess/comments/109fj63/there_are_no_better_initial_positions_in_chess_960/), and while not everyone like it [^0], I got some useful feedback about how to present and phrase the results. I've changed some words of the original post to improve the overall quality, but the idea stills the same. If you want to read the original post feel free to check it in the git history of my blog [repo](https://github.com/alexmolas/alexmolas.github.io).

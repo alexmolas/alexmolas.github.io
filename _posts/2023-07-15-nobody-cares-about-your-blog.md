@@ -3,7 +3,7 @@ layout: post
 title: "Nobody cares about your blog."
 description: Nobody cares about your blog, but you should keep writing!
 tags: opinion
-image:
+favourite: true
 ---
 
 I started writing on my blog some years ago, and since then I've had a lot of reasons to stop writing. Here's a list of why nobody cares about your blog

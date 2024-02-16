@@ -4,6 +4,7 @@ title: "A search engine in 80 lines of Python"
 description: In this post I explain how I built a search engine from scratch using python. The resulting search engine is used to search in the posts of the blogs I follow.
 tags:
 toc: false
+favourite: true
 ---
 
 ---
