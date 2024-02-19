@@ -52,15 +52,9 @@ def write_html_with_updates(entries: List[feedparser.FeedParserDict]) -> None:
     sorted_links = sorted(links, key=lambda x: x[2], reverse=True)
 
     html = """---
-layout: page
+layout: default
 # All the Tags of posts.
 ---
-    <html>
-    <head>
-        <link rel="stylesheet" href="{{ '/css/styles.css' | relative_url }}">
-    </head>
-    <body>
-    <hr>
     <h1>Blogroll</h1>
     When I'm not with my family or writing I'm probably browsing one of this blogs.
     If your time is limited I recommend you to skip my blog and read one of these ones instead.
@@ -85,8 +79,6 @@ layout: page
     html += """
     </ul>
     </div>
-    </body>
-    </html>
     """
 
     with open("_layouts/blogroll.html", "w") as file:

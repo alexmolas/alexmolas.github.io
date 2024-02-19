@@ -1,5 +1,5 @@
 ---
-layout: recipe
+layout: post
 title: "Catalan soup (escudella i carn d'olla)"
 ---
 

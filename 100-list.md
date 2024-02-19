@@ -1,8 +1,10 @@
 ---
 title: 100 List
-layout: post
+layout: default
 description: List of 100 things that I want to do before dying.
 ---
+
+# 100 List
 
 Inspired by [Chip Huyen](https://huyenchip.com/list-100/) I have created my own list of things to do before die
 

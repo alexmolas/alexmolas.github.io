@@ -2,34 +2,10 @@
 layout: default
 ---
 
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>{{ page.title }}</title>
-    <link rel="stylesheet" href="{{ '/css/styles.css' | relative_url }}">
-  </head>
-  
-  <body>
-    <!-- Header -->
-    <header>
-      <!-- Your header content here -->
-    </header>
-
-    <!-- Home Content -->
-    <hr>
-    <h1>Recipes</h1>
-
-    Here I share my favourite recipes, with a special focus on Catalan and Spanish cuisine. 
-    <hr>
-    {% for recipe in site.recipes %}
-      <li>
-        <a href="{{ recipe.url }}">{{ recipe.title }}</a>
-      </li>
-    {% endfor %}
-
-    <!-- Footer -->
-    <footer>
-      <!-- Your footer content here -->
-    </footer>
-  </body>
-</html>
+<h1>Recipes</h1>
+  Here I share my favourite recipes, with a special focus on Catalan and Spanish cuisine. 
+  {% for recipe in site.recipes %}
+    <li>
+      <a href="{{ recipe.url }}">{{ recipe.title }}</a>
+    </li>
+  {% endfor %}

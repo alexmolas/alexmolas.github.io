@@ -4,49 +4,8 @@ layout: default
 
 {% assign words = content | number_of_words %}
 
+<h1>{{ page.title }}</h1>
+<i><p>{{ page.date | date: "%B %d, %Y" }} · {% include read_time.html %} </p></i> 
 
-<!DOCTYPE html>
-<html>
-<head>
-  <title>{{ page.title }}</title>
-  <link rel="stylesheet" href="/css/styles.css">
-  <link rel="stylesheet" href="/css/syntax.css">
-  <script>
-    window.MathJax = {
-      tex: {
-        inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
-        displayMath: [ ['$$', '$$'], ['\\[', '\\]'] ],
-        processEscapes: true
-      },
-      options: {
-        skipHtmlTags: ['script', 'noscript', 'style', 'pre', 'code'],
-        ignoreHtmlClass: 'tex2jax_ignore',
-        processHtmlClass: 'tex2jax_process'
-      }
-    };
-  </script>
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
-    
-  
-</head>
-<body>
-  <!-- Header -->
-  <header>
-    <!-- Your header content here -->
-  </header>
+{{ content | toc }}
 
-  <!-- Post Content -->
-    <hr>
-    <h1>{{ page.title }}</h1>
-    <i><p>{{ page.date | date: "%B %d, %Y" }} · {% include read_time.html %} </p></i> 
-  
-      {{ content | toc }}
-
-
-  <!-- Footer -->
-  <footer>
-    <!-- Your footer content here -->
-  </footer>
-</body>
-</html>

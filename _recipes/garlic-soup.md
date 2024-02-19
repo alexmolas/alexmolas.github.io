@@ -1,5 +1,5 @@
 ---
-layout: recipe
+layout: post
 title: "Garlic soup"
 ---
 

@@ -2,44 +2,25 @@
 layout: default
 ---
 
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>{{ page.title }}</title>
-    <link rel="stylesheet" href="{{ '/css/styles.css' | relative_url }}">
-  </head>
-  
-  <body>
-    <!-- Header -->
-    <header>
-      <!-- Your header content here -->
-    </header>
 
-    <!-- Home Content -->
-      <hr>
-      <h1>Latest Posts</h1>
-      {% assign currentYear = "" %}
-      {% for post in site.posts %}
-        {% capture postYear %}{{ post.date | date: "%Y" }}{% endcapture %}
-        {% if postYear != currentYear %}
-          {% if currentYear != "" %}
-            </ul>
-          {% endif %}
-          <h3>{{ postYear }}</h3>
-          <ul class="latest-posts">
-          {% assign currentYear = postYear %}
-        {% endif %}
-        <li>
-          <span class="post-date">{{ post.date | date: "%b %d" }}</span> · <a href="{{ post.url }}">{{ post.title }}</a>
-        </li>
-      {% endfor %}
+<!-- Home Content -->
+  <h1>Latest Posts</h1>
+  {% assign currentYear = "" %}
+  {% for post in site.posts %}
+    {% capture postYear %}{{ post.date | date: "%Y" }}{% endcapture %}
+    {% if postYear != currentYear %}
       {% if currentYear != "" %}
         </ul>
       {% endif %}
-  
-    <!-- Footer -->
-    <footer>
-      <!-- Your footer content here -->
-    </footer>
-  </body>
-</html>
+      <h3>{{ postYear }}</h3>
+      <ul class="latest-posts">
+      {% assign currentYear = postYear %}
+    {% endif %}
+    <li>
+      <span class="post-date">{{ post.date | date: "%b %d" }}</span> · <a href="{{ post.url }}">{{ post.title }}</a>
+    </li>
+  {% endfor %}
+  {% if currentYear != "" %}
+    </ul>
+  {% endif %}
+

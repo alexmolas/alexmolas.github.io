@@ -1,11 +1,8 @@
 ---
-layout: home
+layout: default
 title: Alex Molas
 description: Hello, world, I'm Alex, and this is my blog, where I talk about math, machine learning, and other things like cooking. 
 ---
-
----
-
 
 {% assign totalPosts = site.posts | size %}
 {% assign totalWords = 0 %}
