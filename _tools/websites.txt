@@ -46,6 +46,7 @@ https://fooledbyrandomnessdotcom.wordpress.com/feed/
 https://francisbach.com/feed/
 https://github.com/dangkhoasdc/awesome-ai-residency/commits/master.atom
 https://gsverhoeven.github.io/index.xml
+https://hamel.dev/index.xml
 https://hardmath123.github.io/feed.xml
 https://huyenchip.com/feed.xml
 https://jakevdp.github.io/feeds/all.atom.xml
