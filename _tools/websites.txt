@@ -6,7 +6,6 @@ http://danluu.com/atom.xml
 http://datacolada.org/feed/
 http://distill.pub/rss.xml
 http://dustintran.com/blog/rss/
-https://erikbern.com/index.xml
 http://fastml.com/atom.xml
 http://gregorygundersen.com/feed.xml
 http://healthyalgorithms.wordpress.com/feed/
@@ -38,6 +37,7 @@ https://david26694.github.io/david-masip-blog/feed.xml
 https://dblalock.github.io/feed.xml
 https://e-dorigatti.github.io/feed.xml
 https://emiruz.com/index.xml
+https://erikbern.com/index.xml
 https://eugeneyan.com/rss/
 https://evjang.com/feed.xml
 https://fanpu.io/feed.xml
@@ -76,6 +76,7 @@ https://notstatschat.rbind.io/index.xml
 https://orlp.net/blog/atom.xml
 https://paulw.tokyo/index.xml
 https://practicalrecs.com/feeds/all.atom.xml
+https://samwho.dev/rss.xml
 https://scottaaronson.blog/?feed=rss2"
 https://sethmlarson.dev/feed
 https://shivamrana.me/feed.xml
