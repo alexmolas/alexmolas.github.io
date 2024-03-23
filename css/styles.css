@@ -53,18 +53,15 @@ blockquote {
   font-size: 18px;
 }
 
-
-
+details[open] {
+  border-bottom:5px solid rgba(0, 0, 255, 0.15);
+}
 summary {
   cursor:pointer;
-  background-color:#eee;
-  padding:.25rem 1rem;
-  margin:0 -1rem
-}
-details[open] {
-  border-bottom:1rem solid #eee;
-  margin:0 -1rem 1rem;
-  padding:0 1rem
+  background-color:rgba(0, 0, 255, 0.15);
+  padding-left: 12px;
+  border: 1px solid blue;
+  border-radius: 10px;
 }
 
 progress {

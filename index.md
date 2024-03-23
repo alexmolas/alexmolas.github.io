@@ -18,7 +18,6 @@ Hi, welcome to my website! I use this tiny part of the internet to share my thou
 
 I try to keep the site style quite minimal because I want to focus on the content and not on the container. Some people have told me it's too minimal, but I don't care. If you like it you can find the source code [in my repo](https://github.com/alexmolas/alexmolas.github.io/). Feel free to use it as you prefer.
 
-As part of my goals for 2024 I've decided to offer free advisory sessions for students or professionals who want to enter the world of data science. You can book your hour [here](https://cal.com/alexmolas/free-guidance-session).
 
 If you want to hire me here you have my [CV](http://alexmolas.com/cv).
 
