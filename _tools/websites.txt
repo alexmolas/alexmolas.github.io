@@ -14,7 +14,6 @@ http://peterbloem.nl/blog/rss.xml
 http://sebastianraschka.com/rss_feed.xml
 http://sebastianruder.com/rss/
 http://severelytheoretical.wordpress.com/feed/
-http://www.argmin.net/feed.xml
 http://www.benfrederickson.com/atom.xml
 http://www.cleverhans.io/feed.xml
 http://www.countbayesie.com/blog?format=RSS
