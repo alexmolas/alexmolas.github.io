@@ -38,6 +38,8 @@ def write_html_with_updates(entries: List[feedparser.FeedParserDict]) -> None:
 
     links = []
     for entry in tqdm(entries):
+        if not hasattr(entry, "links"):
+            continue
         url = entry.links[0]['href']
         title = entry.title
         try:
