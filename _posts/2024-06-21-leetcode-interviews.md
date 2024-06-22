@@ -6,7 +6,7 @@ tags:
 toc: false
 ---
 
-For the last weeks at Wallapop, we have been interviewing candidates for a Data Scientist position. Our current interview process is quite standard: HR call, technical assignment, assignment defense, and call with stakeholders. There are some things we would like to change about the process, so we sat down to discuss it. During the meeting I saw my opportunity to propose one of my controversial opinions: "We should start doing Leetcode interviews" [^1]. As expected, after stating such a bold opinion, no one agreed with me. Their main arguments against my proposal were
+For the last weeks at Wallapop, we have been interviewing candidates for a Data Scientist position. Our current interview process is quite standard, but there are some things we would like to change about the process. We were talking about it during lunch, and I saw my opportunity to propose one of my hot takes: "We should start doing Leetcode interviews" [^1]. And, as expected, no one agreed with me. Their main arguments against my proposal were
 
 - You're testing **useless skills**.
 - If you need these skills you can **learn them on the fly**.
