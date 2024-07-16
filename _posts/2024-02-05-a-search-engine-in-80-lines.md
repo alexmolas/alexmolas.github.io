@@ -13,11 +13,11 @@ favourite: true
 
 ---
 
-Last September I hopped on board with [Wallapop](https://www.wallapop.com/) as a Search Data Scientist and since then part of my work has been working with [Solr](https://solr.apache.org/), an open source search engine based on [Lucene](https://lucene.apache.org/). I've got the basics of how a search engine works, but I had this itch to understand it even better. So, I rolled up my sleeves and decided to build one from scratch.
+Last September I hopped on board with [Wallapop](https://www.wallapop.com/) as a Search Data Scientist and since then part of my work has been working with [Solr](https://solr.apache.org/), an open-source search engine based on [Lucene](https://lucene.apache.org/). I've got the basics of how a search engine works, but I had this itch to understand it even better. So, I rolled up my sleeves and decided to build one from scratch.
 
-Now, let's talk goals. Ever heard of the "[Small Website Discoverability Crisis](https://www.marginalia.nu/log/19-website-discoverability-crisis/)"? The problem it's basically that small websites, ones like this one, are impossible to be found using Google or any other search engine. My mission? Making those tiny websites great again. I believe in bringing back the glory of the little guys, away from the Google SEO frenzy.
+Now, let's talk goals. Ever heard of the "[Small Website Discoverability Crisis](https://www.marginalia.nu/log/19-website-discoverability-crisis/)"? The problem is basically that small websites, ones like this one, are impossible to be found using Google or any other search engine. My mission? Making those tiny websites great again. I believe in bringing back the glory of the little guys, away from the Google SEO frenzy.
 
-In this post I will walk you through the journey of buliding a search engine from scratch using Python. As usual, all the code I've written can be found on my GitHub ([microsearch repo](https://github.com/alexmolas/microsearch)). This implementation doesn't pretend to be a production-ready search engine, just a usable toy example showing how a search engine works under the hood.
+In this post I will walk you through the journey of building a search engine from scratch using Python. As usual, all the code I've written can be found on my GitHub ([microsearch repo](https://github.com/alexmolas/microsearch)). This implementation doesn't pretend to be a production-ready search engine, just a usable toy example showing how a search engine works under the hood.
 
 Also, let me be sincere and admit I've exaggerated a little bit in the post title. Indeed, the search engine I've implemented is around 80 lines of Python, but I've also written some complementary code (data crawler, API, HTML templates, etc.) that's over makes the whole project a bit bigger. However, I think the interesting part of this project is the search engine which has less than 80 lines.
 
