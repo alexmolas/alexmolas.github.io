@@ -82,18 +82,18 @@ And then I parsed this information into a list of dataclasses
 ```python
 @dataclass(frozen=True)
 class Player:
- player_id: int
- name: str
- position: int
- price: int
- status: str
- played_home: int
- played_away: int
- fitness: Tuple[int]
- points: int
- points_home: int
- points_away: int
- team_id: int
+  player_id: int
+  name: str
+  position: int
+  price: int
+  status: str
+  played_home: int
+  played_away: int
+  fitness: Tuple[int]
+  points: int
+  points_home: int
+  points_away: int
+  team_id: int
 ```
 
 ## Player value
@@ -102,11 +102,11 @@ The next problem to solve was to predict player performance in the next game. Th
 
 ```python
 def player_value(player: Player):
- fitness = [value for value in player.fitness if isinstance(value, int)]
+  fitness = [value for value in player.fitness if isinstance(value, int)]
   if player.team_id is not None:
-      return np.mean(fitness)
+    return np.mean(fitness)
   else:
-      return 0
+    return 0
 ```
 
 ## Team constraints
@@ -116,12 +116,12 @@ The last thing we need to define are the constraints our team has to fulfill. We
 ```python
 @dataclass(frozen=True)
 class TeamConstraints:
- max_salary: int
- number_of_gk: Tuple[int, int] = (1, 1)
- number_of_df: Tuple[int, int] = (2, 5)
- number_of_mc: Tuple[int, int] = (2, 5)
- number_of_fw: Tuple[int, int] = (1, 5)
- max_n_players: int = 11
+  max_salary: int
+  number_of_gk: Tuple[int, int] = (1, 1)
+  number_of_df: Tuple[int, int] = (2, 5)
+  number_of_mc: Tuple[int, int] = (2, 5)
+  number_of_fw: Tuple[int, int] = (1, 5)
+  max_n_players: int = 11
 ```
 
 ## Solver
@@ -138,12 +138,12 @@ We'll wrap everything in a custom class called `Solver` (yes, I know, I'm very c
 ```python
 class Solver:
     def __init__(
- self,
- player_value: Callable[[Player], float],
- player_cost: Callable[[Player], float],
- constraints: TeamConstraints,
- players: Dict[str, Player],
- ):
+      self,
+      player_value: Callable[[Player], float],
+      player_cost: Callable[[Player], float],
+      constraints: TeamConstraints,
+      players: Dict[str, Player],
+      ):
         self.player_value = player_value
         self.player_cost = player_cost
         self.players = players
@@ -157,7 +157,7 @@ First of all, we need to initialize an OR-tools solver.
 
 ```python
 def solve(self) -> Team:
- solver = pywraplp.Solver(name="FantasyKnapsack", problem_type=pywraplp.Solver.CBC_MIXED_INTEGER_PROGRAMMING)
+  solver = pywraplp.Solver(name="FantasyKnapsack", problem_type=pywraplp.Solver.CBC_MIXED_INTEGER_PROGRAMMING)
   ...
 ```
 
@@ -224,87 +224,87 @@ After defining the value to maximize and adding all the constraints we just need
 <summary>Full solver class</summary>
 {% highlight python %}
 class Solver(BaseSolver):
- def __init__(
- self,
- player_value: Callable[[Player], float],
- player_cost: Callable[[Player], float],
- constraints: TeamConstraints,
- players: Dict[str, Player],
- ):
- self.player_value = player_value
- self.player_cost = player_cost
- self.players = players
- self.constraints = constraints
+  def __init__(
+    self,
+    player_value: Callable[[Player], float],
+    player_cost: Callable[[Player], float],
+    constraints: TeamConstraints,
+    players: Dict[str, Player],
+  ):
+    self.player_value = player_value
+    self.player_cost = player_cost
+    self.players = players
+    self.constraints = constraints
 
- def solve(self) -> Team:
- solver = pywraplp.Solver(
- "FantasyKnapsack", pywraplp.Solver.CBC_MIXED_INTEGER_PROGRAMMING
- )
- take = [solver.IntVar(0, 1, f"take_{p}") for p in self.players]
- value = solver.Sum(
- [
- self.player_value(p) * take[i]
- for i, p in enumerate(self.players.values())
- ]
- )
- solver.Maximize(value)
+  def solve(self) -> Team:
+    solver = pywraplp.Solver(
+    "FantasyKnapsack", pywraplp.Solver.CBC_MIXED_INTEGER_PROGRAMMING
+    )
+    take = [solver.IntVar(0, 1, f"take_{p}") for p in self.players]
+    value = solver.Sum(
+    [
+    self.player_value(p) * take[i]
+      for i, p in enumerate(self.players.values())
+    ]
+    )
+    solver.Maximize(value)
 
- salary = solver.Sum(
- [self.player_cost(p) * take[i] for i, p in enumerate(self.players.values())]
- )
+    salary = solver.Sum(
+      [self.player_cost(p) * take[i] for i, p in enumerate(self.players.values())]
+    )
 
- solver.Add(salary <= self.constraints.max_salary)
+    solver.Add(salary <= self.constraints.max_salary)
 
- # number of players constraints
- min_pt, max_pt = self.constraints.range_pt
- number_of_gk = solver.Sum(
- take[i] for i, p in enumerate(self.players.values()) if p.position == 1
- )
- solver.Add(number_of_gk >= min_pt)
- solver.Add(number_of_gk <= max_pt)
+    # number of players constraints
+    min_pt, max_pt = self.constraints.range_pt
+    number_of_gk = solver.Sum(
+      take[i] for i, p in enumerate(self.players.values()) if p.position == 1
+    )
+    solver.Add(number_of_gk >= min_pt)
+    solver.Add(number_of_gk <= max_pt)
 
- min_df, max_df = self.constraints.range_df
- number_of_df = solver.Sum(
- take[i] for i, p in enumerate(self.players.values()) if p.position == 2
- )
- solver.Add(number_of_df >= min_df)
- solver.Add(number_of_df <= max_df)
+    min_df, max_df = self.constraints.range_df
+    number_of_df = solver.Sum(
+      take[i] for i, p in enumerate(self.players.values()) if p.position == 2
+    )
+    solver.Add(number_of_df >= min_df)
+    solver.Add(number_of_df <= max_df)
 
- min_mc, max_mc = self.constraints.range_mc
- number_of_mc = solver.Sum(
- take[i] for i, p in enumerate(self.players.values()) if p.position == 3
- )
- solver.Add(number_of_mc >= min_mc)
- solver.Add(number_of_mc <= max_mc)
- min_dl, max_dl = self.constraints.range_dl
+    min_mc, max_mc = self.constraints.range_mc
+    number_of_mc = solver.Sum(
+      take[i] for i, p in enumerate(self.players.values()) if p.position == 3
+    )
+    solver.Add(number_of_mc >= min_mc)
+    solver.Add(number_of_mc <= max_mc)
+    min_dl, max_dl = self.constraints.range_dl
 
- number_of_dl = solver.Sum(
- take[i] for i, p in enumerate(self.players.values()) if p.position == 4
- )
- solver.Add(number_of_dl >= min_dl)
- solver.Add(number_of_dl <= max_dl)
+    number_of_dl = solver.Sum(
+      take[i] for i, p in enumerate(self.players.values()) if p.position == 4
+    )
+    solver.Add(number_of_dl >= min_dl)
+    solver.Add(number_of_dl <= max_dl)
 
- number_of_players = solver.Sum(
- take[i] for i, p in enumerate(self.players.values())
- )
- solver.Add(number_of_players == self.constraints.max_n_players)
+    number_of_players = solver.Sum(
+      take[i] for i, p in enumerate(self.players.values())
+    )
+    solver.Add(number_of_players == self.constraints.max_n_players)
 
- # solving
- solver.Solve()
- assert solver.VerifySolution(1e-7, True)
+    # solving
+    solver.Solve()
+    assert solver.VerifySolution(1e-7, True)
 
- team = Team(
- player_value=self.player_value,
- player_cost=self.player_cost,
- players=[],
- constraints=self.constraints,
- )
- for i, p in enumerate(self.players.values()):
- if take[i].SolutionValue():
- team.add_player(p)
+    team = Team(
+      player_value=self.player_value,
+      player_cost=self.player_cost,
+      players=[],
+      constraints=self.constraints,
+    )
+    for i, p in enumerate(self.players.values()):
+      if take[i].SolutionValue():
+        team.add_player(p)
 
- team.check_constraints()
- return team
+    team.check_constraints()
+    return team
 {% endhighlight %}
 </details>
 
