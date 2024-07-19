@@ -66,6 +66,7 @@ https://lucytalksdata.com/rss/
 https://lukemetz.github.io/feed.xml
 https://lukesalamone.github.io/index.xml
 https://maxhalford.github.io/index.xml
+https://mcognetta.github.io/feed.xml
 https://methodmatters.github.io/feed
 https://minimaxir.com/post/index.xml
 https://nhigham.com/feed/
