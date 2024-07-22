@@ -72,6 +72,7 @@ https://minimaxir.com/post/index.xml
 https://nhigham.com/feed/
 https://nirantk.com/writing/index.xml
 https://nlathia.github.io/feed.xml
+https://notjoemartinez.com/sitemap.xml
 https://notstatschat.rbind.io/index.xml
 https://orlp.net/blog/atom.xml
 https://paulw.tokyo/index.xml
