@@ -1,0 +1,26 @@
+---
+layout: default
+---
+
+
+<!-- Home Content -->
+  <h1>Projects</h1>
+  {% assign currentYear = "" %}
+  {% for proj in site.projects %}
+    {% capture projYear %}{{ proj.date | date: "%Y" }}{% endcapture %}
+    {% if postYear != currentYear %}
+      {% if currentYear != "" %}
+        </ul>
+      {% endif %}
+      <h3>{{ postYear }}</h3>
+      <ul class="latest-posts">
+      {% assign currentYear = postYear %}
+    {% endif %}
+    <li>
+      <span class="post-date">{{ post.date | date: "%b %d" }}</span> · <a href="{{ post.url }}">{{ post.title }}</a>
+    </li>
+  {% endfor %}
+  {% if currentYear != "" %}
+    </ul>
+  {% endif %}
+

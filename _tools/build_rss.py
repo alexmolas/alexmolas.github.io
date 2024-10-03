@@ -93,7 +93,7 @@ def main():
 
     # Read websites from websites.txt
     websites = read_websites("_tools/websites.txt")
-
+    print(websites)
     # Check for updates
     entries = []
     for website in tqdm(websites):

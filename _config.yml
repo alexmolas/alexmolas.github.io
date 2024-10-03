@@ -1,13 +1,13 @@
-title: Alex Molas Blog
-email: alexmolasmartin@gmail.com
+title: Rohan Kumar Blog
+email: roku@bu.edu
 description: >- # this means to ignore newlines until "baseurl:"
   Welcome to my personal blog! Here you'll find a glimpse into my life as a husband, father, and data scientist (in that order).
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "https://alexmolas.com" # the base hostname & protocol for your site, e.g. http://example.com
-twitter_link: https://www.twitter.com/molasalex
-github_link:  https://www.github.com/alexmolas
-linkedin_link: https://www.linkedin.com/in/alex-molas
-buymeacoffee_link: https://www.buymeacoffee.com/alexmolas
+url: "https://rohankumar-1.github.io" # the base hostname & protocol for your site, e.g. http://example.com
+twitter_link: #
+github_link:  https://github.com/rohankumar-1
+linkedin_link: https://www.linkedin.com/in/rohan-kumar-in/
+buymeacoffee_link: #
 
 # Build settings
 plugins:
@@ -41,7 +41,7 @@ highlighter: rouge
 
 # Google analyitics id
 google_analytics:
-  id: G-JW9F0B7Y26 # fill in your Google Analytics ID
+  id: G-JW9F0B7Y2 # fill in your Google Analytics ID
 
 
 # Exclude from processing.

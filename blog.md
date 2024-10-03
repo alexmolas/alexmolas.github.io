@@ -1,5 +1,5 @@
 ---
 layout: blog
 title: Blog
-description: Latest entries of Alex Molas blog
+description: Latest entries of Rohan Kumar blog
 ---
