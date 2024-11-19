@@ -55,6 +55,7 @@ https://jasmcole.com/feed/
 https://jjerphan.xyz/feed.rss
 https://juliasilge.com/blog/index.xml
 https://karpathy.github.io/feed.xml
+https://kengoa.github.io/feed.xml
 https://kill-the-newsletter.com/feeds/4kz2pik49p4bklvs.xml
 https://kill-the-newsletter.com/feeds/9ec6jx9shdyonwh1.xml
 https://lemonfold.io/blog/atom.xml
