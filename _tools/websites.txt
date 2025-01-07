@@ -105,7 +105,6 @@ https://www.evanmiller.org/news.xml
 https://www.holophrase.de/blog?format=rss
 https://www.inference.vc/rss/
 https://www.jeremyjordan.me/rss/
-https://www.johndcook.com/blog/feed/
 https://www.susanshu.com/feed.xml
 https://www.yulingyao.com/blog/feed.xml
 https://yang-song.net/feed.xml
