@@ -104,13 +104,13 @@ Using above snippet one gets the following probabilities
 
 So, the best strategy is to select randomly a number using the above probabilities. With such a strategy, the expected payoff is given by `q(solution, 1)`, and it's $\approx 0.296$. This means, that if we follow this strategy we'll win a little bit less than one-third of the time.
 
-## Deviating from Nash-equilibrium
+<!-- ## Deviating from Nash-equilibrium
 
 In the last section, we derived the Nash probabilities and the expected payoff for a perfect game. However, what happens if you decide to deviate from Nash equlibrium and play another strategy? For example, what happens if instead of following the probabilities derived before you just choose the same value always. According to our equations, all $Q_i$ are equal, which means that even if you just choose $1$ or $10^6$, your winning probability is going to be always the same. This seems a little bit counterintuitive, so let's see what really happens.
 
 ## Next steps
 
-In this post, we have presented the smallest unique integer game and how to derive the optimal solution. In particular, we've used the Nash equilibrium to compute with which probability we should choose each integer. However, we've solved a simplified version of the problem, since we've been assuming that we're playing against only two other persons. In the following posts, we'll see how to generalize the arguments made here when playing against $N$ other persons.
+In this post, we have presented the smallest unique integer game and how to derive the optimal solution. In particular, we've used the Nash equilibrium to compute with which probability we should choose each integer. However, we've solved a simplified version of the problem, since we've been assuming that we're playing against only two other persons. In the following posts, we'll see how to generalize the arguments made here when playing against $N$ other persons. -->
 
 
 ---
