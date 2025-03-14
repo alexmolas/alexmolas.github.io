@@ -19,17 +19,20 @@
       </nav>
   
   </center>
-  <h2>Work</h2>
+  <h2>Experience</h2>
   <hr>
     <ul>
         <li><h3>Senior Data Scientist · <a href="https://es.wallapop.com/" target="_blank">Wallapop </a> <span>Sep 2023 - present</span></h3></li>
             <ul>
                 <li>Lead ML initiatives for the search team focusing on matching, ranking, and software best practices. Used Solr as the search engine.</li>
-                <li>Designed, implemented and analyzed multiple A/B test in the search domain: autofiltering, autoboosting, and results reranking.</li>
-                <li>Developed PoC solutions for query understanding (intent extraction from queries and structured attribute extraction from descriptions) using LLMs.</li>
-                <li>Implemented and deployed a query classification service. It was used to detect "car" queries, increasing by +3.5% the purchase intention on car items.</li>
-                <!-- <li>Trained and deployed a ranking model. It improved by X% the search-to-transaction rate.</li> -->
+                <!-- <li>Designed, implemented and analyzed multiple A/B test in the search domain: autofiltering, autoboosting, and results reranking.</li> -->
+                <li>Trained a ranker ML model and deployed it to Solr, improving search-to-transaction ratio by +1.5%, adding 600K€ annually.</li>
+                <li>Trained and deployed a BERT model for a query classification service. Improved the search-to-transaction ratio by 1%, adding 400K€ annually.</li>
+                <li>Trained a PoC ranker model that used real-time features such as item popularity. Improved offline NDCG metrics by +10%.</li>
+                <li>Developed PoC solutions for query understanding (intent extraction from queries and structured attribute extraction from descriptions) using LLMs.</li>                
                 <li>Refactored ETLs from manually executed notebooks to Spark jobs. Reduced execution time from days to hours, improving developer experience and scalability.</li>
+                <li>Organized events to increase machine learning visibility: internal hackathons, Meetups, and conferences.</li>
+                <!-- <li>Trained and deployed a ranking model. It improved by X% the search-to-transaction rate.</li> -->
                 <!-- <li>Improved ranker model through hyperparameter tuning, resulting in a +2% enhancement in offline metrics.</li> -->
                 <!-- <li>Promoted modern practices within the team. Worked on a vector search PoC to estimate impact, risks, and costs.</li> -->
                 <!-- <li>Experimented with synonym generation and typo correction. Used classical techniques and LLMs.</li> -->
@@ -37,16 +40,16 @@
                 <!-- <li>Developed a library using Polars to analyze shadow tests. Allowed the developers to make complex analysis in local.</li> -->
                 <!-- <li>Implemented data pipelines to broadcast Kafka event data to Redshift.</li> -->
                 <!-- <li>Point of contact between the Search Data Science organization and external collaborators from <a href="https://en.wikipedia.org/wiki/Naver" target="_blank">Naver</a></li> -->
-                <li>Organized events to increase machine learning visibility: internal hackathons, Meetups, and conferences.</li>
+                
             </ul>
 
         <li><h3>Senior Data Scientist · <a href="https://www.stuart.com/" target="_blank">Stuart</a> <span>Nov 2019 - Sep 2023</span></h3></li>
             <ul>
-                <li>Improved ETA accuracy by +30% using a deep learning model. Achieved a +28% improvement in cold-start locations.</li>
+                <li>Deployed a service that improved ETA accuracy by +30% using a deep learning model. Achieved a +28% improvement in cold-start locations.</li>
                 <li>Designed and developed pipelines to automatically train, evaluate, and deploy ETA models.</li>
-                <li>Built a distributed pipeline to process daily all the events dumped from Kafka to S3.</li>
+                <li>Built a distributed pipeline to process daily all the events dumped from Kafka to S3, allowing DS to analyze and train models on it.</li>
                 <li>Designed an experimental dispatcher engine to solve the assignment problem using Python and OR-Tools.</li>
-                <li>Planned a POC using LightGBM to estimate the probability of a courier accepting a specific delivery.</li>
+                <li>Planned a PoC using LightGBM to estimate the probability of a courier accepting a specific delivery.</li>
                 <li>Mentored a senior software engineer who wanted to specialize in machine learning and data science</li>
             </ul>
 
