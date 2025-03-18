@@ -6,16 +6,17 @@ tags:
 toc: false
 ---
 
-There is a type of mathematical problem that I especially like. They are those problems with a very simple statement (a couple of sentences), and once posed it seems that the solution requires long and complex calculations, but which can nevertheless be solved if the perspective on the problem is slightly changed. In this post I will expose my 3 favorite problems of this type.
+I like problems that are easy to pose, and that seem difficult to solve at first glance, but that a slight change of perspective makes them simple and easy to solve. In this post, I will expose my 3 favorite problems of this type.
 
-I'll first explain the problem, then solve them the hard way, and finally show the elegant and simple solution. These three problems are widely known, so I'm sorry if you already knew them.
+For each riddle, I’ll first explain the problem, then solve it the hard way, and finally show the elegant and simple solution. These three problems are widely known, so I’m sorry if you already know them.
+
 
 # Ants on a ruler
 
-I don't remember when I first heard about this problem, but it was a long time ago - maybe during my Physics degree. I remember it was the first time when I really smiled in awe after a math proof.
+I don't remember when I first heard about this problem, but it was a long time ago - maybe during my Physics degree. I remember it was the first time when I smiled in awe after a math proof [^1].
 
 <div style="background-color: #e6f2ff; border: 1px solid #ccc; padding: 15px; margin-bottom: 20px;">
-  <strong>Problem:</strong> A 1-meter stick has 50 ants randomly placed on it, facing random directions. Ants move at 1 meter per minute. When they arrive at the end of the ruler they fall off at the ends. If two ants meet the reverse direction and keep moving. How long you have to wait to be sure all ants have fall off?
+  <strong>Problem:</strong> A 1-meter stick has 50 ants randomly placed on it, facing random directions. Ants move at 1 meter per minute. When they arrive at the end of the ruler they fall off at the ends. If two ants meet they reverse direction and keep moving. How long do you have to wait to be sure all the ants have fallen off?
 </div>
 
 
@@ -61,9 +62,9 @@ def simulate_ants(ants, stick_length, ant_speed=1.0, dt=0.0001):
 
 If you run the below code for some iterations you can plot an histogram like the following one.
 
-{% include image.html path="/docs/symmetric-math-riddles/ants-dist.png" caption="Almost $1.5 for just three calls" width="300" %}
+{% include image.html path="/docs/symmetric-math-riddles/ants-dist.png" caption="Time to fall distribution" width="300" %}
 
-There you can see that the maximum amount of time the ants spend on the rule is 1 second.
+There you can see that the maximum amount of time the ants spend on the rule is 1 minute.
 
 </details>
 
@@ -71,15 +72,16 @@ There you can see that the maximum amount of time the ants spend on the rule is 
 <details>
 <summary>Easy solution</summary>
 
-Here's the key insight: it doesn't actually matter if the ants bounce off each other when they collide. Since all ants look the same, we can pretend they just pass right through each other without changing direction. The only thing we care about is when the final ant drops off the ruler. And since each ant moves at 1 meter per second along a 1-meter ruler, we know that after exactly 1 minute, every ant must have reached one end or the other and fallen off.
+Here's the key insight: it doesn't matter if the ants bounce off each other when they collide. Since all ants look the same, we can pretend they just pass right through each other without changing direction. The only thing we care about is when the final ant drops off the ruler. And since each ant moves at 1 meter per second along a 1-meter ruler, we know that after exactly 1 minute, every ant must have reached one end or the other and fallen off.
+
 </details>
 
 # Two bikes and a fly
 
-This is one of my favourite problems to ask at parties or social events [^1]. You can ask this question to anyone with basic math knowledge and they'll understand the question and the easy solution. And -in my experience- the more math you know the more you enjoy the trick used in the simple solution.
+This is one of my favorite problems to ask at parties or social events [^1]. You can ask this question to anyone with basic math knowledge and they'll understand the question and the easy solution. And -in my experience- the more math you know the more you enjoy the trick used in the simple solution.
 
 <div style="background-color: #e6f2ff; border: 1px solid #ccc; padding: 15px; margin-bottom: 20px;">
-  <strong>Problem:</strong> Two cyclists start 30km apart and ride towards each other. Both cyclists travel at 5km/h. A fly starts on one cyclist's handlebar and flies towards the other cyclist. As soon as the fly reach the other cyclist it goes back to the first one. The fly goes back and forth between them at 10km/h until they meet. How far does the fly travel?
+  <strong>Problem:</strong> Two cyclists start 30km apart and ride towards each other. Both cyclists travel at 5km/h. A fly starts on one cyclist's handlebar and flies towards the other cyclist. As soon as the fly reaches the other cyclist it goes back to the first one. The fly goes back and forth between them at 10km/h until they meet. What total distance does the fly travel?
 </div>
 
 <details>
@@ -88,35 +90,31 @@ The hard solution here involves summing the infinite sum. We'll calculate the di
 <ul>
   <li>On the first trip:
     <ul>
-      <li>We have to solve $10 t_1 = 30 - 5t_1 \implies t_1 = 2$ so the traveled distance in the first leg is $d = 20km$</li>
-      <li>The cyclist have traveled $10km$ each one, so now the distance between them is $10km$</li>
+      <li>Cyclist and the fly will met after $10 t_1 = 30 - 5t_1 \implies t_1 = 2$. So in the first trip the fly travels $d_1 = 20km$</li>
+      <li>Cyclists have traveled $10km$ each one, so now the distance between them is $10km$</li>
     </ul>
   </li>
   <li>On the second trip:
     <ul>
-      <li>We have to solve $10 t_2 = 10 - 5t_2 \implies t_2 = \frac{10}{15}$ so the fly travels $d = \frac{100}{15} km \approx 6.67 km$</li>
-      <li>The cyclist have traveled $\frac{50}{15}km$ each one, so now the distance between them is $10km - \frac{100}{15} \approx 3.33 km$</li>
+      <li>Now, the fly takes $10 t_2 = 10 - 5t_2 \implies t_2 = \frac{10}{15}$ and travels $d_2 = \frac{100}{15} km \approx 6.67 km$</li>
+      <li>Cyclist traveled $\frac{50}{15}km$ and the distance between them is $10km - \frac{100}{15} \approx 3.33 km$</li>
     </ul>
   </li>
     <li>On the third trip:
     <ul>
-      <li>We have to solve $10 t_3 = \frac{10}{3} - 5t_3 \implies t_3 = \frac{10}{45}$ so the fly travels $d = \frac{100}{45} km \approx 2.22km$</li>
+      <li>Once again, $10 t_3 = \frac{10}{3} - 5t_3 \implies t_3 = \frac{10}{45}$ so the fly travels $d_3 = \frac{100}{45} km \approx 2.22km$</li>
       <li>...</li>
     </ul>
   </li>
-  Here we notice the pattern that in each leg the distance that the fly moves is reduced by 3 (20, 6.67, 3.33, ...). Therefore we have to solve for the infinite series $S = 20 + 20 / 3 + 20 / 3^2 + 20 / 3^3 + ...$ which can be solved by noticing that $S = 20 + 1/3 S$ so $S = 30km$.
+  Here we notice the pattern that in each leg the distance that the fly moves is reduced by 3 (20, 6.67, 3.33, ...). Therefore, we have to solve for the infinite series $D = 20 + 20 / 3 + 20 / 3^2 + 20 / 3^3 + ...$ which can be solved by noticing that $D = 20 + D/3$ so $D = 30km$.
 </ul>
-
-
 </details>
 
 
 <details>
 <summary>Easy solution</summary>
 
-You just neeed to know how long would it take for the cyclist to meet and the multiply this time by the speed of the fly.
-
-
+To solve the problem you just neeed to know how long would it take for the cyclists to meet and the multiply this time by the speed of the fly.
 
 <ul>
   <li>Time to meet = \frac{30 km}{10km/h} = 3h</li>
@@ -197,3 +195,6 @@ $$
 The easy solution consists in making a slight change of perspective: when a new passenger arrives and finds their seat occupied, the passenger asks the occupier to move and choose another seat at random. Before we were following what happens to each passenger, but now we can focus only on the first passenger, who is the only one choosing seats randomly. This way we can see that the first passenger will keep being moved around until only two seats remain: seat 1 and seat 100. At this point, the first passenger will choose randomly between these two seats, giving a 50% probability that the last passenger gets their assigned seat.
 </details>
 
+---
+
+[^1]: The second time was during Cantor's diagonal proof.
