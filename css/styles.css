@@ -54,15 +54,21 @@ blockquote {
 }
 
 details[open] {
-  border-bottom:5px solid rgba(0, 0, 255, 0.15);
+  border-bottom:5px solid #e6f2ff;
+  margin-bottom: 10px;
 }
 summary {
   cursor:pointer;
-  background-color:rgba(0, 0, 255, 0.15);
+  /* background-color:rgba(0, 0, 255, 0.15); */
+  background-color: #e6f2ff;
   padding-left: 12px;
   border: 1px solid blue;
   border-radius: 10px;
 }
+details {
+  margin-bottom: 20px; /* Added margin to create space between details blocks */
+}
+
 
 progress {
   width: 100%;
