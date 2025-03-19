@@ -10,6 +10,55 @@ I like problems that are easy to pose, and that seem difficult to solve at first
 
 For each riddle, I’ll first explain the problem, then solve it the hard way, and finally show the elegant and simple solution. These three problems are widely known, so I’m sorry if you already know them.
 
+# Two bikes and a fly
+
+This is one of my favorite problems to ask at parties or social events [^1]. You can ask this question to anyone with basic math knowledge and they'll understand the question and the easy solution. And -in my experience- the more math you know the more you enjoy the trick used in the simple solution.
+
+<div style="background-color: #e6f2ff; border: 1px solid #ccc; padding: 15px; margin-bottom: 20px;">
+  <strong>Problem:</strong> Two cyclists start 30km apart and ride towards each other. Both cyclists travel at 5km/h. A fly starts on one cyclist's handlebar and flies towards the other cyclist. As soon as the fly reaches the other cyclist it goes back to the first one. The fly goes back and forth between them at 10km/h until they meet. What total distance does the fly travel?
+</div>
+
+<details>
+<summary>Hard solution</summary>
+The hard solution here involves summing the infinite sum. We'll calculate the distance the fly travels in each "leg" of its journey.
+<ul>
+  <li>On the first trip:
+    <ul>
+      <li>Cyclist and the fly will met after $10 t_1 = 30 - 5t_1 \implies t_1 = 2$. So in the first trip the fly travels $d_1 = 20km$</li>
+      <li>Cyclists have traveled $10km$ each one, so now the distance between them is $10km$</li>
+    </ul>
+  </li>
+  <li>On the second trip:
+    <ul>
+      <li>Now, the fly takes $10 t_2 = 10 - 5t_2 \implies t_2 = \frac{10}{15}$ and travels $d_2 = \frac{100}{15} km \approx 6.67 km$</li>
+      <li>Cyclist traveled $\frac{50}{15}km$ and the distance between them is $10km - \frac{100}{15} \approx 3.33 km$</li>
+    </ul>
+  </li>
+    <li>On the third trip:
+    <ul>
+      <li>Once again, $10 t_3 = \frac{10}{3} - 5t_3 \implies t_3 = \frac{10}{45}$ so the fly travels $d_3 = \frac{100}{45} km \approx 2.22km$</li>
+      <li>...</li>
+    </ul>
+  </li>
+  Here we notice the pattern that in each leg the distance that the fly moves is reduced by 3 (20, 6.67, 3.33, ...). Therefore, we have to solve for the infinite series $D = 20 + 20 / 3 + 20 / 3^2 + 20 / 3^3 + ...$ which can be solved by noticing that $D = 20 + D/3$ so $D = 30km$.
+</ul>
+</details>
+
+
+<details>
+<summary>Easy solution</summary>
+
+To solve the problem you just neeed to know how long would it take for the cyclists to meet and the multiply this time by the speed of the fly.
+
+<ul>
+  <li>Time to meet = \frac{30 km}{10km/h} = 3h</li>
+  <li>Distance traveled by the fly = $10 km/h \times 3h = 30km$</li>
+</ul>
+
+</details>
+
+There's a funny story about this problem involving John von Neumann. Someone once asked von Neumann this question, expecting it to be challenging. To their surprise, von Neumann solved it almost instantly. The person who asked the question was disappointed and said, "Oh, I guess you figured out the quick trick to solve it!". Von Neumann, looking confused, replied, "What trick? I just added up the infinite series."
+
 
 # Ants on a ruler
 
@@ -22,7 +71,7 @@ I don't remember when I first heard about this problem, but it was a long time a
 
 <details>
 <summary>Hard solution</summary>
-Let's solve the problem the hard way using a coding approach.
+In this case I wasn't able to get an analytics solution, so I decided to solve it with code. Here we'll simulate the ants for a couple of experiments and analyze the results.
 
 {% highlight python %}
 import random
@@ -76,56 +125,8 @@ Here's the key insight: it doesn't matter if the ants bounce off each other when
 
 </details>
 
-# Two bikes and a fly
 
-This is one of my favorite problems to ask at parties or social events [^1]. You can ask this question to anyone with basic math knowledge and they'll understand the question and the easy solution. And -in my experience- the more math you know the more you enjoy the trick used in the simple solution.
-
-<div style="background-color: #e6f2ff; border: 1px solid #ccc; padding: 15px; margin-bottom: 20px;">
-  <strong>Problem:</strong> Two cyclists start 30km apart and ride towards each other. Both cyclists travel at 5km/h. A fly starts on one cyclist's handlebar and flies towards the other cyclist. As soon as the fly reaches the other cyclist it goes back to the first one. The fly goes back and forth between them at 10km/h until they meet. What total distance does the fly travel?
-</div>
-
-<details>
-<summary>Hard solution</summary>
-The hard solution here involves summing the infinite sum. We'll calculate the distance the fly travels in each "leg" of its journey.
-<ul>
-  <li>On the first trip:
-    <ul>
-      <li>Cyclist and the fly will met after $10 t_1 = 30 - 5t_1 \implies t_1 = 2$. So in the first trip the fly travels $d_1 = 20km$</li>
-      <li>Cyclists have traveled $10km$ each one, so now the distance between them is $10km$</li>
-    </ul>
-  </li>
-  <li>On the second trip:
-    <ul>
-      <li>Now, the fly takes $10 t_2 = 10 - 5t_2 \implies t_2 = \frac{10}{15}$ and travels $d_2 = \frac{100}{15} km \approx 6.67 km$</li>
-      <li>Cyclist traveled $\frac{50}{15}km$ and the distance between them is $10km - \frac{100}{15} \approx 3.33 km$</li>
-    </ul>
-  </li>
-    <li>On the third trip:
-    <ul>
-      <li>Once again, $10 t_3 = \frac{10}{3} - 5t_3 \implies t_3 = \frac{10}{45}$ so the fly travels $d_3 = \frac{100}{45} km \approx 2.22km$</li>
-      <li>...</li>
-    </ul>
-  </li>
-  Here we notice the pattern that in each leg the distance that the fly moves is reduced by 3 (20, 6.67, 3.33, ...). Therefore, we have to solve for the infinite series $D = 20 + 20 / 3 + 20 / 3^2 + 20 / 3^3 + ...$ which can be solved by noticing that $D = 20 + D/3$ so $D = 30km$.
-</ul>
-</details>
-
-
-<details>
-<summary>Easy solution</summary>
-
-To solve the problem you just neeed to know how long would it take for the cyclists to meet and the multiply this time by the speed of the fly.
-
-<ul>
-  <li>Time to meet = \frac{30 km}{10km/h} = 3h</li>
-  <li>Distance traveled by the fly = $10 km/h \times 3h = 30km$</li>
-</ul>
-
-</details>
-
-There's a funny story about this problem involving John von Neumann. Someone once asked von Neumann this question, expecting it to be challenging. To their surprise, von Neumann solved it almost instantly. The person who asked the question was disappointed and said, "Oh, I guess you figured out the quick trick to solve it!". Von Neumann, looking confused, replied, "What trick? I just added up the infinite series."
-
-# Random seats
+# Boarding a plane
 
 <div style="background-color: #e6f2ff; border: 1px solid #ccc; padding: 15px; margin-bottom: 20px;">
   <strong>Problem:</strong> A plane with 100 seats is boarding. The first passenger boards and sits randomly in one of the 100 seats. Each subsequent passenger boards and takes their assigned seat, but if their seat is already occupied by someone who sat randomly, they occupy a random empty seat instead.
