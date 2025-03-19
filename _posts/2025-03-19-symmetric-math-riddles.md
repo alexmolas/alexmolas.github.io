@@ -12,7 +12,7 @@ For each riddle, I’ll first explain the problem, then solve it the hard way, a
 
 # Two bikes and a fly
 
-This is one of my favorite problems to ask at parties or social events [^1]. You can ask this question to anyone with basic math knowledge and they'll understand the question and the easy solution. And -in my experience- the more math you know the more you enjoy the trick used in the simple solution.
+This is one of my favorite problems to ask at parties or social events. You can ask this question to anyone with basic math knowledge and they'll understand the question and the easy solution. And -in my experience- the more math you know the more you enjoy the trick used in the simple solution.
 
 <div style="background-color: #e6f2ff; border: 1px solid #ccc; padding: 15px; margin-bottom: 20px;">
   <strong>Problem:</strong> Two cyclists start 30km apart and ride towards each other. Both cyclists travel at 5km/h. A fly starts on one cyclist's handlebar and flies towards the other cyclist. As soon as the fly reaches the other cyclist it goes back to the first one. The fly goes back and forth between them at 10km/h until they meet. What total distance does the fly travel?
