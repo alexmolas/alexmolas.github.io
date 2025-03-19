@@ -129,7 +129,7 @@ Here's the key insight: it doesn't matter if the ants bounce off each other when
 # Boarding a plane
 
 <div style="background-color: #e6f2ff; border: 1px solid #ccc; padding: 15px; margin-bottom: 20px;">
-  <strong>Problem:</strong> A plane with 100 seats is boarding. The first passenger boards and sits randomly in one of the 100 seats. Each subsequent passenger boards and takes their assigned seat, but if their seat is already occupied by someone who sat randomly, they occupy a random empty seat instead.
+  <strong>Problem:</strong> A plane with 100 seats is boarding. The first passenger boards and sits randomly in one of the 100 seats. Each subsequent passenger boards and takes their assigned seat, but if their seat is already occupied by someone who sat randomly, they occupy a random empty seat instead. Which is the probability that the last passenger gets their assigned seat?
 </div>
 
 
