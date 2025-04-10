@@ -13,7 +13,7 @@ I studied physics, and I work as a data scientist, so after overcoming the grief
 
 # The question
 
-"Why did this happen to me?" is the question we all have when something bad happens in our life. Since we're the protagonists of our life it makes sense to wonder why something awful had to happen to us. Of course we know that bad things happen all the time, but when something bad happens to us we feel like it's worth than what happens to others (I guess this is human nature). 
+"Why did this happen to me?" is the question we all have when something bad happens in our life. Since we're the protagonists of our life it makes sense to wonder why something awful had to happen to us. Of course we know that bad things happen all the time, but when something bad happens to us we feel like it's worse than what happens to others (I guess this is human nature). 
 
 # The answer
 
