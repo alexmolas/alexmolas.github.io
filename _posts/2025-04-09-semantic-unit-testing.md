@@ -140,9 +140,11 @@ class FunctionInfo(BaseModel):
         ...
 ```
 
-This class has information about the callable name, docstring, source code, etc. It also contains information about the method dependencies, which are a list of `FunctionInfo`, one for each method that the callable uses inside. This piece of information is key to building a good context for the LLM since it allows us to get information about the code outside the method we want to test. It also has a classmethod that allows you to build this object directly from a callable. The `max_depth` parameter controls how deep you want to inspect the dependencies (ie: dependencies, dependencies of dependencies, etc.)
+This class has information about the callable name, docstring, source code, etc. It also contains information about the method dependencies, which are a list of `FunctionInfo`, one for each method that the callable uses internally. This piece of information is key to building a good context for the LLM since it allows us to get information about the code outside the method we want to test. It also has a classmethod that allows you to build this object directly from a callable. The `max_depth` parameter controls how deep you want to inspect the dependencies (ie: dependencies, dependencies of dependencies, etc.)
 
-Then, we can run `FunctionInfo.from_func(deal_cards)` and we'll have an object with all the information we need about `deal_cards`. Finally, we need a method that receives an instance of `FunctionInfo` and returns a prompt that can be sent to an LLM
+Then, we can run `FunctionInfo.from_func(deal_cards)` and we'll have an object with all the information we need about `deal_cards`. 
+
+Now, we need a method that receives an instance of `FunctionInfo` and returns a prompt that can be sent to an LLM
 
 ```python
 def format_prompt(
@@ -161,8 +163,6 @@ Finally, for the `deal_cards` method, the resulting prompt is
 
 {% highlight markdown %}
 
-
-```
 You are evaluating whether a function implementation correctly matches its docstring.
 
 Function name: deal_cards
@@ -258,14 +258,14 @@ Implementation: def split_cards(cards: list[str], number_of_players: int) -> lis
 
 Does the implementation correctly fulfill what is described in the docstring?
 Read the implementation carefully. Reason step by step and take your time.
-```
+
 {% endhighlight %}
 
 </details>
 
-Notice that it includes information about the other dependencies we implemented (`shuffle_cards` and `split_cards`) and also about external methods (`random.shuffle`).
+The prompt includes information about the dependencies we implemented (`shuffle_cards` and `split_cards`) and also about external methods (`random.shuffle`).
 
-Then, this prompt is sent to an LLM, which using structured outputs it returns an object of type `SuiteOutput`
+Then, this prompt is sent to an LLM which returns an object of type `SuiteOutput`
 
 
 ```python
