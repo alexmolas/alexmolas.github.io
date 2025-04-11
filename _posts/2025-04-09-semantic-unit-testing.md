@@ -6,7 +6,7 @@ tags:
 toc: true
 ---
 
-I quit my job at Wallapop a couple of weeks ago, and I'll start a new job at RevenueCat in some weeks, so I've had time to work on some side projects. One of these projects is [suite](https://github.com/alexmolas/suite), a python library for semantic unit testing. In this post, I'll explain what is semantic unit testing, how I have implemented it, and how you can use it.
+I quit my job at [Wallapop](https://en.wallapop.com) a couple of weeks ago, and I'll start a new job at [RevenueCat](https://www.revenuecat.com/) in some weeks, so I've had time to work on some side projects. One of these projects is [suite](https://github.com/alexmolas/suite), a python library for semantic unit testing. In this post, I'll explain what is semantic unit testing, how I have implemented it, and how you can use it.
 
 # What's semantic unit testing?
 
