@@ -6,22 +6,23 @@ tags:
 toc: true
 ---
 
-I quit my job at Wallapop a couple of weeks ago, and I'll start a new job at RevenueCat in some weeks, so I've had time to work on some side projects. One of these projects is `suite`, a python library for semantic unit testing. In this post, I'll explain what is semantic unit testing, how I have implemented it, and how you can use it.
+I quit my job at Wallapop a couple of weeks ago, and I'll start a new job at RevenueCat in some weeks, so I've had time to work on some side projects. One of these projects is [suite](https://github.com/alexmolas/suite), a python library for semantic unit testing. In this post, I'll explain what is semantic unit testing, how I have implemented it, and how you can use it.
 
 # What's semantic unit testing?
 
-Semantic unit testing is a testing approach that evaluates whether a function's implementation aligns with its documented behavior. The code is analyzed using LLMs to assess if the implementation matches the expected behavior described in the docstring.
+Semantic unit testing is a testing approach that evaluates whether a function's implementation aligns with its documented behavior. The code is analyzed using LLMs to assess if the implementation matches the expected behavior described in the docstring. It's basically having an AI review your code and documentation together to spot discrepancies or bugs, without running the code.
 
-This is, instead of writing classic unit tests with pairs of `(input, output)`, you leave the testing responsibility to an LLM. With good enough context, a powerful model should be able to detect bugs without having to run the code. The assumption here is that an LLM should be able to review the code as a software developer would do -looking at the code and thinking hard- but much faster.
+This is, instead of writing classic unit tests with pairs of `(input, output)`, the testing responsibility is passed to an LLM. The hypothesis is that a powerful model, with good enough context, should be able to detect bugs without having to run the code. The idea is that an LLM can analyze the code and its documentation much like a human developer would -carefully reading and thinking hard about it- but much more quickly.
 
-I wrote a package for doing semantic testing called `suite` (Semantic UnIt TEsting). You can install it using `uv` as [^1]
+
+I wrote a package for doing semantic testing called [suite](https://github.com/alexmolas/suite) (Semantic UnIt TEsting). You can install it using `uv` as [^1]
 
 
 ```bash
 uv pip install suite
 ```
 
-Here's an example of how to perform semantic testing with `suite` 
+Here's an example of how to perform a basic semantic test with `suite` 
 
 
 ```python
@@ -29,13 +30,15 @@ from suite import suite
 
 tester = suite(model_name="openai/o3-mini")
 
-def multiply(x: int, y: int):
+def multiply(x: int, y: int) -> int:
     """Multiplies x by y
 
- Args:
- x (int): value
- y (int): value
- """
+    Args:
+        x (int): value
+        y (int): value
+    Returns:
+        int: value
+    """
     return x + y
 
 result = tester(multiply)
@@ -47,20 +50,20 @@ print(result)
 # 'passed': False}
 ```
 
-Basically, we have a method called `multiply` that we want to test. Then, we instantiate a `tester` that will use `o3-mini` as a judge. Then, we pass the the method `multiply` to the `tester`, which internally will build a prompt containing all the information about `multiply`. Finally, the LLM will decide if the method contains any bug.
+Basically, we have want to test the `multiply` function. To do so we create a `tester` instance that will use `o3-mini` as a judge. Then, we pass the method `multiply` to the `tester`, which internally will build a prompt containing all the information about it. Finally, the LLM will decide if the method is correctly implemented or contains a bug.
 
 # How does it work?
 
-I've had this project on my todo list for a long time and I never had enough time and motivation to start it, however, some weeks ago [Vincent](https://koaning.io/) released [smartfunc](https://github.com/koaning/smartfunc) (a library to turn docstrings into LLM-functions), and motivated me to start the project, and to be honest I borrowed some design choices from Vincent code. I also used [llm](https://llm.datasette.io/en/stable/index.html) library by [Simon Willison](https://simonwillison.net/) to access different LLM providers easily.
+I've had this project on my todo list for a long time and I never had enough time and motivation to start it, however, some weeks ago [Vincent](https://koaning.io/) released [smartfunc](https://github.com/koaning/smartfunc) (a library to turn docstrings into LLM-functions), and motivated me to start the project -and to be honest I borrowed some design choices from Vincent code. I also used [llm](https://llm.datasette.io/en/stable/index.html) library by [Simon Willison](https://simonwillison.net/) to access different LLM providers easily.
 
 The `suite` library does the following.
 
 1. Receives a callable `func` as input.
-2. Reads `func` implementation and docstring (using inspect library).
-3. Parses `func` implementation and gets the inner methods used by `func`.
-4. Recursively applies steps 1, 2 and 3 to `func` inner methods (up to some `max_depth`). 
-5. This builds a `FuncInfo` object with all the information about `func` we need.
-6. Uses `FuncInfo` to build a prompt which is passed to an LLM.
+2. Reads `func` implementation and docstring (using `inspect` library).
+3. Analyzes the implementation of `func` to identify and extract any functions or methods that it calls internally.
+4. Recursively applies steps 1, 2 and 3 to `func` inner methods (up to some `max_depth`).
+5. Builds a `FunctionInfo` object with all the information about `func` we need.
+6. Uses `FunctionInfo` to write a prompt which is passed to an LLM.
 7. The LLM returns a structured output like `{"reasoning": str, "passed" bool}`
 
 Let's see now how all of these works with a concrete example. Imagine we have a method that we use to deal a deck of cards among some players. To do so we have a method called `deal_cards` which implementation is below.
@@ -76,10 +79,10 @@ def shuffle_cards(cards: list[str]) -> list[str]:
     Returns a shuffled copy of the given list of cards.
 
     Parameters:
-    cards (list[str]): A list of card identifiers (e.g., "Ace of Spades").
+        cards (list[str]): A list of card identifiers (e.g., "Ace of Spades").
 
     Returns:
-    list[str]: A new list containing the same cards in randomized order.
+        list[str]: A new list containing the same cards in randomized order.
     """
     shuffled = cards.copy()
     random.shuffle(shuffled)
@@ -90,12 +93,12 @@ def split_cards(cards: list[str], number_of_players: int) -> list[list[str]]:
     Splits a list of cards evenly among a given number of players in a round-robin fashion.
 
     Parameters:
-    cards (list[str]): The full list of cards to distribute.
-    number_of_players (int): The number of players to split the cards between.
+        cards (list[str]): The full list of cards to distribute.
+        number_of_players (int): The number of players to split the cards between.
 
     Returns:
-    list[list[str]]: A list where each sublist represents a player's hand of cards.
-    Cards are distributed one at a time to each player in turn.
+        list[list[str]]: A list where each sublist represents a player's hand of cards.
+        Cards are distributed one at a time to each player in turn.
     """
     return [cards[i::number_of_players] for i in range(number_of_players)]
 
@@ -106,11 +109,11 @@ def deal_cards(cards: list[str], number_of_players: int) -> list[list[str]]:
     This function combines shuffling and splitting the deck to simulate a card deal.
 
     Parameters:
-    cards (list[str]): The full list of cards to shuffle and distribute.
-    number_of_players (int): The number of players to deal cards to.
+        cards (list[str]): The full list of cards to shuffle and distribute.
+        number_of_players (int): The number of players to deal cards to.
 
     Returns:
-    list[list[str]]: A list of player hands after shuffling and dealing.
+        list[list[str]]: A list of player hands after shuffling and dealing.
     """
     shuffled = shuffle_cards(cards)
     return split_cards(shuffled, number_of_players)
