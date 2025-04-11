@@ -329,6 +329,25 @@ But here's the catch: you're missing some edge cases. What about negative inputs
 The problem is that traditional tests can only cover a narrow slice of your function’s behavior. Writing unit tests is **hard** and **boring**, and when combined, these two elements often lead to disaster. Just because a high percentage of tests pass doesn't mean your code is bug-free. With `suite`, you can sidestep the pain of writing every single test case manually. Instead, the LLM reviews your function's behavior holistically, saving time and ensuring a broader set of scenarios are taken into account.
 
 
+## Trivial integration with pytest
+
+One of the reasons to use `suite` is its seamless integration with `pytest`. You can easily incorporate semantic testing into your existing test suite without disrupting your workflow
+
+```python
+# test_module.py
+
+from module import function
+from suite import suite
+
+tester = suite()
+
+def test_function():
+    assert tester(function)
+```
+
+That's it - clean and simple. When you run `pytest`, your semantic tests will execute alongside traditional tests. For teams with established testing practices, this trivial integration makes it easy to experiment with semantic testing without committing to a major workflow change.
+
+
 ## Catch bugs early
 
 In a typical testing workflow, you write some basic tests to check the core functionality. When a bug inevitably shows up—usually after deployment—you go back and add more tests to cover it. This process is reactive, time-consuming, and frankly, a bit tedious.
