@@ -6,7 +6,12 @@ tags:
 toc: true
 ---
 
-I quit my job at [Wallapop](https://en.wallapop.com) a couple of weeks ago, and I'll start a new job at [RevenueCat](https://www.revenuecat.com/) in some weeks, so I've had time to work on some side projects. One of these projects is [suite](https://github.com/alexmolas/suite), a python library for semantic unit testing. In this post, I'll explain what is semantic unit testing, how I have implemented it, and how you can use it.
+
+Left [Wallapop](https://en.wallapop.com) a couple of weeks ago, heading to [RevenueCat](https://www.revenuecat.com/) soon. In that classic 'between jobs' hacking window, I built [suite](https://github.com/alexmolas/suite): a Python library for semantic unit testing. What's semantic unit testing? Think unit tests that understand context and meaning, not just `assert obj == expected`. Sound interesting? I'll break down what semantic unit testing is, how suite works under the hood, and how you can integrate it.
+
+
+
+<!-- I quit my job at [Wallapop](https://en.wallapop.com) a couple of weeks ago, and I'll start a new job at [RevenueCat](https://www.revenuecat.com/) in some weeks, so I've had time to work on some side projects. One of these projects is [suite](https://github.com/alexmolas/suite), a python library for semantic unit testing. In this post, I'll explain what is semantic unit testing, how I have implemented it, and how you can use it. -->
 
 # What's semantic unit testing?
 
@@ -50,11 +55,11 @@ print(result)
 # 'passed': False}
 ```
 
-Basically, we have want to test the `multiply` function. To do so we create a `tester` instance that will use `o3-mini` as a judge. Then, we pass the method `multiply` to the `tester`, which internally will build a prompt containing all the information about it. Finally, the LLM will decide if the method is correctly implemented or contains a bug.
+Basically, we have a `multiply` function that we want to test. To do so we create a `tester` instance that will use `o3-mini` as a judge. Then, we pass the method `multiply` to the `tester`, which internally will build a prompt containing all the information about it. Finally, the LLM will decide if the method is correctly implemented or contains a bug.
 
 # How does it work?
 
-I've had this project on my todo list for a long time and I never had enough time and motivation to start it, however, some weeks ago [Vincent](https://koaning.io/) released [smartfunc](https://github.com/koaning/smartfunc) (a library to turn docstrings into LLM-functions), and motivated me to start the project -and to be honest I borrowed some design choices from Vincent code. I also used [llm](https://llm.datasette.io/en/stable/index.html) library by [Simon Willison](https://simonwillison.net/) to access different LLM providers easily.
+I've had this project on my todo list for a long time and I never had enough time and motivation to start it, however, some weeks ago [Vincent](https://koaning.io/) released [smartfunc](https://github.com/koaning/smartfunc) (a library to turn docstrings into LLM-functions), and motivated me to start the project -and to be honest I borrowed some design choices from Vincent's code. I also used [llm](https://llm.datasette.io/en/stable/index.html) library by [Simon Willison](https://simonwillison.net/) to access different LLM providers easily.
 
 The `suite` library does the following.
 
