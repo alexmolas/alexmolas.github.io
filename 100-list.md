@@ -8,7 +8,7 @@ description: List of 100 things that I want to do before dying.
 
 Inspired by [Chip Huyen](https://huyenchip.com/list-100/) I have created my own list of things to do before die
 
-![100%](https://progress-bar.dev/28/?scale=100&title=100%20List&width=120&color=babaca)
+![](https://geps.dev/progress/30)
 
 1. ✗ Learn Portuguese
 2. ✗ Live in another country
