@@ -35,7 +35,7 @@ Inspired by [Chip Huyen](https://huyenchip.com/list-100/) I have created my own 
 23. ✓ Learn to drive a car
 24. ✗ Get a PhD
 25. ✗ Climb a 6c
-26. ✗ Publish a Python package (in pip)
+26. ✓ Publish a Python package (in pip)
 27. ✗ Eat at a 3 Michelin star restaurant
 28. ✗ Hitchhike around Spain
 29. ✗ Sleep outside on the beach, under the sky
