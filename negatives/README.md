@@ -1,19 +1,26 @@
-# Image Negative Generator
+# Cyanotype Negative Generator
 
-A simple, client-side web application that allows you to convert images to their negative form. Perfect for photographers, hobbyists, or anyone who needs to quickly create negative versions of their images.
+A simple, client-side web application that allows you to convert images to cyanotype-ready negatives. Perfect for alternative photography enthusiasts, cyanotype artists, or anyone who wants to create proper negatives for cyanotype printing.
 
 ## Features
 
 - **Easy Upload**: Drag and drop images or use the file selector
+- **Automatic Processing**: Images are automatically converted to optimized cyanotype negatives
 - **Batch Processing**: Convert multiple images at once
-- **Side-by-Side Comparison**: View the original and negative versions together
+- **Side-by-Side Comparison**: View the original and cyanotype negative versions together
+- **Advanced Settings**: Fine-tune contrast, density, and orientation for perfect cyanotype prints
 - **One-Click Download**: Download individual negatives or all at once
 - **Pure Client-Side**: No server needed, all processing happens in your browser
 - **Mobile-Friendly**: Works on smartphones and tablets too
 
 ## How It Works
 
-The app uses the HTML5 Canvas API to manipulate image data. It reads each pixel of the uploaded image and inverts the RGB values (subtracting each value from 255) to create the negative effect.
+The app uses the HTML5 Canvas API to manipulate image data with a specialized processing pipeline for cyanotype printing:
+
+1. **Grayscale Conversion**: Color images are converted to black and white using optimal luminance weights
+2. **Contrast Enhancement**: Contrast is automatically adjusted to improve tonal separation in the final print
+3. **Density Adjustment**: Negative density is optimized for transparency film printing
+4. **Inversion**: The image is inverted to create a proper negative for contact printing
 
 ## Usage
 
@@ -22,16 +29,32 @@ The app uses the HTML5 Canvas API to manipulate image data. It reads each pixel 
    - Or click the "Select Files" button to choose images from your device
 
 2. **Processing**:
-   - The app will automatically process your images
+   - The app will automatically process your images with optimal settings for cyanotype
    - A progress bar shows the conversion status
 
 3. **View Results**:
-   - After processing, you'll see each image with its negative version
+   - After processing, you'll see each image with its cyanotype-ready negative version
    - Compare the original and negative side by side
 
-4. **Download**:
-   - Click "Download" under any image to save its negative version
+4. **Fine-Tune (Optional)**:
+   - Click "Show Advanced Settings" to access adjustment controls
+   - Adjust contrast and density sliders to optimize for your specific cyanotype process
+   - Toggle "Flip Horizontally" if needed for your printing setup
+   - Changes are applied in real-time to all processed images
+
+5. **Download**:
+   - Click "Download" under any image to save its cyanotype-ready negative
    - If you processed multiple images, you can click "Download All" to get a ZIP file with all negatives
+
+## Printing Your Negatives for Cyanotype
+
+For best results when printing your negatives for cyanotype:
+
+1. **Use high-quality transparency film** designed for inkjet printers
+2. In your printer settings, select the **highest quality print mode**
+3. Allow prints to **dry completely** before using for cyanotype exposure
+4. Place the printed transparency **ink-side down** on your sensitized paper
+5. Expose according to your specific cyanotype process requirements
 
 ## Deployment
 

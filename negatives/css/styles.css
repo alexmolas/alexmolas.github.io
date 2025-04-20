@@ -71,6 +71,73 @@ h2 {
     margin-bottom: 30px;
 }
 
+/* Advanced Settings */
+.advanced-settings {
+    background-color: var(--secondary-color);
+    border-radius: var(--border-radius);
+    padding: 15px;
+    margin-top: 15px;
+    display: block;
+}
+
+.settings-info {
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.setting-group {
+    margin-bottom: 15px;
+}
+
+.setting-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.setting-tip {
+    font-size: 12px;
+    color: #666;
+    margin-top: 3px;
+}
+
+.slider-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.slider-container input[type="range"] {
+    flex: 1;
+}
+
+.reset-button {
+    background-color: #ddd;
+    border: none;
+    border-radius: 3px;
+    padding: 3px 8px;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.reset-button:hover {
+    background-color: #ccc;
+}
+
+.checkbox-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.checkbox-group label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 5px;
+    cursor: pointer;
+}
+
+
 #drop-area {
     border: 2px dashed var(--primary-color);
     border-radius: var(--border-radius);
@@ -139,8 +206,8 @@ h2 {
 
 .results-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
+    gap: 30px;
 }
 
 .result-item {
@@ -152,11 +219,14 @@ h2 {
 
 .image-comparison {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    gap: 5px;
+    padding: 10px;
+    background-color: #fff;
 }
 
 .image-container {
-    width: 100%;
+    width: 50%;
     position: relative;
 }
 
@@ -164,25 +234,38 @@ h2 {
     width: 100%;
     height: auto;
     display: block;
+    transition: opacity 0.3s ease;
+}
+
+.preview-image {
+    min-height: 150px;
+    object-fit: contain;
+    background-color: #f8f8f8;
 }
 
 .image-label {
     position: absolute;
-    top: 10px;
-    left: 10px;
+    top: 5px;
+    left: 5px;
     background-color: rgba(0,0,0,0.6);
     color: white;
-    padding: 5px 10px;
+    padding: 3px 8px;
     border-radius: var(--border-radius);
-    font-size: 12px;
+    font-size: 11px;
 }
 
-.result-actions {
-    padding: 15px;
+/* Per-image settings */
+.image-settings {
     background-color: var(--secondary-color);
+    padding: 12px;
+    border-top: 1px solid #eee;
+}
+
+.result-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 10px;
 }
 
 .result-name {
@@ -190,17 +273,51 @@ h2 {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    max-width: 200px;
+    max-width: 270px;
+    font-size: 14px;
 }
 
 .download-link {
     color: var(--primary-color);
     text-decoration: none;
     font-weight: bold;
+    font-size: 14px;
 }
 
 .download-link:hover {
     text-decoration: underline;
+}
+
+.image-settings-controls {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.image-settings-controls .setting-group {
+    margin-bottom: 10px;
+}
+
+.image-settings-controls label {
+    font-size: 13px;
+    margin-bottom: 3px;
+}
+
+.image-settings-controls .setting-value {
+    font-weight: normal;
+}
+
+.image-settings-controls .checkbox-group {
+    grid-column: span 2;
+}
+
+.image-settings-controls .image-slider {
+    height: 8px;
+}
+
+.image-settings-controls .reset-button {
+    padding: 2px 5px;
+    font-size: 11px;
 }
 
 /* Footer */

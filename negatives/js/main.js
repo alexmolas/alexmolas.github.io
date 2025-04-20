@@ -1,5 +1,5 @@
 /**
- * Main Application Entry Point
+ * Main Application Entry Point for Cyanotype Negative Generator
  */
 
 (function() {
@@ -10,7 +10,7 @@
         // Initialize UI
         UI.init();
         
-        console.log('Image Negative Generator initialized');
+        console.log('Cyanotype Negative Generator initialized');
         
         // Check if JSZip is available
         if (typeof JSZip === 'undefined') {
@@ -21,7 +21,7 @@
             jsZipScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js';
             jsZipScript.async = true;
             jsZipScript.onload = function() {
-                console.log('JSZip library loaded');
+                console.log('JSZip library loaded for batch downloads');
             };
             jsZipScript.onerror = function() {
                 console.error('Failed to load JSZip library');
