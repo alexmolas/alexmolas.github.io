@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Negative Generator</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Image Negative Generator</h1>
+            <p>Convert your images to negatives with a single click</p>
+        </header>
+
+        <main>
+            <section class="upload-section">
+                <div id="drop-area">
+                    <form class="upload-form">
+                        <p>Upload your images by dragging & dropping them below or</p>
+                        <input type="file" id="file-input" accept="image/*" multiple>
+                        <label for="file-input" class="button">Select Files</label>
+                    </form>
+                    <div class="drop-instructions">
+                        <p>Drop images here</p>
+                        <p class="small">Supported formats: JPG, PNG, GIF, BMP</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="processing-section" id="processing-section" style="display: none;">
+                <h2>Processing Images...</h2>
+                <div class="progress-container">
+                    <div class="progress-bar" id="progress-bar"></div>
+                </div>
+                <p id="progress-text">0%</p>
+            </section>
+
+            <section class="results-section" id="results-section" style="display: none;">
+                <h2>Results</h2>
+                <div class="controls">
+                    <button id="download-all" class="button">Download All</button>
+                    <button id="process-more" class="button">Process More Images</button>
+                </div>
+                <div id="results-grid" class="results-grid"></div>
+            </section>
+        </main>
+
+        <footer>
+            <p>Created with ❤️ for easy image processing</p>
+        </footer>
+    </div>
+
+    <script src="js/imageProcessor.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
