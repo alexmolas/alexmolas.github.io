@@ -8,7 +8,7 @@ description: List of 100 things that I want to do before dying.
 
 Inspired by [Chip Huyen](https://huyenchip.com/list-100/) I have created my own list of things to do before die
 
-![](https://geps.dev/progress/30)
+![](https://geps.dev/progress/33)
 
 1. ✗ Learn Portuguese
 2. ✗ Live in another country
@@ -41,7 +41,7 @@ Inspired by [Chip Huyen](https://huyenchip.com/list-100/) I have created my own 
 29. ✗ Sleep outside on the beach, under the sky
 30. ✗ See the gorillas in Uganda/Rwanda
 31. ✓ Camp in a desert
-32. ✗ See a whale
+32. ✓ See a whale
 33. ✗ See auroras
 34. ✗ Zero gravity
 35. ✗ Travel Southeast Asia
@@ -57,7 +57,7 @@ Inspired by [Chip Huyen](https://huyenchip.com/list-100/) I have created my own 
 45. ✗ Meet a prince
 46. ✓ Learn to cook paella (thanks [@jmolas](https://twitter.com/jmolas))
 47. ✓ Quit smoking (hope this one keeps ticked for the rest of my life)
-48. ✗ Live in a house with garden and swimming pool 
+48. ✓ Live in a house with garden and swimming pool 
 49. ✗ Visit CERN
 50. ✗ Travel USA with a camper
 51. ✓ Tatoo
