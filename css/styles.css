@@ -101,3 +101,11 @@ progress::-webkit-progress-value {
 progress::-moz-progress-bar {
   background-color: blue;
 }
+
+
+.post-meta {
+  display: flex; /* Treat the paragraph as a flex container */
+  justify-content: space-between; /* Push children to opposite ends */
+  align-items: baseline; /* Align text along their baseline */
+  flex-wrap: wrap; /* Optional: Allow wrapping on small screens */
+}
