@@ -9,10 +9,12 @@ layout: default
   <span>{{ page.date | date: "%B %d, %Y" }} · {% include read_time.html %}</span>
   <span>
     Share on:
-    <a href="https://twitter.com/intent/tweet?text={{ page.title | append: ' by @MolasAlex' | url_encode }}&url={{ site.url }}{{ page.url | url_encode }}" target="_blank">Twitter</a> ·
-    <a href="https://news.ycombinator.com/submitlink?u={{ site.url }}{{ page.url | url_encode }}&t={{ page.title | uri_escape }}" target="_blank">Hacker News</a>
+    <a href="https://twitter.com/intent/tweet?text={{ page.title | append: ' by @MolasAlex' | url_encode }}&url={{ site.url }}{{ page.url | url_encode }}" target="_blank">X</a> ·
+    <a href="https://news.ycombinator.com/submitlink?u={{ site.url }}{{ page.url | url_encode }}&t={{ page.title | uri_escape }}" target="_blank">HN</a>
   </span>
 </p>
+
+<hr>
 
 {{ content | toc }}
 
