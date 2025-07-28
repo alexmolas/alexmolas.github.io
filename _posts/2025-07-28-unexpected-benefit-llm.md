@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Who needs git when you have gemini-2.5-pro?"
+title: "Who needs git when you have 1M context windows?"
 description: 
 tags:
 toc: true
