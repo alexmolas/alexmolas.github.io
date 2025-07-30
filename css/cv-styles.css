@@ -1,6 +1,6 @@
  
  body {
-  font-family: -apple-system, BlinkMacSystemFont;
+  font-family: 'Roboto', sans-serif;
   font-weight: 300;
 	font-size: 15px;
   line-height: 25px;
@@ -31,7 +31,7 @@ a {
 }
 
 h3 span {
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 200;
 
 }
