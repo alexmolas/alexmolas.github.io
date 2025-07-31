@@ -25,4 +25,6 @@ So, there you have it! Using some basic statistics saved me from wasting years o
 
 While writing this text I realised that another way to succeed in the original game is to distribute it among $N$ people. I "only" need to convince around $N \sim 5000/190 \sim 25$ people to play this game to have the same winning probabilities as in my current simplified version of the game. What do you say? Do you want to help me?
 
-That wraps up today's post. Next time, I'll delve into another fun game involving license plates. Stay tuned!
+---
+
+PS. After one year I managed to spot plates from `**00` to `**99`. And after that I stopped playing the game.
