@@ -114,3 +114,26 @@ progress::-moz-progress-bar {
   align-items: baseline; /* Align text along their baseline */
   flex-wrap: wrap; /* Optional: Allow wrapping on small screens */
 }
+
+main img {
+  cursor: zoom-in;
+}
+
+.modal {
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  max-width: 90%;
+  max-height: 90%;
+  display: block;
+}

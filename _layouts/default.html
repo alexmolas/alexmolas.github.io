@@ -75,5 +75,37 @@ layout: none
       <a href="{{ site.buymeacoffee_link }}">Buy me a beer</a>
     </small></center>
   </footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const images = document.querySelectorAll("main img");
+      images.forEach(img => {
+        img.addEventListener("click", function() {
+          const modal = document.createElement("div");
+          modal.classList.add("modal");
+          const modalContent = document.createElement("img");
+          modalContent.classList.add("modal-content");
+          modalContent.src = this.src;
+          modal.appendChild(modalContent);
+          document.body.appendChild(modal);
+
+          const closeModal = function() {
+            document.body.removeChild(modal);
+            document.removeEventListener("keydown", handleKeydown);
+          };
+          
+          modal.addEventListener("click", closeModal);
+          
+          const handleKeydown = function(event) {
+            if (event.key === "Escape") {
+              closeModal();
+            }
+          };
+
+          document.addEventListener("keydown", handleKeydown);
+        });
+      });
+    });
+  </script>
 </body>
 </html>
