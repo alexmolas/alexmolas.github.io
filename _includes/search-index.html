@@ -3,7 +3,7 @@ window.searchIndex = [
   {% for post in site.posts %}
     {
       "title": {{ post.title | jsonify }},
-      "url": "{{ post.url }}",
+      "url": "{{ post.url | relative_url }}",
       "date": "{{ post.date | date: '%B %d, %Y' }}",
       "excerpt": {{ post.excerpt | strip_html | truncatewords: 30 | jsonify }},
       "content": {{ post.content | strip_html | jsonify }},

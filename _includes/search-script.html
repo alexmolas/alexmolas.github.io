@@ -2,87 +2,122 @@
 (function() {
   let selectedIndex = -1;
   let filteredResults = [];
+  let lastQuery = '';
+  let restoreFocusEl = null;
 
-  // Simple fuzzy search function
+  function escapeRegex(str) {
+    return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  }
+
+  function debounce(fn, delay) {
+    let timer = null;
+    return function(...args) {
+      clearTimeout(timer);
+      timer = setTimeout(() => fn.apply(this, args), delay);
+    };
+  }
+
+  // Simple fuzzy search function (for title only)
   function fuzzySearch(query, text) {
     query = query.toLowerCase();
     text = text.toLowerCase();
-    
     let queryIndex = 0;
     let textIndex = 0;
-    
     while (queryIndex < query.length && textIndex < text.length) {
       if (query[queryIndex] === text[textIndex]) {
         queryIndex++;
       }
       textIndex++;
     }
-    
     return queryIndex === query.length;
   }
 
-  // Calculate search score
-  function calculateScore(post, query) {
-    query = query.toLowerCase().trim();
+  // Calculate search score with tokenization
+  function calculateScore(post, rawQuery) {
+    const query = rawQuery.toLowerCase().trim();
     if (!query) return 0;
-    
+
+    const tokens = query.split(/\s+/).filter(Boolean);
+    if (tokens.length === 0) return 0;
+
     const title = post.title.toLowerCase();
-    const content = post.content.toLowerCase();
-    const excerpt = post.excerpt.toLowerCase();
-    
+    const content = (post.content || '').toLowerCase();
+    const excerpt = (post.excerpt || '').toLowerCase();
+    const tags = Array.isArray(post.tags) ? post.tags.map(t => (t || '').toLowerCase()) : [];
+
     let score = 0;
-    
-    // Exact title match gets highest priority
-    if (title.includes(query)) {
-      score += 1000;
-      // Bonus for title starting with query
-      if (title.startsWith(query)) {
-        score += 500;
+    let unmatchedTokens = 0;
+
+    for (const token of tokens) {
+      const tokenRegex = new RegExp(escapeRegex(token), 'g');
+      let matchedAny = false;
+
+      if (title.includes(token)) {
+        score += 1000;
+        matchedAny = true;
+        if (title.startsWith(token)) {
+          score += 500;
+        }
+      } else if (fuzzySearch(token, title)) {
+        score += 200; // Typo tolerance in title only
+        matchedAny = true;
+      }
+
+      if (excerpt.includes(token)) {
+        score += 300;
+        matchedAny = true;
+      }
+
+      if (content.includes(token)) {
+        score += 50;
+        matchedAny = true;
+        const matches = (content.match(tokenRegex) || []).length;
+        if (matches > 1) {
+          score += Math.min(matches * 10, 50);
+        }
+      }
+
+      if (tags.some(tag => tag.includes(token))) {
+        score += 400;
+        matchedAny = true;
+      }
+
+      if (!matchedAny) {
+        unmatchedTokens += 1;
       }
     }
-    
-    // Fuzzy match in title only (for typo tolerance)
-    else if (fuzzySearch(query, title)) {
-      score += 200;
+
+    // Recency boost (lightweight)
+    const dateMs = Date.parse(post.date);
+    if (!Number.isNaN(dateMs)) {
+      const daysAgo = (Date.now() - dateMs) / (1000 * 60 * 60 * 24);
+      // Up to +100 for very recent posts, decays over ~1 year
+      const recencyBoost = Math.max(0, 100 - Math.min(365, daysAgo) / 3.65);
+      score += Math.round(recencyBoost);
     }
-    
-    // Exact excerpt match
-    if (excerpt.includes(query)) {
-      score += 300;
-    }
-    
-    // Only check content for exact matches, no fuzzy matching
-    if (content.includes(query)) {
-      score += 50;
-      
-      // Bonus if query appears multiple times in content
-      const matches = (content.match(new RegExp(query, 'g')) || []).length;
-      if (matches > 1) {
-        score += Math.min(matches * 10, 50); // Cap bonus at 50
-      }
-    }
-    
-    // Tag exact match
-    if (post.tags && post.tags.some(tag => tag.toLowerCase().includes(query))) {
-      score += 400;
-    }
-    
-    // Require minimum score to appear in results
+
+    if (unmatchedTokens > 0) return 0;
+
     return score >= 50 ? score : 0;
   }
 
-  // Highlight matching text
-  function highlightText(text, query) {
+  // Highlight matching text for all tokens
+  function highlightText(text, rawQuery) {
+    const query = (rawQuery || '').trim();
     if (!query) return text;
-    
-    const regex = new RegExp(`(${query})`, 'gi');
+    const tokens = query.split(/\s+/).filter(Boolean).map(escapeRegex);
+    if (tokens.length === 0) return text;
+    const regex = new RegExp(`(${tokens.join('|')})`, 'gi');
     return text.replace(regex, '<span class="search-highlight">$1</span>');
   }
 
   // Perform search
   function performSearch(query) {
+    lastQuery = query;
+    const resultsContainer = document.getElementById('searchResults');
+
     if (!query.trim()) {
-      document.getElementById('searchResults').innerHTML = `
+      resultsContainer.innerHTML = `
         <div class="search-empty-state">
           <p>Start typing to search through all blog posts...</p>
         </div>
@@ -92,29 +127,31 @@
       return;
     }
 
-    const results = window.searchIndex
+    const results = (window.searchIndex || [])
       .map(post => ({
         ...post,
         score: calculateScore(post, query)
       }))
       .filter(post => post.score > 0)
       .sort((a, b) => b.score - a.score)
-      .slice(0, 10); // Limit to top 10 results
+      .slice(0, 10);
 
     filteredResults = results;
     selectedIndex = -1;
 
     if (results.length === 0) {
-      document.getElementById('searchResults').innerHTML = `
-        <div class="search-no-results">
-          <p>No posts found for "${query}"</p>
-        </div>
-      `;
+      const wrapper = document.createElement('div');
+      wrapper.className = 'search-no-results';
+      const p = document.createElement('p');
+      p.textContent = `No posts found for "${query}"`;
+      wrapper.appendChild(p);
+      resultsContainer.innerHTML = '';
+      resultsContainer.appendChild(wrapper);
       return;
     }
 
     const resultsHTML = results.map((post, index) => `
-      <div class="search-result-item" data-index="${index}" onclick="navigateToPost('${post.url}')">
+      <div class="search-result-item" data-index="${index}" tabindex="0" role="option" aria-selected="${index === selectedIndex}" onclick="navigateToPost('${post.url}')" onkeydown="if(event.key==='Enter'){navigateToPost('${post.url}')}" >
         <div class="search-result-title">
           ${highlightText(post.title, query)}
         </div>
@@ -127,7 +164,7 @@
       </div>
     `).join('');
 
-    document.getElementById('searchResults').innerHTML = resultsHTML;
+    resultsContainer.innerHTML = resultsHTML;
   }
 
   // Navigate to selected post
@@ -135,12 +172,36 @@
     window.location.href = url;
   }
 
-  // Update selection highlighting
+  // Update selection highlighting and aria
   function updateSelection() {
     const items = document.querySelectorAll('.search-result-item');
     items.forEach((item, index) => {
-      item.classList.toggle('selected', index === selectedIndex);
+      const selected = index === selectedIndex;
+      item.classList.toggle('selected', selected);
+      item.setAttribute('aria-selected', String(selected));
+      if (selected) {
+        item.scrollIntoView({ block: 'nearest' });
+      }
     });
+  }
+
+  // Focus trap within the modal
+  function trapFocus(e) {
+    if (e.key !== 'Tab') return;
+    const modal = document.getElementById('searchModal');
+    const focusable = modal.querySelectorAll('#searchInput, .search-result-item');
+    if (focusable.length === 0) return;
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    const active = document.activeElement;
+
+    if (!e.shiftKey && active === last) {
+      e.preventDefault();
+      first.focus();
+    } else if (e.shiftKey && active === first) {
+      e.preventDefault();
+      last.focus();
+    }
   }
 
   // Handle keyboard navigation
@@ -149,7 +210,7 @@
     const isModalOpen = modal.style.display === 'block';
 
     // Cmd+K or Ctrl+K to open search
-    if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+    if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
       e.preventDefault();
       openSearch();
       return;
@@ -162,24 +223,25 @@
         e.preventDefault();
         closeSearch();
         break;
-      
       case 'ArrowDown':
         e.preventDefault();
         selectedIndex = Math.min(selectedIndex + 1, filteredResults.length - 1);
         updateSelection();
         break;
-      
       case 'ArrowUp':
         e.preventDefault();
         selectedIndex = Math.max(selectedIndex - 1, -1);
         updateSelection();
         break;
-      
       case 'Enter':
         e.preventDefault();
         if (selectedIndex >= 0 && filteredResults[selectedIndex]) {
           navigateToPost(filteredResults[selectedIndex].url);
+        } else if (filteredResults.length > 0) {
+          navigateToPost(filteredResults[0].url);
         }
+        break;
+      default:
         break;
     }
   }
@@ -188,14 +250,20 @@
   function openSearch() {
     const modal = document.getElementById('searchModal');
     const input = document.getElementById('searchInput');
-    
+
+    restoreFocusEl = document.activeElement;
+
     modal.style.display = 'block';
     input.focus();
-    input.value = '';
-    performSearch('');
-    
+    // Preserve last query
+    input.value = lastQuery;
+    performSearch(lastQuery);
+
     // Prevent body scroll when modal is open
     document.body.style.overflow = 'hidden';
+
+    // Add focus trap
+    modal.addEventListener('keydown', trapFocus);
   }
 
   // Close search modal
@@ -204,9 +272,17 @@
     modal.style.display = 'none';
     selectedIndex = -1;
     filteredResults = [];
-    
+
     // Restore body scroll
     document.body.style.overflow = '';
+
+    // Remove focus trap
+    modal.removeEventListener('keydown', trapFocus);
+
+    // Restore focus to the trigger element if available
+    if (restoreFocusEl && typeof restoreFocusEl.focus === 'function') {
+      restoreFocusEl.focus();
+    }
   }
 
   // Make functions global for onclick handlers
@@ -218,11 +294,12 @@
     // Global keyboard listener
     document.addEventListener('keydown', handleKeyDown);
 
-    // Search input listener
+    // Search input listener (debounced)
     const searchInput = document.getElementById('searchInput');
     if (searchInput) {
+      const debounced = debounce((val) => performSearch(val), 150);
       searchInput.addEventListener('input', function(e) {
-        performSearch(e.target.value);
+        debounced(e.target.value);
       });
     }
 

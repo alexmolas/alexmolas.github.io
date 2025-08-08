@@ -18,35 +18,30 @@ layout: none
     <script>
       document.addEventListener("DOMContentLoaded", function(event) {
         window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
+        function gtag(){dataLayer.push(arguments);} 
         gtag('js', new Date());
         gtag('config', '{{ site.google_analytics.id }}');
       });
     </script>
   {% endif %}
-  <!-- Search functionality -->
-  {% include search-modal.html %}
-  {% include search-index.html %}
-  {% include search-script.html %}
 
-
-    <script>
-      window.MathJax = {
-        tex: {
-          inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
-          displayMath: [ ['$$', '$$'], ['\\[', '\\]'] ],
-          processEscapes: true
-        },
-        options: {
-          skipHtmlTags: ['script', 'noscript', 'style', 'pre', 'code'],
-          ignoreHtmlClass: 'tex2jax_ignore',
-          processHtmlClass: 'tex2jax_process'
-        }
-      };
-    </script>
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
-    
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+        displayMath: [ ['$$', '$$'], ['\\[', '\\]'] ],
+        processEscapes: true
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'pre', 'code'],
+        ignoreHtmlClass: 'tex2jax_ignore',
+        processHtmlClass: 'tex2jax_process'
+      }
+    };
+  </script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+  
 </head>
 <body>
   <!-- Header -->
@@ -87,6 +82,11 @@ layout: none
       <a href="{{ site.buymeacoffee_link }}">Buy me a beer</a>
     </small></center>
   </footer>
+
+  <!-- Search functionality (moved to end for performance) -->
+  {% include search-modal.html %}
+  {% include search-index.html %}
+  {% include search-script.html %}
 
   <script>
     document.addEventListener("DOMContentLoaded", function() {

@@ -1,13 +1,13 @@
 <!-- Search Modal -->
-<div id="searchModal" class="search-modal">
+<div id="searchModal" class="search-modal" role="dialog" aria-modal="true" aria-label="Search posts">
   <div class="search-modal-content">
     <div class="search-input-wrapper">
-      <input type="text" id="searchInput" placeholder="Search posts..." autocomplete="off">
+      <input type="text" id="searchInput" placeholder="Search posts..." autocomplete="off" aria-label="Search posts" />
       <div class="search-shortcut">
         <span class="search-shortcut-key">ESC</span>
       </div>
     </div>
-    <div id="searchResults" class="search-results">
+    <div id="searchResults" class="search-results" role="listbox" aria-label="Search results">
       <div class="search-empty-state">
         <p>Start typing to search through all blog posts...</p>
       </div>
