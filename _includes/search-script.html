@@ -1,0 +1,240 @@
+<script>
+(function() {
+  let selectedIndex = -1;
+  let filteredResults = [];
+
+  // Simple fuzzy search function
+  function fuzzySearch(query, text) {
+    query = query.toLowerCase();
+    text = text.toLowerCase();
+    
+    let queryIndex = 0;
+    let textIndex = 0;
+    
+    while (queryIndex < query.length && textIndex < text.length) {
+      if (query[queryIndex] === text[textIndex]) {
+        queryIndex++;
+      }
+      textIndex++;
+    }
+    
+    return queryIndex === query.length;
+  }
+
+  // Calculate search score
+  function calculateScore(post, query) {
+    query = query.toLowerCase().trim();
+    if (!query) return 0;
+    
+    const title = post.title.toLowerCase();
+    const content = post.content.toLowerCase();
+    const excerpt = post.excerpt.toLowerCase();
+    
+    let score = 0;
+    
+    // Exact title match gets highest priority
+    if (title.includes(query)) {
+      score += 1000;
+      // Bonus for title starting with query
+      if (title.startsWith(query)) {
+        score += 500;
+      }
+    }
+    
+    // Fuzzy match in title only (for typo tolerance)
+    else if (fuzzySearch(query, title)) {
+      score += 200;
+    }
+    
+    // Exact excerpt match
+    if (excerpt.includes(query)) {
+      score += 300;
+    }
+    
+    // Only check content for exact matches, no fuzzy matching
+    if (content.includes(query)) {
+      score += 50;
+      
+      // Bonus if query appears multiple times in content
+      const matches = (content.match(new RegExp(query, 'g')) || []).length;
+      if (matches > 1) {
+        score += Math.min(matches * 10, 50); // Cap bonus at 50
+      }
+    }
+    
+    // Tag exact match
+    if (post.tags && post.tags.some(tag => tag.toLowerCase().includes(query))) {
+      score += 400;
+    }
+    
+    // Require minimum score to appear in results
+    return score >= 50 ? score : 0;
+  }
+
+  // Highlight matching text
+  function highlightText(text, query) {
+    if (!query) return text;
+    
+    const regex = new RegExp(`(${query})`, 'gi');
+    return text.replace(regex, '<span class="search-highlight">$1</span>');
+  }
+
+  // Perform search
+  function performSearch(query) {
+    if (!query.trim()) {
+      document.getElementById('searchResults').innerHTML = `
+        <div class="search-empty-state">
+          <p>Start typing to search through all blog posts...</p>
+        </div>
+      `;
+      filteredResults = [];
+      selectedIndex = -1;
+      return;
+    }
+
+    const results = window.searchIndex
+      .map(post => ({
+        ...post,
+        score: calculateScore(post, query)
+      }))
+      .filter(post => post.score > 0)
+      .sort((a, b) => b.score - a.score)
+      .slice(0, 10); // Limit to top 10 results
+
+    filteredResults = results;
+    selectedIndex = -1;
+
+    if (results.length === 0) {
+      document.getElementById('searchResults').innerHTML = `
+        <div class="search-no-results">
+          <p>No posts found for "${query}"</p>
+        </div>
+      `;
+      return;
+    }
+
+    const resultsHTML = results.map((post, index) => `
+      <div class="search-result-item" data-index="${index}" onclick="navigateToPost('${post.url}')">
+        <div class="search-result-title">
+          ${highlightText(post.title, query)}
+        </div>
+        <div class="search-result-meta">
+          ${post.date}
+        </div>
+        <div class="search-result-excerpt">
+          ${highlightText(post.excerpt, query)}
+        </div>
+      </div>
+    `).join('');
+
+    document.getElementById('searchResults').innerHTML = resultsHTML;
+  }
+
+  // Navigate to selected post
+  function navigateToPost(url) {
+    window.location.href = url;
+  }
+
+  // Update selection highlighting
+  function updateSelection() {
+    const items = document.querySelectorAll('.search-result-item');
+    items.forEach((item, index) => {
+      item.classList.toggle('selected', index === selectedIndex);
+    });
+  }
+
+  // Handle keyboard navigation
+  function handleKeyDown(e) {
+    const modal = document.getElementById('searchModal');
+    const isModalOpen = modal.style.display === 'block';
+
+    // Cmd+K or Ctrl+K to open search
+    if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+      e.preventDefault();
+      openSearch();
+      return;
+    }
+
+    if (!isModalOpen) return;
+
+    switch (e.key) {
+      case 'Escape':
+        e.preventDefault();
+        closeSearch();
+        break;
+      
+      case 'ArrowDown':
+        e.preventDefault();
+        selectedIndex = Math.min(selectedIndex + 1, filteredResults.length - 1);
+        updateSelection();
+        break;
+      
+      case 'ArrowUp':
+        e.preventDefault();
+        selectedIndex = Math.max(selectedIndex - 1, -1);
+        updateSelection();
+        break;
+      
+      case 'Enter':
+        e.preventDefault();
+        if (selectedIndex >= 0 && filteredResults[selectedIndex]) {
+          navigateToPost(filteredResults[selectedIndex].url);
+        }
+        break;
+    }
+  }
+
+  // Open search modal
+  function openSearch() {
+    const modal = document.getElementById('searchModal');
+    const input = document.getElementById('searchInput');
+    
+    modal.style.display = 'block';
+    input.focus();
+    input.value = '';
+    performSearch('');
+    
+    // Prevent body scroll when modal is open
+    document.body.style.overflow = 'hidden';
+  }
+
+  // Close search modal
+  function closeSearch() {
+    const modal = document.getElementById('searchModal');
+    modal.style.display = 'none';
+    selectedIndex = -1;
+    filteredResults = [];
+    
+    // Restore body scroll
+    document.body.style.overflow = '';
+  }
+
+  // Make functions global for onclick handlers
+  window.navigateToPost = navigateToPost;
+  window.openSearchModal = openSearch;
+
+  // Initialize search functionality when DOM is loaded
+  document.addEventListener('DOMContentLoaded', function() {
+    // Global keyboard listener
+    document.addEventListener('keydown', handleKeyDown);
+
+    // Search input listener
+    const searchInput = document.getElementById('searchInput');
+    if (searchInput) {
+      searchInput.addEventListener('input', function(e) {
+        performSearch(e.target.value);
+      });
+    }
+
+    // Close modal when clicking outside
+    const modal = document.getElementById('searchModal');
+    if (modal) {
+      modal.addEventListener('click', function(e) {
+        if (e.target === modal) {
+          closeSearch();
+        }
+      });
+    }
+  });
+})();
+</script> 

@@ -6,8 +6,8 @@ layout: none
 <html>
 <head>
   <title>{{ page.title }}</title>
-  <link rel="stylesheet" href="{{ '/css/styles.css' | relative_url }}">
-  <link rel="stylesheet" href="{{ '/css/syntax.css' | relative_url }}">
+  <link rel="stylesheet" href="{{ '/css/styles.css' | relative_url }}?v={{ site.time | date: '%s' }}">
+  <link rel="stylesheet" href="{{ '/css/syntax.css' | relative_url }}?v={{ site.time | date: '%s' }}">
   <link rel="icon" href="/favicon.ico">
   <meta name="searchmysite-verification" content="2XkyK7acSKjx5MmZ0sDICV7X7UEgxagtZDIPhA4pOk">
   <meta name="description" content="{{ page.description }}">
@@ -24,6 +24,11 @@ layout: none
       });
     </script>
   {% endif %}
+  <!-- Search functionality -->
+  {% include search-modal.html %}
+  {% include search-index.html %}
+  {% include search-script.html %}
+
 
     <script>
       window.MathJax = {
@@ -51,7 +56,14 @@ layout: none
         <a href="/">Home</a> ·
         <a href="/about.html">About</a> ·
         <a href="/blog.html">Blog</a> ·
-        <a href="/services.html">Services</a> 
+        <a href="/services.html">Services</a> ·
+        <a href="#" onclick="openSearchModal(); return false;" title="Search posts (Cmd+K)">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle;">
+            <circle cx="11" cy="11" r="8"></circle>
+            <path d="m21 21-4.35-4.35"></path>
+          </svg>
+          (ctrl k)
+        </a>
       </center>
     </nav>
   </header>

@@ -1,0 +1,14 @@
+<script>
+window.searchIndex = [
+  {% for post in site.posts %}
+    {
+      "title": {{ post.title | jsonify }},
+      "url": "{{ post.url }}",
+      "date": "{{ post.date | date: '%B %d, %Y' }}",
+      "excerpt": {{ post.excerpt | strip_html | truncatewords: 30 | jsonify }},
+      "content": {{ post.content | strip_html | jsonify }},
+      "tags": {{ post.tags | jsonify }}
+    }{% unless forloop.last %},{% endunless %}
+  {% endfor %}
+];
+</script> 
