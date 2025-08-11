@@ -5,10 +5,6 @@
   let lastQuery = '';
   let restoreFocusEl = null;
 
-  function escapeRegex(str) {
-    return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-  }
-
   function debounce(fn, delay) {
     let timer = null;
     return function(...args) {
@@ -17,101 +13,59 @@
     };
   }
 
-  // Simple fuzzy search function (for title only)
-  function fuzzySearch(query, text) {
-    query = query.toLowerCase();
-    text = text.toLowerCase();
-    let queryIndex = 0;
-    let textIndex = 0;
-    while (queryIndex < query.length && textIndex < text.length) {
-      if (query[queryIndex] === text[textIndex]) {
-        queryIndex++;
-      }
-      textIndex++;
-    }
-    return queryIndex === query.length;
-  }
-
-  // Calculate search score with tokenization
-  function calculateScore(post, rawQuery) {
-    const query = rawQuery.toLowerCase().trim();
-    if (!query) return 0;
-
-    const tokens = query.split(/\s+/).filter(Boolean);
-    if (tokens.length === 0) return 0;
-
-    const title = post.title.toLowerCase();
-    const content = (post.content || '').toLowerCase();
-    const excerpt = (post.excerpt || '').toLowerCase();
-    const tags = Array.isArray(post.tags) ? post.tags.map(t => (t || '').toLowerCase()) : [];
-
-    let score = 0;
-    let unmatchedTokens = 0;
-
-    for (const token of tokens) {
-      const tokenRegex = new RegExp(escapeRegex(token), 'g');
-      let matchedAny = false;
-
-      if (title.includes(token)) {
-        score += 1000;
-        matchedAny = true;
-        if (title.startsWith(token)) {
-          score += 500;
-        }
-      } else if (fuzzySearch(token, title)) {
-        score += 200; // Typo tolerance in title only
-        matchedAny = true;
-      }
-
-      if (excerpt.includes(token)) {
-        score += 300;
-        matchedAny = true;
-      }
-
-      if (content.includes(token)) {
-        score += 50;
-        matchedAny = true;
-        const matches = (content.match(tokenRegex) || []).length;
-        if (matches > 1) {
-          score += Math.min(matches * 10, 50);
-        }
-      }
-
-      if (tags.some(tag => tag.includes(token))) {
-        score += 400;
-        matchedAny = true;
-      }
-
-      if (!matchedAny) {
-        unmatchedTokens += 1;
-      }
-    }
-
-    // Recency boost (lightweight)
-    const dateMs = Date.parse(post.date);
-    if (!Number.isNaN(dateMs)) {
-      const daysAgo = (Date.now() - dateMs) / (1000 * 60 * 60 * 24);
-      // Up to +100 for very recent posts, decays over ~1 year
-      const recencyBoost = Math.max(0, 100 - Math.min(365, daysAgo) / 3.65);
-      score += Math.round(recencyBoost);
-    }
-
-    if (unmatchedTokens > 0) return 0;
-
-    return score >= 50 ? score : 0;
-  }
-
-  // Highlight matching text for all tokens
-  function highlightText(text, rawQuery) {
-    const query = (rawQuery || '').trim();
-    if (!query) return text;
-    const tokens = query.split(/\s+/).filter(Boolean).map(escapeRegex);
-    if (tokens.length === 0) return text;
-    const regex = new RegExp(`(${tokens.join('|')})`, 'gi');
+  // Highlight matching text for search terms
+  function highlightText(text, query) {
+    if (!query || !text) return text;
+    const terms = query.toLowerCase().split(/\s+/).filter(Boolean);
+    if (terms.length === 0) return text;
+    
+    const regex = new RegExp(`(${terms.map(term => term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|')})`, 'gi');
     return text.replace(regex, '<span class="search-highlight">$1</span>');
   }
 
-  // Perform search
+  // Extract relevant snippet from content with highlighting
+  function extractSnippet(content, query, maxLength = 150) {
+    if (!query || !content) return content.substring(0, maxLength) + (content.length > maxLength ? '...' : '');
+    
+    const terms = query.toLowerCase().split(/\s+/).filter(Boolean);
+    if (terms.length === 0) return content.substring(0, maxLength) + (content.length > maxLength ? '...' : '');
+    
+    const lowerContent = content.toLowerCase();
+    let bestMatch = { index: 0, score: 0 };
+    
+    // Find the position with the most query terms nearby
+    for (const term of terms) {
+      const index = lowerContent.indexOf(term);
+      if (index !== -1) {
+        let score = 1;
+        // Count other terms nearby
+        for (const otherTerm of terms) {
+          if (otherTerm !== term) {
+            const otherIndex = lowerContent.indexOf(otherTerm, Math.max(0, index - 100));
+            if (otherIndex !== -1 && Math.abs(otherIndex - index) < 200) {
+              score++;
+            }
+          }
+        }
+        if (score > bestMatch.score) {
+          bestMatch = { index, score };
+        }
+      }
+    }
+    
+    // Extract snippet around the best match
+    const start = Math.max(0, bestMatch.index - Math.floor(maxLength / 2));
+    const end = Math.min(content.length, start + maxLength);
+    let snippet = content.substring(start, end);
+    
+    // Add ellipsis
+    if (start > 0) snippet = '...' + snippet;
+    if (end < content.length) snippet = snippet + '...';
+    
+    return highlightText(snippet, query);
+  }
+
+  // Perform search using Lunr.js
   function performSearch(query) {
     lastQuery = query;
     const resultsContainer = document.getElementById('searchResults');
@@ -127,44 +81,64 @@
       return;
     }
 
-    const results = (window.searchIndex || [])
-      .map(post => ({
-        ...post,
-        score: calculateScore(post, query)
-      }))
-      .filter(post => post.score > 0)
-      .sort((a, b) => b.score - a.score)
-      .slice(0, 10);
+    try {
+      const searchResults = window.searchIndex.search(query);
+      const results = searchResults.slice(0, 10).map(result => {
+        const doc = window.documents[parseInt(result.ref)];
+        return {
+          ...doc,
+          score: result.score
+        };
+      });
 
-    filteredResults = results;
-    selectedIndex = -1;
+      filteredResults = results;
+      selectedIndex = -1;
 
-    if (results.length === 0) {
-      const wrapper = document.createElement('div');
-      wrapper.className = 'search-no-results';
-      const p = document.createElement('p');
-      p.textContent = `No posts found for "${query}"`;
-      wrapper.appendChild(p);
-      resultsContainer.innerHTML = '';
-      resultsContainer.appendChild(wrapper);
-      return;
+      if (results.length === 0) {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'search-no-results';
+        const p = document.createElement('p');
+        p.textContent = `No posts found for "${query}"`;
+        wrapper.appendChild(p);
+        resultsContainer.innerHTML = '';
+        resultsContainer.appendChild(wrapper);
+        return;
+      }
+
+      const totalResults = searchResults.length;
+      const displayedResults = results.length;
+      
+      const resultsCountHTML = `
+        <div class="search-results-count">
+          ${totalResults === displayedResults 
+            ? `${totalResults} result${totalResults === 1 ? '' : 's'} found` 
+            : `Showing ${displayedResults} of ${totalResults} results`}
+        </div>
+      `;
+
+      const resultsHTML = results.map((post, index) => `
+        <div class="search-result-item" data-index="${index}" tabindex="0" role="option" aria-selected="${index === selectedIndex}" onclick="navigateToPost('${post.url}')" onkeydown="if(event.key==='Enter'){navigateToPost('${post.url}')}" >
+          <div class="search-result-title">
+            ${highlightText(post.title, query)}
+          </div>
+          <div class="search-result-meta">
+            ${post.date}
+          </div>
+          <div class="search-result-excerpt">
+            ${extractSnippet(post.content || post.excerpt, query)}
+          </div>
+        </div>
+      `).join('');
+
+      resultsContainer.innerHTML = resultsCountHTML + resultsHTML;
+    } catch (error) {
+      console.error('Search error:', error);
+      resultsContainer.innerHTML = `
+        <div class="search-no-results">
+          <p>Search error. Please try a different query.</p>
+        </div>
+      `;
     }
-
-    const resultsHTML = results.map((post, index) => `
-      <div class="search-result-item" data-index="${index}" tabindex="0" role="option" aria-selected="${index === selectedIndex}" onclick="navigateToPost('${post.url}')" onkeydown="if(event.key==='Enter'){navigateToPost('${post.url}')}" >
-        <div class="search-result-title">
-          ${highlightText(post.title, query)}
-        </div>
-        <div class="search-result-meta">
-          ${post.date}
-        </div>
-        <div class="search-result-excerpt">
-          ${highlightText(post.excerpt, query)}
-        </div>
-      </div>
-    `).join('');
-
-    resultsContainer.innerHTML = resultsHTML;
   }
 
   // Navigate to selected post
@@ -314,4 +288,4 @@
     }
   });
 })();
-</script> 
+</script>

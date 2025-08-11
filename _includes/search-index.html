@@ -1,14 +1,30 @@
+<script src="https://unpkg.com/lunr/lunr.js"></script>
 <script>
-window.searchIndex = [
+// Generate documents for Lunr.js
+window.documents = [
   {% for post in site.posts %}
     {
+      "id": "{{ forloop.index0 }}",
       "title": {{ post.title | jsonify }},
       "url": "{{ post.url | relative_url }}",
       "date": "{{ post.date | date: '%B %d, %Y' }}",
       "excerpt": {{ post.excerpt | strip_html | truncatewords: 30 | jsonify }},
       "content": {{ post.content | strip_html | jsonify }},
-      "tags": {{ post.tags | jsonify }}
+      "tags": {{ post.tags | join: " " | jsonify }}
     }{% unless forloop.last %},{% endunless %}
   {% endfor %}
 ];
+
+// Build Lunr index
+window.searchIndex = lunr(function () {
+  this.ref('id');
+  this.field('title', { boost: 10 });
+  this.field('tags', { boost: 5 });
+  this.field('excerpt', { boost: 3 });
+  this.field('content');
+
+  window.documents.forEach(function (doc) {
+    this.add(doc);
+  }, this);
+});
 </script> 
