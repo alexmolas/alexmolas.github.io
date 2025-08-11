@@ -1,5 +1,24 @@
 <span class="reading-time" title="Estimated read time">
-  {% assign words = content | number_of_words %}
+  {% comment %}
+    Remove code blocks (<pre>...</pre> and <code>...</code>) from content before counting words
+  {% endcomment %}
+  {% assign _no_pre = '' %}
+  {% assign _pre_parts = content | split: '</pre>' %}
+  {% for _seg in _pre_parts %}
+    {% assign _before_pre = _seg | split: '<pre' | first %}
+    {% assign _no_pre = _no_pre | append: _before_pre %}
+  {% endfor %}
+
+  {% assign _no_code = '' %}
+  {% assign _code_parts = _no_pre | split: '</code>' %}
+  {% for _seg in _code_parts %}
+    {% assign _before_code = _seg | split: '<code' | first %}
+    {% assign _no_code = _no_code | append: _before_code %}
+  {% endfor %}
+
+  {% assign _text = _no_code | strip_html %}
+  {% assign words = _text | number_of_words %}
+
   {% if words < 360 %} 
     1 min · {{ words }} words
   {% else %}
