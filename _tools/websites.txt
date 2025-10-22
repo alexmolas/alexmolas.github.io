@@ -63,7 +63,6 @@ https://lethain.com/feeds.xml
 https://lilianweng.github.io/index.xml
 https://lilianweng.github.io/lil-log/feed.xml
 https://liorsinai.github.io/feed.xml
-https://lucytalksdata.com/rss/
 https://lukemetz.github.io/feed.xml
 https://lukesalamone.github.io/index.xml
 https://maxhalford.github.io/index.xml
