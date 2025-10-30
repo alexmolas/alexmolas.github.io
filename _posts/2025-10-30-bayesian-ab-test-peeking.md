@@ -7,14 +7,14 @@ toc: true
 ---
 
 ## Introduction
-Over the last few months at RevenueCat I've been building a statistical framework to flag when an A/B test has reached statistical significance. I went through the usual literature, including Evan Miller's posts. In his well known "How Not to Run an A/B Test" there's a claim that with bayesian experiment design you can stop at any time and still make valid inferences, and that you don't need a fixed sample size to get a valid result. I've read this claim in other posts The impression is that you can peek as often as you want, stop the moment the posterior clears a threshold (eg $P(A>B) > 0.95$), and you won't inflate false positives.
+Over the last few months at RevenueCat I've been building a statistical framework to flag when an A/B test has reached statistical significance. I went through the usual literature, including Evan Miller's posts. In his well known "How Not to Run an A/B Test" there's a claim that with Bayesian experiment design you can stop at any time and still make valid inferences, and that you don't need a fixed sample size to get a valid result. I've read this claim in other posts The impression is that you can peek as often as you want, stop the moment the posterior clears a threshold (eg $P(A>B) > 0.95$), and you won't inflate false positives.
 
 That's not what I'm seeing.
 
 ## Simulation and results
 Picture the following scenario
 - Baseline and variant have the same conversion (ie, no difference between them).
-- Start with an uninformative prior ($\text{Beta}(1, 1)$). Generate observations and update your prior accordingly ([formulas here](https://www.evanmiller.org/bayesian-ab-testing.html)).
+- Start with an uninformative prior ($\text{Beta}(1, 1)$). Generate observations and update your prior accordingly ([formulas here](https://www.evanmiller.org/Bayesian-ab-testing.html)).
 - After $N$ events, compute the posterior probability that one branch is better than the other (ie $P(B > A)$ or $P(A > B)$). If it exceeds $0.95$, declare a winner.
 - Keep track of false positives: since baseline and variant are the same declaring a winner is a false positive.
 - Repeat for different peek intervals $N$, from very frequent peeking to less frequent.
@@ -28,7 +28,7 @@ The plot show that as $N$ gets smaller, the error rate climbs. For example, if w
 
 **Bayesian posteriors remain interpretable under continuous monitoring, but a fixed posterior threshold does not control false positives when you peek and stop on success**
 
-## What can you actually do with bayesian AB testing?
+## What can you actually do with Bayesian AB testing?
 
 As we just saw, Bayesian AB testing is not immune to peeking. But then, what advantage does it have over frequentist methods? 
 
