@@ -7,9 +7,7 @@ toc: true
 ---
 
 ## Introduction
-Over the last few months at RevenueCat I've been building a statistical framework to flag when an A/B test has reached statistical significance. I went through the usual literature, including Evan Miller's posts. In his well known "How Not to Run an A/B Test" there's a claim that with Bayesian experiment design you can stop at any time and still make valid inferences, and that you don't need a fixed sample size to get a valid result. I've read this claim in other posts The impression is that you can peek as often as you want, stop the moment the posterior clears a threshold (eg $P(A>B) > 0.95$), and you won't inflate false positives.
-
-That's not what I'm seeing.
+Over the last few months at RevenueCat I've been building a statistical framework to flag when an A/B test has reached statistical significance. I went through the usual literature, including Evan Miller's posts. In his well known "How Not to Run an A/B Test" there's a claim that with Bayesian experiment design you can stop at any time and still make valid inferences, and that you don't need a fixed sample size to get a valid result. I've read this claim in other posts. The impression I got is that you can peek as often as you want, stop the moment the posterior clears a threshold (eg $P(A>B) > 0.95$), and you won't inflate false positives. And this is not correct. If you're an expert in Bayesian statistics this is probably obvious, but it wasn't for me. So I decided to run some simulations to see what really happens, and I'm sharing the results here in case it can be useful for others.
 
 ## Simulation and results
 Picture the following scenario
