@@ -11,24 +11,24 @@ Over the last few months at RevenueCat I've been building a statistical framewor
 
 ## Simulation and results
 Picture the following scenario
-- Baseline and variant have the same conversion (ie, no difference between them).
-- Start with an uninformative prior ($\text{Beta}(1, 1)$). Generate observations and update your prior accordingly ([formulas here](https://www.evanmiller.org/Bayesian-ab-testing.html)).
-- After $N$ events, compute the posterior probability that one branch is better than the other (ie $P(B > A)$ or $P(A > B)$). If it exceeds $0.95$, declare a winner.
-- Keep track of false positives: since baseline and variant are the same declaring a winner is a false positive.
-- Repeat for different peek intervals $N$, from very frequent peeking to less frequent.
+- Baseline and variant have the same conversion rate $r$ (ie, no difference between them).
+- Generate events following a Bernoulli distribution with parameter $r$, and update your prior using Bayes theorem ([formulas here](https://www.evanmiller.org/Bayesian-ab-testing.html)), starting from an uninformative prior, eg $\text{Beta}(1, 1)$.
+- After every $N$ events, compute the posterior probability that one branch is better than the other (ie $P(B > A)$ or $P(A > B)$). If any of them exceeds $0.95$, declare a winner.
+- Since baseline and variant have the same conversion rate $r$ declaring a winner is a false positive.
+- Repeat for different peek intervals $N$ and conversion rates $r$.
 
-I ran the simulations for different conversion rates ($0.1\%$, $1\%$% and $10\%$) and the results are consistent. In the following plot, we see how the error rate increases as the $N$ decreases. 
+I ran the simulations for different conversion rates $r \in \left(0.1\%, 1\%, 10\%\right)$ and peeking intervals $N \in \left(10^2, 10^3, 10^4, 10^5, 10^6\right)$ and the results are consistent. In the following plot, we see how the error rate increases as the $N$ decreases. 
 
 
 {% include image.html path="/docs/bayesian-ab-test-peeking/miss_rate_vs_peeking.png" width="500" %}
 
 The plot show that as $N$ gets smaller, the error rate climbs. For example, if we peak after every $100$ observations the false positive rate increases to $80\%$. In other words, even when using a Bayesian approach, more frequent peeking increases the chance of calling a winner when there's none.
 
-**Bayesian posteriors remain interpretable under continuous monitoring, but a fixed posterior threshold does not control false positives when you peek and stop on success**
+The conclusion is then: *Bayesian posteriors remain interpretable under continuous monitoring, but a fixed posterior threshold does not control false positives when you peek and stop on success*
 
 ## What can you actually do with Bayesian AB testing?
 
-As we just saw, Bayesian AB testing is not immune to peeking. But then, what advantage does it have over frequentist methods? 
+As we just saw, Bayesian AB testing is not immune to peeking. The more you peek the higher the false positive rate. But then, what advantage does it have over frequentist methods? 
 
 The key advantage is that results are interpretable at any sample size. This means you can monitor continuously and interpret $P(B > A)$ as the posterior probability that $B$ is better at the time you look. That interpretation is valid without a fixed sample size. However, if you want to control a frequentist error rate while peeking, a fixed $95\%$ posterior threshold will not do it.
 
