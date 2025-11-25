@@ -27,6 +27,7 @@ https://andlukyane.com/feed.xml
 https://andys.page/index.xml
 https://austinhenley.com/blog/feed.rss
 https://ben.bolte.cc/feed.xml
+https://beuke.org/atom.xml
 https://bitesofcode.wordpress.com/feed/
 https://chris-said.io/atom.xml
 https://claytonwramsey.github.io/blog/rss.xml
