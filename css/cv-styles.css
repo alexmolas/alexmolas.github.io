@@ -35,3 +35,117 @@ h3 span {
   font-weight: 200;
 
 }
+
+.cv-page-header {
+  text-align: center;
+}
+
+.cv-summary {
+  margin: 0;
+}
+
+.cv-summary strong,
+strong {
+  font-weight: 700;
+}
+
+.cv-summary + .cv-summary {
+  margin-top: 1em;
+}
+
+@media print {
+  @page {
+    size: A4;
+    margin: 10mm 12mm;
+  }
+
+  html, body {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    font-size: 10.5px;
+    line-height: 1.35;
+    padding: 0;
+    margin: 0;
+    max-width: none;
+    color: #111;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  a,
+  a:link,
+  a:visited {
+    color: blue;
+    text-decoration: none;
+  }
+
+  a[href]::after {
+    content: "";
+  }
+
+  strong {
+    font-weight: 700;
+  }
+
+  h1 {
+    font-size: 18px;
+    font-weight: 700;
+    margin: 0 0 2px;
+  }
+
+  h2 {
+    font-size: 13px;
+    font-weight: 700;
+    margin: 8px 0 2px;
+    break-after: avoid;
+  }
+
+  h3 {
+    font-size: 12px;
+    font-weight: 700;
+    margin: 4px 0 2px;
+    break-after: avoid;
+  }
+
+  h3 span {
+    font-size: 11px;
+    font-weight: 200;
+  }
+
+  hr {
+    margin: 2px 0 4px;
+    border: 0;
+    border-top: 1px solid #000;
+  }
+
+  nav {
+    margin-bottom: 2px;
+  }
+
+  p,
+  .cv-summary {
+    margin: 2px 0;
+  }
+
+  .cv-summary + .cv-summary {
+    margin-top: 4px;
+  }
+
+  ul {
+    margin: 2px 0 4px;
+    padding-left: 18px;
+  }
+
+  ul ul {
+    margin: 1px 0 2px;
+  }
+
+  li {
+    margin: 1px 0;
+    break-inside: avoid;
+  }
+
+  h2, h3, li {
+    page-break-inside: avoid;
+  }
+}

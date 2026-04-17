@@ -18,7 +18,10 @@ p code {
   background-color: #f7f7f7; /* Replace with your desired background color */
   padding: 0.2em 0.4em;
   border-radius: 4px;
-  font-family: 'Courier New', monospace; /* Optional: Specify a monospaced font */
+  font-size: 16px;
+  color: #112236;
+  font-family: 'Droid Sans Mono', 'monospace', monospace; /* Optional: Specify a monospaced font */
+  /* font-weight: bold; Make text bold */
 }
 
 
