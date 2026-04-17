@@ -10,39 +10,40 @@
   <link rel="stylesheet" href="/css/cv-styles.css">  
 </head>
 <body>
-  <center>
-    <h1>Alex Molas</h1>
+  <header class="cv-page-header">
+    <h1>Alex Molas - Senior Data Scientist</h1>
     <nav>
           <a href="mailto:alexmolasmartin@gmail.com">alexmolasmartin@gmail.com</a> ·
-          <a href="https://www.linkedin.com/in/alex-molas" target="_blank">www.linkedin.com/in/alex-molas</a> ·
-          <a href="https://www.alexmolas.com" target="_blank">www.alexmolas.com</a>
+          <a href="https://www.linkedin.com/in/alex-molas">www.linkedin.com/in/alex-molas</a> ·
+          <a href="https://www.alexmolas.com">www.alexmolas.com</a>
       </nav>
-  
-  </center>
+  </header>
   <h2>Summary</h2>
   <hr>
-  Spent the last eight years convincing computers to make decent predictions and executives that we cannot predict next week's lottery numbers. Expert at explaining why your favorite metric is probably wrong and why that 99.9% accuracy model definitely won't work in production. Fluent in the art of setting realistic expectations and building pipelines that don't wake you up at 3am. Has mastered the dark art of productive async collaboration across time zones without losing sanity.
-    <br>
-    <strong>Keywords:</strong> <i>Python, SQL, Spark, AWS, GCP, Docker, MLflow, TensorFlow, Sklearn, XGBoost, LightGBM, NLP, Survival Analysis, LTV, Recommender Systems, A/B Testing</i>
+  <p class="cv-summary"><strong>+8 years building production ML systems: ranking, LTV, experimentation, and LLM applications across subscriptions, marketplaces, and logistics</strong></p>
+  <p class="cv-summary">Spent the last eight years convincing computers to make decent predictions and executives that nobody can predict next week's lottery numbers. Expert at explaining why everyone's favorite metric is wrong and why that 99.9% accuracy model definitely won't work in production. Fluent in the art of setting realistic expectations and building pipelines that don't wake the team at 3am. Have mastered the dark art of productive async collaboration across time zones without losing sanity.</p>
+    <!-- <br> -->
+    <!-- <strong>Keywords:</strong> <i>Python, SQL, Spark, AWS, GCP, Docker, MLflow, TensorFlow, Sklearn, XGBoost, LightGBM, NLP, Survival Analysis, LTV, Recommender Systems, A/B Testing</i> -->
   <h2>Experience</h2>
   <hr>
     <ul>
-        <li><h3>Senior Data Scientist · <a href="https://www.revenuecat.com/" target="_blank">RevenueCat</a> · <span>Apr 2025 - present</span></h3></li>
-        <ul>
-            <li>Led LTV modeling initiatives, from ideation to deployment.</li>
-            <li>Redesigned the LTV evaluation framework, migrating from a random to a time-based split to improve robustness and interpretability.</li>
-            <li>Developed a survival model to estimate user LTV, achieving a +5% improvement in the main business metric.</li>
-            <li>Guided the implementation of the statistical framework used to compute statistical significance for conversion A/B tests.</li>
-            <li>Authored a methodology to compute confidence intervals for LTV estimates, enabling statistical significance testing.</li>
-        </ul>
-
-        <li><h3>Senior Data Scientist · <a href="https://es.wallapop.com/" target="_blank">Wallapop</a> · <span>Sep 2023 - Mar 2025</span></h3></li>
+        <li><h3>Senior Data Scientist · <a href="https://www.revenuecat.com/" target="_blank">RevenueCat</a> · <span>Apr 2025 - present</span></h3>
             <ul>
-                <li>Lead ML initiatives for the search team focusing on matching, ranking, and software best practices. Used Solr as the search engine.</li>
+                <li>Built a per-user intent model (cross-app subscription data, learned embeddings for high-cardinality features) that routes users to optimized checkout flows. Top-decile users convert at <strong>1.46x the baseline rate</strong>.</li>
+                <li>Shipped an end-to-end predicted LTV feature (survival models, training pipelines, backend, frontend) to let developers pick experiment winners by long-term revenue. Improved winner prediction accuracy by <strong>+12pp</strong>.</li>
+                <li>Quantified <strong>~$960K/year</strong> in unrealized revenue via counterfactual simulation across 11K+ experiments. Designed a Thompson Sampling system for dynamic traffic allocation using inverse probability weighting.</li>
+                <li>Validated that granular engagement signals predict a <strong>5x lift in paid conversion rate</strong>. Architected a real-time behavioral event pipeline to start collecting them at scale.</li>
+                <li>Owned multiple ML initiatives end-to-end as the sole data scientist on a cross-functional team, from feasibility analysis and product definition to cross-team coordination and production deployment.</li>
+            </ul>
+        </li>
+
+        <li><h3>Senior Data Scientist · <a href="https://es.wallapop.com/" target="_blank">Wallapop</a> · <span>Sep 2023 - Mar 2025</span></h3>
+            <ul>
+                <li>Led ML initiatives for the search team focusing on matching, ranking, and software best practices. Used Solr as the search engine.</li>
                 <!-- <li>Designed, implemented and analyzed multiple A/B test in the search domain: autofiltering, autoboosting, and results reranking.</li> -->
-                <li>Trained a ranker ML model and deployed it to Solr, improving search-to-transaction ratio by +1.5%, adding 600K€ annually.</li>
-                <li>Trained and deployed a BERT model for a query classification service. Improved the search-to-transaction ratio by 1%, adding 400K€ annually.</li>
-                <li>Trained a PoC ranker model that used real-time features such as item popularity. Improved offline NDCG metrics by +10%.</li>
+                <li>Trained a ranker ML model and deployed it to Solr, improving search-to-transaction ratio by +1.5%, adding <strong>600K€ annually</strong>.</li>
+                <li>Trained and deployed a BERT model for a query classification service. Improved the search-to-transaction ratio by 1%, adding <strong>400K€ annually</strong>.</li>
+                <li>Trained a PoC ranker model that used real-time features such as item popularity. Improved offline NDCG metrics by <strong>+10%</strong>.</li>
                 <li>Developed PoC solutions for query understanding (intent extraction from queries and structured attribute extraction from descriptions) using LLMs.</li>                
                 <li>Refactored ETLs from manually executed notebooks to Spark jobs. Reduced execution time from days to hours, improving developer experience and scalability.</li>
                 <li>Organized events to increase machine learning visibility: internal hackathons, Meetups, and conferences.</li>
@@ -56,78 +57,45 @@
                 <!-- <li>Point of contact between the Search Data Science organization and external collaborators from <a href="https://en.wikipedia.org/wiki/Naver" target="_blank">Naver</a></li> -->
                 
             </ul>
+        </li>
 
-        <li><h3>Senior Data Scientist · <a href="https://www.stuart.com/" target="_blank">Stuart</a> · <span>Nov 2019 - Sep 2023</span></h3></li>
+        <li><h3>Senior Data Scientist · <a href="https://www.stuart.com/" target="_blank">Stuart</a> · <span>Nov 2019 - Sep 2023</span></h3>
             <ul>
-                <li>Deployed a service that improved ETA accuracy by +30% using a deep learning model. Achieved a +28% improvement in cold-start locations.</li>
+                <li>Deployed a service that improved ETA accuracy by <strong></strong>+30%</strong> using a deep learning model. Achieved a <strong>+28% improvement in cold-start locations</strong>.</li>
                 <li>Designed and developed pipelines to automatically train, evaluate, and deploy ETA models.</li>
                 <li>Built a distributed pipeline to process daily all the events dumped from Kafka to S3, allowing DS to analyze and train models on it.</li>
                 <li>Designed an experimental dispatcher engine to solve the assignment problem using Python and OR-Tools.</li>
-                <li>Planned a PoC using LightGBM to estimate the probability of a courier accepting a specific delivery.</li>
-                <li>Mentored a senior software engineer who wanted to specialize in machine learning and data science</li>
+                <!-- <li>Planned a PoC using LightGBM to estimate the probability of a courier accepting a specific delivery.</li> -->
+                <li><strong>Mentored a senior software engineer</strong> who wanted to specialize in machine learning and data science.</li>
             </ul>
+        </li>
 
-        <!-- <li><h3>Data Scientist · <a href="https://www.21buttons.com/about/" target="_blank">21 Buttons</a> · <span>Jun 2019 - Oct 2019</span></h3></li>
-        <ul>
-            <li>Started a recommender system based on implicit user feedback to recommend similar profiles to users.</li>
-            <li>Implemented a backend ML solution to classify clothes based on images and descriptions.</li>
-        </ul>
-
-        <li><h3>Data Scientist · <a href="https://www.veepee.es/gr/home/default" target="_blank">Privalia (Veepee)</a> · <span>May 2018 - Jun 2019</span></h3></li>
-        <ul>
-            <li>Implemented an ML model to forecast clearance sales. Launched a pricing engine on top of the forecast model.</li>
-        </ul>
-
-        <li><h3>Data Analyst · <a href="https://gauss-neumann.com/" target="_blank">Gauss&Neumann</a> · <span>Oct 2017 - Feb 2018</span></h3></li>
-        <ul>
-            <li>Developed tools for monitoring and optimizing SEM campaigns using Google AdWords and Python.</li>
-        </ul> -->
-        <li><h3>Additional Data Science Experience</h3></li>
+        <li><h3>Additional Data Science Experience</h3>
         <ul>
           <li><a href="https://www.21buttons.com/about/" target="_blank">21 Buttons</a> <small><i>(Jun 2019-Oct 2019)</i></small>: Built a recommender system with implicit data, and an image + text-based clothing classifier.</li>
           <li><a href="https://www.veepee.es/gr/home/default" target="_blank">Privalia (Veepee)</a> <small><i>(May 2018-Jun 2019)</i></small>: Built a forecasting model for clearance sales. Created a pricing engine on top of the model.</li>
           <li><a href="https://gauss-neumann.com/" target="_blank">Gauss&Neumann</a> <small><i>(Oct 2017-Feb 2018)</i></small>: Developed tools for monitoring and optimizing SEM campaigns using Google AdWords and Python.</li>
         </ul>
+        </li>
+
     </ul>
-  <h2>Projects</h2>
+  <h2>Talks, writing, and projects</h2>
   <hr>
     <ul>
-        <li><a href="https://www.alexmolas.com">www.alexmolas.com</a>: I've been maintaining since 2020 a blog about data science. Over 70k visits during 2023.</li>
-        <li>Since 2022 I've been teaching the Data Engineering subject in the <a href="https://www.eae.es/en/full-time/master-big-data-and-analytics/presentation" > Master's on Big Data and Analytics at EAE</a>.</li>
-        <li>1st place <a href="https://godatathon.com">Novartis Datathon</a> (2021) and <a href="https://ailylabsdatathon.es/"> Aily Datathon</a> (2022). Participated in a dozen other datathons.</li> 
-        <li>Lightning talk in the BCN <a href="https://pybcn.org/events/pyday_bcn/pyday_bcn_2022/">PyDay 2022</a> about how to beat your friends in fantasy football using scrapping and operations research.</li>
-    </ul>
-  <h2>Publications & Talks & Popular Posts</h2>
-  <hr>
-    <ul>
-        <li>"Static Typing in Python". Workshop in PyDay 2024. <a href="https://github.com/alexmolas/python-static-typing/">Repo</a> with code and slides (2024)</li>
-        <li>"A search engine in 80 lines of Python". <a href="https://www.alexmolas.com/2024/02/05/a-search-engine-in-80-lines.html" target="_blank">Blog</a> (2024).</li>
-        <!-- <li>"Guide to onboarding in a new job". <a href="https://www.alexmolas.com/2024/01/18/onboarding.html" target="_blank">Blog</a> (2024).</li> -->
-        <!-- <li>"Analyzing gender gap in chess". <a href="https://www.alexmolas.com/2023/08/12/chess-gender-gap.html" target="_blank">Blog</a> (2023).</li> -->
-        <!-- <li>"Nobody cares about your blog". <a href="https://www.alexmolas.com/2023/07/15/nobody-cares-about-your-blog.html" target="_blank">Blog</a> (2023).</li> -->
-        <!-- <li>"Choose the smallest number not chosen yet". <a href="https://www.alexmolas.com/2022/09/28/choose-the-smallest-number.html" target="_blank">Blog</a> (2023).</li> -->
-        <li>"How to beat your friends in fantasy football", PyDay ES 2022. <a href="https://www.alexmolas.com/2024/07/15/fantasy-knapsack.html">Blog</a> and <a href="http://www.alexmolas.com/talks/fantasy-football.pdf" target="_blank">Slides</a> (2022).</li>
+        <li><a href="https://www.alexmolas.com">www.alexmolas.com</a>: data science blog since 2020 (<strong>70k visits in 2023</strong>). Notable posts: <a href="https://www.alexmolas.com/2024/02/05/a-search-engine-in-80-lines.html" target="_blank">A search engine in 80 lines of Python</a> (2024) and <a href="https://www.alexmolas.com/2025/04/09/semantic-unit-testing.html" target="_blank">Semantic Unit Testing</a> (2025).</li>
+        <li>Teaching Data Engineering at the <a href="https://www.eae.es/en/full-time/master-big-data-and-analytics/presentation">EAE Master's in Big Data and Analytics</a> (since 2022).</li>
+        <li>"Static Typing in Python", workshop at PyDay 2024. <a href="https://github.com/alexmolas/python-static-typing/">Repo</a> with code and slides.</li>
+        <li>"How to beat your friends in fantasy football", PyDay 2022. <a href="https://www.alexmolas.com/2024/07/15/fantasy-knapsack.html">Blog</a> and <a href="http://www.alexmolas.com/talks/fantasy-football.pdf" target="_blank">Slides</a>.</li>
+        <li>1st place at <a href="https://godatathon.com">Novartis Datathon</a> (2021) and <a href="https://ailylabsdatathon.es/">Aily Datathon</a> (2022). Participated in a dozen other datathons.</li>
         <li>"Field theory for recurrent mobility". <a href="https://www.nature.com/articles/s41467-019-11841-2" target="_blank">Nature Communications</a> 10, 3895 (2019).</li>
         <li>"Streak Camera Calibration Using RF Switches". <a href="https://inspirehep.net/literature/1640036" target="_blank">5th IBIC</a>, MOPG55 (2017).</li>
         <li>"Social network analysis of communities in literature" <a href="https://ifisc.uib-csic.es/documents/580/MasterStudentsPoster.pdf" target="_blank">poster</a>. Won the IFISC Best Poster Award.</li>
     </ul>
     <h2>Education</h2>
   <hr>
-      <ul>
-          <li><h3>MSc. Physics for Complex Systems · <a href="https://ifisc.uib-csic.es/en/">CSIC-IFISC</a> · <span> 2016-2017 </span></h3></li>
-          <ul>
-              <li>Got an IFISC Mobility Scholarship that covered my fees and year expenses during my studies.</li>
-              <li>Won the best poster award and presented the results at the local radio station.</li>
-              <li>Master thesis using field theory and data analysis to study recurrent mobility. Results were published in <a href="https://www.nature.com/articles/s41467-019-11841-2" target="_blank">Nature Communications</a>.</li>
-          </ul>
-  
-          <li><h3>B. Sc. Physics · <a href="https://www.uab.cat/en/physics/">UAB</a> · <span> 2012-2016</span></h3></li>
-          <ul>
-              <li>Worked as an assistant professor in the "Numerical Methods" subject.</li>
-              <li>Internship at the <a href="https://www.cells.es/en/" target="_blank">ALBA synchrotron</a>. Results were published at the 5th IBIC conference.</li>
-              <li>Summer internship at <a href="https://www.ifae.es/" target="_blank">IFAE</a>. Worked on Yang-Mills theory simulations.</li>
-              <li>Received a scholarship from the Spanish government every year for my academic achievements.</li>
-          </ul>
-      </ul>
+    <ul>
+        <li>MSc. Physics for Complex Systems · <a href="https://ifisc.uib-csic.es/en/">CSIC-IFISC</a> <span>2016-2017</span></li>
+        <li>BSc. Physics · <a href="https://www.uab.cat/en/physics/">UAB</a> <span>2012-2016</span></li>
+    </ul>
 </body>
 </html>
