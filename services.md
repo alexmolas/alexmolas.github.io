@@ -26,7 +26,7 @@ A <a href="https://cal.com/alexmolas/45min">45 minute call</a> where I'll help y
 <details>
 <summary>Free guidance</summary>
 
-As part of my goals for 2024 I’ve decided to offer free advisory sessions for students or professionals who want to enter the world of data science. You can book your hour <a href="https://cal.com/alexmolas/free-guidance-session">here</a>.
+I've decided to offer free advisory sessions for students and professionals looking to start or transition into a career in data science. These sessions are open to anyone seeking guidance on entering the field, building relevant skills, or planning their next steps. If you're interested, you can book a free one-hour session <a href="https://cal.com/alexmolas/free-guidance-session">here</a>.
 
 <p>What to expect? A call to discuss whatever you want to know about data science and machine learning. For example</p>
 
