@@ -7,7 +7,7 @@ toc: false
 ---
 
 
-Unless you've been living under a rock, you've probably heard about Jev. [Simon Willison's post](https://simonwillison.net/2026/Sep/21/jev/) is a good overview, and this [one](https://www.nobodywho.ai/posts/jev-in-25-lines/) shows how to implement it in a few lines of Python. In short, Jev is TypeSafe's universal classifier: you describe the classes in a prompt, and it returns a probability for each one. One of its main selling points is that these probabilities are calibrated. In this post I argue that Jev is genuinely useful, but that the calibration claim can't hold in general, and that you should treat its outputs as scores rather than probabilities.
+Unless you've been living under a rock, you've probably heard about Jev. [Simon Willison's post](https://simonwillison.net/2026/Sep/21/jev/) is a good overview, and this [one](https://www.nobodywho.ai/posts/jev-in-25-lines/) shows how to implement it in a few lines of Python. In short, Jev is TypeSafe's first "[System One Model](https://typesafe.ai/blog/introducing-system-one-models-and-jev)": instead of generating text, it takes unstructured input and returns typed decisions from a set of outputs you define in advance, each with a probability attached. One of its selling points is that "all answers are accompanied with calibrated probabilities and confidence scores". In this post I argue that Jev is useful, but that the calibration claim can't hold in general, and that you should treat its outputs as scores rather than probabilities.
 
 ## Useful without training data
 
